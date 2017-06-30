@@ -39,7 +39,7 @@ page-sign-up {
 	}
 
 	.next {
-		top: 80px;
+		margin-top: 15%;
 		width: 80%;
 	}
 
@@ -54,6 +54,11 @@ page-sign-up {
 	p {
 		text-align: center;
 		position: relative;
-		top: 100px;
+		top: 4%;
+	}
+
+	.stylistviewbutton {
+		width:20%;
+		font-size: 12px;
 	}
 }

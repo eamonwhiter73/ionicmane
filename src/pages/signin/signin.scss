@@ -8,7 +8,7 @@ page-sign-in {
 			position: relative;
 			font-size: 40px;
 			text-align: center;
-			top: 260px;
+			top: 45%;
 			color: #e6c926;
 			-webkit-text-stroke-width: 3px;
    		-webkit-text-stroke-color: black;
@@ -16,7 +16,6 @@ page-sign-in {
 
 		ion-input {
 			position: relative;
-			top: 280px;
 			width:220px;
 		  border: 0;
 		  outline: 0;
@@ -26,6 +25,10 @@ page-sign-in {
 		  margin-left: auto;
 		  margin-right: auto;
 		  color: black;
+		}
+
+		.inputone {
+			margin-top: 84%;
 		}
 
 		.circle {
@@ -67,14 +70,15 @@ page-sign-in {
 		}
 
 		button {
-			top: 400px;
+			position: relative;
+			top: 110px;
 			width: 80%;
 		}
 
 		p {
 			text-align: center;
 			position: relative;
-			top: 400px;
+			top: 20%;
 		}
 	}
 }
