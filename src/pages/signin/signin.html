@@ -1,0 +1,15 @@
+<ion-content padding>
+  <h1 class="logo">Mane Emergency</h1>
+  <form (ngSubmit)="logForm()">
+  	<ion-input type="text" name="username" placeholder="Username/Email"></ion-input> <!--[(ngModel)]="user.username"-->
+  	<ion-input type="text" name="password" placeholder="Password"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
+  	<div class='circle circone'></div>
+  	<div class='circle circtwo'></div>
+  	<h2 class='hairstylist'>Hair Stylist</h2>
+  	<h2 class='user'>User</h2>
+  	<div class="signincontainer" style="text-align: center;">
+  		<button ion-button round color="primary">Sign In</button>
+  	</div>
+  </form>
+  <p>Don't have an account? Sign Up</p>
+</ion-content>

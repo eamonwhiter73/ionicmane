@@ -1,0 +1,80 @@
+page-sign-in {
+	ion-content{
+    background-image: url('../../assets/signinback.png');
+    background-repeat: no-repeat;
+		background-size:cover;
+
+		.logo {
+			position: relative;
+			font-size: 40px;
+			text-align: center;
+			top: 260px;
+			color: #e6c926;
+			-webkit-text-stroke-width: 3px;
+   		-webkit-text-stroke-color: black;
+		}
+
+		ion-input {
+			position: relative;
+			top: 280px;
+			width:220px;
+		  border: 0;
+		  outline: 0;
+		  background: transparent;
+		  border-bottom: 1px solid black;
+		  display: block;
+		  margin-left: auto;
+		  margin-right: auto;
+		  color: black;
+		}
+
+		.circle {
+		  background: transparent;
+    	width: 25px;
+    	height: 25px;
+    	border-radius: 50%;
+    	border-color: black;
+    	border-width: 3px;
+    	border-style: solid;
+		}
+
+		.circone {
+			display: inline-block;
+			position: absolute;
+			top: 460px;
+			left: 30%;
+		}
+
+		.circtwo {
+			display: inline-block;
+			position: absolute;
+			top: 460px;
+			right: 30%;
+		}
+
+		.hairstylist {
+			position: absolute;
+			top: 470px;
+			color: #e6c926;
+			left: 17%;
+		}
+
+		.user {
+			position: absolute;
+			top: 470px;
+			color: #e6c926;
+			right: 26.5%;
+		}
+
+		button {
+			top: 400px;
+			width: 80%;
+		}
+
+		p {
+			text-align: center;
+			position: relative;
+			top: 400px;
+		}
+	}
+}
