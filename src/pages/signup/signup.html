@@ -1,0 +1,33 @@
+<ion-content padding>
+  <div class="stylistview">
+    <button ion-button color="secondary">Stylist View</button>
+  </div>
+  <div class="signup">
+    <h3>Sign Up</h3>
+  </div>
+  <br>
+  <form> <!--(ngSubmit)="logForm()"-->
+    <br><br>
+    <ion-label stacked>Username</ion-label>
+  	<ion-input type="text" name="username"></ion-input> <!--[(ngModel)]="user.username"-->
+  	<br>
+    <ion-label stacked>Email Address</ion-label>
+    <ion-input type="text" name="email"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
+    <br>
+    <div id='labelone' class='labelz'>
+      <ion-label stacked>Stylist</ion-label>
+      <ion-checkbox class="moveleft"></ion-checkbox>
+    </div>
+    <div id='labeltwo' class='labelz'>
+      <ion-label stacked>User</ion-label>
+      <ion-checkbox></ion-checkbox> <!--[(ngModel)]="mushrooms"-->
+    </div>
+    <br><br><br><br>
+    <ion-label stacked>Password</ion-label>
+    <ion-input type="text" name="email"></ion-input>
+  </form>
+  <div class="signincontainer" style="text-align: center;">
+    <button class="next" ion-button round color="tertiary">Next</button>
+  </div>
+  <p>Already have an account? <a (click)="pushPage()">Sign In</a></p>
+</ion-content>
