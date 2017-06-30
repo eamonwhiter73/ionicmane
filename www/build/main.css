@@ -27590,12 +27590,12 @@ page-sign-up .labelz {
 
 page-sign-up #labelone {
   position: relative;
-  margin-left: 125px;
+  left: 36%;
 }
 
 page-sign-up #labeltwo {
   position: relative;
-  margin-left: 20px;
+  right: -42%;
 }
 
 page-sign-up ion-input {
@@ -27620,8 +27620,12 @@ page-sign-up .moveleft {
   left: 5px;
 }
 
+page-sign-up .moveleftuser {
+  left: 2px;
+}
+
 page-sign-up p {
   text-align: center;
   position: relative;
-  top: 110px;
+  top: 100px;
 }

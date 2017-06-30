@@ -17,12 +17,12 @@ page-sign-up {
 
 	#labelone {
 		position: relative;
-		margin-left: 125px;
+		left: 36%;
 	}
 
 	#labeltwo {
 		position: relative;
-		margin-left: 20px;
+		right: -42%;
 	}
 
 	ion-input {
@@ -47,9 +47,13 @@ page-sign-up {
 		left: 5px;
 	}
 
+	.moveleftuser {
+		left: 2px;
+	}
+
 	p {
 		text-align: center;
 		position: relative;
-		top: 110px;
+		top: 100px;
 	}
 }
