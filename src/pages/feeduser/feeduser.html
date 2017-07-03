@@ -1,0 +1,61 @@
+<ion-content no-padding> 
+  
+  <!--<ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>-->
+    
+  <ion-item class="itemadspace" [@slideDown]="downState" no-padding no-lines>
+    <h3 class="feedtitle">User Feed</h3>
+  </ion-item>
+  
+  <div class="clickme" (tap)="toolClicked($event)">
+    <ion-toolbar [@toolSlide]="toolbarState" color="black" id="iontoolbar">
+      <ion-icon class='custom-icon' name="play"></ion-icon>
+      <button #changeText class="all toolbarstyle" (tap)="dropDown()">Availability</button><ion-icon class='down-icon' name="arrow-down"></ion-icon>
+
+      <button class="promos toolbarstyle" (tap)="closeMenu()">Promos</button>
+      <button class="weekly toolbarstyle" (tap)="closeMenu()">Weekly-Deals</button>
+    </ion-toolbar>
+  </div>
+
+  <ul [@show]="showDropDown" class="dropdown">
+    <li (tap)="dropDownA()">Availability</li>
+    <li (tap)="dropDownD()">Distance</li>
+    <li (tap)="dropDownP()">Price</li>
+    <li (tap)="dropDownR()">Rating</li>
+  </ul>
+
+  <ul [@showHeight]="showDropDownHeight" class="dropdowntwo">
+    <li (tap)="dropDownA()">Availability</li>
+    <li (tap)="dropDownD()">Distance</li>
+    <li (tap)="dropDownP()">Price</li>
+    <li (tap)="dropDownR()">Rating</li>
+  </ul>
+
+  <div class ='contentone' [@moveList]='moveState'>
+   <ion-list class="marginstatus" no-padding>
+     <ion-item *ngFor="let i of items" no-padding no-lines>
+      <div class="feedtoptextcontainer">
+        <div class="imageparent">
+          <img class="postprofilepic" src="{{i}}">
+        </div>
+        <div class="usernamecontainer">
+          <h4 class="postusername">Ed Bundy</h4><br>
+          <h4 class="poststudio">Ed's Studio</h4>
+        </div>
+        <div class="postprofilelink">
+          <div class="book">Book</div> @edbundyhair
+        </div>
+      </div>
+      <img class="imagepost" src="{{i}}">
+     </ion-item>
+   </ion-list>
+  </div>
+
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

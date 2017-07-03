@@ -1,0 +1,160 @@
+page-feed-stylist {
+	.imagepost {
+		width: 100%;
+	}
+	
+	.postprofilelink {
+		position: absolute;
+		right: 0;
+		display: inline-block;
+		margin-right: 4px;
+		font-size: 12px;
+	}
+
+	.postprofilepic {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+  }
+
+  .imageparent {
+  	width:10vw;
+    height:10vw;
+    border-radius:50%;
+    overflow:hidden;
+    display: inline-block;
+    margin-left: 4px;	
+	}
+
+  .feedtoptextcontainer {
+  	height: 44px;
+  	display: flex;
+		align-items: center; /* align vertical */
+  }
+
+	.postusername {
+  	display: inline-block;
+  	margin-left: 4px;
+  	font-weight: 700;
+  	font-size: 12px;
+	}
+
+	.poststudio {
+		position: relative;
+		font-size: 10px;
+		left: 4px;
+		top: -4px;
+	}
+
+	.input-wrapper {
+		padding: 0;
+		margin: 0;
+	}
+
+	.item-inner {
+		padding: 0px !important;
+	}
+
+	ion-label {
+		margin: 0px 0px 0px 0px !important;
+	}
+
+	ion-toolbar {
+		z-index: 1;
+		position: fixed;
+		top: 88px;
+		left: 0;
+		background-color: black;
+		color: white;
+		border-bottom-style: solid;
+		border-bottom-color: map-get($colors, primary);
+		border-bottom-width: 4px;
+	}
+
+	ion-list {
+
+	}
+
+	ion-icon {
+	}
+
+	.clickme {
+
+	}
+
+	.custom-icon {
+  	color : gray;
+  	font-size: 28px;
+  	margin-left: 10px;
+  	vertical-align: middle;
+  	margin-top: 8px;
+	}	
+
+	.itemadspace {
+		z-index: 1;
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-image: url('../../assets/tresemme.png');
+    background-repeat: no-repeat;
+		background-size:cover;
+		text-align: center;
+	}
+
+	/*.marginstatus {
+		margin-top: 20px;
+	}*/
+
+	.contentone {
+		position: absolute;
+		top: 145px;
+	}
+
+	ion-img {
+		width: 100%;
+		height: 100%;
+	}
+
+	.toolbarstyle {
+		font-size: 12px;
+		padding: 0 0.5em;
+		color: gray;
+		background-color: black;
+	}
+
+	.toolbarstyle:focus {
+		color: map-get($colors, primary);
+	}
+
+	.feedtitle {
+		color: white;
+		font-weight: 500;
+		font-size: 18px;
+		position: absolute;
+		top: 6px;
+		left: 0;
+  	right: 0;
+	}
+
+	p {
+		display: inline;
+	}
+
+	button:focus {
+		color: map-get($colors, primary);
+	}
+
+	button {
+		background-color: black;
+	}
+
+	.all {
+		margin-left: 10px;
+	}
+
+	.book {
+		display: inline-block;
+		font-weight: 700;
+	}
+}

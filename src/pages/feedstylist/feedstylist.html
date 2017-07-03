@@ -1,0 +1,46 @@
+<ion-content no-padding> 
+  
+  <!--<ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>-->
+    
+  <ion-item #clickme class="itemadspace" [@slideDown]="downState" no-padding no-lines>
+    <h3 class="feedtitle">Stylist Feed</h3>
+  </ion-item>
+  
+  <div class="clickme" (tap)="toolClicked($event)">
+    <ion-toolbar [@toolSlide]="toolbarState" color="black" id="iontoolbar">
+      <ion-icon class='custom-icon' name="play"></ion-icon>
+      <button class="all toolbarstyle" ion-button color="black">All</button>
+      <button class="classes toolbarstyle" ion-button color="black">Classes</button>
+      <button class="products toolbarstyle" ion-button color="black">Products</button>
+    </ion-toolbar>
+  </div>
+
+  <div class ='contentone' [@moveList]='moveState'>
+   <ion-list class="marginstatus" no-padding>
+     <ion-item *ngFor="let i of items" no-padding no-lines>
+      <div class="feedtoptextcontainer">
+        <div class="imageparent">
+          <img class="postprofilepic" src="{{i}}">
+        </div>
+        <div class="usernamecontainer">
+          <h4 class="postusername">Ed Bundy</h4><br>
+          <h4 class="poststudio">Ed's Studio</h4>
+        </div>
+        <div class="postprofilelink">
+          <div class="book">Book</div> @edbundyhair
+        </div>
+      </div>
+      <img class="imagepost" src="{{i}}">
+     </ion-item>
+   </ion-list>
+  </div>
+
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
