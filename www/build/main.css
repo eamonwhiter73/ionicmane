@@ -30159,6 +30159,7 @@ page-feed-stylist .itemadspace {
 page-feed-stylist .contentone {
   position: absolute;
   top: 145px;
+  width: 100%;
 }
 
 page-feed-stylist ion-img {
@@ -30269,6 +30270,12 @@ page-feed-user .poststudio {
   top: -4px;
 }
 
+page-feed-user .deal {
+  float: right;
+  right: 10px;
+  position: absolute;
+}
+
 page-feed-user .input-wrapper {
   padding: 0;
   margin: 0;
@@ -30323,6 +30330,7 @@ page-feed-user .itemadspace {
 page-feed-user .contentone {
   position: absolute;
   top: 145px;
+  width: 100%;
 }
 
 page-feed-user ion-img {
@@ -30364,6 +30372,18 @@ page-feed-user button.all.toolbarstyle, page-feed-user button.promos.toolbarstyl
   position: relative;
   background-color: black;
   line-height: 32px;
+}
+
+page-feed-user .availability {
+  display: none;
+}
+
+page-feed-user .ratings {
+  display: none;
+}
+
+page-feed-user .weeklydeals {
+  display: none;
 }
 
 page-feed-user .book {

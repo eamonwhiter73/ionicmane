@@ -56,6 +56,10 @@ import { LoadingController } from 'ionic-angular';
 })
 export class FeedUser implements AfterViewInit {
   @ViewChild('changeText') changeText: ElementRef;
+  @ViewChild('availability') availability: ElementRef;
+  @ViewChild('contentone') contentOne: ElementRef;
+  @ViewChild('ratings') ratingbox: ElementRef;
+  @ViewChild('weeklydeals') weekly: ElementRef;
 
   downState: String = 'notDown';
   moveState: String = 'up';
@@ -63,14 +67,19 @@ export class FeedUser implements AfterViewInit {
   showDropDown: String = 'up';
   showDropDownHeight: String = 'up';
 
+
   toolbarClicks = 0;
 
   items = [];
+  availabilities = [];
+  rating = [];
+  weeklydeal = [];
+
   totalCount = 0;
   lastNumRows = 0;
   el;
 
-  constructor(private renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(public loadingController: LoadingController, public navCtrl: NavController) {
 
   }
 
@@ -115,6 +124,25 @@ export class FeedUser implements AfterViewInit {
       //
     }
     this.changeText.nativeElement.style = "color:gray";
+    this.contentOne.nativeElement.style = "display: none";
+    this.availability.nativeElement.style = "display: none";
+    this.ratingbox.nativeElement.style= "display: none";
+    this.weekly.nativeElement.style= "display: block"
+  }
+
+  closeMenuP() {
+    if(this.showDropDown == 'down' || this.showDropDownHeight == 'down') {
+      this.showDropDown = 'up';
+      this.showDropDownHeight = 'up';
+    }
+    else {
+      //
+    }
+    this.changeText.nativeElement.style = "color:gray";
+    this.contentOne.nativeElement.style = "display: block";
+    this.availability.nativeElement.style = "display: none";
+    this.ratingbox.nativeElement.style= "display: none";
+    this.weekly.nativeElement.style= "display: none"
   }
 
   dropDown() {
@@ -140,6 +168,10 @@ export class FeedUser implements AfterViewInit {
   dropDownA() {
     this.changeText.nativeElement.innerHTML = "Availability";
     this.changeText.nativeElement.style = "color:#e6c926";
+    this.availability.nativeElement.style = "display: block";
+    this.contentOne.nativeElement.style = "display: none";
+    this.ratingbox.nativeElement.style = "display: none";
+    this.weekly.nativeElement.style = "display: none";
     this.dropDown();
   }
 
@@ -152,6 +184,10 @@ export class FeedUser implements AfterViewInit {
   dropDownR() {
     this.changeText.nativeElement.innerHTML = "Rating";
     this.changeText.nativeElement.style = "color:#e6c926";
+    this.availability.nativeElement.style = "display: none";
+    this.contentOne.nativeElement.style = "display: none";
+    this.ratingbox.nativeElement.style = "display: block";
+    this.weekly.nativeElement.style = "display: none";
     this.dropDown();
   }
 
@@ -173,6 +209,77 @@ export class FeedUser implements AfterViewInit {
     this.items = ['../../assets/hair1.jpg', '../../assets/hair2.jpg', '../../assets/hair3.jpeg', '../../assets/hair4.jpeg',
                   '../../assets/hair5.jpeg', '../../assets/hair6.jpg', '../../assets/hair7.jpg', '../../assets/hair8.jpg', 
                   '../../assets/hair9.jpeg', '../../assets/hair10.jpg'];
+
+    this.availabilities = [
+                            
+                            {'pic': '../../assets/hair5.jpeg', 'salon':'Salon 5', 'time':'12:30PM'},
+                            {'pic': '../../assets/hair6.jpg', 'salon':'Salon 6', 'time':'1:00PM'},
+                            {'pic': '../../assets/hair7.jpg', 'salon':'Salon 7', 'time':'1:30PM'},
+                            {'pic': '../../assets/hair8.jpg', 'salon':'Salon 8', 'time':'2:00PM'},
+                            {'pic': '../../assets/hair9.jpeg', 'salon':'Salon 9', 'time':'2:30PM'},
+                            {'pic': '../../assets/hair10.jpg', 'salon':'Salon 10', 'time':'3:00PM'},
+                            {'pic': '../../assets/hair7.jpg', 'salon':'Salon 1', 'time':'10:30AM'},
+                            {'pic': '../../assets/hair2.jpg', 'salon':'Salon 2', 'time':'11:00AM'},
+                            {'pic': '../../assets/hair3.jpeg', 'salon':'Salon 3', 'time':'11:30AM'},
+                            {'pic': '../../assets/hair4.jpeg', 'salon':'Salon 4', 'time':'12:00PM'},
+                            {'pic': '../../assets/hair5.jpeg', 'salon':'Salon 5', 'time':'12:30PM'},
+                            {'pic': '../../assets/hair6.jpg', 'salon':'Salon 6', 'time':'1:00PM'},
+                            {'pic': '../../assets/hair7.jpg', 'salon':'Salon 7', 'time':'1:30PM'},
+                            {'pic': '../../assets/hair8.jpg', 'salon':'Salon 8', 'time':'2:00PM'},
+                            {'pic': '../../assets/hair9.jpeg', 'salon':'Salon 9', 'time':'2:30PM'},
+                            {'pic': '../../assets/hair10.jpg', 'salon':'Salon 10', 'time':'3:00PM'},
+                            {'pic': '../../assets/hair7.jpg', 'salon':'Salon 1', 'time':'10:30AM'},
+                            {'pic': '../../assets/hair2.jpg', 'salon':'Salon 2', 'time':'11:00AM'},
+                            {'pic': '../../assets/hair3.jpeg', 'salon':'Salon 3', 'time':'11:30AM'},
+                            {'pic': '../../assets/hair4.jpeg', 'salon':'Salon 4', 'time':'12:00PM'}
+
+                          ];
+
+    this.rating = [
+                    {'pic': '../../assets/hair5.jpeg', 'salon':'Salon 5', 'time':'\u2605\u2605\u2605'},
+                    {'pic': '../../assets/hair6.jpg', 'salon':'Salon 6', 'time':'\u2605\u2605'},
+                    {'pic': '../../assets/hair7.jpg', 'salon':'Salon 7', 'time':'\u2605\u2605\u2605\u2605'},
+                    {'pic': '../../assets/hair8.jpg', 'salon':'Salon 8', 'time':'\u2605\u2605\u2605\u2605\u2605'},
+                    {'pic': '../../assets/hair9.jpeg', 'salon':'Salon 9', 'time':'\u2605\u2605'},
+                    {'pic': '../../assets/hair10.jpg', 'salon':'Salon 10', 'time':'\u2605\u2605\u2605\u2605'},
+                    {'pic': '../../assets/hair7.jpg', 'salon':'Salon 1', 'time':'\u2605\u2605'},
+                    {'pic': '../../assets/hair2.jpg', 'salon':'Salon 2', 'time':'\u2605\u2605\u2605'},
+                    {'pic': '../../assets/hair3.jpeg', 'salon':'Salon 3', 'time':'\u2605\u2605\u2605\u2605'},
+                    {'pic': '../../assets/hair4.jpeg', 'salon':'Salon 4', 'time':'\u2605\u2605'},
+                    {'pic': '../../assets/hair5.jpeg', 'salon':'Salon 5', 'time':'\u2605\u2605\u2605\u2605'},
+                    {'pic': '../../assets/hair6.jpg', 'salon':'Salon 6', 'time':'\u2605\u2605\u2605\u2605\u2605'},
+                    {'pic': '../../assets/hair7.jpg', 'salon':'Salon 7', 'time':'\u2605\u2605\u2605'},
+                    {'pic': '../../assets/hair8.jpg', 'salon':'Salon 8', 'time':'\u2605\u2605\u2605'},
+                    {'pic': '../../assets/hair9.jpeg', 'salon':'Salon 9', 'time':'\u2605\u2605'},
+                    {'pic': '../../assets/hair10.jpg', 'salon':'Salon 10', 'time':'\u2605\u2605\u2605\u2605'},
+                    {'pic': '../../assets/hair7.jpg', 'salon':'Salon 1', 'time':'\u2605\u2605\u2605\u2605'},
+                    {'pic': '../../assets/hair2.jpg', 'salon':'Salon 2', 'time':'\u2605\u2605'},
+                    {'pic': '../../assets/hair3.jpeg', 'salon':'Salon 3', 'time':'\u2605\u2605\u2605'},
+                    {'pic': '../../assets/hair4.jpeg', 'salon':'Salon 4', 'time':'\u2605\u2605\u2605\u2605'}
+                  ];
+    
+    this.weeklydeal = [
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 5', 'time':'$20 off coloring'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 6', 'time':'50% off ombre'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 7', 'time':'$10 off on first session'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 8', 'time':'$10 off on first session'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 9', 'time':'$10 off on first session'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 10', 'time':'$10 off bleaching'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 1', 'time':'$10 off bleaching'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 2', 'time':'$10 off bleaching'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 3', 'time':'50% off ombre'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 4', 'time':'$10 off on first session'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 5', 'time':'$10 off on first session'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 6', 'time':'$10 off on first session'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 7', 'time':'$10 off bleaching'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 8', 'time':'$10 off bleaching'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 9', 'time':'$10 off bleaching'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 10', 'time':'50% off ombre'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 1', 'time':'50% off ombre'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 2', 'time':'50% off ombre'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 3', 'time':'$20 off coloring'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 4', 'time':'$20 off coloring'}
+                  ];                    
 
     loading.dismiss();
     /*let data = new URLSearchParams();

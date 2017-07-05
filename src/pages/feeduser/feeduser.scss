@@ -47,6 +47,12 @@ page-feed-user {
 		top: -4px;
 	}
 
+	.deal {
+		float: right;
+    right: 10px;
+    position: absolute;
+	}
+
 	.input-wrapper {
 		padding: 0;
 		margin: 0;
@@ -116,6 +122,7 @@ page-feed-user {
 	.contentone {
 		position: absolute;
 		top: 145px;
+		width: 100%;
 	}
 
 	ion-img {
@@ -161,6 +168,18 @@ page-feed-user {
 
 	.all {
 	
+	}
+
+	.availability {
+		display: none;
+	}
+
+	.ratings {
+		display: none;
+	}
+
+	.weeklydeals {
+		display: none;
 	}
 
 	.book {
