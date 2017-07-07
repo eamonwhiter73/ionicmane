@@ -1,4 +1,4 @@
-import { Component, trigger, state, style, transition, animate, keyframes, ViewChild } from '@angular/core';
+import { Component, trigger, state, style, transition, animate, keyframes, ElementRef, ViewChild, ViewChildren, QueryList, Renderer } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 
@@ -39,6 +39,10 @@ import { LoadingController } from 'ionic-angular';
 })
 export class FeedStylist {
   @ViewChild('clickme') clickme;
+  @ViewChildren('feedstyle') components:QueryList<any>;
+  @ViewChildren('flex') flexComponents:QueryList<any>;
+  @ViewChildren('feedtop') feedComponents:QueryList<any>;
+  @ViewChildren('imagepost') imageComponents:QueryList<any>;
   downState: String = 'notDown';
   moveState: String = 'up';
   toolbarState: String = 'up';
@@ -49,7 +53,7 @@ export class FeedStylist {
   lastNumRows = 0;
   el;
 
-  constructor(public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(public myrenderer: Renderer, private elRef:ElementRef, public loadingController: LoadingController, public navCtrl: NavController) {
 
   }
 
@@ -92,13 +96,54 @@ export class FeedStylist {
     })*/
   }
 
+  expandItem(item) {
+    let flexArray = this.flexComponents.toArray();
+    let feedArray = this.feedComponents.toArray();
+    let itemArray = this.components.toArray();
+    let imageComps = this.imageComponents.toArray();
+
+    console.log(flexArray);
+    console.log(feedArray);
+    console.log(itemArray);
+    console.log(imageComps);
+
+    flexArray[item].nativeElement.style = 'display: none';
+    feedArray[item].nativeElement.style = 'display: flex';
+    imageComps[item].nativeElement.style = 'display: block';
+    itemArray[item]._elementRef.nativeElement.style = "padding: 0"
+    this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-padding', 'null');
+    this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-lines', 'null');
+    //var selectedRow = document.getElementById('item');
+    //console.log(selectedRow);
+  }
+
   getInitialImages() {
     let loading = this.loadingController.create({content : "Loading..."});
     loading.present();
 
-    this.items = ['../../assets/hair1.jpg', '../../assets/hair2.jpg', '../../assets/hair3.jpeg', '../../assets/hair4.jpeg',
+    this.items = /*['../../assets/hair1.jpg', '../../assets/hair2.jpg', '../../assets/hair3.jpeg', '../../assets/hair4.jpeg',
                   '../../assets/hair5.jpeg', '../../assets/hair6.jpg', '../../assets/hair7.jpg', '../../assets/hair8.jpg', 
-                  '../../assets/hair9.jpeg', '../../assets/hair10.jpg'];
+                  '../../assets/hair9.jpeg', '../../assets/hair10.jpg'];*/
+                  [{'pic': '../../assets/hair5.jpeg', 'description':'This is a description of a deal/post/sale 5', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair6.jpg', 'description':'This is a description of a deal/post/sale 6', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair7.jpg', 'description':'This is a description of a deal/post/sale 7', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair8.jpg', 'description':'This is a description of a deal/post/sale 8', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair9.jpeg', 'description':'This is a description of a deal/post/sale 9', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair10.jpg', 'description':'This is a description of a deal/post/sale 10', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair7.jpg', 'description':'This is a description of a deal/post/sale 1', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair2.jpg', 'description':'This is a description of a deal/post/sale 2', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair3.jpeg', 'description':'This is a description of a deal/post/sale 3', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair4.jpeg', 'description':'This is a description of a deal/post/sale 4', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair5.jpeg', 'description':'This is a description of a deal/post/sale 5', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair6.jpg', 'description':'This is a description of a deal/post/sale 6', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair7.jpg', 'description':'This is a description of a deal/post/sale 7', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair8.jpg', 'description':'This is a description of a deal/post/sale 8', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair9.jpeg', 'description':'This is a description of a deal/post/sale 9', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair10.jpg', 'description':'This is a description of a deal/post/sale 10', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair7.jpg', 'description':'This is a description of a deal/post/sale 1', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair2.jpg', 'description':'This is a description of a deal/post/sale 2', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair3.jpeg', 'description':'This is a description of a deal/post/sale 3', 'link':'@stylist_profile'},
+                  {'pic': '../../assets/hair4.jpeg', 'description':'This is a description of a deal/post/sale 4', 'link':'@stylist_profile'}];
 
     loading.dismiss();
     /*let data = new URLSearchParams();

@@ -19,10 +19,19 @@
 
   <div class ='contentone' [@moveList]='moveState'>
    <ion-list class="marginstatus" no-padding>
-     <ion-item *ngFor="let i of items" no-padding no-lines>
-      <div class="feedtoptextcontainer">
+     <ion-item class="changepadding" *ngFor="let z of items ; let i = index" (tap)='expandItem(i)' id='{{i}}' #feedstyle text-wrap>
+      <div class="flex" #flex>
+        <div class="nonzoomimage">
+          <img class="imagepost" src="{{z.pic}}">
+        </div>
+        <div class="descholder">
+          <div class='description'>{{z.description}}</div>
+          <div class='link'>{{z.link}}</div>
+        </div>
+      </div>
+      <div class="feedtoptextcontainer" #feedtop>
         <div class="imageparent">
-          <img class="postprofilepic" src="{{i}}">
+          <img class="postprofilepic" src="{{z.pic}}">
         </div>
         <div class="usernamecontainer">
           <h4 class="postusername">Ed Bundy</h4><br>
@@ -32,7 +41,7 @@
           <div class="book">Book</div> @edbundyhair
         </div>
       </div>
-      <img class="imagepost" src="{{i}}">
+      <img class="imageposttwo" #imagepost src="{{z.pic}}">
      </ion-item>
    </ion-list>
   </div>
