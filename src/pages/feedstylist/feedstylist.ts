@@ -34,6 +34,15 @@ import { LoadingController } from 'ionic-angular';
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),
+    trigger('plusSlide', [
+      state('down', style({
+        bottom: '-190px'
+      })),
+      state('up', style({
+        bottom: '-25px'
+      })),
+      transition('* => *', animate('400ms ease-in')),
+    ]),
 
   ]
 })
@@ -110,7 +119,7 @@ export class FeedStylist {
     flexArray[item].nativeElement.style = 'display: none';
     feedArray[item].nativeElement.style = 'display: flex';
     imageComps[item].nativeElement.style = 'display: block';
-    itemArray[item]._elementRef.nativeElement.style = "padding: 0"
+    itemArray[item]._elementRef.nativeElement.style = "padding: 0";
     this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-padding', 'null');
     this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-lines', 'null');
     //var selectedRow = document.getElementById('item');

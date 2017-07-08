@@ -30057,6 +30057,21 @@ page-feed-stylist {
 	}*/
 }
 
+page-feed-stylist .plussy {
+  font-size: 72px;
+  font-weight: 700;
+  color: #e6c926;
+  /*position: relative;*/
+  text-shadow: 2px 2px 6px black;
+}
+
+page-feed-stylist .pluscontainer {
+  position: fixed;
+  z-index: 2;
+  right: 10px;
+  bottom: -10px;
+}
+
 page-feed-stylist .imagepost {
   width: 100%;
 }
