@@ -141,6 +141,14 @@ page-stylist-profile {
     background-color: map-get($colors, primary);
   }
 
+  .monthview-selected[_ngcontent-c2] {
+    background-color: map-get($colors, primary);
+  }
+
+  .monthview-selected[_ngcontent-c1] {
+    background-color: map-get($colors, primary);
+  }
+
   .inlineblock {
     display: inline-block;
     margin-left: 5px;

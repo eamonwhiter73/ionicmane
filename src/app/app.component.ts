@@ -14,7 +14,7 @@ import { StylistProfile } from '../pages/stylistprofile/stylistprofile';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = StylistProfile;
+  rootPage:any = SignInPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

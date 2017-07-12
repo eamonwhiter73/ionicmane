@@ -1,6 +1,8 @@
 import { Component, NgModule, trigger, state, style, transition, animate, keyframes } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { NgCalendarModule  } from 'ionic2-calendar';
+import { FeedUser } from '../feeduser/feeduser';
+import { FeedStylist } from '../feedstylist/feedstylist';
 //import { IonicApp, IonicModule } from 'ionic-angular';
 //import { MyApp } from './app/app.component';
 
@@ -25,7 +27,7 @@ export class StylistProfile {
   calendar = {'mode': 'month', 'currentDate': this.viewDate}
   moveState: String = 'up';
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private navParams: NavParams) {
 
   }
 
@@ -34,6 +36,15 @@ export class StylistProfile {
     // causing the nav controller to transition to the new page
     // optional data can also be passed to the pushed page.
     //this.navCtrl.push(SignUpPage);
+  }
+
+  backToFeed() {
+    if(this.navParams.get('param1') == 'user') {
+      this.navCtrl.push(FeedUser);
+    }
+    else {
+      this.navCtrl.push(FeedStylist);
+    }
   }
 
   ionViewDidLoad() {

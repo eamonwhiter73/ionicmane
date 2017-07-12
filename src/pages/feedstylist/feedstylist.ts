@@ -76,7 +76,9 @@ export class FeedStylist {
   }
 
   toProfile() {
-    this.navCtrl.push(StylistProfile);
+    this.navCtrl.push(StylistProfile, {
+      param1: 'stylist'
+    });
   }
 
   toolClicked(event) {

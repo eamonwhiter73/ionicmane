@@ -30814,6 +30814,14 @@ page-stylist-profile .monthview-selected[_ngcontent-c3] {
   background-color: #e6c926;
 }
 
+page-stylist-profile .monthview-selected[_ngcontent-c2] {
+  background-color: #e6c926;
+}
+
+page-stylist-profile .monthview-selected[_ngcontent-c1] {
+  background-color: #e6c926;
+}
+
 page-stylist-profile .inlineblock {
   display: inline-block;
   margin-left: 5px;

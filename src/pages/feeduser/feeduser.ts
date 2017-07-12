@@ -92,7 +92,9 @@ export class FeedUser implements AfterViewInit {
   }
 
   toProfile() {
-    this.navCtrl.push(StylistProfile);
+    this.navCtrl.push(StylistProfile, {
+      param1: 'user'
+    });
   }
 
   toolClicked(event) {
