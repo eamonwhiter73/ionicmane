@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, trigger, state, style, transition, animate, keyframes, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { StylistProfile } from '../stylistprofile/stylistprofile';
 
 @Component({
   selector: 'page-feed-user',
@@ -88,6 +89,10 @@ export class FeedUser implements AfterViewInit {
     // causing the nav controller to transition to the new page
     // optional data can also be passed to the pushed page.
     //this.navCtrl.push(SignUpPage);
+  }
+
+  toProfile() {
+    this.navCtrl.push(StylistProfile);
   }
 
   toolClicked(event) {

@@ -1,64 +1,73 @@
 page-sign-up {
-	.stylistview {
-		text-align: right;
-	}
+	ion-content{
+		background-image: url('../../assets/purpleHairBG.png');
+    background-repeat: no-repeat;
+		background-size:cover;
 
-	.signup {
-		text-align: center;
-	}
+		.stylistview {
+			text-align: right;
+		}
 
-	ion-label {
-		text-align: center;
-	}
+		.signup {
+			text-align: center;
+			color: map-get($colors, tertiary);
+		}
 
-	.labelz {
-		float: left;
-	}
+		ion-label {
+			text-align: center;
+			color: white;
+		}
 
-	#labelone {
-		position: relative;
-		left: 36%;
-	}
+		.labelz {
+			float: left;
+		}
 
-	#labeltwo {
-		position: relative;
-		right: -42%;
-	}
+		#labelone {
+			position: relative;
+			left: 32%;
+		}
 
-	ion-input {
-		position: relative;
-		width:220px;
-	  border: 0;
-	  outline: 0;
-	  background: transparent;
-	  border-bottom: 1px solid black;
-	  display: block;
-	  margin-left: auto;
-	  margin-right: auto;
-	  color: black;
-	}
+		#labeltwo {
+			position: relative;
+			left: 45%;
+		}
 
-	.next {
-		margin-top: 15%;
-		width: 80%;
-	}
+		ion-input {
+			position: relative;
+			width:220px;
+		  border: 0;
+		  outline: 0;
+		  background: transparent;
+		  border-bottom: 1px solid white;
+		  display: block;
+		  margin-left: auto;
+		  margin-right: auto;
+		  color: white;
+		}
 
-	.moveleft {
-		left: 5px;
-	}
+		.next {
+			margin-top: 15%;
+			width: 80%;
+		}
 
-	.moveleftuser {
-		left: 2px;
-	}
+		.moveleft {
+			left: 5px;
+		}
 
-	p {
-		text-align: center;
-		position: relative;
-		top: 4%;
-	}
+		.moveleftuser {
+			left: 2px;
+		}
 
-	.stylistviewbutton {
-		width:20%;
-		font-size: 12px;
+		p {
+			text-align: center;
+			position: relative;
+			top: -1%;
+			color: white;
+		}
+
+		.stylistviewbutton {
+			width:23%;
+			font-size: 12px;
+		}
 	}
 }

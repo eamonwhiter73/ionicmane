@@ -1,17 +1,27 @@
 page-sign-in {
 	ion-content{
-    background-image: url('../../assets/signinback.png');
+    background-image: url('../../assets/purpleHairBG.png');
     background-repeat: no-repeat;
 		background-size:cover;
 
+		//$text-input-placeholder-color:(#FFF);
+
 		.logo {
 			position: relative;
-			font-size: 40px;
+			font-size: 11vw;
 			text-align: center;
 			top: 45%;
 			color: #e6c926;
-			-webkit-text-stroke-width: 3px;
+			-webkit-text-stroke-width: 2px;
    		-webkit-text-stroke-color: black;
+		}
+
+		@mixin placeholder {
+		    &.placeholder { @content; }
+		    &:-moz-placeholder { @content; }
+		    &::-moz-placeholder { @content; }
+		    &:-ms-input-placeholder { @content; }
+		    &::-webkit-input-placeholder { @content; }
 		}
 
 		ion-input {
@@ -20,11 +30,11 @@ page-sign-in {
 		  border: 0;
 		  outline: 0;
 		  background: transparent;
-		  border-bottom: 1px solid black;
+		  border-bottom: 1px solid white;
 		  display: block;
 		  margin-left: auto;
 		  margin-right: auto;
-		  color: black;
+		  color: white;
 		}
 
 		.inputone {
@@ -36,49 +46,70 @@ page-sign-in {
     	width: 25px;
     	height: 25px;
     	border-radius: 50%;
-    	border-color: black;
-    	border-width: 3px;
+    	border-color: white;
+    	border-width: 2px;
     	border-style: solid;
+		}
+
+		.circle:active, .circle:focus {
+			background: map-get($colors, primary);
 		}
 
 		.circone {
 			display: inline-block;
 			position: absolute;
-			top: 460px;
+			top: 76%;
 			left: 30%;
 		}
 
 		.circtwo {
 			display: inline-block;
 			position: absolute;
-			top: 460px;
+			top: 76%;
 			right: 30%;
 		}
 
 		.hairstylist {
 			position: absolute;
-			top: 470px;
+			top: 68%;
 			color: #e6c926;
 			left: 17%;
 		}
 
 		.user {
 			position: absolute;
-			top: 470px;
+			top: 68%;
 			color: #e6c926;
 			right: 26.5%;
 		}
 
 		button {
 			position: relative;
-			top: 110px;
-			width: 80%;
+			/*top: 60%;*/
+			width: 82%;
+			left: -4%;
+		}
+
+		.signincontainer {
+			position: absolute;
+			top: 82%;
+			width: 100%;
+			text-align: center;
 		}
 
 		p {
 			text-align: center;
 			position: relative;
-			top: 20%;
+			top: 28%;
+			color: #fff;
+		}
+
+		.moveleft {
+			left: 5px;
+		}
+
+		.moveleftuser {
+			left: 2px;
 		}
 	}
 }

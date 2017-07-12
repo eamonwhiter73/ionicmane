@@ -14,20 +14,22 @@
     <ion-label stacked>Email Address</ion-label>
     <ion-input type="text" name="email"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
     <br>
+    <div class="flex">
     <div id='labelone' class='labelz'>
       <ion-label stacked>Stylist</ion-label>
-      <ion-checkbox class="moveleft"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="stylist" name="stylist" class="moveleft" (tap)="selectOneStylist()"></ion-checkbox>
     </div>
     <div id='labeltwo' class='labelz'>
       <ion-label stacked>User</ion-label>
-      <ion-checkbox class="moveleftuser"></ion-checkbox> <!--[(ngModel)]="mushrooms"-->
+      <ion-checkbox [(ngModel)]="user" name="user" class="moveleftuser" (tap)="selectOneUser()"></ion-checkbox> <!--[(ngModel)]="mushrooms"-->
+    </div>
     </div>
     <br><br><br><br>
     <ion-label stacked>Password</ion-label>
     <ion-input type="text" name="email"></ion-input>
   </form>
   <div class="signincontainer" style="text-align: center;">
-    <button class="next" ion-button round color="tertiary">Next</button>
+    <button class="next" ion-button round color="tertiary" (tap)="loadNext()">Next</button>
   </div>
   <p>Already have an account? <a (click)="pushPage()">Sign In</a></p>
 </ion-content>

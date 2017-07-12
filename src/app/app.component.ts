@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { SignInPage } from '../pages/signin/signin';
+import { SignUpPage } from '../pages/signup/signup';
 import { FeedStylist } from '../pages/feedstylist/feedstylist';
 import { FeedUser } from '../pages/feeduser/feeduser';
 import { StylistProfile } from '../pages/stylistprofile/stylistprofile';

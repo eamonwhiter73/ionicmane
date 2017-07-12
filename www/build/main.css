@@ -13829,16 +13829,16 @@ ion-textarea {
 }
 
 .text-input::-moz-placeholder {
-  color: #000;
+  color: #FFF;
 }
 
 .text-input:-ms-input-placeholder {
-  color: #000;
+  color: #FFF;
 }
 
 .text-input::-webkit-input-placeholder {
   text-indent: 0;
-  color: #000;
+  color: #FFF;
 }
 
 textarea.text-input {
@@ -30499,18 +30499,18 @@ page-feed-user li:active, page-feed-user li:focus {
 }
 
 page-sign-in ion-content {
-  background-image: url("../../assets/signinback.png");
+  background-image: url("../../assets/purpleHairBG.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 page-sign-in ion-content .logo {
   position: relative;
-  font-size: 40px;
+  font-size: 11vw;
   text-align: center;
   top: 45%;
   color: #e6c926;
-  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
 }
 
@@ -30520,11 +30520,11 @@ page-sign-in ion-content ion-input {
   border: 0;
   outline: 0;
   background: transparent;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  color: black;
+  color: white;
 }
 
 page-sign-in ion-content .inputone {
@@ -30536,111 +30536,141 @@ page-sign-in ion-content .circle {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  border-color: black;
-  border-width: 3px;
+  border-color: white;
+  border-width: 2px;
   border-style: solid;
+}
+
+page-sign-in ion-content .circle:active, page-sign-in ion-content .circle:focus {
+  background: #e6c926;
 }
 
 page-sign-in ion-content .circone {
   display: inline-block;
   position: absolute;
-  top: 460px;
+  top: 76%;
   left: 30%;
 }
 
 page-sign-in ion-content .circtwo {
   display: inline-block;
   position: absolute;
-  top: 460px;
+  top: 76%;
   right: 30%;
 }
 
 page-sign-in ion-content .hairstylist {
   position: absolute;
-  top: 470px;
+  top: 68%;
   color: #e6c926;
   left: 17%;
 }
 
 page-sign-in ion-content .user {
   position: absolute;
-  top: 470px;
+  top: 68%;
   color: #e6c926;
   right: 26.5%;
 }
 
 page-sign-in ion-content button {
   position: relative;
-  top: 110px;
-  width: 80%;
+  /*top: 60%;*/
+  width: 82%;
+  left: -4%;
+}
+
+page-sign-in ion-content .signincontainer {
+  position: absolute;
+  top: 82%;
+  width: 100%;
+  text-align: center;
 }
 
 page-sign-in ion-content p {
   text-align: center;
   position: relative;
-  top: 20%;
+  top: 28%;
+  color: #fff;
 }
 
-page-sign-up .stylistview {
+page-sign-in ion-content .moveleft {
+  left: 5px;
+}
+
+page-sign-in ion-content .moveleftuser {
+  left: 2px;
+}
+
+page-sign-up ion-content {
+  background-image: url("../../assets/purpleHairBG.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+page-sign-up ion-content .stylistview {
   text-align: right;
 }
 
-page-sign-up .signup {
+page-sign-up ion-content .signup {
   text-align: center;
+  color: #eb4359;
 }
 
-page-sign-up ion-label {
+page-sign-up ion-content ion-label {
   text-align: center;
+  color: white;
 }
 
-page-sign-up .labelz {
+page-sign-up ion-content .labelz {
   float: left;
 }
 
-page-sign-up #labelone {
+page-sign-up ion-content #labelone {
   position: relative;
-  left: 36%;
+  left: 32%;
 }
 
-page-sign-up #labeltwo {
+page-sign-up ion-content #labeltwo {
   position: relative;
-  right: -42%;
+  left: 45%;
 }
 
-page-sign-up ion-input {
+page-sign-up ion-content ion-input {
   position: relative;
   width: 220px;
   border: 0;
   outline: 0;
   background: transparent;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  color: black;
+  color: white;
 }
 
-page-sign-up .next {
+page-sign-up ion-content .next {
   margin-top: 15%;
   width: 80%;
 }
 
-page-sign-up .moveleft {
+page-sign-up ion-content .moveleft {
   left: 5px;
 }
 
-page-sign-up .moveleftuser {
+page-sign-up ion-content .moveleftuser {
   left: 2px;
 }
 
-page-sign-up p {
+page-sign-up ion-content p {
   text-align: center;
   position: relative;
-  top: 4%;
+  top: -1%;
+  color: white;
 }
 
-page-sign-up .stylistviewbutton {
-  width: 20%;
+page-sign-up ion-content .stylistviewbutton {
+  width: 23%;
   font-size: 12px;
 }
 
@@ -30723,7 +30753,7 @@ page-stylist-profile .ratecontain {
   left: 10px;
 }
 
-page-stylist-profile .table[_ngcontent-c2] {
+page-stylist-profile .table[_ngcontent-c3] {
   width: 60%;
   max-width: 60%;
 }
@@ -30745,7 +30775,7 @@ page-stylist-profile .calendarcover {
   left: 33%;
 }
 
-page-stylist-profile .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2] {
+page-stylist-profile .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3] {
   padding: 2px;
   line-height: 14px;
   vertical-align: top;
@@ -30766,7 +30796,7 @@ page-stylist-profile ion-grid .col {
   padding: 0px 2px 0px 2px;
 }
 
-page-stylist-profile .monthview-selected[_ngcontent-c2] {
+page-stylist-profile .monthview-selected[_ngcontent-c3] {
   background-color: #e6c926;
 }
 
