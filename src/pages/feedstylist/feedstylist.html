@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header (swipeRight)="toProfile()">
   <ion-item #clickme class="itemadspace" [@slideDown]="downState" no-padding no-lines>
     <h3 class="feedtitle">Stylist Feed</h3>
     <div  class='pluscontainer'>
@@ -17,7 +17,7 @@
 </ion-header>
 
 <ion-content no-padding> 
-  
+<div (swipeRight)="toProfile()">
   <!--<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>-->
@@ -57,4 +57,5 @@
       loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
+</div>
 </ion-content>

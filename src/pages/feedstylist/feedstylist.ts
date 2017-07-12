@@ -1,6 +1,8 @@
 import { Component, trigger, state, style, transition, animate, keyframes, ElementRef, ViewChild, ViewChildren, QueryList, Renderer } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { StylistProfile } from '../stylistprofile/stylistprofile';
+
 
 @Component({
   selector: 'page-feed-stylist',
@@ -71,6 +73,10 @@ export class FeedStylist {
     // causing the nav controller to transition to the new page
     // optional data can also be passed to the pushed page.
     //this.navCtrl.push(SignUpPage);
+  }
+
+  toProfile() {
+    this.navCtrl.push(StylistProfile);
   }
 
   toolClicked(event) {

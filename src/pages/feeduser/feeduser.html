@@ -1,4 +1,4 @@
-<ion-header (swipeLeft)="toProfile()">
+<ion-header (swipeRight)="toProfile()">
   <ion-item class="itemadspace" [@slideDown]="downState" no-padding no-lines>
     <h3 class="feedtitle">User Feed</h3>
   </ion-item>
@@ -28,7 +28,8 @@
   </ul>
 </ion-header>
 
-<ion-content no-padding> 
+<ion-content no-padding>
+<div (swipeRight)="toProfile()">
   
   <!--<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -109,4 +110,5 @@
       loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
+</div>
 </ion-content>

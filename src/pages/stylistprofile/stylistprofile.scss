@@ -80,7 +80,7 @@ page-stylist-profile {
 
   }
 
-  .table[_ngcontent-c3] {
+  .table.table-bordered.table-fixed.monthview-datetable {
       width: 60%;
       max-width: 60%;
   }
@@ -109,6 +109,20 @@ page-stylist-profile {
     font-size: 12px;
   }
 
+  .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2] {
+    padding: 2px;
+    line-height: 14px;
+    vertical-align: top;
+    font-size: 12px;
+  }
+
+  .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
+    padding: 2px;
+    line-height: 14px;
+    vertical-align: top;
+    font-size: 12px;
+  }
+
   .event-detail-container {
     display: none;
   }
@@ -116,7 +130,7 @@ page-stylist-profile {
   ion-grid {
     z-index: 2;
     position: absolute;
-    top: 40%;
+    top: 43%;
 
     .col {
       padding: 0px 2px 0px 2px;
