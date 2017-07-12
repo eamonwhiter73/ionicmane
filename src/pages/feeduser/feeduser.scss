@@ -66,7 +66,7 @@ page-feed-user {
 		margin: 0px 0px 0px 0px !important;
 	}
 
-	ion-toolbar {
+	#iontoolbar {
 		z-index: 1;
 		position: fixed;
 		top: 88px;
@@ -138,7 +138,7 @@ page-feed-user {
 		font-weight: 500;
 	}
 
-	.toolbarstyle:focus {
+	.toolbarstyle:focus, .toolbarstyle:active  {
 		color: map-get($colors, primary);
 	}
 
@@ -156,7 +156,7 @@ page-feed-user {
 		display: inline;
 	}
 
-	button:focus {
+	button:focus, button:active {
 		color: map-get($colors, primary);
 	}
 
@@ -164,6 +164,13 @@ page-feed-user {
 		position: relative;
     background-color: black;
     line-height: 32px;
+	}
+
+	button.all.toolbarstyle:focus, button.promos.toolbarstyle:focus, button.weekly.toolbarstyle:focus {
+		position: relative;
+    background-color: black;
+    line-height: 32px;
+    color: map-get($colors, primary);
 	}
 
 	.all {
@@ -188,7 +195,7 @@ page-feed-user {
 	}
 
 	.dropdown {
-		z-index: 2;
+		z-index: 999;
 		display: none;
 		position: absolute;
 		top: 88px;
@@ -199,7 +206,7 @@ page-feed-user {
 	}
 
 	.dropdowntwo {
-		z-index: 2;
+		z-index: 999;
 		display: none;
 		position: absolute;
 		top: 240px;

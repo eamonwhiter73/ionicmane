@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>@stylist_profile</ion-title>
+    <div class="stylistview">
+	    <button class="stylistviewbutton" ion-button color="secondary">Stylist View</button>
+	  </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+	<ion-item no-padding no-lines>
+		<div class="imageparent">
+      <img class="postprofilepic" src="../../assets/hair5.jpeg">
+    </div>
+    <div class='ratecontain'>
+	    <div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+	    <div class='ratings'>(200 ratings)</div>
+	  </div>
+	  <div class="stylistviewtwo">
+	    <button class="stylistviewbuttontwo" ion-button color="primary">Follow Stylist</button>
+	  </div>
+	  <div class='stylistsect'>
+			<div class="name">Daniel T.</div>
+			<div class="bio">Bio info...</div>
+		</div>
+		<div class="social">
+			<div class="fb inlineblock">
+				<img src="../../assets/facebook.png">
+			</div>
+			<div class="insta inlineblock">
+      	<img src="../../assets/instagram.png">
+			</div>
+		</div>
+		<calendar (tap)='moveCover()' class='cal' [eventSource]="eventSource"
+      [calendarMode]="calendar.mode"
+      [currentDate]="calendar.currentDate"
+      (onCurrentDateChanged)="onCurrentDateChanged($event)"
+      (onRangeChanged)="reloadSource(startTime, endTime)"
+      (onEventSelected)="onEventSelected($event)"
+      (onTitleChanged)="onViewTitleChanged($event)"
+      (onTimeSelected)="onTimeSelected($event)"
+      step="30">
+    </calendar>
+	</ion-item>
+	<div #calendarcover [@moveCover]='moveState' class="calendarcover"></div>
+	<ion-grid>
+	  <ion-row>
+	    <ion-col>
+	      <img src="../../assets/hair5.jpeg">
+	    </ion-col>
+	    <ion-col>
+	      <img src="../../assets/hair5.jpeg">
+	    </ion-col>
+	    <ion-col>
+	      <img src="../../assets/hair5.jpeg">
+	    </ion-col>
+	  </ion-row>
+	  <ion-row>
+	    <ion-col>
+	      <img src="../../assets/hair5.jpeg">
+	    </ion-col>
+	    <ion-col>
+	      <img src="../../assets/hair5.jpeg">
+	    </ion-col>
+	    <ion-col>
+	      <img src="../../assets/hair5.jpeg">
+	    </ion-col>
+	  </ion-row>
+	  <ion-row>
+	    <ion-col>
+	      <img src="../../assets/hair5.jpeg">
+	    </ion-col>
+	    <ion-col>
+	      <img src="../../assets/hair5.jpeg">
+	    </ion-col>
+	    <ion-col>
+	      <img src="../../assets/hair5.jpeg">
+	    </ion-col>
+	  </ion-row>
+	</ion-grid>
+</ion-content>

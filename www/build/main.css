@@ -30354,7 +30354,7 @@ page-feed-user ion-label {
   margin: 0px 0px 0px 0px !important;
 }
 
-page-feed-user ion-toolbar {
+page-feed-user #iontoolbar {
   z-index: 1;
   position: fixed;
   top: 88px;
@@ -30411,7 +30411,7 @@ page-feed-user .toolbarstyle {
   font-weight: 500;
 }
 
-page-feed-user .toolbarstyle:focus {
+page-feed-user .toolbarstyle:focus, page-feed-user .toolbarstyle:active {
   color: #e6c926;
 }
 
@@ -30429,7 +30429,7 @@ page-feed-user p {
   display: inline;
 }
 
-page-feed-user button:focus {
+page-feed-user button:focus, page-feed-user button:active {
   color: #e6c926;
 }
 
@@ -30437,6 +30437,13 @@ page-feed-user button.all.toolbarstyle, page-feed-user button.promos.toolbarstyl
   position: relative;
   background-color: black;
   line-height: 32px;
+}
+
+page-feed-user button.all.toolbarstyle:focus, page-feed-user button.promos.toolbarstyle:focus, page-feed-user button.weekly.toolbarstyle:focus {
+  position: relative;
+  background-color: black;
+  line-height: 32px;
+  color: #e6c926;
 }
 
 page-feed-user .availability {
@@ -30457,7 +30464,7 @@ page-feed-user .book {
 }
 
 page-feed-user .dropdown {
-  z-index: 2;
+  z-index: 999;
   display: none;
   position: absolute;
   top: 88px;
@@ -30468,7 +30475,7 @@ page-feed-user .dropdown {
 }
 
 page-feed-user .dropdowntwo {
-  z-index: 2;
+  z-index: 999;
   display: none;
   position: absolute;
   top: 240px;
@@ -30635,4 +30642,141 @@ page-sign-up p {
 page-sign-up .stylistviewbutton {
   width: 20%;
   font-size: 12px;
+}
+
+page-stylist-profile ion-title {
+  text-align: center;
+  position: absolute;
+}
+
+page-stylist-profile .postprofilepic {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+}
+
+page-stylist-profile .imageparent {
+  width: 20vw;
+  height: 20vw;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+page-stylist-profile .stylistview {
+  text-align: right;
+}
+
+page-stylist-profile .stylistviewtwo {
+  text-align: right;
+  position: relative;
+  top: -70px;
+}
+
+page-stylist-profile .stylistviewbutton {
+  width: 25%;
+  font-size: 12px;
+}
+
+page-stylist-profile .stylistviewbuttontwo {
+  width: 30%;
+  font-size: 15px;
+  display: inline-block;
+}
+
+page-stylist-profile .stars {
+  display: inline-block;
+  position: relative;
+  color: #e6c926;
+  /*top: -70px;
+    left: 110px;*/
+}
+
+page-stylist-profile .ratings {
+  position: relative;
+  /*top: -70px;
+    left: 113px;*/
+  font-size: 14px;
+}
+
+page-stylist-profile .stylistsect {
+  max-width: 35%;
+  top: -30px;
+  left: 25px;
+  position: relative;
+}
+
+page-stylist-profile .bio {
+  font-size: 12px;
+}
+
+page-stylist-profile .name {
+  font-weight: 700;
+}
+
+page-stylist-profile .ratecontain {
+  position: relative;
+  display: inline-block;
+  top: -30px;
+  left: 10px;
+}
+
+page-stylist-profile .table[_ngcontent-c2] {
+  width: 60%;
+  max-width: 60%;
+}
+
+page-stylist-profile .cal {
+  position: relative;
+  width: 60%;
+  top: -105px;
+  left: 35%;
+}
+
+page-stylist-profile .calendarcover {
+  width: 60%;
+  height: 160px;
+  background-color: white;
+  z-index: 1;
+  position: relative;
+  top: -157px;
+  left: 33%;
+}
+
+page-stylist-profile .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2] {
+  padding: 2px;
+  line-height: 14px;
+  vertical-align: top;
+  font-size: 12px;
+}
+
+page-stylist-profile .event-detail-container {
+  display: none;
+}
+
+page-stylist-profile ion-grid {
+  z-index: 2;
+  position: absolute;
+  top: 40%;
+}
+
+page-stylist-profile ion-grid .col {
+  padding: 0px 2px 0px 2px;
+}
+
+page-stylist-profile .monthview-selected[_ngcontent-c2] {
+  background-color: #e6c926;
+}
+
+page-stylist-profile .inlineblock {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+page-stylist-profile .social {
+  position: relative;
+  left: 25px;
+  top: -15px;
 }

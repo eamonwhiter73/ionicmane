@@ -1,9 +1,4 @@
-<ion-content no-padding> 
-  
-  <!--<ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>-->
-    
+<ion-header>
   <ion-item class="itemadspace" [@slideDown]="downState" no-padding no-lines>
     <h3 class="feedtitle">User Feed</h3>
   </ion-item>
@@ -31,6 +26,13 @@
     <li (tap)="dropDownP()">Price</li>
     <li (tap)="dropDownR()">Rating</li>
   </ul>
+</ion-header>
+
+<ion-content no-padding> 
+  
+  <!--<ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>-->
 
   <div class ='contentone' #contentone [@moveList]='moveState'>
    <ion-list class="marginstatus" no-padding>

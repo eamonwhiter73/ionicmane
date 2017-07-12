@@ -1,0 +1,140 @@
+page-stylist-profile {
+
+  ion-title {
+     text-align: center;
+     position: absolute;
+  }
+
+	.postprofilepic {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+  }
+
+  .imageparent {
+  	width:20vw;
+    height:20vw;
+    border-radius:50%;
+    overflow:hidden;
+    display: inline-block;
+    margin-left: 20px;	
+	}
+
+  .stylistview {
+    text-align: right;
+  }
+
+  .stylistviewtwo {
+    text-align: right;
+    position: relative;
+    top: -70px;
+  }
+
+  .stylistviewbutton {
+    width:25%;
+    font-size: 12px;
+  }
+
+  .stylistviewbuttontwo {
+    width:30%;
+    font-size: 15px;
+    display: inline-block;
+  }
+
+  .stars {
+    display: inline-block;
+    position: relative;
+    color: map-get($colors, primary);
+    /*top: -70px;
+    left: 110px;*/
+  }
+
+  .ratings {
+    position: relative;
+    /*top: -70px;
+    left: 113px;*/
+    font-size: 14px;
+  }
+
+  .stylistsect {
+    max-width: 35%;
+    top: -30px;
+    left: 25px;
+    position: relative;
+  }
+
+  .bio {
+    font-size: 12px;
+  }
+
+  .name {
+    font-weight: 700;
+  }
+
+  .ratecontain {
+    position:relative;
+    display: inline-block;
+    top: -30px;
+    left: 10px;
+
+  }
+
+  .table[_ngcontent-c2] {
+      width: 60%;
+      max-width: 60%;
+  }
+
+  .cal {
+    position: relative;
+    width: 60%;
+    top: -105px;
+    left: 35%;
+  }
+
+  .calendarcover {
+    width: 60%;
+    height: 160px;
+    background-color: white;
+    z-index: 1;
+    position: relative;
+    top: -157px;
+    left: 33%;
+  }
+
+  .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2] {
+    padding: 2px;
+    line-height: 14px;
+    vertical-align: top;
+    font-size: 12px;
+  }
+
+  .event-detail-container {
+    display: none;
+  }
+
+  ion-grid {
+    z-index: 2;
+    position: absolute;
+    top: 40%;
+
+    .col {
+      padding: 0px 2px 0px 2px;
+    }
+  }
+
+  .monthview-selected[_ngcontent-c2] {
+    background-color: map-get($colors, primary);
+  }
+
+  .inlineblock {
+    display: inline-block;
+    margin-left: 5px;
+  }
+
+  .social {
+    position: relative;
+    left: 25px;
+    top: -15px;
+  }
+}

@@ -6,13 +6,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { SignInPage } from '../pages/signin/signin';
 import { FeedStylist } from '../pages/feedstylist/feedstylist';
 import { FeedUser } from '../pages/feeduser/feeduser';
+import { StylistProfile } from '../pages/stylistprofile/stylistprofile';
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = FeedStylist;
+  rootPage:any = SignInPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

@@ -9,7 +9,9 @@ import { SignInPage } from '../pages/signin/signin';
 import { SignUpPage } from '../pages/signup/signup';
 import { FeedStylist } from '../pages/feedstylist/feedstylist';
 import { FeedUser } from '../pages/feeduser/feeduser';
+import { StylistProfile } from '../pages/stylistprofile/stylistprofile';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgCalendarModule  } from 'ionic2-calendar';
 
 
 
@@ -19,12 +21,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignInPage,
     SignUpPage,
     FeedStylist,
-    FeedUser
+    FeedUser,
+    StylistProfile
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    NgCalendarModule
+    /*CalendarModule.forRoot()*/
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,7 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignInPage,
     SignUpPage,
     FeedStylist,
-    FeedUser
+    FeedUser,
+    StylistProfile
   ],
   providers: [
     StatusBar,

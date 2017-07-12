@@ -116,10 +116,14 @@ export class FeedStylist {
     console.log(itemArray);
     console.log(imageComps);
 
-    flexArray[item].nativeElement.style = 'display: none';
-    feedArray[item].nativeElement.style = 'display: flex';
-    imageComps[item].nativeElement.style = 'display: block';
-    itemArray[item]._elementRef.nativeElement.style = "padding: 0";
+    this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'flex');
+    //flexArray[item].nativeElement.style = 'display: none';
+    //feedArray[item].nativeElement.style = 'display: flex';
+    this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'block');
+    //imageComps[item].nativeElement.style = 'display: block';
+    this.myrenderer.setElementStyle(itemArray[item]._elementRef.nativeElement, 'padding', '0');
+    //itemArray[item]._elementRef.nativeElement.style = "padding: 0";
     this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-padding', 'null');
     this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-lines', 'null');
     //var selectedRow = document.getElementById('item');

@@ -79,7 +79,7 @@ export class FeedUser implements AfterViewInit {
   lastNumRows = 0;
   el;
 
-  constructor(public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
 
   }
 
@@ -123,11 +123,16 @@ export class FeedUser implements AfterViewInit {
     else {
       //
     }
-    this.changeText.nativeElement.style = "color:gray";
-    this.contentOne.nativeElement.style = "display: none";
-    this.availability.nativeElement.style = "display: none";
-    this.ratingbox.nativeElement.style= "display: none";
-    this.weekly.nativeElement.style= "display: block"
+    this.renderer.setElementStyle(this.changeText.nativeElement, 'color', 'gray');
+    //this.changeText.nativeElement.style = "color:gray";
+    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
+    //this.contentOne.nativeElement.style = "display: block";
+    this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
+    //this.availability.nativeElement.style = "display: none";
+    this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
+    //this.ratingbox.nativeElement.style= "display: none";
+    this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'block');
+    //this.weekly.nativeElement.style= "display: none"
   }
 
   closeMenuP() {
@@ -138,11 +143,16 @@ export class FeedUser implements AfterViewInit {
     else {
       //
     }
-    this.changeText.nativeElement.style = "color:gray";
-    this.contentOne.nativeElement.style = "display: block";
-    this.availability.nativeElement.style = "display: none";
-    this.ratingbox.nativeElement.style= "display: none";
-    this.weekly.nativeElement.style= "display: none"
+    this.renderer.setElementStyle(this.changeText.nativeElement, 'color', 'gray');
+    //this.changeText.nativeElement.style = "color:gray";
+    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
+    //this.contentOne.nativeElement.style = "display: block";
+    this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
+    //this.availability.nativeElement.style = "display: none";
+    this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
+    //this.ratingbox.nativeElement.style= "display: none";
+    this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
+    //this.weekly.nativeElement.style= "display: none"
   }
 
   dropDown() {
@@ -160,34 +170,48 @@ export class FeedUser implements AfterViewInit {
   }
 
   dropDownD() {
+    this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
     this.changeText.nativeElement.innerHTML = "Distance";
-    this.changeText.nativeElement.style = "color:#e6c926";
+    //this.changeText.nativeElement.style = "color:#e6c926";
     this.dropDown();
   }
 
   dropDownA() {
     this.changeText.nativeElement.innerHTML = "Availability";
-    this.changeText.nativeElement.style = "color:#e6c926";
+    this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
+    //this.changeText.nativeElement.style = "color:gray";
+    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
+    //this.contentOne.nativeElement.style = "display: block";
+    this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'block');
+    //this.availability.nativeElement.style = "display: none";
+    this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
+    //this.ratingbox.nativeElement.style= "display: none";
+    this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
+    /*this.changeText.nativeElement.style = "color:#e6c926";
     this.availability.nativeElement.style = "display: block";
     this.contentOne.nativeElement.style = "display: none";
     this.ratingbox.nativeElement.style = "display: none";
-    this.weekly.nativeElement.style = "display: none";
+    this.weekly.nativeElement.style = "display: none";*/
     this.dropDown();
   }
 
   dropDownP() {
     this.changeText.nativeElement.innerHTML = "Price";
-    this.changeText.nativeElement.style = "color:#e6c926";
+    this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
     this.dropDown();
   }
 
   dropDownR() {
     this.changeText.nativeElement.innerHTML = "Rating";
-    this.changeText.nativeElement.style = "color:#e6c926";
-    this.availability.nativeElement.style = "display: none";
-    this.contentOne.nativeElement.style = "display: none";
-    this.ratingbox.nativeElement.style = "display: block";
-    this.weekly.nativeElement.style = "display: none";
+    this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
+    //this.changeText.nativeElement.style = "color:gray";
+    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
+    //this.contentOne.nativeElement.style = "display: block";
+    this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
+    //this.availability.nativeElement.style = "display: none";
+    this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'block');
+    //this.ratingbox.nativeElement.style= "display: none";
+    this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
     this.dropDown();
   }
 
