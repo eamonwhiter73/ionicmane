@@ -30505,10 +30505,11 @@ page-sign-in ion-content {
 }
 
 page-sign-in ion-content .logo {
-  position: relative;
+  position: absolute;
   font-size: 11vw;
   text-align: center;
-  top: 45%;
+  top: 39%;
+  left: 7%;
   color: #e6c926;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
@@ -30588,10 +30589,14 @@ page-sign-in ion-content .signincontainer {
 }
 
 page-sign-in ion-content p {
-  text-align: center;
-  position: relative;
-  top: 28%;
   color: #fff;
+}
+
+page-sign-in ion-content .account {
+  text-align: center;
+  width: 92%;
+  position: absolute;
+  top: 92%;
 }
 
 page-sign-in ion-content .moveleft {
@@ -30650,7 +30655,7 @@ page-sign-up ion-content ion-input {
 }
 
 page-sign-up ion-content .next {
-  margin-top: 15%;
+  margin-top: 5%;
   width: 80%;
 }
 

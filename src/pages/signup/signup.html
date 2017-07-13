@@ -6,8 +6,8 @@
     <h3>Sign Up</h3>
   </div>
   <br>
-  <form> <!--(ngSubmit)="logForm()"-->
-    <br><br>
+  <form (ngSubmit)="logForm()">
+    <br>
     <ion-label stacked>Username</ion-label>
   	<ion-input type="text" name="username"></ion-input> <!--[(ngModel)]="user.username"-->
   	<br>

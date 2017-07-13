@@ -61,6 +61,8 @@ export class FeedUser implements AfterViewInit {
   @ViewChild('contentone') contentOne: ElementRef;
   @ViewChild('ratings') ratingbox: ElementRef;
   @ViewChild('weeklydeals') weekly: ElementRef;
+  @ViewChild('promos') promos: ElementRef;
+  @ViewChild('weekly') weeklyyellow: ElementRef;
 
   downState: String = 'notDown';
   moveState: String = 'up';
@@ -131,6 +133,9 @@ export class FeedUser implements AfterViewInit {
       //
     }
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', 'gray');
+    this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', '#e6c926');
+    this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+
     //this.changeText.nativeElement.style = "color:gray";
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
     //this.contentOne.nativeElement.style = "display: block";
@@ -159,6 +164,9 @@ export class FeedUser implements AfterViewInit {
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
     //this.ratingbox.nativeElement.style= "display: none";
     this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.promos.nativeElement, 'color', '#e6c926');
+    this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
+
     //this.weekly.nativeElement.style= "display: none"
   }
 
@@ -178,6 +186,9 @@ export class FeedUser implements AfterViewInit {
 
   dropDownD() {
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
+    this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
+    this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+
     this.changeText.nativeElement.innerHTML = "Distance";
     //this.changeText.nativeElement.style = "color:#e6c926";
     this.dropDown();
@@ -194,6 +205,9 @@ export class FeedUser implements AfterViewInit {
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
     //this.ratingbox.nativeElement.style= "display: none";
     this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
+    this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+
     /*this.changeText.nativeElement.style = "color:#e6c926";
     this.availability.nativeElement.style = "display: block";
     this.contentOne.nativeElement.style = "display: none";
@@ -205,12 +219,18 @@ export class FeedUser implements AfterViewInit {
   dropDownP() {
     this.changeText.nativeElement.innerHTML = "Price";
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
+    this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
+    this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+
     this.dropDown();
   }
 
   dropDownR() {
     this.changeText.nativeElement.innerHTML = "Rating";
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
+    this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
+    this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+    
     //this.changeText.nativeElement.style = "color:gray";
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
     //this.contentOne.nativeElement.style = "display: block";

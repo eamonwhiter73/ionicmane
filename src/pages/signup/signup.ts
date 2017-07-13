@@ -47,4 +47,19 @@ export class SignUpPage {
       this.navCtrl.push(FeedStylist)
     }
   }
+
+  logForm(){
+    // push another page on to the navigation stack
+    // causing the nav controller to transition to the new page
+    // optional data can also be passed to the pushed page.
+    if(this.user) {
+      this.navCtrl.push(FeedUser);
+    }
+    else if(this.stylist) {
+      this.navCtrl.push(FeedStylist)
+    }
+    else {
+      alert("You need to select User or Stylist.");
+    }
+  }
 }
