@@ -9,10 +9,10 @@
   <form (ngSubmit)="logForm()">
     <br>
     <ion-label stacked>Username</ion-label>
-  	<ion-input type="text" name="username"></ion-input> <!--[(ngModel)]="user.username"-->
+  	<ion-input type="text" (keypress)="goButton($event.keyCode)" name="username"></ion-input> <!--[(ngModel)]="user.username"-->
   	<br>
     <ion-label stacked>Email Address</ion-label>
-    <ion-input type="text" name="email"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
+    <ion-input type="text" (keypress)="goButton($event.keyCode)" name="email"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
     <br>
     <div class="flex">
     <div id='labelone' class='labelz'>
@@ -26,10 +26,10 @@
     </div>
     <br><br><br><br>
     <ion-label stacked>Password</ion-label>
-    <ion-input type="text" name="email"></ion-input>
+    <ion-input type="text" (keypress)="goButton($event.keyCode)" name="email"></ion-input>
   </form>
   <div class="signincontainer" style="text-align: center;">
-    <button class="next" ion-button round color="tertiary" (tap)="loadNext()">Next</button>
+    <button class="next" type="submit" ion-button round color="tertiary" (tap)="logForm()">Next</button>
   </div>
   <p>Already have an account? <a (click)="pushPage()">Sign In</a></p>
 </ion-content>

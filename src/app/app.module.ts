@@ -12,6 +12,8 @@ import { FeedUser } from '../pages/feeduser/feeduser';
 import { StylistProfile } from '../pages/stylistprofile/stylistprofile';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgCalendarModule  } from 'ionic2-calendar';
+import { Keyboard } from '@ionic-native/keyboard';
+
 
 
 
@@ -43,7 +45,8 @@ import { NgCalendarModule  } from 'ionic2-calendar';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Keyboard
   ]
 })
 export class AppModule {}

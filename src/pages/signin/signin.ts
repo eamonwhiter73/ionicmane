@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { SignUpPage } from '../signup/signup';
 import { FeedUser } from '../feeduser/feeduser';
 import { FeedStylist } from '../feedstylist/feedstylist';
+import { Keyboard } from '@ionic-native/keyboard';
+
 
 @Component({
   selector: 'page-sign-in',
@@ -12,7 +14,7 @@ export class SignInPage {
 	stylist: boolean;
   user: boolean;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public keyboard: Keyboard, public navCtrl: NavController) {
 
   }
 
@@ -26,6 +28,13 @@ export class SignInPage {
   	if(this.stylist) {
   		this.stylist = false;
   	}
+  }
+
+  goButton(code) {
+    console.log(code);
+    if(code == 13) {
+      this.keyboard.close();
+    }
   }
 
   loadNext(){
