@@ -9,9 +9,9 @@
   <div class="clickme" (tap)="toolClicked($event)">
     <ion-toolbar [@toolSlide]="toolbarState" color="black" id="iontoolbar">
       <ion-icon class='custom-icon' name="play"></ion-icon>
-      <button class="all toolbarstyle" ion-button color="black">All</button>
-      <button class="classes toolbarstyle" ion-button color="black">Classes</button>
-      <button class="products toolbarstyle" ion-button color="black">Products</button>
+      <button class="all toolbarstyle" #allF ion-button color="black" (tap)="all()">All</button>
+      <button class="classes toolbarstyle" #classesFeed ion-button color="black" (tap)="products()">Classes</button>
+      <button class="products toolbarstyle" #productsFeed ion-button color="black" (tap)="classes()">Products</button>
     </ion-toolbar>
   </div>
 </ion-header>

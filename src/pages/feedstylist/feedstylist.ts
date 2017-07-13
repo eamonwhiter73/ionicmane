@@ -54,6 +54,10 @@ export class FeedStylist {
   @ViewChildren('flex') flexComponents:QueryList<any>;
   @ViewChildren('feedtop') feedComponents:QueryList<any>;
   @ViewChildren('imagepost') imageComponents:QueryList<any>;
+  @ViewChildren('allF') allFeed:QueryList<any>;
+  @ViewChildren('productsFeed') productsF:QueryList<any>;
+  @ViewChildren('classesFeed') classesF:QueryList<any>;
+
   downState: String = 'notDown';
   moveState: String = 'up';
   toolbarState: String = 'up';
@@ -79,6 +83,27 @@ export class FeedStylist {
     this.navCtrl.push(StylistProfile, {
       param1: 'stylist'
     });
+  }
+
+  all() {
+    console.log(this.allFeed);
+    console.log(this.classesF);
+    console.log(this.productsF);
+    this.myrenderer.setElementStyle(this.allFeed.toArray()[0]._elementRef.nativeElement, 'color', '#e6c926');
+    this.myrenderer.setElementStyle(this.classesF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
+    this.myrenderer.setElementStyle(this.productsF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
+  }
+
+  products() {
+    this.myrenderer.setElementStyle(this.allFeed.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
+    this.myrenderer.setElementStyle(this.classesF.toArray()[0]._elementRef.nativeElement, 'color', '#e6c926');
+    this.myrenderer.setElementStyle(this.productsF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
+  }
+
+  classes() {
+    this.myrenderer.setElementStyle(this.allFeed.toArray()[0]._elementRef.nativeElement, 'color', 'gray');  
+    this.myrenderer.setElementStyle(this.classesF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
+    this.myrenderer.setElementStyle(this.productsF.toArray()[0]._elementRef.nativeElement, 'color', '#e6c926');
   }
 
   toolClicked(event) {
