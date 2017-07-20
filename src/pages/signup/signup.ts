@@ -4,7 +4,7 @@ import { SignInPage } from '../signin/signin';
 import { FeedUser } from '../feeduser/feeduser';
 import { FeedStylist } from '../feedstylist/feedstylist';
 import { Keyboard } from '@ionic-native/keyboard';
-
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 
 @Component({
@@ -14,9 +14,17 @@ import { Keyboard } from '@ionic-native/keyboard';
 export class SignUpPage {
   stylist: boolean;
   user: boolean;
+  items: FirebaseListObservable<any>;
 
-  constructor(public navCtrl: NavController, public keyboard: Keyboard) {
+  constructor(public navCtrl: NavController, public keyboard: Keyboard, public af: AngularFireDatabase) {
+    this.items = af.list('/test');
+    this.items.subscribe(items => items.forEach(item => { 
+      console.log(item.$value);
+    }));
+  }
 
+  ionViewDidLoad() {
+    
   }
 
   pushPage(){

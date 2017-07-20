@@ -46,36 +46,63 @@
 	<div #calendarcover [@moveCover]='moveState' class="calendarcover"></div>
 	<ion-grid>
 	  <ion-row>
-	    <ion-col>
-	      <img src="../../assets/hair5.jpeg">
+	    <ion-col (tap)="openCameraOne()">
+	    	<div #pluscontain class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img class="imagesquare" #profsquare [src]="picURLS[0]">
 	    </ion-col>
-	    <ion-col>
-	      <img src="../../assets/hair5.jpeg">
+	    <ion-col (tap)="openCameraTwo()">
+	    	<div #pluscontain class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img class="imagesquare" #profsquare src="../../assets/hair5.jpeg">
 	    </ion-col>
-	    <ion-col>
-	      <img src="../../assets/hair5.jpeg">
-	    </ion-col>
-	  </ion-row>
-	  <ion-row>
-	    <ion-col>
-	      <img src="../../assets/hair5.jpeg">
-	    </ion-col>
-	    <ion-col>
-	      <img src="../../assets/hair5.jpeg">
-	    </ion-col>
-	    <ion-col>
-	      <img src="../../assets/hair5.jpeg">
+	    <ion-col (tap)="openCameraThree()">
+	    	<div #pluscontain class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img class="imagesquare" #profsquare src="../../assets/hair5.jpeg">
 	    </ion-col>
 	  </ion-row>
 	  <ion-row>
-	    <ion-col>
-	      <img src="../../assets/hair5.jpeg">
+	    <ion-col (tap)="openCameraFour()">
+	    	<div #pluscontain class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img class="imagesquare" #profsquare src="../../assets/hair5.jpeg">
 	    </ion-col>
-	    <ion-col>
-	      <img src="../../assets/hair5.jpeg">
+	    <ion-col (tap)="openCameraFive()">
+	    	<div #pluscontain class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img class="imagesquare" #profsquare src="../../assets/hair5.jpeg">
 	    </ion-col>
-	    <ion-col>
-	      <img src="../../assets/hair5.jpeg">
+	    <ion-col (tap)="openCameraSix()">
+	    	<div #pluscontain class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img class="imagesquare" #profsquare src="../../assets/hair5.jpeg">
+	    </ion-col>
+	  </ion-row>
+	  <ion-row>
+	    <ion-col (tap)="openCameraSeven()">
+	    	<div #pluscontain class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img class="imagesquare" #profsquare src="../../assets/hair5.jpeg">
+	    </ion-col>
+	    <ion-col (tap)="openCameraEight()">
+	    	<div #pluscontain class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img class="imagesquare" #profsquare src="../../assets/hair5.jpeg">
+	    </ion-col>
+	    <ion-col (tap)="openCameraNine()">
+	    	<div #pluscontain class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img class="imagesquare" #profsquare src="../../assets/hair5.jpeg">
 	    </ion-col>
 	  </ion-row>
 	</ion-grid>

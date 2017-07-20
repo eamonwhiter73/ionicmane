@@ -1,6 +1,5 @@
 {
   "name": "myApp",
-  "app_id": "",
-  "v2": true,
-  "typescript": true
+  "app_id": "abfb36f8",
+  "type": "ionic-angular"
 }

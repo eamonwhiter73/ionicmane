@@ -14,7 +14,28 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { Keyboard } from '@ionic-native/keyboard';
 
+// Import the AF2 Module
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { Transfer } from '@ionic-native/transfer';
+import { Camera } from '@ionic-native/camera';
+import { Crop } from '@ionic-native/crop';
+import { File } from '@ionic-native/file';
+import { CameraService } from '../services/cameraservice';
+import { HttpModule } from '@angular/http';
 
+
+
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyC1pFZzY3w0zT7hB2hcc6zhLwYgaK0MhvQ",
+  authDomain: "mane-4152c.firebaseapp.com",
+  databaseURL: "https://mane-4152c.firebaseio.com",
+  projectId: "mane-4152c",
+  storageBucket: "mane-4152c.appspot.com",
+  messagingSenderId: "446057524325"
+}
 
 
 @NgModule({
@@ -30,7 +51,11 @@ import { Keyboard } from '@ionic-native/keyboard';
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(MyApp),
-    NgCalendarModule
+    HttpModule,
+    NgCalendarModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
     /*CalendarModule.forRoot()*/
   ],
   bootstrap: [IonicApp],
@@ -46,7 +71,12 @@ import { Keyboard } from '@ionic-native/keyboard';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Keyboard
+    Keyboard,
+    Camera,
+    CameraService,
+    Transfer,
+    Crop,
+    File
   ]
 })
 export class AppModule {}

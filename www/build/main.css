@@ -30837,3 +30837,19 @@ page-stylist-profile .social {
   left: 25px;
   top: -15px;
 }
+
+page-stylist-profile .imagesquare {
+  display: none;
+}
+
+page-stylist-profile .pluscontainer {
+  text-align: center;
+}
+
+page-stylist-profile .plussy {
+  font-size: 92px;
+  font-weight: 700;
+  color: black;
+  /*position: relative;*/
+  text-shadow: 2px 2px 6px black;
+}

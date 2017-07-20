@@ -28,7 +28,25 @@
         "cordova-plugin-calendar": {
             "CALENDAR_USAGE_DESCRIPTION": " ",
             "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-camera": {
+            "CAMERA_USAGE_DESCRIPTION": " ",
+            "PHOTOLIBRARY_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-crop": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        }
+    }
 }
