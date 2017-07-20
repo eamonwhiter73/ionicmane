@@ -30766,7 +30766,7 @@ page-stylist-profile .table.table-bordered.table-fixed.monthview-datetable {
 page-stylist-profile .cal {
   position: relative;
   width: 60%;
-  top: -105px;
+  top: -120px;
   left: 35%;
 }
 
@@ -30776,29 +30776,29 @@ page-stylist-profile .calendarcover {
   background-color: white;
   z-index: 1;
   position: relative;
-  top: -157px;
+  top: -182px;
   left: 33%;
 }
 
 page-stylist-profile .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3] {
   padding: 2px;
-  line-height: 14px;
+  line-height: 12px;
   vertical-align: top;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 page-stylist-profile .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2] {
   padding: 2px;
-  line-height: 14px;
+  line-height: 12px;
   vertical-align: top;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 page-stylist-profile .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-stylist-profile .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-stylist-profile .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-stylist-profile .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-stylist-profile .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-stylist-profile .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
   padding: 2px;
-  line-height: 14px;
+  line-height: 12px;
   vertical-align: top;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 page-stylist-profile .event-detail-container {
@@ -30808,11 +30808,11 @@ page-stylist-profile .event-detail-container {
 page-stylist-profile ion-grid {
   z-index: 2;
   position: absolute;
-  top: 43%;
+  top: 37%;
 }
 
 page-stylist-profile ion-grid .col {
-  padding: 0px 2px 0px 2px;
+  padding: 1px 1px 1px 1px;
 }
 
 page-stylist-profile .monthview-selected[_ngcontent-c3] {

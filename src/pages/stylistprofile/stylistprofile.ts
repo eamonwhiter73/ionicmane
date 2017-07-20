@@ -9,6 +9,8 @@ import { ActionSheetController } from 'ionic-angular';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { FirebaseApp } from 'angularfire2';
 import firebase from 'firebase';
+import { LoadingController } from 'ionic-angular';
+
 
 
 //import { IonicApp, IonicModule } from 'ionic-angular';
@@ -23,7 +25,7 @@ import firebase from 'firebase';
         top: '-103px',
       })),
       state('up', style({
-        top: '-192px',
+        top: '-182px',
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),
@@ -41,7 +43,7 @@ export class StylistProfile {
   picURLS = [];
   square = 0;
 
-  constructor(/*public firebase: FirebaseApp, */public myrenderer: Renderer, af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
+  constructor(public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
     this.items = af.list('/profile/' + this.username);
     this.items.subscribe(items => items.forEach(item => {
       console.log(item.$value);
@@ -126,13 +128,16 @@ export class StylistProfile {
             this.cameraService.getMedia(this.optionsGetCamera, this.square).then(() => {
               
                 let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.jpg');
-                //setTimeout(() => {
+                let loading = this.loadingController.create({content : "Loading..."});
+                loading.present();
+                setTimeout(() => {
                   storageRef.getDownloadURL().then(url => {
                     console.log(url);
                     this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
                     this.showSquare();
+                    loading.dismiss();
                   });
-                //}, 5000);
+                }, 6000);
             }); //pass in square choice
             //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
             console.log('camera clicked');
@@ -143,14 +148,21 @@ export class StylistProfile {
             let itemArrayTwo = this.profComponents.toArray();
 
             this.cameraService.getMedia(this.optionsGetMedia, this.square).then(() => {
-              //setTimeout(() => {
-                let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.jpg');
-                storageRef.getDownloadURL().then(url => {
-                  console.log(url);
-                  this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
-                  this.showSquare();
+                return new Promise((resolve, reject) => {
+                  let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.jpg');
+                  let loading = this.loadingController.create({content : "Loading..."});
+                  loading.present();
+                  setTimeout(() => {
+                    storageRef.getDownloadURL().then(url => {
+                      console.log(url);
+                      this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
+                      this.showSquare();
+                      loading.dismiss();
+                      resolve();
+                    });
+                  }, 6000);
                 });
-              //}, 5000);
+              //
               
             });
           }
