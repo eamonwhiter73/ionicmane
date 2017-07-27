@@ -42,6 +42,21 @@
         },
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-nativestorage": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "1395258797190658",
+            "APP_NAME": "ManeEmergency",
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-googleplus": {
+            "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1059751557247-aro48ncpaq2ffiae4cpsnjp941e09hao",
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     },
     "dependent_plugins": {

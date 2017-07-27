@@ -1,0 +1,5 @@
+{
+  "globalDependencies": {
+    "JIC": "file:./src/assets/JIC.d.ts"
+  }
+}

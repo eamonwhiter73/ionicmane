@@ -10,6 +10,8 @@ import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable 
 import { FirebaseApp } from 'angularfire2';
 import firebase from 'firebase';
 import { LoadingController } from 'ionic-angular';
+import { ImageViewerController } from 'ionic-img-viewer';
+import { Storage } from '@ionic/storage';
 
 
 
@@ -36,78 +38,57 @@ export class StylistProfile {
   @ViewChildren('profsquare') profComponents:QueryList<any>;
   viewDate = new Date();
   events = [];
+  viewTitle: string;
   calendar = {'mode': 'month', 'currentDate': this.viewDate}
   moveState: String = 'up';
   items: FirebaseListObservable<any>;
   username = "jackson";
   picURLS = [];
   square = 0;
+  _imageViewerCtrl: ImageViewerController;
 
-  constructor(public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
-    this.items = af.list('/profile/' + this.username);
+  constructor(public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
+    /*this.items = af.list('/profile/' + this.username);
     this.items.subscribe(items => items.forEach(item => {
       console.log(item.$value);
       this.picURLS.push(item.$value);
-    }));
+    }));*/
+    //this._imageViewerCtrl = imageViewerCtrl;
   }
 
   public optionsGetMedia: any = {
         allowEdit: false,
+        quality: 10,
+        targetWidth: 600,
+        targetHeight: 600,
+        encodingType: this.camera.EncodingType.PNG,
         sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-        mediaType: this.camera.MediaType.ALLMEDIA,
-        destinationType: this.camera.DestinationType.FILE_URI,
+        mediaType: this.camera.MediaType.PICTURE,
+        destinationType: this.camera.DestinationType.FILE_URI
   }
 
   public optionsGetCamera: any = {
+        quality: 10,
+        targetWidth: 600,
+        targetHeight: 600,
+        encodingType: this.camera.EncodingType.PNG,
         sourceType: this.camera.PictureSourceType.CAMERA,
-        mediaType: this.camera.MediaType.ALLMEDIA,
+        mediaType: this.camera.MediaType.PICTURE,
         destinationType: this.camera.DestinationType.FILE_URI,
         saveToPhotoAlbum: true
   }
 
-  openCameraOne() {
+  openCamera(squarez) {
     this.presentActionSheet();
-    this.square = 1;
+    this.square = squarez;
   }
 
-  openCameraTwo() {
-    this.presentActionSheet();
-    this.square = 2;
-  }
-
-  openCameraThree() {
-    this.presentActionSheet();
-    this.square = 3;
-  }
-
-  openCameraFour() {
-    this.presentActionSheet();
-    this.square = 4;
-  }
-
-  openCameraFive() {
-    this.presentActionSheet();
-    this.square = 5;
-  }
-
-  openCameraSix() {
-    this.presentActionSheet();
-    this.square = 6;
-  }
-
-  openCameraSeven() {
-    this.presentActionSheet();
-    this.square = 7;
-  }
-
-  openCameraEight() {
-    this.presentActionSheet();
-    this.square = 8;
-  }
-
-  openCameraNine() {
-    this.presentActionSheet();
-    this.square = 9;
+  presentImage(squarez) {
+    this.square = squarez;
+    let itemArrayTwo = this.profComponents.toArray();
+    console.log(JSON.stringify(itemArrayTwo[this.square-1]));
+    const imageViewer = this.imageViewerCtrl.create(itemArrayTwo[this.square - 1].nativeElement);
+    imageViewer.present();
   }
 
   showSquare() {
@@ -127,7 +108,7 @@ export class StylistProfile {
             let itemArrayTwo = this.profComponents.toArray();
             this.cameraService.getMedia(this.optionsGetCamera, this.square).then(() => {
               
-                let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.jpg');
+                let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');
                 let loading = this.loadingController.create({content : "Loading..."});
                 loading.present();
                 setTimeout(() => {
@@ -137,7 +118,7 @@ export class StylistProfile {
                     this.showSquare();
                     loading.dismiss();
                   });
-                }, 6000);
+                }, 3000);
             }); //pass in square choice
             //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
             console.log('camera clicked');
@@ -149,7 +130,7 @@ export class StylistProfile {
 
             this.cameraService.getMedia(this.optionsGetMedia, this.square).then(() => {
                 return new Promise((resolve, reject) => {
-                  let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.jpg');
+                  let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');
                   let loading = this.loadingController.create({content : "Loading..."});
                   loading.present();
                   setTimeout(() => {
@@ -160,7 +141,7 @@ export class StylistProfile {
                       loading.dismiss();
                       resolve();
                     });
-                  }, 6000);
+                  }, 3000);
                 });
               //
               
@@ -194,13 +175,40 @@ export class StylistProfile {
     }
   }
 
+  downloadImages():Promise<any> {
+    let self = this;
+    let promises_array:Array<any> = [];
+    let itemArrayTwo = this.profComponents.toArray();
+    let itemArray = this.components.toArray();
+    for (let z = 1; z < 10; z++) {
+      promises_array.push(new Promise(function(resolve,reject) {
+        let storageRef = firebase.storage().ref().child('/profile/'+ self.username + '/profile_' + self.username + '_' + z + '.png');
+        storageRef.getDownloadURL().then(url => {
+          self.myrenderer.setElementAttribute(itemArrayTwo[z - 1].nativeElement, 'src', url);
+          self.myrenderer.setElementStyle(itemArrayTwo[z - 1].nativeElement, 'display', 'block');
+          self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
+          console.log(z);
+          resolve();
+        }).catch(error => {
+          resolve();
+          console.log(error.message);
+        });
+      }));
+    }
+
+    return Promise.all(promises_array);
+  }
+
   ionViewDidLoad() {
-    
-    
-    /*let storageRef = this.firebase.storage().ref().child(this.username + 'profile/image.png');
-    storageRef.getDownloadURL().then(url =>
-        console.log(url)
-    );*/
+    let loading = this.loadingController.create({content : "Loading..."});
+    loading.present();
+    this.downloadImages().then(() => {
+      loading.dismiss();
+    })
+
+    this.storage.get('username').then((val) => {
+      this.username = val;
+    });
   }
 
   moveCover() {
@@ -213,7 +221,9 @@ export class StylistProfile {
 
   onEventSelected($event) {}
 
-  onViewTitleChanged($event) {}
+  onViewTitleChanged(title) {
+    this.viewTitle = title;
+  }
 
   onTimeSelected($event) {}
 }

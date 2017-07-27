@@ -1,0 +1,80 @@
+page-booking {
+	.monthview-container {
+
+	}
+
+	.event-detail-container {
+		display: none;
+	}
+
+	[_nghost-c0] > div[_ngcontent-c0] {
+    height: 50%;
+	}
+
+	.monthview-selected[_ngcontent-c1] {
+	  background-color: map-get($colors, primary);
+	  color: white;
+	}
+
+	#slot {
+		display: inline-block;
+		width: 33%;
+		float: left;
+		padding-left: 3%;
+		border-style: solid;
+		border-width: 0.5px;
+		border-color: black;
+		min-height: 0;
+		height: 4.9vh;
+	}
+
+	#slot p {
+		font-size: 1.2rem;
+	}
+
+	ion-checkbox {
+		display: inline-block;
+		float: right;
+		transform: scale(.8);
+	}
+
+	ion-label {
+		font-size: 10px;
+	}
+
+	.slots {
+		white-space: nowrap;
+		overflow: hidden;
+		position: relative;
+		top: 0vh;
+	}
+
+	.slotcontainer {
+		display: flex;
+	}
+
+	table thead {
+		font-size: 12px;
+	}
+
+	.time {
+		position: absolute;
+		z-index: 2;
+		left: 0;
+		top: 0;
+	}
+
+	.table-bordered[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table-bordered[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table-bordered[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table-bordered[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table-bordered[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table-bordered[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
+    line-height: 2.8vh;
+	}
+
+	.save {
+		height: 24px;
+		top: 2px;
+	}
+
+	#savebutton {
+		text-align: center;
+		width: 100%;
+	}
+}

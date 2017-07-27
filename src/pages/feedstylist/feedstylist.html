@@ -1,11 +1,14 @@
 <ion-header (swipeRight)="toProfile()">
-  <ion-item #clickme class="itemadspace" [@slideDown]="downState" no-padding no-lines>
-    <h3 class="feedtitle">Stylist Feed</h3>
-    <div  class='pluscontainer'>
-      <ion-icon class='plussy' name="add"></ion-icon>
-    </div>
-  </ion-item>
-  
+  <ion-navbar #clickme class="itemadspace" [@slideDown]="downState" no-padding>
+    <ion-item class="ad" no-padding no-lines>
+      <h3 class="feedtitle">Stylist Feed</h3>
+      <!--<img class="ad" src="../../assets/tresemme.png">-->
+      <div (tap)="loadPost()" class='pluscontainer'>
+        <ion-icon class='plussy' name="add"></ion-icon>
+      </div>
+    </ion-item>
+  </ion-navbar>
+
   <div class="clickme" (tap)="toolClicked($event)">
     <ion-toolbar [@toolSlide]="toolbarState" color="black" id="iontoolbar">
       <ion-icon class='custom-icon' name="play"></ion-icon>

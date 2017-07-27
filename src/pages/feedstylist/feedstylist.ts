@@ -1,7 +1,15 @@
 import { Component, trigger, state, style, transition, animate, keyframes, ElementRef, ViewChild, ViewChildren, QueryList, Renderer } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { LoadingController } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
+import { LoadingController, ActionSheetController } from 'ionic-angular';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
+import { PostpagePage } from '../postpage/postpage';
+import { CameraServicePost } from '../../services/cameraservicepost';
+import { Camera } from '@ionic-native/camera';
+import { AngularFireAuth } from 'angularfire2/auth'
+
+
+
+
 
 
 @Component({
@@ -68,8 +76,40 @@ export class FeedStylist {
   lastNumRows = 0;
   el;
 
-  constructor(public myrenderer: Renderer, private elRef:ElementRef, public loadingController: LoadingController, public navCtrl: NavController) {
+  private nav:NavController;
 
+  constructor(private afAuth: AngularFireAuth, public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, private elRef:ElementRef, public loadingController: LoadingController, public navCtrl: NavController) {
+    this.nav = this.app.getActiveNav();
+  }
+
+  ionViewWillLoad() {
+    this.afAuth.authState.subscribe(data => {
+      if(data.email && data.uid) {
+        console.log("logged in");
+      }
+    })
+  }
+
+  public optionsGetMedia: any = {
+        allowEdit: false,
+        quality: 10,
+        targetWidth: 600,
+        targetHeight: 600,
+        encodingType: this.camera.EncodingType.PNG,
+        sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+        mediaType: this.camera.MediaType.PICTURE,
+        destinationType: this.camera.DestinationType.FILE_URI
+  }
+
+  public optionsGetCamera: any = {
+        quality: 10,
+        targetWidth: 600,
+        targetHeight: 600,
+        encodingType: this.camera.EncodingType.PNG,
+        sourceType: this.camera.PictureSourceType.CAMERA,
+        mediaType: this.camera.MediaType.PICTURE,
+        destinationType: this.camera.DestinationType.FILE_URI,
+        saveToPhotoAlbum: true
   }
 
   pushPage(){
@@ -77,6 +117,72 @@ export class FeedStylist {
     // causing the nav controller to transition to the new page
     // optional data can also be passed to the pushed page.
     //this.navCtrl.push(SignUpPage);
+  }
+
+  loadPost() {
+    this.presentActionSheet();
+  }
+
+  presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Choose source',
+      buttons: [
+        {
+          text: 'Camera',
+          handler: () => {
+            //let itemArrayTwo = this.profComponents.toArray();
+            this.cameraServicePost.getMedia(this.optionsGetCamera).then((data) => {
+                this.nav.push(PostpagePage, { path: data });
+                /*let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');
+                let loading = this.loadingController.create({content : "Loading..."});
+                loading.present();
+                setTimeout(() => {
+                  storageRef.getDownloadURL().then(url => {
+                    console.log(url);
+                    this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
+                    this.showSquare();
+                    loading.dismiss();
+                  });
+                }, 3000);*/
+            }); //pass in square choice
+            //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
+            console.log('camera clicked');
+          }
+        },{
+          text: 'Photo Library',
+          handler: () => {
+            //let itemArrayTwo = this.profComponents.toArray();
+
+            this.cameraServicePost.getMedia(this.optionsGetMedia).then((data) => {
+              this.nav.push(PostpagePage, { path: data });
+                /*return new Promise((resolve, reject) => {
+                  let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');
+                  let loading = this.loadingController.create({content : "Loading..."});
+                  loading.present();
+                  setTimeout(() => {
+                    storageRef.getDownloadURL().then(url => {
+                      console.log(url);
+                      this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
+                      this.showSquare();
+                      loading.dismiss();
+                      resolve();
+                    });
+                  }, 3000);
+                });*/
+              //
+              
+            });
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 
   toProfile() {

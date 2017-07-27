@@ -9,8 +9,12 @@ import { SignInPage } from '../pages/signin/signin';
 import { SignUpPage } from '../pages/signup/signup';
 import { FeedStylist } from '../pages/feedstylist/feedstylist';
 import { FeedUser } from '../pages/feeduser/feeduser';
-import { StylistProfile } from '../pages/stylistprofile/stylistprofile';
+import { PostpagePage } from '../pages/postpage/postpage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StylistProfile } from '../pages/stylistprofile/stylistprofile';
+import { BookingPage } from '../pages/booking/booking';
+
+
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { Keyboard } from '@ionic-native/keyboard';
 
@@ -23,7 +27,18 @@ import { Camera } from '@ionic-native/camera';
 import { Crop } from '@ionic-native/crop';
 import { File } from '@ionic-native/file';
 import { CameraService } from '../services/cameraservice';
+import { CameraServicePost } from '../services/cameraservicepost';
+
 import { HttpModule } from '@angular/http';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { ImageViewerController } from 'ionic-img-viewer';
+import { IonicStorageModule } from '@ionic/storage';
+import { Storage } from '@ionic/storage';
+import { Facebook } from '@ionic-native/facebook'
+
+
+//import { Ng2ImgMaxModule } from 'ng2-img-max'; // <-- import the module
+
 
 
 
@@ -45,7 +60,9 @@ export const firebaseConfig = {
     SignUpPage,
     FeedStylist,
     FeedUser,
-    StylistProfile
+    StylistProfile,
+    PostpagePage,
+    BookingPage
   ],
   imports: [
     BrowserModule,
@@ -56,6 +73,9 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    IonicImageViewerModule,
+    IonicStorageModule.forRoot()
+    //Ng2ImgMaxModule
     /*CalendarModule.forRoot()*/
   ],
   bootstrap: [IonicApp],
@@ -65,7 +85,9 @@ export const firebaseConfig = {
     SignUpPage,
     FeedStylist,
     FeedUser,
-    StylistProfile
+    StylistProfile,
+    PostpagePage,
+    BookingPage
   ],
   providers: [
     StatusBar,
@@ -74,9 +96,12 @@ export const firebaseConfig = {
     Keyboard,
     Camera,
     CameraService,
+    CameraServicePost,
     Transfer,
     Crop,
-    File
+    File,
+    ImageViewerController,
+    Facebook
   ]
 })
 export class AppModule {}

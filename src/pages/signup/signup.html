@@ -1,35 +1,44 @@
 <ion-content padding>
-  <div class="stylistview">
+  <!--<div class="stylistview">
     <button class="stylistviewbutton" ion-button color="secondary">Stylist View</button>
-  </div>
+  </div>-->
+  <br>
   <div class="signup">
     <h3>Sign Up</h3>
   </div>
-  <br>
   <form (ngSubmit)="logForm()">
     <br>
     <ion-label stacked>Username</ion-label>
-  	<ion-input type="text" (keypress)="goButton($event.keyCode)" name="username"></ion-input> <!--[(ngModel)]="user.username"-->
+  	<ion-input type="text" (keypress)="goButton($event.keyCode)" [(ngModel)]="user.username" name="username"></ion-input> <!--[(ngModel)]="user.username"-->
   	<br>
-    <ion-label stacked>Email Address</ion-label>
-    <ion-input type="text" (keypress)="goButton($event.keyCode)" name="email"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
-    <br>
-    <div class="flex">
-    <div id='labelone' class='labelz'>
-      <ion-label stacked>Stylist</ion-label>
-      <ion-checkbox [(ngModel)]="stylist" name="stylist" class="moveleft" (tap)="selectOneStylist()"></ion-checkbox>
-    </div>
-    <div id='labeltwo' class='labelz'>
-      <ion-label stacked>User</ion-label>
-      <ion-checkbox [(ngModel)]="user" name="user" class="moveleftuser" (tap)="selectOneUser()"></ion-checkbox> <!--[(ngModel)]="mushrooms"-->
-    </div>
-    </div>
-    <br><br><br><br>
     <ion-label stacked>Password</ion-label>
-    <ion-input type="text" (keypress)="goButton($event.keyCode)" name="email"></ion-input>
+    <ion-input type="text" (keypress)="goButton($event.keyCode)" [(ngModel)]="user.password" name="email"></ion-input>
+    <br>
+    <ion-label stacked>Email Address</ion-label>
+    <ion-input type="text" (keypress)="goButton($event.keyCode)" [(ngModel)]="user.email" name="email"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
+    <p class="or">or</p>
+    <div class="oauth">
+      <div class="fbimagecont">
+        <img src="../../assets/facebook.png" (tap)="fbLogin(user)">
+      </div>
+      <div class="gimagecont">
+        <img src="../../assets/google.png" (tap)="gLogin()">
+      </div>
+    </div>
+    <div class="flex">
+      <div id='labelone' class='labelz'>
+        <ion-label stacked>Stylist</ion-label>
+        <ion-checkbox [(ngModel)]="stylist" name="stylist" class="moveleft" (tap)="selectOneStylist()"></ion-checkbox>
+      </div>
+      <div id='labeltwo' class='labelz'>
+        <ion-label id="labelstacktwo" stacked>User</ion-label>
+        <ion-checkbox [(ngModel)]="users" name="user" class="moveleftuser" (tap)="selectOneUser()"></ion-checkbox> <!--[(ngModel)]="mushrooms"-->
+      </div>
+    </div>
+    <!--<br><br><br><br>-->
   </form>
   <div class="signincontainer" style="text-align: center;">
-    <button class="next" type="submit" ion-button round color="tertiary" (tap)="logForm()">Next</button>
+    <button class="next" type="submit" ion-button round color="tertiary" (tap)="register(user)">Next</button>
   </div>
   <p>Already have an account? <a (click)="pushPage()">Sign In</a></p>
 </ion-content>

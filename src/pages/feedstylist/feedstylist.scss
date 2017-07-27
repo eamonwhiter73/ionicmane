@@ -118,6 +118,19 @@ page-feed-stylist {
   	margin-top: 8px;
 	}	
 
+	.ad {
+		background-image: url('../../assets/tresemme.png');
+    background-repeat: no-repeat;
+		background-size:cover;
+		height: 100%;
+		width: 100%;
+		z-index: 1;
+		position: fixed;
+		top: 0;
+		left: 0;
+		text-align: center;
+	}
+
 	.itemadspace {
 		z-index: 1;
 		position: fixed;
@@ -127,6 +140,12 @@ page-feed-stylist {
     background-repeat: no-repeat;
 		background-size:cover;
 		text-align: center;
+	}
+
+	.background {
+		background-image: url('../../assets/tresemme.png');
+    background-repeat: no-repeat;
+		background-size:cover;
 	}
 
 	/*.marginstatus {

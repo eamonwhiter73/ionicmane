@@ -1,16 +1,16 @@
 <ion-content padding>
   <h1 class="logo">Mane Emergency</h1>
   <form (ngSubmit)="logForm()">
-  	<ion-input class="inputone" (keypress)="goButton($event.keyCode)" type="text" name="username" placeholder="Username/Email"></ion-input> <!--[(ngModel)]="user.username"-->
-  	<ion-input type="text" (keypress)="goButton($event.keyCode)" name="password" placeholder="Password"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
+  	<ion-input [(ngModel)]="user.email" class="inputone" (keypress)="goButton($event.keyCode)" type="text" name="username" placeholder="Username/Email"></ion-input> <!--[(ngModel)]="user.username"-->
+  	<ion-input type="text" [(ngModel)]="user.password" (keypress)="goButton($event.keyCode)" name="password" placeholder="Password"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
   	<!--<div class='circle circone'></div>
   	<div class='circle circtwo'></div>-->
-  	<ion-checkbox [(ngModel)]="stylist" name="stylist" class="circone" (tap)="selectOneStylist()"></ion-checkbox>
-  	<ion-checkbox [(ngModel)]="user" name="user" class="circtwo" (tap)="selectOneUser()"></ion-checkbox>
+  	<!--<ion-checkbox [(ngModel)]="stylist" name="stylist" class="circone" (tap)="selectOneStylist()"></ion-checkbox>
+  	<ion-checkbox [(ngModel)]="users" name="user" class="circtwo" (tap)="selectOneUser()"></ion-checkbox>
   	<h2 class='hairstylist'>Hair Stylist</h2>
-  	<h2 class='user'>User</h2>
+  	<h2 class='user'>User</h2>-->
   	<div class="signincontainer" style="text-align: center;">
-  		<button ion-button round color="primary" (tap)="loadNext()">Sign In</button>
+  		<button ion-button round color="primary" (tap)="login(user)">Sign In</button>
   	</div>
   </form>
   <div class="account">

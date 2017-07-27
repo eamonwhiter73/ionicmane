@@ -8,6 +8,18 @@ page-sign-up {
 			text-align: right;
 		}
 
+		.gimagecont {
+			max-width: 32px;
+			display: inline-block;
+			margin: 0px 10px 0px 10px;
+		}
+
+		.fbimagecont {
+			max-width: 32px;
+			display: inline-block;
+			margin: 0px 10px 0px 10px;
+		}
+
 		.signup {
 			text-align: center;
 			color: map-get($colors, tertiary);
@@ -18,18 +30,45 @@ page-sign-up {
 			color: white;
 		}
 
+		.label-ios[stacked] {
+		  margin-bottom: 0px;
+		  font-size: 1.2rem;
+		}
+
 		.labelz {
 			float: left;
 		}
 
+		.or {
+			text-align: center;
+			width: 100%;
+			color: map-get($colors, tertiary);
+			font-weight: 900;
+			font-size: 14px;
+		}
+
+		.oauth {
+			display: flex;
+			width: 100%;
+			justify-content: center;
+		}
+
 		#labelone {
-			position: relative;
-			left: 32%;
+			display: inline-block;
 		}
 
 		#labeltwo {
-			position: relative;
-			left: 45%;
+			display: inline-block;
+			text-align: center;
+		}
+
+		#labelstacktwo {
+			padding-left: 10px;
+		}
+
+		.flex {
+			display: flex;
+			justify-content: center;
 		}
 
 		ion-input {
@@ -61,7 +100,7 @@ page-sign-up {
 		p {
 			text-align: center;
 			position: relative;
-			top: -1%;
+			top: -10px;
 			color: white;
 		}
 

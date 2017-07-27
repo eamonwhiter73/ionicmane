@@ -8886,7 +8886,7 @@ ion-card-content {
 .item.item-ios .checkbox-ios {
   position: static;
   display: block;
-  margin: 8px 16px 8px 2px;
+  margin: 5% 2% 0 0;
 }
 
 .item.item-ios .checkbox-ios[item-right],
@@ -30051,6 +30051,155 @@ ion-navbar.toolbar {
   }
 }
 
+image-viewer.ion-page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  opacity: 1;
+}
+
+image-viewer.ion-page ion-navbar.toolbar .toolbar-background {
+  background-color: transparent;
+}
+
+image-viewer.ion-page ion-navbar.toolbar.toolbar-ios {
+  padding-top: calc(20px + 4px);
+}
+
+image-viewer.ion-page ion-navbar .bar-button-default {
+  color: white;
+}
+
+image-viewer.ion-page .backdrop {
+  will-change: opacity;
+}
+
+image-viewer.ion-page .image-wrapper {
+  position: relative;
+  z-index: 10;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-top: 56px;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+image-viewer.ion-page .image {
+  will-change: transform;
+}
+
+image-viewer.ion-page img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+}
+
+page-booking .event-detail-container {
+  display: none;
+}
+
+page-booking [_nghost-c0] > div[_ngcontent-c0] {
+  height: 50%;
+}
+
+page-booking .monthview-selected[_ngcontent-c1] {
+  background-color: #e6c926;
+  color: white;
+}
+
+page-booking #slot {
+  display: inline-block;
+  width: 33%;
+  float: left;
+  padding-left: 3%;
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: black;
+  min-height: 0;
+  height: 4.9vh;
+}
+
+page-booking #slot p {
+  font-size: 1.2rem;
+}
+
+page-booking ion-checkbox {
+  display: inline-block;
+  float: right;
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+}
+
+page-booking ion-label {
+  font-size: 10px;
+}
+
+page-booking .slots {
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  top: 0vh;
+}
+
+page-booking .slotcontainer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+page-booking table thead {
+  font-size: 12px;
+}
+
+page-booking .time {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+}
+
+page-booking .table-bordered[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
+  line-height: 2.8vh;
+}
+
+page-booking .save {
+  height: 24px;
+  top: 2px;
+}
+
+page-booking #savebutton {
+  text-align: center;
+  width: 100%;
+}
+
 page-feed-stylist {
   /*.marginstatus {
 		margin-top: 20px;
@@ -30169,6 +30318,19 @@ page-feed-stylist .custom-icon {
   margin-top: 8px;
 }
 
+page-feed-stylist .ad {
+  background-image: url("../../assets/tresemme.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+
 page-feed-stylist .itemadspace {
   z-index: 1;
   position: fixed;
@@ -30178,6 +30340,12 @@ page-feed-stylist .itemadspace {
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
+}
+
+page-feed-stylist .background {
+  background-image: url("../../assets/tresemme.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 page-feed-stylist .contentone {
@@ -30498,6 +30666,30 @@ page-feed-user li:active, page-feed-user li:focus {
   color: #e6c926;
 }
 
+page-postpage .postimage {
+  display: inline-block;
+  width: 33%;
+}
+
+page-postpage .postname {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+}
+
+page-postpage .postnamecont {
+  display: inline-block;
+  width: 60%;
+  position: absolute;
+  top: 7%;
+  right: 10px;
+  text-align: center;
+}
+
 page-sign-in ion-content {
   background-image: url("../../assets/purpleHairBG.png");
   background-repeat: no-repeat;
@@ -30617,6 +30809,18 @@ page-sign-up ion-content .stylistview {
   text-align: right;
 }
 
+page-sign-up ion-content .gimagecont {
+  max-width: 32px;
+  display: inline-block;
+  margin: 0px 10px 0px 10px;
+}
+
+page-sign-up ion-content .fbimagecont {
+  max-width: 32px;
+  display: inline-block;
+  margin: 0px 10px 0px 10px;
+}
+
 page-sign-up ion-content .signup {
   text-align: center;
   color: #eb4359;
@@ -30627,18 +30831,57 @@ page-sign-up ion-content ion-label {
   color: white;
 }
 
+page-sign-up ion-content .label-ios[stacked] {
+  margin-bottom: 0px;
+  font-size: 1.2rem;
+}
+
 page-sign-up ion-content .labelz {
   float: left;
 }
 
+page-sign-up ion-content .or {
+  text-align: center;
+  width: 100%;
+  color: #eb4359;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+page-sign-up ion-content .oauth {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
 page-sign-up ion-content #labelone {
-  position: relative;
-  left: 32%;
+  display: inline-block;
 }
 
 page-sign-up ion-content #labeltwo {
-  position: relative;
-  left: 45%;
+  display: inline-block;
+  text-align: center;
+}
+
+page-sign-up ion-content #labelstacktwo {
+  padding-left: 10px;
+}
+
+page-sign-up ion-content .flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 page-sign-up ion-content ion-input {
@@ -30670,7 +30913,7 @@ page-sign-up ion-content .moveleftuser {
 page-sign-up ion-content p {
   text-align: center;
   position: relative;
-  top: -1%;
+  top: -10px;
   color: white;
 }
 

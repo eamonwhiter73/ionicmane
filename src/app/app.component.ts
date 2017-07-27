@@ -8,14 +8,14 @@ import { SignUpPage } from '../pages/signup/signup';
 import { FeedStylist } from '../pages/feedstylist/feedstylist';
 import { FeedUser } from '../pages/feeduser/feeduser';
 import { StylistProfile } from '../pages/stylistprofile/stylistprofile';
-
-
+import { PostpagePage } from '../pages/postpage/postpage';
+import { BookingPage } from '../pages/booking/booking';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = StylistProfile;
+  rootPage:any = BookingPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
 

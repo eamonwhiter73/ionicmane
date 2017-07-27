@@ -2,6 +2,9 @@ import { AfterViewInit, Component, trigger, state, style, transition, animate, k
 import { NavController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'page-feed-user',
@@ -82,7 +85,7 @@ export class FeedUser implements AfterViewInit {
   lastNumRows = 0;
   el;
 
-  constructor(public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(public storage: Storage, private afAuth: AngularFireAuth, public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
 
   }
 
@@ -91,6 +94,14 @@ export class FeedUser implements AfterViewInit {
     // causing the nav controller to transition to the new page
     // optional data can also be passed to the pushed page.
     //this.navCtrl.push(SignUpPage);
+  }
+
+  ionViewWillLoad() {
+    this.afAuth.authState.subscribe(data => {
+      if(data.email && data.uid) {
+        console.log("logged in");
+      }
+    })
   }
 
   toProfile() {

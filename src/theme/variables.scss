@@ -49,7 +49,10 @@ $colors: (
 // iOS only Sass variables can go here
 
 	$text-input-placeholder-color:(#FFF);
-
+	$checkbox-ios-item-start-margin-top:5%;
+	$checkbox-ios-item-start-margin-end:2%;
+	$checkbox-ios-item-start-margin-bottom:0;	
+	$checkbox-ios-item-start-margin-start:0;
 
 
 // App Material Design Variables
