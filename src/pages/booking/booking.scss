@@ -1,14 +1,29 @@
 page-booking {
 	.monthview-container {
-
+		height: 50%;
 	}
-
 	.event-detail-container {
 		display: none;
 	}
 
 	[_nghost-c0] > div[_ngcontent-c0] {
-    height: 50%;
+    height: 100%;
+	}
+
+	[_nghost-c1] > div[_ngcontent-c1] {
+    height: 100%;
+	}
+
+	[_nghost-c2] > div[_ngcontent-c2] {
+    height: 100%;
+	}
+
+	[_nghost-c3] > div[_ngcontent-c3] {
+    height: 100%;
+	}
+
+	ion-slides {
+		height: 50%;
 	}
 
 	.monthview-selected[_ngcontent-c1] {
@@ -16,9 +31,19 @@ page-booking {
 	  color: white;
 	}
 
+	.monthview-selected[_ngcontent-c2] {
+	  background-color: map-get($colors, primary);
+	  color: white;
+	}
+
+	.monthview-selected[_ngcontent-c3] {
+	  background-color: map-get($colors, primary);
+	  color: white;
+	}
+
 	#slot {
 		display: inline-block;
-		width: 33%;
+		width: 33.3%;
 		float: left;
 		padding-left: 3%;
 		border-style: solid;
@@ -46,7 +71,7 @@ page-booking {
 		white-space: nowrap;
 		overflow: hidden;
 		position: relative;
-		top: 0vh;
+		top: -43vh;
 	}
 
 	.slotcontainer {
@@ -64,17 +89,36 @@ page-booking {
 		top: 0;
 	}
 
+	.back-button.show-back-button {
+    display: none;
+	}
+
 	.table-bordered[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table-bordered[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table-bordered[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table-bordered[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table-bordered[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table-bordered[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
-    line-height: 2.8vh;
+    line-height: 2.5vh;
+	}
+
+	.table-bordered[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], .table-bordered[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], .table-bordered[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], .table-bordered[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], .table-bordered[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], .table-bordered[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2] {
+    line-height: 2.5vh;
+	}
+
+	.table-bordered[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], .table-bordered[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], .table-bordered[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], .table-bordered[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], .table-bordered[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], .table-bordered[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3] {
+    line-height: 2.5vh;
+	}
+
+	.swiper-slide {
+		height: 95%;
 	}
 
 	.save {
+		position: relative;
 		height: 24px;
-		top: 2px;
+		top: -2vh;
 	}
 
 	#savebutton {
 		text-align: center;
 		width: 100%;
+		top: -40vh;
+		position: relative;
 	}
 }

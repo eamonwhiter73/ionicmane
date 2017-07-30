@@ -3,6 +3,8 @@ import { NavController, App } from 'ionic-angular';
 import { LoadingController, ActionSheetController } from 'ionic-angular';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { PostpagePage } from '../postpage/postpage';
+import { BookingPage } from '../booking/booking';
+
 import { CameraServicePost } from '../../services/cameraservicepost';
 import { Camera } from '@ionic-native/camera';
 import { AngularFireAuth } from 'angularfire2/auth'
@@ -28,10 +30,10 @@ import { AngularFireAuth } from 'angularfire2/auth'
     ]),
     trigger('moveList', [
       state('down', style({
-        top: 307 + "px",
+        top: 292 + "px",
       })),
       state('up', style({
-        top: 145 + "px",
+        top: 130 + "px",
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),
@@ -46,10 +48,10 @@ import { AngularFireAuth } from 'angularfire2/auth'
     ]),
     trigger('plusSlide', [
       state('down', style({
-        bottom: '-190px'
+        top: '190px'
       })),
-      state('up', style({
-        bottom: '-25px'
+      state('notDown', style({
+        top: '28px'
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),
@@ -65,6 +67,7 @@ export class FeedStylist {
   @ViewChildren('allF') allFeed:QueryList<any>;
   @ViewChildren('productsFeed') productsF:QueryList<any>;
   @ViewChildren('classesFeed') classesF:QueryList<any>;
+  @ViewChild('ionheader') ionHeader:ElementRef
 
   downState: String = 'notDown';
   moveState: String = 'up';
@@ -76,19 +79,16 @@ export class FeedStylist {
   lastNumRows = 0;
   el;
 
+  private swipeCoord?: [number, number];
+  private swipeTime?: number;
+
   private nav:NavController;
 
   constructor(private afAuth: AngularFireAuth, public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, private elRef:ElementRef, public loadingController: LoadingController, public navCtrl: NavController) {
     this.nav = this.app.getActiveNav();
   }
 
-  ionViewWillLoad() {
-    this.afAuth.authState.subscribe(data => {
-      if(data.email && data.uid) {
-        console.log("logged in");
-      }
-    })
-  }
+  gotTo
 
   public optionsGetMedia: any = {
         allowEdit: false,
@@ -117,6 +117,46 @@ export class FeedStylist {
     // causing the nav controller to transition to the new page
     // optional data can also be passed to the pushed page.
     //this.navCtrl.push(SignUpPage);
+  }
+
+  swipe(e: TouchEvent, when: string): void {
+    const coord: [number, number] = [e.changedTouches[0].pageX, e.changedTouches[0].pageY];
+    const time = new Date().getTime();
+
+    if (when === 'start') {
+      this.swipeCoord = coord;
+      this.swipeTime = time;
+    }
+
+    else if (when === 'end') {
+      const direction = [coord[0] - this.swipeCoord[0], coord[1] - this.swipeCoord[1]];
+      const duration = time - this.swipeTime;
+
+      if (duration < 1000 //Short enough
+        && Math.abs(direction[1]) < Math.abs(direction[0]) //Horizontal enough
+        && Math.abs(direction[0]) > 30) {  //Long enough
+          const swipe = direction[0] < 0 ? 'next' : 'previous';
+          console.log(swipe);
+
+          if(swipe == 'next') {
+            this.toProfile();
+          }
+          else {
+            this.toBooking();
+          }
+      //Do whatever you want with swipe
+      }
+    }
+  }
+
+  toProfile() {
+    this.navCtrl.push(StylistProfile,{},{animate:true,animation:'transition',duration:500,direction:'forward'});
+  }
+
+  toBooking() {
+    this.navCtrl.push(BookingPage,{
+      param1: 'user'
+    },{animate:true,animation:'transition',duration:500,direction:'back'});
   }
 
   loadPost() {
@@ -185,16 +225,7 @@ export class FeedStylist {
     actionSheet.present();
   }
 
-  toProfile() {
-    this.navCtrl.push(StylistProfile, {
-      param1: 'stylist'
-    });
-  }
-
   all() {
-    console.log(this.allFeed);
-    console.log(this.classesF);
-    console.log(this.productsF);
     this.myrenderer.setElementStyle(this.allFeed.toArray()[0]._elementRef.nativeElement, 'color', '#e6c926');
     this.myrenderer.setElementStyle(this.classesF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
     this.myrenderer.setElementStyle(this.productsF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
@@ -236,6 +267,7 @@ export class FeedStylist {
   ionViewDidLoad() {
     this.getInitialImages();
 
+
     /*this.el = document.getElementById('iontoolbar');
 
     this.el.addEventListener('click', function() {
@@ -244,16 +276,19 @@ export class FeedStylist {
     })*/
   }
 
+  ionViewWillLeave() {
+    //this.myrenderer.setElementStyle(this.ionHeader.nativeElement, 'display', 'none');
+  }
+
+  ionViewWillEnter() {
+    //this.myrenderer.setElementStyle(this.ionHeader.nativeElement, 'display', 'block');
+  }
+
   expandItem(item) {
     let flexArray = this.flexComponents.toArray();
     let feedArray = this.feedComponents.toArray();
     let itemArray = this.components.toArray();
     let imageComps = this.imageComponents.toArray();
-
-    console.log(flexArray);
-    console.log(feedArray);
-    console.log(itemArray);
-    console.log(imageComps);
 
     this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'flex');

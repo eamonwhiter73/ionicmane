@@ -30,6 +30,10 @@ page-sign-up {
 			color: white;
 		}
 
+		ion-label[stacked], ion-label[floating] {
+		  margin-top: 0;
+		}
+
 		.label-ios[stacked] {
 		  margin-bottom: 0px;
 		  font-size: 1.2rem;

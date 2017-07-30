@@ -1,26 +1,26 @@
-<ion-header (swipeRight)="toProfile()">
-  <ion-navbar #clickme class="itemadspace" [@slideDown]="downState" no-padding>
-    <ion-item class="ad" no-padding no-lines>
-      <h3 class="feedtitle">Stylist Feed</h3>
-      <!--<img class="ad" src="../../assets/tresemme.png">-->
-      <div (tap)="loadPost()" class='pluscontainer'>
-        <ion-icon class='plussy' name="add"></ion-icon>
-      </div>
-    </ion-item>
-  </ion-navbar>
+<ion-header #ionheader (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')" [@slideDown]="downState">
+  <ion-toolbar #clickme class="itemadspace" [@slideDown]="downState" no-padding>
+    <!--<ion-item class="ad" no-padding no-lines>-->
+      
+    <!--</ion-item>-->
+  </ion-toolbar>
+
+  <div (tap)="loadPost()" class='pluscontainer' [@plusSlide]="downState">
+    <ion-icon class='plussy' name="add"></ion-icon>
+  </div>
 
   <div class="clickme" (tap)="toolClicked($event)">
-    <ion-toolbar [@toolSlide]="toolbarState" color="black" id="iontoolbar">
+    <ion-navbar [@toolSlide]="toolbarState" color="black" id="iontoolbar">
       <ion-icon class='custom-icon' name="play"></ion-icon>
       <button class="all toolbarstyle" #allF ion-button color="black" (tap)="all()">All</button>
       <button class="classes toolbarstyle" #classesFeed ion-button color="black" (tap)="products()">Classes</button>
       <button class="products toolbarstyle" #productsFeed ion-button color="black" (tap)="classes()">Products</button>
-    </ion-toolbar>
+    </ion-navbar>
   </div>
 </ion-header>
 
 <ion-content no-padding> 
-<div (swipeRight)="toProfile()">
+<div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
   <!--<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>-->

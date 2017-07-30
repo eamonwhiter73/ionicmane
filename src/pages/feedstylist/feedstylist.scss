@@ -7,11 +7,15 @@ page-feed-stylist {
 		text-shadow: 2px 2px 6px rgba(0,0,0,1);
 	}
 
+	ion-header {
+
+	}
+
 	.pluscontainer {
 		position: fixed;
 		z-index: 2;
 		right: 10px;
-		bottom: -10px;
+		top: 28px;
 	}
 
 	.imagepost {
@@ -87,9 +91,9 @@ page-feed-stylist {
 		margin: 0px 0px 0px 0px !important;
 	}
 
-	ion-toolbar {
+	#iontoolbar {
 		z-index: 1;
-		position: fixed;
+		position: absolute;
 		top: 88px;
 		left: 0;
 		background-color: black;
@@ -110,6 +114,14 @@ page-feed-stylist {
 
 	}
 
+	ion-toolbar {
+		div.toolbar-background {
+			background-image: url('../../assets/tresemme.png') !important;
+    	background-repeat: no-repeat;
+			background-size: cover;
+		}
+	}
+
 	.custom-icon {
   	color : gray;
   	font-size: 28px;
@@ -119,9 +131,9 @@ page-feed-stylist {
 	}	
 
 	.ad {
-		background-image: url('../../assets/tresemme.png');
+		background-image: url('../../assets/tresemme.png') !important;
     background-repeat: no-repeat;
-		background-size:cover;
+		background-size: cover;
 		height: 100%;
 		width: 100%;
 		z-index: 1;
@@ -136,10 +148,8 @@ page-feed-stylist {
 		position: fixed;
 		top: 0;
 		left: 0;
-		background-image: url('../../assets/tresemme.png');
-    background-repeat: no-repeat;
-		background-size:cover;
 		text-align: center;
+		height: 88px;
 	}
 
 	.background {
@@ -148,13 +158,17 @@ page-feed-stylist {
 		background-size:cover;
 	}
 
+	.back-button.show-back-button {
+    display: none;
+	}
+
 	/*.marginstatus {
 		margin-top: 20px;
 	}*/
 
 	.contentone {
 		position: absolute;
-		top: 145px;
+		top: 128px;
 		width: 100%;
 	}
 

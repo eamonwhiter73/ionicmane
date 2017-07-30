@@ -75,7 +75,7 @@ page-stylist-profile {
   .ratecontain {
     position:relative;
     display: inline-block;
-    top: -30px;
+    top: -33px;
     left: 10px;
 
   }
@@ -93,7 +93,7 @@ page-stylist-profile {
   }
 
   .calendarcover {
-    width: 60%;
+    width: 80%;
     height: 160px;
     background-color: white;
     z-index: 1;
@@ -123,6 +123,18 @@ page-stylist-profile {
     font-size: 11px;
   }
 
+  [_nghost-c1] > div[_ngcontent-c1] {
+    margin-top: -10px;
+  }
+
+  [_nghost-c2] > div[_ngcontent-c2] {
+    margin-top: -10px;
+  }
+
+  [_nghost-c3] > div[_ngcontent-c3] {
+    margin-top: -10px;
+  }
+
   .event-detail-container {
     display: none;
   }
@@ -137,6 +149,10 @@ page-stylist-profile {
     }
   }
 
+  .back-button.show-back-button {
+    display: none;
+  }
+
   .monthview-selected[_ngcontent-c3] {
     background-color: map-get($colors, primary);
   }
@@ -149,6 +165,10 @@ page-stylist-profile {
     background-color: map-get($colors, primary);
   }
 
+  .monthview-container {
+    height: 50%;
+  }
+
   .inlineblock {
     display: inline-block;
     margin-left: 5px;
@@ -156,8 +176,10 @@ page-stylist-profile {
 
   .social {
     position: relative;
-    left: 25px;
+    left: 18px;
     top: -15px;
+    display: flex;
+    align-items: center;
   }
 
   .imagesquare {
@@ -174,5 +196,13 @@ page-stylist-profile {
     color: black;
     /*position: relative;*/
     text-shadow: 2px 2px 6px rgba(0,0,0,1);
+  }
+
+  .fb {
+    width: 31px;
+  }
+
+  .insta {
+    width: 28px
   }
 }

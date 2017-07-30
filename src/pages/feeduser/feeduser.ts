@@ -1,9 +1,14 @@
 import { AfterViewInit, Component, trigger, state, style, transition, animate, keyframes, ViewChild, ElementRef, Renderer } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
+import { BookingPage } from '../booking/booking';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
+import { PopUp } from '../../modals/popup/popup';
+
+
 
 
 @Component({
@@ -58,7 +63,7 @@ import { Storage } from '@ionic/storage';
     ]),
   ]
 })
-export class FeedUser implements AfterViewInit {
+export class FeedUser {
   @ViewChild('changeText') changeText: ElementRef;
   @ViewChild('availability') availability: ElementRef;
   @ViewChild('contentone') contentOne: ElementRef;
@@ -72,6 +77,9 @@ export class FeedUser implements AfterViewInit {
   toolbarState: String = 'up';
   showDropDown: String = 'up';
   showDropDownHeight: String = 'up';
+  appointments: FirebaseListObservable<any>;
+  appointmentsMonth: FirebaseListObservable<any>;
+  appointmentsItem: FirebaseListObservable<any>;
 
 
   toolbarClicks = 0;
@@ -85,7 +93,7 @@ export class FeedUser implements AfterViewInit {
   lastNumRows = 0;
   el;
 
-  constructor(public storage: Storage, private afAuth: AngularFireAuth, public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(public modalCtrl: ModalController, public af: AngularFireDatabase, public storage: Storage, private afAuth: AngularFireAuth, public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
 
   }
 
@@ -104,10 +112,22 @@ export class FeedUser implements AfterViewInit {
     })
   }
 
+  ionViewDidLoad() {
+    this.renderer.setElementStyle(this.promos.nativeElement, 'color', '#e6c926');
+    this.getInitialImages();
+
+
+  }
+
+  presentProfileModal(salon, time) {
+    let profileModal = this.modalCtrl.create(PopUp, { salon: salon, time: time});
+    profileModal.present();
+  }
+
   toProfile() {
-    this.navCtrl.push(StylistProfile, {
+    this.navCtrl.push(StylistProfile,{
       param1: 'user'
-    });
+    },{animate:true,animation:'transition',duration:500,direction:'forward'});
   }
 
   toolClicked(event) {
@@ -182,17 +202,19 @@ export class FeedUser implements AfterViewInit {
   }
 
   dropDown() {
+    //this.changeText.nativeElement.style = "color:gray";
+    //this.contentOne.nativeElement.style = "display: block";
+    //this.availability.nativeElement.style = "display: none";
+    //this.ratingbox.nativeElement.style= "display: none";
+    this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+    this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
+    
     if(this.downState == 'down') {
       this.showDropDownHeight = (this.showDropDownHeight == 'up') ? 'down' : 'up';
     }
     else {
       this.showDropDown = (this.showDropDown == 'up') ? 'down' : 'up';
     }
-  }
-
-  ngAfterViewInit() {
-    console.log(this.changeText.nativeElement);
-    //this.renderer.setElementProperty(this.changeText.nativeElement, 'innerHTML', 'Dick');   
   }
 
   dropDownD() {
@@ -253,15 +275,115 @@ export class FeedUser implements AfterViewInit {
     this.dropDown();
   }
 
-  ionViewDidLoad() {
-    this.getInitialImages();
+  loadAvailabilities(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.appointments = this.af.list('/appointments');
+      this.appointments.subscribe(items => items.forEach(item => {
+        console.log(item);
+        let userName = item.$key;
+        this.availabilities = [];
+        for(let x in item) {
+          let month = x;
+          console.log(x + "      month");
+          this.appointmentsMonth = this.af.list('/appointments/' + userName + '/' + month);
+          this.appointmentsMonth.subscribe(items => items.forEach(item => {
+            //console.log(JSON.stringify(item) + "           item");
+            let date = new Date(item.date.day * 1000);
+            let today = new Date();
+            console.log(date.getMonth() + "==" + today.getMonth()  + "&&" + date.getDate() + "==" + today.getDate());
+            if(date.getMonth() == today.getMonth() && date.getDate() == today.getDate()) {
+              console.log("            inside the if that checks if its today");
+              console.log(item.reserved.appointment + "                *************appointment");
+              item.reserved.appointment.forEach((r, index) => {
+                if(r.selected == true) {
 
-    /*this.el = document.getElementById('iontoolbar');
+                  
+                  
+                  let datee = this.setDateTime(r.time);
 
-    this.el.addEventListener('click', function() {
-      this.downState = (this.downState == 'notDown') ? 'down' : 'notDown';
-      console.log("this.downState" + this.downState);
-    })*/
+                  datee.setMonth(parseInt(month));
+                  datee.setDate(date.getDate());
+                  datee.setFullYear(date.getFullYear());
+                  
+          
+
+                  let timestamp = datee.getTime();
+
+                  let obj = {'pic':'../../assets/hair5.jpeg', 'salon': userName, 'time': timestamp};
+                  this.availabilities.push(obj);
+                  
+                  if(index == 23) {
+                    resolve();
+                  }
+                  //console.log(JSON.stringify(obj) + "            object");
+                }
+              })
+              /*for(let r of item.reserved.appointment) {
+                //console.log(r.selected)
+                
+
+              }*/
+              
+            }
+          }));
+
+          
+        }
+
+        
+      }));
+    })
+    
+
+    /*setTimeout(() => {
+      
+      this.availabilities.sort(function(a,b) {
+          return a.time - b.time;
+      });
+
+      console.log('*****previous******');
+      console.log(JSON.stringify(this.availabilities));
+      console.log('*****sorted********');
+      
+      for(let i of this.availabilities) {
+        console.log(i.time + "          this is itime");
+        let date = new Date(i.time);
+        console.log(date + "          this is date in idate");
+        let str = date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+        console.log(str);
+        i.time = str;
+      }
+
+    }, 1500);*/
+  }
+
+  
+
+  setDateTime(time) {
+    let date = new Date();
+    let index = time.indexOf(":"); // replace with ":" for differently displayed time.
+    let index2 = time.indexOf(" ");
+
+    let hours = time.substring(0, index);
+    let minutes = time.substring(index + 1, index2);
+
+    var mer = time.substring(index2 + 1, time.length);
+
+    console.log(mer + "        *******AMPM");
+
+    if (mer == "PM") {
+        console.log(hours + "        ())()()(()hours before(()()(");
+        let number = parseInt(hours) + 12;
+        hours = number.toString();
+        console.log(hours + "      **********hours after*******");
+    }
+
+
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    //date.setSeconds(00);
+
+    return date;
   }
 
   getInitialImages() {
@@ -272,7 +394,7 @@ export class FeedUser implements AfterViewInit {
                   '../../assets/hair5.jpeg', '../../assets/hair6.jpg', '../../assets/hair7.jpg', '../../assets/hair8.jpg', 
                   '../../assets/hair9.jpeg', '../../assets/hair10.jpg'];
 
-    this.availabilities = [
+    /*this.availabilities = [
                             
                             {'pic': '../../assets/hair5.jpeg', 'salon':'Salon 5', 'time':'12:30PM'},
                             {'pic': '../../assets/hair6.jpg', 'salon':'Salon 6', 'time':'1:00PM'},
@@ -295,7 +417,10 @@ export class FeedUser implements AfterViewInit {
                             {'pic': '../../assets/hair3.jpeg', 'salon':'Salon 3', 'time':'11:30AM'},
                             {'pic': '../../assets/hair4.jpeg', 'salon':'Salon 4', 'time':'12:00PM'}
 
-                          ];
+                          ];*/
+
+    
+
 
     this.rating = [
                     {'pic': '../../assets/hair5.jpeg', 'salon':'Salon 5', 'time':'\u2605\u2605\u2605'},
@@ -341,7 +466,26 @@ export class FeedUser implements AfterViewInit {
                     {'pic': 'Weekly Deal', 'salon':'@salon_ 2', 'time':'50% off ombre'},
                     {'pic': 'Weekly Deal', 'salon':'@salon_ 3', 'time':'$20 off coloring'},
                     {'pic': 'Weekly Deal', 'salon':'@salon_ 4', 'time':'$20 off coloring'}
-                  ];                    
+                  ];
+
+    this.loadAvailabilities().then(() => {
+      this.availabilities.sort(function(a,b) {
+          return a.time - b.time;
+      });
+
+      console.log('*****previous******');
+      console.log(JSON.stringify(this.availabilities));
+      console.log('*****sorted********');
+      
+      for(let i of this.availabilities) {
+        console.log(i.time + "          this is itime");
+        let date = new Date(i.time);
+        console.log(date + "          this is date in idate");
+        let str = date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+        console.log(str);
+        i.time = str;
+      }
+    });                
 
     loading.dismiss();
     /*let data = new URLSearchParams();
@@ -367,7 +511,7 @@ export class FeedUser implements AfterViewInit {
   doInfinite(): Promise<any> {
     console.log('Begin async operation');
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       setTimeout(() => {
         /*let data = new URLSearchParams();
         data.append('page', this.totalCount.toString());*/

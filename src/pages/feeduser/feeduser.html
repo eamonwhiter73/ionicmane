@@ -1,6 +1,6 @@
 <ion-header (swipeRight)="toProfile()">
   <ion-item class="itemadspace" [@slideDown]="downState" no-padding no-lines>
-    <h3 class="feedtitle">User Feed</h3>
+    <!--<h3 class="feedtitle">User Feed</h3>-->
   </ion-item>
   
   <div class="clickme" (tap)="toolClicked($event)">
@@ -30,6 +30,9 @@
 
 <ion-content no-padding>
 <div (swipeRight)="toProfile()">
+<ion-refresher (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
   
   <!--<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -47,7 +50,7 @@
           <h4 class="poststudio">Ed's Studio</h4>
         </div>
         <div class="postprofilelink">
-          <div class="book">Book</div> @edbundyhair
+          <div class="book">Book</div><div style="display: inline-block">@edbundyhair</div>
         </div>
       </div>
       <img class="imagepost" src="{{i}}">
@@ -57,7 +60,7 @@
 
   <div class ='availability contentone' #availability [@moveList]='moveState'>
    <ion-list class="marginstatus" no-padding>
-     <ion-item *ngFor="let z of availabilities" no-padding>
+     <ion-item *ngFor="let z of availabilities" no-padding (tap)="presentProfileModal(z.salon, z.time);">
       <div class="feedtoptextcontainer">
         <div class="imageparent">
           <img class="postprofilepic" src="{{z.pic}}">

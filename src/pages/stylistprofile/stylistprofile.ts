@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { FeedUser } from '../feeduser/feeduser';
 import { FeedStylist } from '../feedstylist/feedstylist';
+import { BookingPage } from '../booking/booking';
+
 import { CameraService } from '../../services/cameraservice';
 import { Camera } from '@ionic-native/camera';
 import { ActionSheetController } from 'ionic-angular';
@@ -11,6 +13,7 @@ import { FirebaseApp } from 'angularfire2';
 import firebase from 'firebase';
 import { LoadingController } from 'ionic-angular';
 import { ImageViewerController } from 'ionic-img-viewer';
+
 import { Storage } from '@ionic/storage';
 
 
@@ -46,6 +49,8 @@ export class StylistProfile {
   picURLS = [];
   square = 0;
   _imageViewerCtrl: ImageViewerController;
+  private swipeCoord?: [number, number];
+  private swipeTime?: number;
 
   constructor(public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
     /*this.items = af.list('/profile/' + this.username);
@@ -167,11 +172,52 @@ export class StylistProfile {
   }
 
   backToFeed() {
-    if(this.navParams.get('param1') == 'user') {
+    /*if(this.navParams.get('param1') == 'user') {
       this.navCtrl.push(FeedUser);
+    }*/
+    //else {
+      this.navCtrl.push(FeedStylist,{},{animate:true,animation:'transition',duration:500,direction:'back'})
+      //this.navCtrl.push(FeedStylist);
+    //}
+  }
+
+  backToCal() {
+    //if(this.navParams.get('param1') == 'user') {
+      this.navCtrl.push(BookingPage,{},{animate:true,animation:'transition',duration:500,direction:'forward'})
+      //this.navCtrl.push(BookingPage);
+    //}
+    //else {
+      //this.navCtrl.push(FeedStylist);
+    //}
+  }
+
+  swipe(e: TouchEvent, when: string): void {
+    const coord: [number, number] = [e.changedTouches[0].pageX, e.changedTouches[0].pageY];
+    const time = new Date().getTime();
+
+    if (when === 'start') {
+      this.swipeCoord = coord;
+      this.swipeTime = time;
     }
-    else {
-      this.navCtrl.push(FeedStylist);
+
+    else if (when === 'end') {
+      const direction = [coord[0] - this.swipeCoord[0], coord[1] - this.swipeCoord[1]];
+      const duration = time - this.swipeTime;
+
+      if (duration < 1000 //Short enough
+        && Math.abs(direction[1]) < Math.abs(direction[0]) //Horizontal enough
+        && Math.abs(direction[0]) > 30) {  //Long enough
+          const swipe = direction[0] < 0 ? 'next' : 'previous';
+          console.log(swipe);
+
+          if(swipe == 'next') {
+            this.backToCal();
+          }
+          else {
+            this.backToFeed();
+          }
+      //Do whatever you want with swipe
+      }
     }
   }
 
@@ -180,6 +226,7 @@ export class StylistProfile {
     let promises_array:Array<any> = [];
     let itemArrayTwo = this.profComponents.toArray();
     let itemArray = this.components.toArray();
+
     for (let z = 1; z < 10; z++) {
       promises_array.push(new Promise(function(resolve,reject) {
         let storageRef = firebase.storage().ref().child('/profile/'+ self.username + '/profile_' + self.username + '_' + z + '.png');
@@ -199,7 +246,7 @@ export class StylistProfile {
     return Promise.all(promises_array);
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     let loading = this.loadingController.create({content : "Loading..."});
     loading.present();
     this.downloadImages().then(() => {
@@ -208,6 +255,7 @@ export class StylistProfile {
 
     this.storage.get('username').then((val) => {
       this.username = val;
+      console.log(val);
     });
   }
 

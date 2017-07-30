@@ -4,8 +4,8 @@ page-feed-user {
 	}
 	
 	.postprofilelink {
-		position: absolute;
-		right: 0;
+		position: relative;
+		right: -32%;
 		display: inline-block;
 		margin-right: 4px;
 		font-size: 12px;
@@ -32,6 +32,10 @@ page-feed-user {
   	display: flex;
 		align-items: center; /* align vertical */
   }
+
+	.back-button.show-back-button {
+    display: none;
+	}
 
 	.postusername {
   	display: inline-block;

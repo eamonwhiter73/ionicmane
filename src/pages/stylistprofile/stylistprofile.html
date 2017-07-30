@@ -1,14 +1,14 @@
-<ion-header (swipeLeft)="backToFeed()">
+<ion-header (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
   <ion-navbar>
     <ion-title>@stylist_profile</ion-title>
-    <div class="stylistview">
+    <!--<div class="stylistview">
 	    <button class="stylistviewbutton" ion-button color="secondary">Stylist View</button>
-	  </div>
+	  </div>-->
   </ion-navbar>
 </ion-header>
 
 <ion-content no-padding>
-<div (swipeLeft)="backToFeed()">
+<div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
 	<ion-item no-padding no-lines>
 		<div class="imageparent">
       <img class="postprofilepic" src="../../assets/hair5.jpeg">
@@ -50,19 +50,19 @@
 	    	<div #pluscontain (tap)="openCamera(1)" class='pluscontainer'>
 		      <ion-icon class='plussy' name="add"></ion-icon>
 		    </div>
-	      <img imageViewer (tap)="presentImage(1)" class="imagesquare" #profsquare [src]="">
+	      <img (tap)="presentImage(1)" class="imagesquare" #profsquare [src]="">
 	    </ion-col>
 	    <ion-col>
 	    	<div #pluscontain (tap)="openCamera(2)" class='pluscontainer'>
 		      <ion-icon class='plussy' name="add"></ion-icon>
 		    </div>
-	      <img imageViewer (tap)="presentImage(2)" class="imagesquare" #profsquare [src]="">
+	      <img (tap)="presentImage(2)" class="imagesquare" #profsquare [src]="">
 	    </ion-col>
 	    <ion-col>
 	    	<div #pluscontain (tap)="openCamera(3)" class='pluscontainer'>
 		      <ion-icon class='plussy' name="add"></ion-icon>
 		    </div>
-	      <img imageViewer (tap)="presentImage(3)" class="imagesquare" #profsquare [src]="">
+	      <img (tap)="presentImage(3)" class="imagesquare" #profsquare [src]="">
 	    </ion-col>
 	  </ion-row>
 	  <ion-row>
@@ -70,19 +70,19 @@
 	    	<div #pluscontain (tap)="openCamera(4)" class='pluscontainer'>
 		      <ion-icon class='plussy' name="add"></ion-icon>
 		    </div>
-	      <img imageViewer (tap)="presentImage(4)" class="imagesquare" #profsquare [src]="">
+	      <img (tap)="presentImage(4)" class="imagesquare" #profsquare [src]="">
 	    </ion-col>
 	    <ion-col>
 	    	<div #pluscontain (tap)="openCamera(5)" class='pluscontainer'>
 		      <ion-icon class='plussy' name="add"></ion-icon>
 		    </div>
-	      <img imageViewer (tap)="presentImage(5)" class="imagesquare" #profsquare [src]="">
+	      <img (tap)="presentImage(5)" class="imagesquare" #profsquare [src]="">
 	    </ion-col>
 	    <ion-col>
 	    	<div #pluscontain (tap)="openCamera(6)" class='pluscontainer'>
 		      <ion-icon class='plussy' name="add"></ion-icon>
 		    </div>
-	      <img imageViewer (tap)="presentImage(6)" class="imagesquare" #profsquare [src]="">
+	      <img (tap)="presentImage(6)" class="imagesquare" #profsquare [src]="">
 	    </ion-col>
 	  </ion-row>
 	  <ion-row>
@@ -90,19 +90,19 @@
 	    	<div #pluscontain (tap)="openCamera(7)" class='pluscontainer'>
 		      <ion-icon class='plussy' name="add"></ion-icon>
 		    </div>
-	      <img imageViewer (tap)="presentImage(7)" class="imagesquare" #profsquare [src]="">
+	      <img (tap)="presentImage(7)" class="imagesquare" #profsquare [src]="">
 	    </ion-col>
 	    <ion-col>
 	    	<div #pluscontain (tap)="openCamera(8)"class='pluscontainer'>
 		      <ion-icon class='plussy' name="add"></ion-icon>
 		    </div>
-	      <img imageViewer (tap)="presentImage(8)" class="imagesquare" #profsquare [src]="">
+	      <img (tap)="presentImage(8)" class="imagesquare" #profsquare [src]="">
 	    </ion-col>
 	    <ion-col>
 	    	<div #pluscontain  (tap)="openCamera(9)" class='pluscontainer'>
 		      <ion-icon class='plussy' name="add"></ion-icon>
 		    </div>
-	      <img imageViewer (tap)="presentImage(9)" class="imagesquare" #profsquare [src]="">
+	      <img (tap)="presentImage(9)" class="imagesquare" #profsquare [src]="">
 	    </ion-col>
 	  </ion-row>
 	</ion-grid>

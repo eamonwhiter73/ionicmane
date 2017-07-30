@@ -35,6 +35,8 @@ import { ImageViewerController } from 'ionic-img-viewer';
 import { IonicStorageModule } from '@ionic/storage';
 import { Storage } from '@ionic/storage';
 import { Facebook } from '@ionic-native/facebook'
+import { PopUp } from '../modals/popup/popup'
+import { IonicImageLoader } from 'ionic-image-loader';
 
 
 //import { Ng2ImgMaxModule } from 'ng2-img-max'; // <-- import the module
@@ -62,7 +64,8 @@ export const firebaseConfig = {
     FeedUser,
     StylistProfile,
     PostpagePage,
-    BookingPage
+    BookingPage,
+    PopUp
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,8 @@ export const firebaseConfig = {
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     IonicImageViewerModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    IonicImageLoader
     //Ng2ImgMaxModule
     /*CalendarModule.forRoot()*/
   ],
@@ -87,7 +91,8 @@ export const firebaseConfig = {
     FeedUser,
     StylistProfile,
     PostpagePage,
-    BookingPage
+    BookingPage,
+    PopUp
   ],
   providers: [
     StatusBar,
@@ -101,7 +106,7 @@ export const firebaseConfig = {
     Crop,
     File,
     ImageViewerController,
-    Facebook
+    Facebook,
   ]
 })
 export class AppModule {}

@@ -27,6 +27,7 @@ export class SignUpPage {
     this.items.subscribe(items => items.forEach(item => { 
       console.log(item.$value);
     }));*/
+    this.storage.get('username').then((val) => {console.log(val + "        getting username")});
   }
 
   async register(userx: User){

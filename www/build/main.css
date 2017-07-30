@@ -30121,11 +30121,137 @@ image-viewer.ion-page img {
   margin: 0 auto;
 }
 
+#theheader {
+  width: 100%;
+  height: 20px;
+  background-color: black;
+}
+
+pop-up modal-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+pop-up .main-view {
+  background: transparent;
+}
+
+pop-up .overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: .5;
+  background-color: #333;
+}
+
+pop-up .modal_content {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 85%;
+  padding: 10px;
+  z-index: 100;
+  margin: 0 auto;
+  padding: 10px;
+  color: #333;
+  background: #e8e8e8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e8e8e8));
+  background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
+  border-radius: 5px 5px 0px 0px;
+  -webkit-box-shadow: 0 2px 3px rgba(51, 51, 51, 0.35);
+  box-shadow: 0 2px 3px rgba(51, 51, 51, 0.35);
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  overflow: hidden;
+  border-style: solid;
+  border-width: 15px;
+  border-color: #f1f1f1;
+  text-align: center;
+}
+
+@media not all and (min-height: 600px) and (min-width: 768px) {
+  pop-up ion-modal ion-backdrop {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (min-height: 0px) and (min-width: 0px) {
+  pop-up .modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+pop-up .salon, pop-up .time {
+  font-weight: 700;
+  display: inline-block;
+}
+
+pop-up .salon {
+  margin-right: 1px;
+}
+
+pop-up h3 {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+pop-up .innerbox {
+  position: relative;
+  margin: -9px;
+  height: 105%;
+  border-width: 15px;
+  border-color: #2c2c2c;
+  border-style: solid;
+  padding: 40px 15px 15px 15px;
+}
+
+pop-up .buttoncont {
+  width: 100%;
+  margin-top: 15px;
+}
+
+pop-up .reservebutton {
+  width: 60%;
+  background-color: #2c2c2c;
+  color: white;
+}
+
+page-booking .monthview-container {
+  height: 50%;
+}
+
 page-booking .event-detail-container {
   display: none;
 }
 
 page-booking [_nghost-c0] > div[_ngcontent-c0] {
+  height: 100%;
+}
+
+page-booking [_nghost-c1] > div[_ngcontent-c1] {
+  height: 100%;
+}
+
+page-booking [_nghost-c2] > div[_ngcontent-c2] {
+  height: 100%;
+}
+
+page-booking [_nghost-c3] > div[_ngcontent-c3] {
+  height: 100%;
+}
+
+page-booking ion-slides {
   height: 50%;
 }
 
@@ -30134,9 +30260,19 @@ page-booking .monthview-selected[_ngcontent-c1] {
   color: white;
 }
 
+page-booking .monthview-selected[_ngcontent-c2] {
+  background-color: #e6c926;
+  color: white;
+}
+
+page-booking .monthview-selected[_ngcontent-c3] {
+  background-color: #e6c926;
+  color: white;
+}
+
 page-booking #slot {
   display: inline-block;
-  width: 33%;
+  width: 33.3%;
   float: left;
   padding-left: 3%;
   border-style: solid;
@@ -30165,7 +30301,7 @@ page-booking .slots {
   white-space: nowrap;
   overflow: hidden;
   position: relative;
-  top: 0vh;
+  top: -43vh;
 }
 
 page-booking .slotcontainer {
@@ -30186,18 +30322,37 @@ page-booking .time {
   top: 0;
 }
 
+page-booking .back-button.show-back-button {
+  display: none;
+}
+
 page-booking .table-bordered[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
-  line-height: 2.8vh;
+  line-height: 2.5vh;
+}
+
+page-booking .table-bordered[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-booking .table-bordered[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-booking .table-bordered[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-booking .table-bordered[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-booking .table-bordered[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-booking .table-bordered[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2] {
+  line-height: 2.5vh;
+}
+
+page-booking .table-bordered[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3] {
+  line-height: 2.5vh;
+}
+
+page-booking .swiper-slide {
+  height: 95%;
 }
 
 page-booking .save {
+  position: relative;
   height: 24px;
-  top: 2px;
+  top: -2vh;
 }
 
 page-booking #savebutton {
   text-align: center;
   width: 100%;
+  top: -40vh;
+  position: relative;
 }
 
 page-feed-stylist {
@@ -30218,7 +30373,7 @@ page-feed-stylist .pluscontainer {
   position: fixed;
   z-index: 2;
   right: 10px;
-  bottom: -10px;
+  top: 28px;
 }
 
 page-feed-stylist .imagepost {
@@ -30298,9 +30453,9 @@ page-feed-stylist ion-label {
   margin: 0px 0px 0px 0px !important;
 }
 
-page-feed-stylist ion-toolbar {
+page-feed-stylist #iontoolbar {
   z-index: 1;
-  position: fixed;
+  position: absolute;
   top: 88px;
   left: 0;
   background-color: black;
@@ -30308,6 +30463,12 @@ page-feed-stylist ion-toolbar {
   border-bottom-style: solid;
   border-bottom-color: #e6c926;
   border-bottom-width: 4px;
+}
+
+page-feed-stylist ion-toolbar div.toolbar-background {
+  background-image: url("../../assets/tresemme.png") !important;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 page-feed-stylist .custom-icon {
@@ -30319,7 +30480,7 @@ page-feed-stylist .custom-icon {
 }
 
 page-feed-stylist .ad {
-  background-image: url("../../assets/tresemme.png");
+  background-image: url("../../assets/tresemme.png") !important;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
@@ -30336,10 +30497,8 @@ page-feed-stylist .itemadspace {
   position: fixed;
   top: 0;
   left: 0;
-  background-image: url("../../assets/tresemme.png");
-  background-repeat: no-repeat;
-  background-size: cover;
   text-align: center;
+  height: 88px;
 }
 
 page-feed-stylist .background {
@@ -30348,9 +30507,13 @@ page-feed-stylist .background {
   background-size: cover;
 }
 
+page-feed-stylist .back-button.show-back-button {
+  display: none;
+}
+
 page-feed-stylist .contentone {
   position: absolute;
-  top: 145px;
+  top: 128px;
   width: 100%;
 }
 
@@ -30453,8 +30616,8 @@ page-feed-user .imagepost {
 }
 
 page-feed-user .postprofilelink {
-  position: absolute;
-  right: 0;
+  position: relative;
+  right: -32%;
   display: inline-block;
   margin-right: 4px;
   font-size: 12px;
@@ -30487,6 +30650,10 @@ page-feed-user .feedtoptextcontainer {
   -ms-flex-align: center;
   align-items: center;
   /* align vertical */
+}
+
+page-feed-user .back-button.show-back-button {
+  display: none;
 }
 
 page-feed-user .postusername {
@@ -30831,6 +30998,10 @@ page-sign-up ion-content ion-label {
   color: white;
 }
 
+page-sign-up ion-content ion-label[stacked], page-sign-up ion-content ion-label[floating] {
+  margin-top: 0;
+}
+
 page-sign-up ion-content .label-ios[stacked] {
   margin-bottom: 0px;
   font-size: 1.2rem;
@@ -30997,7 +31168,7 @@ page-stylist-profile .name {
 page-stylist-profile .ratecontain {
   position: relative;
   display: inline-block;
-  top: -30px;
+  top: -33px;
   left: 10px;
 }
 
@@ -31014,7 +31185,7 @@ page-stylist-profile .cal {
 }
 
 page-stylist-profile .calendarcover {
-  width: 60%;
+  width: 80%;
   height: 160px;
   background-color: white;
   z-index: 1;
@@ -31044,6 +31215,18 @@ page-stylist-profile .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngconten
   font-size: 11px;
 }
 
+page-stylist-profile [_nghost-c1] > div[_ngcontent-c1] {
+  margin-top: -10px;
+}
+
+page-stylist-profile [_nghost-c2] > div[_ngcontent-c2] {
+  margin-top: -10px;
+}
+
+page-stylist-profile [_nghost-c3] > div[_ngcontent-c3] {
+  margin-top: -10px;
+}
+
 page-stylist-profile .event-detail-container {
   display: none;
 }
@@ -31058,6 +31241,10 @@ page-stylist-profile ion-grid .col {
   padding: 1px 1px 1px 1px;
 }
 
+page-stylist-profile .back-button.show-back-button {
+  display: none;
+}
+
 page-stylist-profile .monthview-selected[_ngcontent-c3] {
   background-color: #e6c926;
 }
@@ -31070,6 +31257,10 @@ page-stylist-profile .monthview-selected[_ngcontent-c1] {
   background-color: #e6c926;
 }
 
+page-stylist-profile .monthview-container {
+  height: 50%;
+}
+
 page-stylist-profile .inlineblock {
   display: inline-block;
   margin-left: 5px;
@@ -31077,8 +31268,16 @@ page-stylist-profile .inlineblock {
 
 page-stylist-profile .social {
   position: relative;
-  left: 25px;
+  left: 18px;
   top: -15px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 page-stylist-profile .imagesquare {
@@ -31095,4 +31294,12 @@ page-stylist-profile .plussy {
   color: black;
   /*position: relative;*/
   text-shadow: 2px 2px 6px black;
+}
+
+page-stylist-profile .fb {
+  width: 31px;
+}
+
+page-stylist-profile .insta {
+  width: 28px;
 }
