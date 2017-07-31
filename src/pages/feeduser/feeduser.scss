@@ -5,26 +5,23 @@ page-feed-user {
 	
 	.postprofilelink {
 		position: relative;
-		right: -32%;
+		width: 100%;
 		display: inline-block;
 		margin-right: 4px;
 		font-size: 12px;
 	}
 
 	.postprofilepic {
-    display: inline;
-    margin: 0 auto;
-    height: 100%;
-    width: auto;
+    border-radius:50%;
   }
 
   .imageparent {
-  	width:10vw;
-    height:10vw;
-    border-radius:50%;
+  	
+    
     overflow:hidden;
     display: inline-block;
     margin-left: 4px;	
+    width: 44px;
 	}
 
   .feedtoptextcontainer {
@@ -196,6 +193,8 @@ page-feed-user {
 	.book {
 		display: inline-block;
 		font-weight: 700;
+		float: right;
+		margin-right: 15px;
 	}
 
 	.dropdown {

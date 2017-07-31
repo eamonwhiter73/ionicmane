@@ -134,5 +134,13 @@
         "variables": {
             "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1059751557247-aro48ncpaq2ffiae4cpsnjp941e09hao"
         }
+    },
+    "cordova-plugin-datepicker": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-datepicker"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

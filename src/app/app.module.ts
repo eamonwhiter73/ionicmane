@@ -37,6 +37,8 @@ import { Storage } from '@ionic/storage';
 import { Facebook } from '@ionic-native/facebook'
 import { PopUp } from '../modals/popup/popup'
 import { IonicImageLoader } from 'ionic-image-loader';
+import { DatePicker } from '@ionic-native/date-picker';
+
 
 
 //import { Ng2ImgMaxModule } from 'ng2-img-max'; // <-- import the module
@@ -107,6 +109,7 @@ export const firebaseConfig = {
     File,
     ImageViewerController,
     Facebook,
+    DatePicker
   ]
 })
 export class AppModule {}

@@ -84,8 +84,9 @@ export class FeedUser {
 
   toolbarClicks = 0;
 
-  items = [];
+  list: FirebaseListObservable<any>;
   availabilities = [];
+  items = [];
   rating = [];
   weeklydeal = [];
 
@@ -390,9 +391,20 @@ export class FeedUser {
     let loading = this.loadingController.create({content : "Loading..."});
     loading.present();
 
-    this.items = ['../../assets/hair1.jpg', '../../assets/hair2.jpg', '../../assets/hair3.jpeg', '../../assets/hair4.jpeg',
+    /*let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');**/
+    //let loading = this.loadingController.create({content : "Loading..."});
+    //loading.present();
+    this.list = this.af.list('/promos');
+    this.list.subscribe(items => { items.forEach(item => {
+        console.log(JSON.stringify(item.customMetadata));
+        this.items.push(item.customMetadata);
+    });
+                    
+    }) /*['../../assets/hair1.jpg', '../../assets/hair2.jpg', '../../assets/hair3.jpeg', '../../assets/hair4.jpeg',
                   '../../assets/hair5.jpeg', '../../assets/hair6.jpg', '../../assets/hair7.jpg', '../../assets/hair8.jpg', 
-                  '../../assets/hair9.jpeg', '../../assets/hair10.jpg'];
+                  '../../assets/hair9.jpeg', '../../assets/hair10.jpg'];*/
+
+    
 
     /*this.availabilities = [
                             

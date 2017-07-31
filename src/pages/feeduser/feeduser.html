@@ -43,17 +43,20 @@
      <ion-item *ngFor="let i of items" no-padding no-lines>
       <div class="feedtoptextcontainer">
         <div class="imageparent">
-          <img class="postprofilepic" src="{{i}}">
+          <img class="postprofilepic" src="{{i.url}}">
         </div>
         <div class="usernamecontainer">
-          <h4 class="postusername">Ed Bundy</h4><br>
+          <h4 class="postusername">{{i.username}}</h4><br>
           <h4 class="poststudio">Ed's Studio</h4>
         </div>
         <div class="postprofilelink">
-          <div class="book">Book</div><div style="display: inline-block">@edbundyhair</div>
+          <div class="book">{{i.title}}<!--</div><div style="display: inline-block">@edbundyhair--></div>
         </div>
       </div>
-      <img class="imagepost" src="{{i}}">
+      <img class="imagepost" src="{{i.url}}">
+     </ion-item>
+     <ion-item no-padding no-lines>
+       <!--{{i.caption}}-->
      </ion-item>
    </ion-list>
   </div>

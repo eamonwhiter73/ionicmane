@@ -13829,16 +13829,16 @@ ion-textarea {
 }
 
 .text-input::-moz-placeholder {
-  color: #FFF;
+  color: #cccccc;
 }
 
 .text-input:-ms-input-placeholder {
-  color: #FFF;
+  color: #cccccc;
 }
 
 .text-input::-webkit-input-placeholder {
   text-indent: 0;
-  color: #FFF;
+  color: #cccccc;
 }
 
 textarea.text-input {
@@ -30512,8 +30512,8 @@ page-feed-stylist .back-button.show-back-button {
 }
 
 page-feed-stylist .contentone {
-  position: absolute;
-  top: 128px;
+  position: fixed;
+  top: 88px;
   width: 100%;
 }
 
@@ -30617,26 +30617,21 @@ page-feed-user .imagepost {
 
 page-feed-user .postprofilelink {
   position: relative;
-  right: -32%;
+  width: 100%;
   display: inline-block;
   margin-right: 4px;
   font-size: 12px;
 }
 
 page-feed-user .postprofilepic {
-  display: inline;
-  margin: 0 auto;
-  height: 100%;
-  width: auto;
+  border-radius: 50%;
 }
 
 page-feed-user .imageparent {
-  width: 10vw;
-  height: 10vw;
-  border-radius: 50%;
   overflow: hidden;
   display: inline-block;
   margin-left: 4px;
+  width: 44px;
 }
 
 page-feed-user .feedtoptextcontainer {
@@ -30796,6 +30791,8 @@ page-feed-user .weeklydeals {
 page-feed-user .book {
   display: inline-block;
   font-weight: 700;
+  float: right;
+  margin-right: 15px;
 }
 
 page-feed-user .dropdown {
@@ -30834,8 +30831,18 @@ page-feed-user li:active, page-feed-user li:focus {
 }
 
 page-postpage .postimage {
-  display: inline-block;
-  width: 33%;
+  position: relative;
+  margin: 5px;
+  float: right;
+  width: 79px;
+  height: 79px;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+page-postpage .scroll-content {
+  background-color: #fafafa;
 }
 
 page-postpage .postname {
@@ -30848,13 +30855,170 @@ page-postpage .postname {
   color: black;
 }
 
+page-postpage .titleicon {
+  font-size: 28px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+page-postpage .titlee {
+  width: 100%;
+  border-bottom-color: rgba(0, 0, 0, 0.3);
+  border-bottom-width: 0.5px;
+  border-bottom-style: solid;
+}
+
+page-postpage .captione {
+  width: 100%;
+  height: 90px;
+  border-bottom-color: rgba(0, 0, 0, 0.3);
+  border-bottom-width: 0.5px;
+  border-bottom-style: solid;
+}
+
+page-postpage .detailpictwo {
+  width: 10%;
+  height: 100%;
+  background: white;
+  display: inline-block;
+  /*border-bottom-color: rgba(0,0,0,0.3);
+		border-bottom-width: 0.5px;
+		border-bottom-style: solid;*/
+}
+
+page-postpage .inputcaption {
+  width: 90%;
+  float: right;
+  display: inline-block;
+  /*border-bottom-color: rgba(0,0,0,0.3);
+		border-bottom-width: 0.5px;
+		border-bottom-style: solid;*/
+}
+
+page-postpage .detailpic {
+  width: 10%;
+  height: 36px;
+  background: white;
+  display: inline-block;
+  padding: 5px;
+}
+
+page-postpage .typeofpost {
+  height: 67px;
+}
+
+page-postpage .detailpictwo h1 {
+  position: relative;
+  color: rgba(0, 0, 0, 0.3);
+  margin-top: 0;
+  margin-left: 5px;
+}
+
+page-postpage .inputtitle {
+  width: 90%;
+  float: right;
+  display: inline-block;
+}
+
+page-postpage .titlecaption {
+  margin-top: 5%;
+  border-top-color: rgba(0, 0, 0, 0.3);
+  border-top-width: 0.5px;
+  border-top-style: solid;
+}
+
+page-postpage .pickadate {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 26px;
+  color: white;
+  margin-left: 4px;
+}
+
+page-postpage .datepickk {
+  border-bottom-color: rgba(0, 0, 0, 0.3);
+  border-bottom-width: 0.5px;
+  border-bottom-style: solid;
+  height: 100%;
+}
+
+page-postpage .datepickcont {
+  margin-top: 5%;
+  border-top-color: rgba(0, 0, 0, 0.3);
+  border-top-width: 0.5px;
+  border-top-style: solid;
+  background-color: white;
+  height: 36px;
+}
+
+page-postpage .caption {
+  margin-top: 1px;
+  border-top-color: rgba(0, 0, 0, 0.3);
+  border-top-width: 0.5px;
+  border-top-style: solid;
+}
+
+page-postpage ion-input {
+  background-color: #ffffff;
+}
+
+page-postpage .back-button.show-back-button {
+  display: none;
+}
+
+page-postpage .postimagecontain {
+  width: 35%;
+  height: 89px;
+  background-color: white;
+  float: right;
+}
+
+page-postpage .titleinput {
+  float: left;
+  height: 36px;
+  padding-left: 6px;
+  width: 100%;
+}
+
+page-postpage .share {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 64px;
+  margin-bottom: -1px;
+}
+
+page-postpage .captioninput {
+  float: left;
+  height: 89px;
+  padding-left: 6px;
+  width: 65%;
+}
+
+page-postpage .detailpic img {
+  max-width: 28px;
+}
+
+page-postpage select {
+  display: inline-block;
+  margin-left: 6px;
+}
+
+page-postpage h4 {
+  display: inline-block;
+  padding-left: 15px;
+}
+
 page-postpage .postnamecont {
   display: inline-block;
   width: 60%;
-  position: absolute;
+  position: relative;
   top: 7%;
   right: 10px;
   text-align: center;
+}
+
+page-postpage .backk {
+  font-size: 36px;
+  padding: 0 15px 0 15px;
 }
 
 page-sign-in ion-content {

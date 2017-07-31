@@ -25,6 +25,7 @@
     "@ionic-native/camera": "^4.0.1",
     "@ionic-native/core": "3.12.1",
     "@ionic-native/crop": "^4.0.1",
+    "@ionic-native/date-picker": "^4.1.0",
     "@ionic-native/facebook": "^4.1.0",
     "@ionic-native/file": "^4.0.1",
     "@ionic-native/file-transfer": "^4.0.1",
@@ -44,6 +45,7 @@
     "cordova-plugin-compat": "^1.1.0",
     "cordova-plugin-console": "1.0.5",
     "cordova-plugin-crop": "^0.4.0",
+    "cordova-plugin-datepicker": "^0.9.3",
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-facebook4": "^1.9.1",
     "cordova-plugin-file": "^4.3.3",
@@ -123,7 +125,8 @@
       },
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1059751557247-aro48ncpaq2ffiae4cpsnjp941e09hao"
-      }
+      },
+      "cordova-plugin-datepicker": {}
     }
   }
 }

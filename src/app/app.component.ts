@@ -15,7 +15,7 @@ import { BookingPage } from '../pages/booking/booking';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = BookingPage;
+  rootPage:any = FeedUser;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
 
@@ -30,4 +30,3 @@ export class MyApp {
     });
   }
 }
-

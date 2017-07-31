@@ -4,22 +4,69 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-content padding>
-		<img class="postimage" #imagey [src]="">
-		<div class="postnamecont">
-			<ion-label stacked>Name</ion-label>
-			<ion-input class="postname" type="text" name="postname"></ion-input>
+<ion-header>
+  <ion-navbar>
+    <ion-title>New Post</ion-title>
+    <ion-icon (tap)="goToFeed()" class='backk' name="arrow-back"></ion-icon>
+    <!--<div class="stylistview">
+	    <button class="stylistviewbutton" ion-button color="secondary">Stylist View</button>
+	  </div>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+	<ion-item class="typeofpost" no-padding>
+		<h4>What type of post is this?</h4>
+		<select [(ngModel)]="item.typeofselect" >
+	    <option selected>Post</option>
+	    <option >Promo</option>
+	    <option>Class</option>
+	    <option>Product</option>
+		</select>
+	</ion-item>
+	<div class="titlecaption">
+		<div class="titlee">
+			<div class='detailpic'>
+				<ion-icon ios="ios-bookmarks" md="md-bookmarks" class="titleicon"></ion-icon>
+			</div>
+			<div class="inputtitle">
+				<ion-input name='title' [(ngModel)]="item.title" class="titleinput" type="text" placeholder="Write a title"></ion-input>
+			</div>
 		</div>
-		<div class="checkboxcont">
-			<ion-label stacked>Products</ion-label>
-			<ion-checkbox type="checkbox" name="products"></ion-checkbox>
+	</div>
+	<div class="caption">
+		<div class="captione">
+			<div class='detailpictwo'>
+				<h1>...</h1>
+			</div>
+			<div class="inputcaption">
+				<ion-input name='caption' [(ngModel)]="item.caption" class="captioninput" type="text" placeholder="Write a caption"></ion-input>
+				<div class="postimagecontain">
+					<img class="postimage" #imagey [src]="">
+				</div>
+			</div>
 		</div>
-		<div class="checkboxcont">
-			<ion-label stacked>Classes</ion-label>
-			<ion-checkbox type="checkbox" name="classes"></ion-checkbox>
+	</div>
+	<div class="titlecaption">
+		<div class="titlee">
+			<div class='detailpic'>
+				<ion-icon name="pricetags" class="titleicon"></ion-icon>
+			</div>
+			<div class="inputtitle">
+				<ion-input name='price' [(ngModel)]="item.price" class="titleinput" type="text" placeholder="Enter price"></ion-input>
+			</div>
 		</div>
-		<div class="checkboxcont">
-			<ion-label stacked>Promos</ion-label>
-			<ion-checkbox type="checkbox" name="promos"></ion-checkbox>
+	</div>
+	<div class="datepickcont">
+		<div class="datepickk">
+			<button (tap)="showDatePicker()" ion-button class="pickadate">Pick a date</button>
+			<!--<div class='detailpic'>
+				<img src="">
+			</div>
+			<div class="inputtitle">
+				<ion-input name='price' class="titleinput" type="text"></ion-input>
+			</div>-->
 		</div>
+	</div>
+	<button #sharer class="share" (tap)="shareItem()" ion-button full color="secondary">SHARE</button>
 </ion-content>
