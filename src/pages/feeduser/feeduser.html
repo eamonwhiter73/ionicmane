@@ -28,7 +28,7 @@
   </ul>
 </ion-header>
 
-<ion-content no-padding>
+<ion-content no-padding (ionScroll)="scrollHandler($event)">
 <div (swipeRight)="toProfile()">
 <ion-refresher (ionRefresh)="doRefresh($event)">
   <ion-refresher-content></ion-refresher-content>
@@ -54,12 +54,21 @@
         </div>
       </div>
       <img class="imagepost" src="{{i.url}}">
-     </ion-item>
-     <ion-item no-padding no-lines>
-       <!--{{i.caption}}-->
-     </ion-item>
+      <div class='caption'>
+        {{i.caption}}
+      </div>
+      <br>
+     </ion-item> 
    </ion-list>
+   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="show">
+      <ion-infinite-scroll-content 
+        loadingSpinner="bubbles"
+        loadingText="Loading more data..."
+        threshold="1%">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </div>
+
 
   <div class ='availability contentone' #availability [@moveList]='moveState'>
    <ion-list class="marginstatus" no-padding>
@@ -109,12 +118,5 @@
      </ion-item>
    </ion-list>
   </div>
-
-  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
 </div>
 </ion-content>

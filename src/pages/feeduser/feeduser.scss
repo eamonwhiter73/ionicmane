@@ -24,6 +24,17 @@ page-feed-user {
     width: 44px;
 	}
 
+	.caption {
+		padding: 5px;
+		font-size: 14px;
+	}
+
+	ion-infinite-scroll {
+		position: relative;
+		bottom: 30px;
+		background-color: white;
+	}
+
   .feedtoptextcontainer {
   	height: 44px;
   	display: flex;

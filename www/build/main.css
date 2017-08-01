@@ -30634,6 +30634,17 @@ page-feed-user .imageparent {
   width: 44px;
 }
 
+page-feed-user .caption {
+  padding: 5px;
+  font-size: 14px;
+}
+
+page-feed-user ion-infinite-scroll {
+  position: relative;
+  bottom: 30px;
+  background-color: white;
+}
+
 page-feed-user .feedtoptextcontainer {
   height: 44px;
   display: -webkit-box;

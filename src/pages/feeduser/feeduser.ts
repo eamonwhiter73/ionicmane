@@ -1,13 +1,12 @@
-import { AfterViewInit, Component, trigger, state, style, transition, animate, keyframes, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { AfterViewInit, NgZone, Component, trigger, state, style, transition, animate, keyframes, ViewChild, ElementRef, Renderer, HostListener } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
-import { LoadingController } from 'ionic-angular';
+import { LoadingController, Content } from 'ionic-angular';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { BookingPage } from '../booking/booking';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 import { PopUp } from '../../modals/popup/popup';
-
 
 
 
@@ -71,6 +70,7 @@ export class FeedUser {
   @ViewChild('weeklydeals') weekly: ElementRef;
   @ViewChild('promos') promos: ElementRef;
   @ViewChild('weekly') weeklyyellow: ElementRef;
+  @ViewChild(Content  ) content: Content;
 
   downState: String = 'notDown';
   moveState: String = 'up';
@@ -80,7 +80,9 @@ export class FeedUser {
   appointments: FirebaseListObservable<any>;
   appointmentsMonth: FirebaseListObservable<any>;
   appointmentsItem: FirebaseListObservable<any>;
-
+  show = true;
+  lastScrollTop: number = 0;
+  direction: string = "";
 
   toolbarClicks = 0;
 
@@ -93,9 +95,10 @@ export class FeedUser {
   totalCount = 0;
   lastNumRows = 0;
   el;
+  startAtKey;
 
-  constructor(public modalCtrl: ModalController, public af: AngularFireDatabase, public storage: Storage, private afAuth: AngularFireAuth, public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
-
+  constructor(public zone: NgZone, public modalCtrl: ModalController, public af: AngularFireDatabase, public storage: Storage, private afAuth: AngularFireAuth, public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
+     
   }
 
   pushPage(){
@@ -107,13 +110,31 @@ export class FeedUser {
 
   ionViewWillLoad() {
     this.afAuth.authState.subscribe(data => {
-      if(data.email && data.uid) {
+      /*if(data.email && data.uid) {
         console.log("logged in");
-      }
+      }*/
     })
+
+
+  }
+
+  scrollHandler(event) {
+   //console.log(JSON.stringify(event));
+   this.zone.run(()=>{
+     if(event.directionY == 'up') {
+       this.show = false;
+     }
+     else {
+       this.show = true;
+     }
+     // since scrollAmount is data-binded,
+     // the update needs to happen in zone
+     //this.scrollAmount++
+   })
   }
 
   ionViewDidLoad() {
+    
     this.renderer.setElementStyle(this.promos.nativeElement, 'color', '#e6c926');
     this.getInitialImages();
 
@@ -276,6 +297,10 @@ export class FeedUser {
     this.dropDown();
   }
 
+  onScroll(event) {
+    console.log(event);
+  }
+
   loadAvailabilities(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.appointments = this.af.list('/appointments');
@@ -394,12 +419,18 @@ export class FeedUser {
     /*let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');**/
     //let loading = this.loadingController.create({content : "Loading..."});
     //loading.present();
-    this.list = this.af.list('/promos');
-    this.list.subscribe(items => { items.forEach(item => {
+    this.list = this.af.list('/promos', {
+    query: {
+      limitToFirst: 1
+    }});
+
+    this.list.subscribe(items => { 
+      items.forEach(item => {
         console.log(JSON.stringify(item.customMetadata));
+        this.startAtKey = item.$key;
         this.items.push(item.customMetadata);
-    });
-                    
+
+      });               
     }) /*['../../assets/hair1.jpg', '../../assets/hair2.jpg', '../../assets/hair3.jpeg', '../../assets/hair4.jpeg',
                   '../../assets/hair5.jpeg', '../../assets/hair6.jpg', '../../assets/hair7.jpg', '../../assets/hair8.jpg', 
                   '../../assets/hair9.jpeg', '../../assets/hair10.jpg'];*/
@@ -520,14 +551,45 @@ export class FeedUser {
         });*/
   }
 
-  doInfinite(): Promise<any> {
+  doInfinite(infiniteScroll) {
     console.log('Begin async operation');
+    console.log(this.content.directionY + "        upupupupupupu********");
+    if(this.content.directionY == 'up') {
+      this.show = false
+    }
+    else {
+      this.show = true;
+    }
 
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
+    //return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      this.list = this.af.list('/promos', {
+      query: {
+        orderByKey: true,
+        startAt: this.startAtKey,
+      }});
+
+      this.list.subscribe(items => { 
+        items.forEach(item => {
+          console.log(JSON.stringify(item.customMetadata));
+          console.log(this.startAtKey + "            " + item.$key);
+          if(this.startAtKey == item.$key) {
+            //
+          }
+          else {
+            this.startAtKey = item.$key;
+            this.items.push(item.customMetadata);
+          }
+
+        });
+
+                     
+      })
+
+      infiniteScroll.complete(); 
         /*let data = new URLSearchParams();
         data.append('page', this.totalCount.toString());*/
-        resolve();
+        
         /*this.http
           .post('http://192.168.1.131:8888/maneappback/more-items.php', data)
             .subscribe(res => {
@@ -554,7 +616,7 @@ export class FeedUser {
                 console.log(error.json());
             });*/
       }, 500);
-    })
+    //})
   }
 
   doRefresh(refresher) {
