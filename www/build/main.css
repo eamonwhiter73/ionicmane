@@ -30251,6 +30251,10 @@ page-booking [_nghost-c3] > div[_ngcontent-c3] {
   height: 100%;
 }
 
+page-booking [_nghost-c4] > div[_ngcontent-c3] {
+  height: 100%;
+}
+
 page-booking ion-slides {
   height: 50%;
 }
@@ -30266,6 +30270,11 @@ page-booking .monthview-selected[_ngcontent-c2] {
 }
 
 page-booking .monthview-selected[_ngcontent-c3] {
+  background-color: #e6c926;
+  color: white;
+}
+
+page-booking .monthview-selected[_ngcontent-c4] {
   background-color: #e6c926;
   color: white;
 }
@@ -30335,6 +30344,10 @@ page-booking .table-bordered[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngconte
 }
 
 page-booking .table-bordered[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3] {
+  line-height: 2.5vh;
+}
+
+page-booking .table-bordered[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-booking .table-bordered[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-booking .table-bordered[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-booking .table-bordered[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-booking .table-bordered[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-booking .table-bordered[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4] {
   line-height: 2.5vh;
 }
 
@@ -30653,6 +30666,7 @@ page-feed-user .postprofilepic {
 page-feed-user .imageparent {
   overflow: hidden;
   display: inline-block;
+  margin-top: 4px;
   margin-left: 4px;
   width: 44px;
 }
@@ -31415,6 +31429,13 @@ page-stylist-profile .calendarcover {
   left: 33%;
 }
 
+page-stylist-profile .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4] {
+  padding: 2px;
+  line-height: 12px;
+  vertical-align: top;
+  font-size: 11px;
+}
+
 page-stylist-profile .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3] {
   padding: 2px;
   line-height: 12px;
@@ -31448,6 +31469,10 @@ page-stylist-profile [_nghost-c3] > div[_ngcontent-c3] {
   margin-top: -10px;
 }
 
+page-stylist-profile [_nghost-c4] > div[_ngcontent-c4] {
+  margin-top: -10px;
+}
+
 page-stylist-profile .event-detail-container {
   display: none;
 }
@@ -31464,6 +31489,10 @@ page-stylist-profile ion-grid .col {
 
 page-stylist-profile .back-button.show-back-button {
   display: none;
+}
+
+page-stylist-profile .monthview-selected[_ngcontent-c4] {
+  background-color: #e6c926;
 }
 
 page-stylist-profile .monthview-selected[_ngcontent-c3] {

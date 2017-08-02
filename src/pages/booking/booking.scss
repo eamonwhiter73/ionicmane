@@ -22,6 +22,10 @@ page-booking {
     height: 100%;
 	}
 
+	[_nghost-c4] > div[_ngcontent-c3] {
+    height: 100%;
+	}
+
 	ion-slides {
 		height: 50%;
 	}
@@ -37,6 +41,11 @@ page-booking {
 	}
 
 	.monthview-selected[_ngcontent-c3] {
+	  background-color: map-get($colors, primary);
+	  color: white;
+	}
+
+	.monthview-selected[_ngcontent-c4] {
 	  background-color: map-get($colors, primary);
 	  color: white;
 	}
@@ -102,6 +111,10 @@ page-booking {
 	}
 
 	.table-bordered[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], .table-bordered[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], .table-bordered[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], .table-bordered[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], .table-bordered[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], .table-bordered[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3] {
+    line-height: 2.5vh;
+	}
+
+	.table-bordered[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table-bordered[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table-bordered[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table-bordered[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], .table-bordered[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], .table-bordered[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4] {
     line-height: 2.5vh;
 	}
 

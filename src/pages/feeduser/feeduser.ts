@@ -330,18 +330,9 @@ export class FeedUser {
                 if(r.selected == true) {
 
                   
-                  
-                  let datee = this.setDateTime(r.time);
 
-                  datee.setMonth(parseInt(month));
-                  datee.setDate(date.getDate());
-                  datee.setFullYear(date.getFullYear());
-                  
-          
 
-                  let timestamp = datee.getTime();
-
-                  let obj = {'pic':'img/hair5.jpeg', 'salon': userName, 'time': timestamp};
+                  let obj = {'pic':'img/hair5.jpeg', 'salon': userName, 'time': r.time};
                   this.availabilities.push(obj);
                   
                   if(index == 23) {
@@ -414,8 +405,6 @@ export class FeedUser {
     date.setHours(hours);
     date.setMinutes(minutes);
     //date.setSeconds(00);
-
-    console.log(date + '87&**&*&&**& date 8d888889898998');
 
     return date;
   }

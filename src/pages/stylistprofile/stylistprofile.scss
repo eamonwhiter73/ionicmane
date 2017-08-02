@@ -112,6 +112,13 @@ page-stylist-profile {
     left: 33%;
   }
 
+  .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4] {
+    padding: 2px;
+    line-height: 12px;
+    vertical-align: top;
+    font-size: 11px;
+  }
+
   .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3] {
     padding: 2px;
     line-height: 12px;
@@ -145,6 +152,10 @@ page-stylist-profile {
     margin-top: -10px;
   }
 
+  [_nghost-c4] > div[_ngcontent-c4] {
+    margin-top: -10px;
+  }
+
   .event-detail-container {
     display: none;
   }
@@ -161,6 +172,10 @@ page-stylist-profile {
 
   .back-button.show-back-button {
     display: none;
+  }
+
+  .monthview-selected[_ngcontent-c4] {
+    background-color: map-get($colors, primary);
   }
 
   .monthview-selected[_ngcontent-c3] {
