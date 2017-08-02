@@ -40,6 +40,7 @@
     "angularfire2": "^4.0.0-rc.1",
     "blueimp-canvas-to-blob": "^3.9.0",
     "canvas-compress": "^1.1.5",
+    "cordova-ios": "^4.4.0",
     "cordova-plugin-calendar": "^4.6.0",
     "cordova-plugin-camera": "^2.4.1",
     "cordova-plugin-compat": "^1.1.0",

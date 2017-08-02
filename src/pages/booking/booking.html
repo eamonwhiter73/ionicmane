@@ -27,7 +27,7 @@
 	</calendar>
 	<!--<form>-->
 		<div class="slots">
-	     <ion-item id="slot" *ngFor="let i of times ; let z = index" no-padding no-lines>
+	     <ion-item id="slot" *ngFor="let i of times ; let z = index" (press)='emergency(z)' #slot no-padding no-lines>
 	      	<ion-label>{{i.time}}</ion-label><ion-checkbox name="time" [(ngModel)]="times[z].selected" [checked]="times[z].selected" (ionChange)="checkboxCheck(z)"></ion-checkbox>
 	     </ion-item>
 	  </div>

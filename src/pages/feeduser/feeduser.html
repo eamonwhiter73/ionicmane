@@ -1,5 +1,8 @@
-<ion-header (swipeRight)="toProfile()">
+<ion-header> <!--(swipeRight)="toProfile()">-->
   <ion-item class="itemadspace" [@slideDown]="downState" no-padding no-lines>
+  <div class="stylistview">
+    <button class="stylistviewbutton" (tap)="switchView()" ion-button color="secondary">Stylist View</button>
+  </div>
     <!--<h3 class="feedtitle">User Feed</h3>-->
   </ion-item>
   
@@ -29,7 +32,7 @@
 </ion-header>
 
 <ion-content no-padding (ionScroll)="scrollHandler($event)">
-<div (swipeRight)="toProfile()">
+<div> <!--(swipeRight)="toProfile()"-->
 <ion-refresher (ionRefresh)="doRefresh($event)">
   <ion-refresher-content></ion-refresher-content>
 </ion-refresher>

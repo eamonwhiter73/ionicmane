@@ -31,11 +31,21 @@ export class SignUpPage {
   }
 
   async register(userx: User){
+    try {
+    if(userx.email && userx.password && this.user.username && (this.stylist || this.users)) {
 
-    const result = await this.afAuth.auth.createUserWithEmailAndPassword(userx.email, userx.password);
-    console.log(result);
+      const result = await this.afAuth.auth.createUserWithEmailAndPassword(userx.email, userx.password);
+      console.log(result);
 
-    this.setUserStylist(userx);
+      this.setUserStylist(userx);
+    }
+    else {
+      alert("You need to fill in all the information");
+    }
+    }
+    catch(e) {
+      alert(e.message);
+    }
   }
 
   setUserStylist(usery) {

@@ -21,6 +21,16 @@ page-stylist-profile {
     margin-left: 20px;	
 	}
 
+  ion-fab {
+    position: absolute;
+  }
+
+  .textsizebutton {
+    font-size: 12px;
+    background-color: black;
+    color: map-get($colors, primary);
+  }
+
   .stylistview {
     text-align: right;
   }

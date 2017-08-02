@@ -8,8 +8,38 @@ page-feed-stylist {
 	}
 
 	ion-header {
-
+		
 	}
+
+	ion-content {
+			
+		
+	}
+
+	ion-fab {
+		position: absolute;
+		top: 63%;
+	}
+
+	.stylistviewbutton {
+    
+    font-size: 12px;
+  }
+
+	.textsizebutton {
+		font-size: 12px;
+		background-color: black;
+		color: map-get($colors, primary);
+	}
+
+	.stylistview {
+    text-align: right;
+    position: absolute;
+    top: 0px;
+    right: 24%;
+    z-index: 5;
+    width:5%;
+  }
 
 	.pluscontainer {
 		position: fixed;
@@ -116,7 +146,7 @@ page-feed-stylist {
 
 	ion-toolbar {
 		div.toolbar-background {
-			background-image: url('../../assets/tresemme.png') !important;
+			background-image: url('../img/tresemme.png') !important;
     	background-repeat: no-repeat;
 			background-size: cover;
 		}
@@ -131,7 +161,7 @@ page-feed-stylist {
 	}	
 
 	.ad {
-		background-image: url('../../assets/tresemme.png') !important;
+		background-image: url('../img/tresemme.png') !important;
     background-repeat: no-repeat;
 		background-size: cover;
 		height: 100%;
@@ -153,7 +183,7 @@ page-feed-stylist {
 	}
 
 	.background {
-		background-image: url('../../assets/tresemme.png');
+		background-image: url('../img/tresemme.png');
     background-repeat: no-repeat;
 		background-size:cover;
 	}
@@ -167,8 +197,7 @@ page-feed-stylist {
 	}*/
 
 	.contentone {
-		position: fixed;
-		top: 88px;
+		position: absolute;
 		width: 100%;
 	}
 

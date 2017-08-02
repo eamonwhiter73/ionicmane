@@ -3,14 +3,9 @@
     <name>myApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.1.131:8100" />
+    <content src="index.html" />
     <access origin="*" />
-    <access origin="https://*.google-analytics.com" />
-    <access origin="https://*.googleapis.com" />
-    <access origin="https://*.firebaseio.com" />
     <allow-navigation href="http://ionic.local/*" />
-    <allow-navigation href="http://192.168.1.131:8100" />
-    <allow-navigation href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

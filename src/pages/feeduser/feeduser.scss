@@ -121,7 +121,7 @@ page-feed-user {
 		position: fixed;
 		top: 0;
 		left: 0;
-		background-image: url('../../assets/tresemme.png');
+		background-image: url('../img/tresemme.png');
     background-repeat: no-repeat;
 		background-size:cover;
 		text-align: center;
@@ -229,6 +229,20 @@ page-feed-user {
 		padding-right: 10px;
 		padding-left: 10px;
 	}
+
+	.stylistview {
+    text-align: right;
+    position: absolute;
+    top: 0px;
+    right: 24%;
+    z-index: 5;
+    width:5%;
+  }
+
+  .stylistviewbutton {
+    
+    font-size: 12px;
+  }
 
 	li {
 		list-style: none;

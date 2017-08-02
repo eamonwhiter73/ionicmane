@@ -3,6 +3,8 @@ import { NavController, App } from 'ionic-angular';
 import { LoadingController, ActionSheetController } from 'ionic-angular';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { PostpagePage } from '../postpage/postpage';
+import { FeedUser } from '../feeduser/feeduser';
+
 import { BookingPage } from '../booking/booking';
 
 import { CameraServicePost } from '../../services/cameraservicepost';
@@ -30,7 +32,7 @@ import { AngularFireAuth } from 'angularfire2/auth'
     ]),
     trigger('moveList', [
       state('down', style({
-        top: 304 + "px",
+        top: 284 + "px",
       })),
       state('up', style({
         top: 142 + "px",
@@ -48,10 +50,10 @@ import { AngularFireAuth } from 'angularfire2/auth'
     ]),
     trigger('plusSlide', [
       state('down', style({
-        top: '190px'
+        top: '185px'
       })),
       state('notDown', style({
-        top: '28px'
+        top: '23px'
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),
@@ -119,6 +121,14 @@ export class FeedStylist {
     //this.navCtrl.push(SignUpPage);
   }
 
+  tappedPost() {
+    this.navCtrl.push(PostpagePage);
+  }
+
+  tappedEmergency() {
+    this.navCtrl.push(BookingPage);
+  }
+
   swipe(e: TouchEvent, when: string): void {
     const coord: [number, number] = [e.changedTouches[0].pageX, e.changedTouches[0].pageY];
     const time = new Date().getTime();
@@ -147,6 +157,10 @@ export class FeedStylist {
       //Do whatever you want with swipe
       }
     }
+  }
+
+  switchView() {
+    this.navCtrl.push(FeedUser);
   }
 
   toProfile() {
@@ -194,24 +208,27 @@ export class FeedStylist {
             //let itemArrayTwo = this.profComponents.toArray();
 
             this.cameraServicePost.getMedia(this.optionsGetMedia).then((data) => {
-              this.nav.push(PostpagePage, { path: data });
-                /*return new Promise((resolve, reject) => {
-                  let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');
-                  let loading = this.loadingController.create({content : "Loading..."});
-                  loading.present();
-                  setTimeout(() => {
-                    storageRef.getDownloadURL().then(url => {
-                      console.log(url);
-                      this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
-                      this.showSquare();
-                      loading.dismiss();
-                      resolve();
-                    });
-                  }, 3000);
-                });*/
-              //
-              
+              console.log(data + "dadadaddkdkktatatat");
+              if(data) {
+                this.nav.push(PostpagePage, { path: data });
+                  /*return new Promise((resolve, reject) => {
+                    let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');
+                    let loading = this.loadingController.create({content : "Loading..."});
+                    loading.present();
+                    setTimeout(() => {
+                      storageRef.getDownloadURL().then(url => {
+                        console.log(url);
+                        this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
+                        this.showSquare();
+                        loading.dismiss();
+                        resolve();
+                      });
+                    }, 3000);
+                  });*/
+                //
+              }    
             });
+            
           }
         },{
           text: 'Cancel',
@@ -311,26 +328,26 @@ export class FeedStylist {
     this.items = /*['../../assets/hair1.jpg', '../../assets/hair2.jpg', '../../assets/hair3.jpeg', '../../assets/hair4.jpeg',
                   '../../assets/hair5.jpeg', '../../assets/hair6.jpg', '../../assets/hair7.jpg', '../../assets/hair8.jpg', 
                   '../../assets/hair9.jpeg', '../../assets/hair10.jpg'];*/
-                  [{'pic': '../../assets/hair5.jpeg', 'description':'This is a description of a deal/post/sale 5', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair6.jpg', 'description':'This is a description of a deal/post/sale 6', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair7.jpg', 'description':'This is a description of a deal/post/sale 7', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair8.jpg', 'description':'This is a description of a deal/post/sale 8', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair9.jpeg', 'description':'This is a description of a deal/post/sale 9', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair10.jpg', 'description':'This is a description of a deal/post/sale 10', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair7.jpg', 'description':'This is a description of a deal/post/sale 1', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair2.jpg', 'description':'This is a description of a deal/post/sale 2', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair3.jpeg', 'description':'This is a description of a deal/post/sale 3', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair4.jpeg', 'description':'This is a description of a deal/post/sale 4', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair5.jpeg', 'description':'This is a description of a deal/post/sale 5', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair6.jpg', 'description':'This is a description of a deal/post/sale 6', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair7.jpg', 'description':'This is a description of a deal/post/sale 7', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair8.jpg', 'description':'This is a description of a deal/post/sale 8', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair9.jpeg', 'description':'This is a description of a deal/post/sale 9', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair10.jpg', 'description':'This is a description of a deal/post/sale 10', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair7.jpg', 'description':'This is a description of a deal/post/sale 1', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair2.jpg', 'description':'This is a description of a deal/post/sale 2', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair3.jpeg', 'description':'This is a description of a deal/post/sale 3', 'link':'@stylist_profile'},
-                  {'pic': '../../assets/hair4.jpeg', 'description':'This is a description of a deal/post/sale 4', 'link':'@stylist_profile'}];
+                  [{'pic': 'img/hair5.jpeg', 'description':'This is a description of a deal/post/sale 5', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair6.jpg', 'description':'This is a description of a deal/post/sale 6', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair7.jpg', 'description':'This is a description of a deal/post/sale 7', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair8.jpg', 'description':'This is a description of a deal/post/sale 8', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair9.jpeg', 'description':'This is a description of a deal/post/sale 9', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair10.jpg', 'description':'This is a description of a deal/post/sale 10', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair7.jpg', 'description':'This is a description of a deal/post/sale 1', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair2.jpg', 'description':'This is a description of a deal/post/sale 2', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair3.jpeg', 'description':'This is a description of a deal/post/sale 3', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair4.jpeg', 'description':'This is a description of a deal/post/sale 4', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair5.jpeg', 'description':'This is a description of a deal/post/sale 5', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair6.jpg', 'description':'This is a description of a deal/post/sale 6', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair7.jpg', 'description':'This is a description of a deal/post/sale 7', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair8.jpg', 'description':'This is a description of a deal/post/sale 8', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair9.jpeg', 'description':'This is a description of a deal/post/sale 9', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair10.jpg', 'description':'This is a description of a deal/post/sale 10', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair7.jpg', 'description':'This is a description of a deal/post/sale 1', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair2.jpg', 'description':'This is a description of a deal/post/sale 2', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair3.jpeg', 'description':'This is a description of a deal/post/sale 3', 'link':'@stylist_profile'},
+                  {'pic': 'img/hair4.jpeg', 'description':'This is a description of a deal/post/sale 4', 'link':'@stylist_profile'}];
 
     loading.dismiss();
     /*let data = new URLSearchParams();
@@ -357,7 +374,7 @@ export class FeedStylist {
     console.log('Begin async operation');
 
     return new Promise((resolve) => {
-      setTimeout(() => {
+
         /*let data = new URLSearchParams();
         data.append('page', this.totalCount.toString());*/
         resolve();
@@ -386,7 +403,7 @@ export class FeedStylist {
             }, error => {
                 console.log(error.json());
             });*/
-      }, 500);
+
     })
   }
 

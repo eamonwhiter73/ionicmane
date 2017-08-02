@@ -11,7 +11,7 @@
 <div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
 	<ion-item no-padding no-lines>
 		<div class="imageparent">
-      <img class="postprofilepic" src="../../assets/hair5.jpeg">
+      <img class="postprofilepic" src="img/hair5.jpeg">
     </div>
     <div class='ratecontain'>
 	    <div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -26,10 +26,10 @@
 		</div>
 		<div class="social">
 			<div class="fb inlineblock">
-				<img src="../../assets/facebook.png">
+				<img src="img/facebook.png">
 			</div>
 			<div class="insta inlineblock">
-      	<img src="../../assets/instagram.png">
+      	<img src="img/instagram.png">
 			</div>
 		</div>
 		<calendar (tap)='moveCover()' class='cal' [eventSource]="eventSource"
@@ -107,6 +107,16 @@
 	  </ion-row>
 	</ion-grid>
 </div>
+
+<ion-fab bottom center >
+  <button ion-fab></button>
+  <ion-fab-list side="right">
+    <button class="textsizebutton" (tap)='tappedPost()' ion-fab>Post</button>
+  </ion-fab-list>
+  <ion-fab-list side="left">
+    <button class="textsizebutton" (tap)='tappedEmergency()' ion-fab><ion-icon name="alarm"></ion-icon></button>
+  </ion-fab-list>
+</ion-fab>
 </ion-content>
 
 <canvas #myCanvas width="500" height="500"></canvas>

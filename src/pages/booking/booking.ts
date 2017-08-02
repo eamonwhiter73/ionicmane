@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, Renderer, QueryList, ElementRef, ViewChildren } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Appointment } from '../../models/appointment';
 import { FeedStylist } from '../../pages/feedstylist/feedstylist';
@@ -22,6 +22,7 @@ import { LoadingController } from 'ionic-angular';
   templateUrl: 'booking.html',
 })
 export class BookingPage {
+  @ViewChildren('slot') slots:QueryList<any>;
 	viewDate = new Date();
   events = [];
   viewTitle: string;
@@ -36,7 +37,7 @@ export class BookingPage {
   private swipeCoord?: [number, number];
   private swipeTime?: number;
 
-  constructor(public loadingController: LoadingController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public af: AngularFireDatabase) {
+  constructor(public myrenderer: Renderer, public loadingController: LoadingController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public af: AngularFireDatabase) {
     this.times = [{'time':'8:00 AM', 'selected': false}, {'time':'12:00 PM', 'selected': false}, {'time':'4:00 PM', 'selected': false},
                   {'time':'8:30 AM', 'selected': false}, {'time':'12:30 PM', 'selected': false}, {'time':'4:30 PM', 'selected': false},
                   {'time':'9:00 AM', 'selected': false}, {'time':'1:00 PM', 'selected': false}, {'time':'5:00 PM', 'selected': false},
@@ -52,6 +53,14 @@ export class BookingPage {
     //console.log(this.items);
         
     
+  }
+
+  emergency(i) {
+    console.log(this.slots);
+    let slotsarray = this.slots.toArray();
+    this.myrenderer.setElementStyle(slotsarray[i]._elementRef.nativeElement, 'background-color', 'red');
+    this.times[i].selected = true;
+    alert("Mane Emergency text sent to followers.")
   }
 
   swipe(e: TouchEvent, when: string): void {
@@ -169,6 +178,8 @@ export class BookingPage {
     });*/
   }
 
+  
+
   ionViewDidEnter() {
     let loading = this.loadingController.create({content : "Loading..."});
     loading.present();
@@ -224,9 +235,12 @@ export class BookingPage {
             }*/
           /*}
         }*/
-        loading.dismiss();
+        
       }));
+      loading.dismiss();
     },1500)
+
+    
     
   }
 

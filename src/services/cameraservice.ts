@@ -185,12 +185,15 @@ export class CameraService {
 
   // Return a promise to catch errors while loading image
   getMedia(options, square): Promise<any> {
+
     // Get Image from ionic-native's built in camera plugin
     return this.camera.getPicture(options)
       .then((fileUri) => {
+        
         // op Image, on android this returns something like, '/storage/emulated/0/Android/...'
         // Only giving an android example as ionic-native camera has built in cropping ability
         if (this.platform.is('ios')) {
+
           return this.crop.crop(fileUri, { quality: 10 });
         } else if (this.platform.is('android')) {
           // Modify fileUri format, may not always be necessary
@@ -201,6 +204,8 @@ export class CameraService {
         }
       })
       .then(newPath => {
+        console.log(newPath);
+        if(newPath) {
         let fileName = newPath.substring(newPath.lastIndexOf("/") + 1, newPath.length);
         let filePath = newPath.substring(0, newPath.lastIndexOf("/"));
         this.file.readAsDataURL(filePath, fileName).then(data =>{
@@ -239,7 +244,8 @@ export class CameraService {
             });
 
           
-        });
+        })
+        }
         
         /*let source_img = new Image(300, 300);
 
@@ -261,6 +267,8 @@ export class CameraService {
         //this.getFileEntryRead(newPath, square);
         //return newPath;
       });
+
+      
   }
 
   //mAKE ANOTHER FUNCTION that

@@ -30369,6 +30369,30 @@ page-feed-stylist .plussy {
   text-shadow: 2px 2px 6px black;
 }
 
+page-feed-stylist ion-fab {
+  position: absolute;
+  top: 63%;
+}
+
+page-feed-stylist .stylistviewbutton {
+  font-size: 12px;
+}
+
+page-feed-stylist .textsizebutton {
+  font-size: 12px;
+  background-color: black;
+  color: #e6c926;
+}
+
+page-feed-stylist .stylistview {
+  text-align: right;
+  position: absolute;
+  top: 0px;
+  right: 24%;
+  z-index: 5;
+  width: 5%;
+}
+
 page-feed-stylist .pluscontainer {
   position: fixed;
   z-index: 2;
@@ -30466,7 +30490,7 @@ page-feed-stylist #iontoolbar {
 }
 
 page-feed-stylist ion-toolbar div.toolbar-background {
-  background-image: url("../../assets/tresemme.png") !important;
+  background-image: url("../img/tresemme.png") !important;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -30480,7 +30504,7 @@ page-feed-stylist .custom-icon {
 }
 
 page-feed-stylist .ad {
-  background-image: url("../../assets/tresemme.png") !important;
+  background-image: url("../img/tresemme.png") !important;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
@@ -30502,7 +30526,7 @@ page-feed-stylist .itemadspace {
 }
 
 page-feed-stylist .background {
-  background-image: url("../../assets/tresemme.png");
+  background-image: url("../img/tresemme.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -30512,8 +30536,7 @@ page-feed-stylist .back-button.show-back-button {
 }
 
 page-feed-stylist .contentone {
-  position: fixed;
-  top: 88px;
+  position: absolute;
   width: 100%;
 }
 
@@ -30727,7 +30750,7 @@ page-feed-user .itemadspace {
   position: fixed;
   top: 0;
   left: 0;
-  background-image: url("../../assets/tresemme.png");
+  background-image: url("../img/tresemme.png");
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
@@ -30826,6 +30849,19 @@ page-feed-user .dropdowntwo {
   background-color: #404040;
   padding-right: 10px;
   padding-left: 10px;
+}
+
+page-feed-user .stylistview {
+  text-align: right;
+  position: absolute;
+  top: 0px;
+  right: 24%;
+  z-index: 5;
+  width: 5%;
+}
+
+page-feed-user .stylistviewbutton {
+  font-size: 12px;
 }
 
 page-feed-user li {
@@ -31033,7 +31069,7 @@ page-postpage .backk {
 }
 
 page-sign-in ion-content {
-  background-image: url("../../assets/purpleHairBG.png");
+  background-image: url("../img/purpleHairBG.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -31142,7 +31178,7 @@ page-sign-in ion-content .moveleftuser {
 }
 
 page-sign-up ion-content {
-  background-image: url("../../assets/purpleHairBG.png");
+  background-image: url("../img/purpleHairBG.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -31287,6 +31323,16 @@ page-stylist-profile .imageparent {
   overflow: hidden;
   display: inline-block;
   margin-left: 20px;
+}
+
+page-stylist-profile ion-fab {
+  position: absolute;
+}
+
+page-stylist-profile .textsizebutton {
+  font-size: 12px;
+  background-color: black;
+  color: #e6c926;
 }
 
 page-stylist-profile .stylistview {

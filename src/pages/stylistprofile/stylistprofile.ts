@@ -4,6 +4,8 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 import { FeedUser } from '../feeduser/feeduser';
 import { FeedStylist } from '../feedstylist/feedstylist';
 import { BookingPage } from '../booking/booking';
+import { PostpagePage } from '../postpage/postpage';
+
 
 import { CameraService } from '../../services/cameraservice';
 import { Camera } from '@ionic-native/camera';
@@ -150,6 +152,8 @@ export class StylistProfile {
                 });
               //
               
+            }).catch(e => {
+              console.log(e + "       eeeee");
             });
           }
         },{
@@ -169,6 +173,14 @@ export class StylistProfile {
     // causing the nav controller to transition to the new page
     // optional data can also be passed to the pushed page.
     //this.navCtrl.push(SignUpPage);
+  }
+
+  tappedPost() {
+    this.navCtrl.push(PostpagePage);
+  }
+
+  tappedEmergency() {
+    this.navCtrl.push(BookingPage);
   }
 
   backToFeed() {

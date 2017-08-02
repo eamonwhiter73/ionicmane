@@ -205,12 +205,15 @@ export class CameraServicePost {
         return new Promise((resolve, reject) => {
           let fileName = newPath.substring(newPath.lastIndexOf("/") + 1, newPath.length);
           let filePath = newPath.substring(0, newPath.lastIndexOf("/"));
-          this.file.readAsDataURL(filePath, fileName).then(data =>{
+          this.file.readAsDataURL(filePath, fileName).then(data => {
             console.log("readasdataurl");
             resolve(data);
           });
         })
-      });
+      }).catch(e => {
+
+        console.log(e);
+      })
         
         /*let source_img = new Image(300, 300);
 

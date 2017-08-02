@@ -2,6 +2,8 @@ import { AfterViewInit, NgZone, Component, trigger, state, style, transition, an
 import { NavController, ModalController } from 'ionic-angular';
 import { LoadingController, Content } from 'ionic-angular';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
+import { FeedStylist } from '../feedstylist/feedstylist';
+
 import { BookingPage } from '../booking/booking';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -177,6 +179,10 @@ export class FeedUser {
     }
   }
 
+  switchView() {
+    this.navCtrl.push(FeedStylist);
+  }
+
   closeMenu() {
     if(this.showDropDown == 'down' || this.showDropDownHeight == 'down') {
       this.showDropDown = 'up';
@@ -335,7 +341,7 @@ export class FeedUser {
 
                   let timestamp = datee.getTime();
 
-                  let obj = {'pic':'../../assets/hair5.jpeg', 'salon': userName, 'time': timestamp};
+                  let obj = {'pic':'img/hair5.jpeg', 'salon': userName, 'time': timestamp};
                   this.availabilities.push(obj);
                   
                   if(index == 23) {
@@ -409,6 +415,8 @@ export class FeedUser {
     date.setMinutes(minutes);
     //date.setSeconds(00);
 
+    console.log(date + '87&**&*&&**& date 8d888889898998');
+
     return date;
   }
 
@@ -421,7 +429,7 @@ export class FeedUser {
     //loading.present();
     this.list = this.af.list('/promos', {
     query: {
-      limitToFirst: 1
+      limitToFirst: 15
     }});
 
     this.list.subscribe(items => { 
@@ -431,34 +439,34 @@ export class FeedUser {
         this.items.push(item.customMetadata);
 
       });               
-    }) /*['../../assets/hair1.jpg', '../../assets/hair2.jpg', '../../assets/hair3.jpeg', '../../assets/hair4.jpeg',
-                  '../../assets/hair5.jpeg', '../../assets/hair6.jpg', '../../assets/hair7.jpg', '../../assets/hair8.jpg', 
-                  '../../assets/hair9.jpeg', '../../assets/hair10.jpg'];*/
+    }) /*['img/hair1.jpg', 'img/hair2.jpg', 'img/hair3.jpeg', 'img/hair4.jpeg',
+                  'img/hair5.jpeg', 'img/hair6.jpg', 'img/hair7.jpg', 'img/hair8.jpg', 
+                  'img/hair9.jpeg', 'img/hair10.jpg'];*/
 
     
 
     /*this.availabilities = [
                             
-                            {'pic': '../../assets/hair5.jpeg', 'salon':'Salon 5', 'time':'12:30PM'},
-                            {'pic': '../../assets/hair6.jpg', 'salon':'Salon 6', 'time':'1:00PM'},
-                            {'pic': '../../assets/hair7.jpg', 'salon':'Salon 7', 'time':'1:30PM'},
-                            {'pic': '../../assets/hair8.jpg', 'salon':'Salon 8', 'time':'2:00PM'},
-                            {'pic': '../../assets/hair9.jpeg', 'salon':'Salon 9', 'time':'2:30PM'},
-                            {'pic': '../../assets/hair10.jpg', 'salon':'Salon 10', 'time':'3:00PM'},
-                            {'pic': '../../assets/hair7.jpg', 'salon':'Salon 1', 'time':'10:30AM'},
-                            {'pic': '../../assets/hair2.jpg', 'salon':'Salon 2', 'time':'11:00AM'},
-                            {'pic': '../../assets/hair3.jpeg', 'salon':'Salon 3', 'time':'11:30AM'},
-                            {'pic': '../../assets/hair4.jpeg', 'salon':'Salon 4', 'time':'12:00PM'},
-                            {'pic': '../../assets/hair5.jpeg', 'salon':'Salon 5', 'time':'12:30PM'},
-                            {'pic': '../../assets/hair6.jpg', 'salon':'Salon 6', 'time':'1:00PM'},
-                            {'pic': '../../assets/hair7.jpg', 'salon':'Salon 7', 'time':'1:30PM'},
-                            {'pic': '../../assets/hair8.jpg', 'salon':'Salon 8', 'time':'2:00PM'},
-                            {'pic': '../../assets/hair9.jpeg', 'salon':'Salon 9', 'time':'2:30PM'},
-                            {'pic': '../../assets/hair10.jpg', 'salon':'Salon 10', 'time':'3:00PM'},
-                            {'pic': '../../assets/hair7.jpg', 'salon':'Salon 1', 'time':'10:30AM'},
-                            {'pic': '../../assets/hair2.jpg', 'salon':'Salon 2', 'time':'11:00AM'},
-                            {'pic': '../../assets/hair3.jpeg', 'salon':'Salon 3', 'time':'11:30AM'},
-                            {'pic': '../../assets/hair4.jpeg', 'salon':'Salon 4', 'time':'12:00PM'}
+                            {'pic': 'img/hair5.jpeg', 'salon':'Salon 5', 'time':'12:30PM'},
+                            {'pic': 'img/hair6.jpg', 'salon':'Salon 6', 'time':'1:00PM'},
+                            {'pic': 'img/hair7.jpg', 'salon':'Salon 7', 'time':'1:30PM'},
+                            {'pic': 'img/hair8.jpg', 'salon':'Salon 8', 'time':'2:00PM'},
+                            {'pic': 'img/hair9.jpeg', 'salon':'Salon 9', 'time':'2:30PM'},
+                            {'pic': 'img/hair10.jpg', 'salon':'Salon 10', 'time':'3:00PM'},
+                            {'pic': 'img/hair7.jpg', 'salon':'Salon 1', 'time':'10:30AM'},
+                            {'pic': 'img/hair2.jpg', 'salon':'Salon 2', 'time':'11:00AM'},
+                            {'pic': 'img/hair3.jpeg', 'salon':'Salon 3', 'time':'11:30AM'},
+                            {'pic': 'img/hair4.jpeg', 'salon':'Salon 4', 'time':'12:00PM'},
+                            {'pic': 'img/hair5.jpeg', 'salon':'Salon 5', 'time':'12:30PM'},
+                            {'pic': 'img/hair6.jpg', 'salon':'Salon 6', 'time':'1:00PM'},
+                            {'pic': 'img/hair7.jpg', 'salon':'Salon 7', 'time':'1:30PM'},
+                            {'pic': 'img/hair8.jpg', 'salon':'Salon 8', 'time':'2:00PM'},
+                            {'pic': 'img/hair9.jpeg', 'salon':'Salon 9', 'time':'2:30PM'},
+                            {'pic': 'img/hair10.jpg', 'salon':'Salon 10', 'time':'3:00PM'},
+                            {'pic': 'img/hair7.jpg', 'salon':'Salon 1', 'time':'10:30AM'},
+                            {'pic': 'img/hair2.jpg', 'salon':'Salon 2', 'time':'11:00AM'},
+                            {'pic': 'img/hair3.jpeg', 'salon':'Salon 3', 'time':'11:30AM'},
+                            {'pic': 'img/hair4.jpeg', 'salon':'Salon 4', 'time':'12:00PM'}
 
                           ];*/
 
@@ -466,26 +474,26 @@ export class FeedUser {
 
 
     this.rating = [
-                    {'pic': '../../assets/hair5.jpeg', 'salon':'Salon 5', 'time':'\u2605\u2605\u2605'},
-                    {'pic': '../../assets/hair6.jpg', 'salon':'Salon 6', 'time':'\u2605\u2605'},
-                    {'pic': '../../assets/hair7.jpg', 'salon':'Salon 7', 'time':'\u2605\u2605\u2605\u2605'},
-                    {'pic': '../../assets/hair8.jpg', 'salon':'Salon 8', 'time':'\u2605\u2605\u2605\u2605\u2605'},
-                    {'pic': '../../assets/hair9.jpeg', 'salon':'Salon 9', 'time':'\u2605\u2605'},
-                    {'pic': '../../assets/hair10.jpg', 'salon':'Salon 10', 'time':'\u2605\u2605\u2605\u2605'},
-                    {'pic': '../../assets/hair7.jpg', 'salon':'Salon 1', 'time':'\u2605\u2605'},
-                    {'pic': '../../assets/hair2.jpg', 'salon':'Salon 2', 'time':'\u2605\u2605\u2605'},
-                    {'pic': '../../assets/hair3.jpeg', 'salon':'Salon 3', 'time':'\u2605\u2605\u2605\u2605'},
-                    {'pic': '../../assets/hair4.jpeg', 'salon':'Salon 4', 'time':'\u2605\u2605'},
-                    {'pic': '../../assets/hair5.jpeg', 'salon':'Salon 5', 'time':'\u2605\u2605\u2605\u2605'},
-                    {'pic': '../../assets/hair6.jpg', 'salon':'Salon 6', 'time':'\u2605\u2605\u2605\u2605\u2605'},
-                    {'pic': '../../assets/hair7.jpg', 'salon':'Salon 7', 'time':'\u2605\u2605\u2605'},
-                    {'pic': '../../assets/hair8.jpg', 'salon':'Salon 8', 'time':'\u2605\u2605\u2605'},
-                    {'pic': '../../assets/hair9.jpeg', 'salon':'Salon 9', 'time':'\u2605\u2605'},
-                    {'pic': '../../assets/hair10.jpg', 'salon':'Salon 10', 'time':'\u2605\u2605\u2605\u2605'},
-                    {'pic': '../../assets/hair7.jpg', 'salon':'Salon 1', 'time':'\u2605\u2605\u2605\u2605'},
-                    {'pic': '../../assets/hair2.jpg', 'salon':'Salon 2', 'time':'\u2605\u2605'},
-                    {'pic': '../../assets/hair3.jpeg', 'salon':'Salon 3', 'time':'\u2605\u2605\u2605'},
-                    {'pic': '../../assets/hair4.jpeg', 'salon':'Salon 4', 'time':'\u2605\u2605\u2605\u2605'}
+                    {'pic': 'img/hair5.jpeg', 'salon':'Salon 5', 'time':'\u2605\u2605\u2605'},
+                    {'pic': 'img/hair6.jpg', 'salon':'Salon 6', 'time':'\u2605\u2605'},
+                    {'pic': 'img/hair7.jpg', 'salon':'Salon 7', 'time':'\u2605\u2605\u2605\u2605'},
+                    {'pic': 'img/hair8.jpg', 'salon':'Salon 8', 'time':'\u2605\u2605\u2605\u2605\u2605'},
+                    {'pic': 'img/hair9.jpeg', 'salon':'Salon 9', 'time':'\u2605\u2605'},
+                    {'pic': 'img/hair10.jpg', 'salon':'Salon 10', 'time':'\u2605\u2605\u2605\u2605'},
+                    {'pic': 'img/hair7.jpg', 'salon':'Salon 1', 'time':'\u2605\u2605'},
+                    {'pic': 'img/hair2.jpg', 'salon':'Salon 2', 'time':'\u2605\u2605\u2605'},
+                    {'pic': 'img/hair3.jpeg', 'salon':'Salon 3', 'time':'\u2605\u2605\u2605\u2605'},
+                    {'pic': 'img/hair4.jpeg', 'salon':'Salon 4', 'time':'\u2605\u2605'},
+                    {'pic': 'img/hair5.jpeg', 'salon':'Salon 5', 'time':'\u2605\u2605\u2605\u2605'},
+                    {'pic': 'img/hair6.jpg', 'salon':'Salon 6', 'time':'\u2605\u2605\u2605\u2605\u2605'},
+                    {'pic': 'img/hair7.jpg', 'salon':'Salon 7', 'time':'\u2605\u2605\u2605'},
+                    {'pic': 'img/hair8.jpg', 'salon':'Salon 8', 'time':'\u2605\u2605\u2605'},
+                    {'pic': 'img/hair9.jpeg', 'salon':'Salon 9', 'time':'\u2605\u2605'},
+                    {'pic': 'img/hair10.jpg', 'salon':'Salon 10', 'time':'\u2605\u2605\u2605\u2605'},
+                    {'pic': 'img/hair7.jpg', 'salon':'Salon 1', 'time':'\u2605\u2605\u2605\u2605'},
+                    {'pic': 'img/hair2.jpg', 'salon':'Salon 2', 'time':'\u2605\u2605'},
+                    {'pic': 'img/hair3.jpeg', 'salon':'Salon 3', 'time':'\u2605\u2605\u2605'},
+                    {'pic': 'img/hair4.jpeg', 'salon':'Salon 4', 'time':'\u2605\u2605\u2605\u2605'}
                   ];
     
     this.weeklydeal = [
