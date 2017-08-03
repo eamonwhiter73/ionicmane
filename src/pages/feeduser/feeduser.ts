@@ -303,6 +303,10 @@ export class FeedUser {
     this.dropDown();
   }
 
+  gotoProfile() {
+    this.navCtrl.push(StylistProfile);
+  }
+
   onScroll(event) {
     console.log(event);
   }

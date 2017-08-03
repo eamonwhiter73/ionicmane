@@ -181,8 +181,8 @@ export class BookingPage {
   
 
   ionViewDidEnter() {
-    let loading = this.loadingController.create({content : "Loading..."});
-    loading.present();
+    //let loading = this.loadingController.create({content : "Loading..."});
+    //loading.present();
     this.isSomething = true;
 
     this.storage.get('username').then((val) => {
@@ -237,7 +237,7 @@ export class BookingPage {
         }*/
         
       }));
-      loading.dismiss();
+      //loading.dismiss();
     },1500)
 
     

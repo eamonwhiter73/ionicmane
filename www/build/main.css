@@ -30379,7 +30379,6 @@ page-feed-stylist .plussy {
   font-weight: 700;
   color: #e6c926;
   /*position: relative;*/
-  text-shadow: 2px 2px 6px black;
 }
 
 page-feed-stylist ion-fab {
@@ -30395,6 +30394,9 @@ page-feed-stylist .textsizebutton {
   font-size: 12px;
   background-color: black;
   color: #e6c926;
+  border-color: #e6c926;
+  border-width: 1px;
+  border-style: solid;
 }
 
 page-feed-stylist .stylistview {
@@ -31415,7 +31417,7 @@ page-stylist-profile .table.table-bordered.table-fixed.monthview-datetable {
 page-stylist-profile .cal {
   position: relative;
   width: 60%;
-  top: -120px;
+  top: -126px;
   left: 35%;
 }
 
@@ -31480,11 +31482,11 @@ page-stylist-profile .event-detail-container {
 page-stylist-profile ion-grid {
   z-index: 2;
   position: absolute;
-  top: 37%;
+  top: 34.7%;
 }
 
 page-stylist-profile ion-grid .col {
-  padding: 1px 1px 1px 1px;
+  padding: 0.5px 0.5px 0.5px 0.5px;
 }
 
 page-stylist-profile .back-button.show-back-button {

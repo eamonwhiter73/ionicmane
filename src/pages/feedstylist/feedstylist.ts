@@ -32,7 +32,7 @@ import { AngularFireAuth } from 'angularfire2/auth'
     ]),
     trigger('moveList', [
       state('down', style({
-        top: 284 + "px",
+        top: 304 + "px",
       })),
       state('up', style({
         top: 142 + "px",

@@ -29,10 +29,10 @@ import { Storage } from '@ionic/storage';
   animations: [
     trigger('moveCover', [
       state('down', style({
-        top: '-103px',
+        top: '-109px',
       })),
       state('up', style({
-        top: '-182px',
+        top: '-188px',
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),
@@ -53,6 +53,7 @@ export class StylistProfile {
   _imageViewerCtrl: ImageViewerController;
   private swipeCoord?: [number, number];
   private swipeTime?: number;
+  loadings;
 
   constructor(public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
     /*this.items = af.list('/profile/' + this.username);
@@ -123,8 +124,9 @@ export class StylistProfile {
                     console.log(url);
                     this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
                     this.showSquare();
-                    loading.dismiss();
+                    
                   });
+                  loading.dismiss();
                 }, 3000);
             }); //pass in square choice
             //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
@@ -145,9 +147,10 @@ export class StylistProfile {
                       console.log(url);
                       this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
                       this.showSquare();
-                      loading.dismiss();
+                      
                       resolve();
                     });
+                    loading.dismiss();
                   }, 3000);
                 });
               //
@@ -258,11 +261,15 @@ export class StylistProfile {
     return Promise.all(promises_array);
   }
 
+  ionViewWillEnter() {
+    this.loadings = this.loadingController.create({content : "Loading..."});
+    this.loadings.present();
+    
+  }
+
   ionViewDidEnter() {
-    let loading = this.loadingController.create({content : "Loading..."});
-    loading.present();
     this.downloadImages().then(() => {
-      loading.dismiss();
+      this.loadings.dismiss();
     })
 
     this.storage.get('username').then((val) => {

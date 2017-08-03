@@ -1,0 +1,66 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-calendar": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-crop": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-datepicker": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "1395258797190658",
+            "APP_NAME": "ManeEmergency",
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-googleplus": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-nativestorage": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        }
+    }
+}

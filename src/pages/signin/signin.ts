@@ -44,20 +44,25 @@ export class SignInPage {
     // causing the nav controller to transition to the new page
     // optional data can also be passed to the pushed page.
     /**/
-    const result = this.afAuth.auth.signInWithEmailAndPassword(userx.email, userx.password).then((data) => {
-      console.log(data);
-      if(data.email && data.uid) {
-        if(this.users) {
-          this.navCtrl.push(FeedUser);
+    if(!userx.email || !userx.password) {
+      alert("You need to enter an email and password");
+    }
+    else {
+      const result = this.afAuth.auth.signInWithEmailAndPassword(userx.email, userx.password).then((data) => {
+        console.log(data);
+        if(data.email && data.uid) {
+          if(this.users) {
+            this.navCtrl.push(FeedUser);
+          }
+          else if(this.stylist) {
+            this.navCtrl.push(FeedStylist)
+          }
+          else {
+            alert("You need to select User or Stylist.");
+          }
         }
-        else if(this.stylist) {
-          this.navCtrl.push(FeedStylist)
-        }
-        else {
-          alert("You need to select User or Stylist.");
-        }
-      }
-    });
+      });
+    }
   }
 
   pushPage(){
