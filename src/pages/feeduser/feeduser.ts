@@ -9,7 +9,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 import { PopUp } from '../../modals/popup/popup';
-
+import { OnDestroy } from "@angular/core";
+import { ISubscription } from "rxjs/Subscription";
 
 
 @Component({
@@ -64,7 +65,7 @@ import { PopUp } from '../../modals/popup/popup';
     ]),
   ]
 })
-export class FeedUser {
+export class FeedUser implements OnDestroy {
   @ViewChild('changeText') changeText: ElementRef;
   @ViewChild('availability') availability: ElementRef;
   @ViewChild('contentone') contentOne: ElementRef;
@@ -86,6 +87,11 @@ export class FeedUser {
   lastScrollTop: number = 0;
   direction: string = "";
 
+  private subscription: ISubscription;
+  private subscription2: ISubscription;
+  private subscription3: ISubscription;
+  private subscription4: ISubscription;
+
   toolbarClicks = 0;
 
   list: FirebaseListObservable<any>;
@@ -103,6 +109,13 @@ export class FeedUser {
      
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.subscription2.unsubscribe();
+    this.subscription3.unsubscribe();
+    this.subscription4.unsubscribe();
+  } 
+
   pushPage(){
     // push another page on to the navigation stack
     // causing the nav controller to transition to the new page
@@ -111,7 +124,7 @@ export class FeedUser {
   }
 
   ionViewWillLoad() {
-    this.afAuth.authState.subscribe(data => {
+    this.subscription = this.afAuth.authState.subscribe(data => {
       /*if(data.email && data.uid) {
         console.log("logged in");
       }*/
@@ -119,6 +132,8 @@ export class FeedUser {
 
 
   }
+
+
 
   scrollHandler(event) {
    //console.log(JSON.stringify(event));
@@ -314,7 +329,7 @@ export class FeedUser {
   loadAvailabilities(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.appointments = this.af.list('/appointments');
-      this.appointments.subscribe(items => items.forEach(item => {
+      this.subscription2 = this.appointments.subscribe(items => items.forEach(item => {
         console.log(item);
         let userName = item.$key;
         this.availabilities = [];
@@ -322,7 +337,7 @@ export class FeedUser {
           let month = x;
           console.log(x + "      month");
           this.appointmentsMonth = this.af.list('/appointments/' + userName + '/' + month);
-          this.appointmentsMonth.subscribe(items => items.forEach(item => {
+          this.subscription3 = this.appointmentsMonth.subscribe(items => items.forEach(item => {
             //console.log(JSON.stringify(item) + "           item");
             let date = new Date(item.date.day * 1000);
             let today = new Date();
@@ -425,7 +440,7 @@ export class FeedUser {
       limitToFirst: 15
     }});
 
-    this.list.subscribe(items => { 
+    this.subscription4 = this.list.subscribe(items => { 
       items.forEach(item => {
         console.log(JSON.stringify(item.customMetadata));
         this.startAtKey = item.$key;

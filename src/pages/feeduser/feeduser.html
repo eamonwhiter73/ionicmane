@@ -43,7 +43,7 @@
 
   <div class ='contentone' #contentone [@moveList]='moveState'>
    <ion-list class="marginstatus" no-padding>
-     <ion-item *ngFor="let i of items" no-padding no-lines>
+     <ion-item *ngFor="let i of items" (tap)="gotoProfile()" no-padding no-lines>
       <div class="feedtoptextcontainer">
         <div class="imageparent">
           <img class="postprofilepic" src="{{i.url}}">

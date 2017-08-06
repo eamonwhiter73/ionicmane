@@ -6,6 +6,8 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { Storage } from '@ionic/storage';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { LoadingController } from 'ionic-angular';
+import { OnDestroy } from "@angular/core";
+import { ISubscription } from "rxjs/Subscription";
 
 
 
@@ -21,7 +23,7 @@ import { LoadingController } from 'ionic-angular';
   selector: 'page-booking',
   templateUrl: 'booking.html',
 })
-export class BookingPage {
+export class BookingPage implements OnDestroy {
   @ViewChildren('slot') slots:QueryList<any>;
 	viewDate = new Date();
   events = [];
@@ -33,9 +35,14 @@ export class BookingPage {
   appointments: string[] = [];
   selectedDate: Date;
   items : FirebaseListObservable<any>;
+  items2 : FirebaseListObservable<any>;
+  items3 : FirebaseListObservable<any>;
   isSomething : boolean;
   private swipeCoord?: [number, number];
   private swipeTime?: number;
+  private subscription: ISubscription;
+  private subscription2: ISubscription;
+  private subscription3: ISubscription;
 
   constructor(public myrenderer: Renderer, public loadingController: LoadingController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public af: AngularFireDatabase) {
     this.times = [{'time':'8:00 AM', 'selected': false}, {'time':'12:00 PM', 'selected': false}, {'time':'4:00 PM', 'selected': false},
@@ -107,7 +114,7 @@ export class BookingPage {
     //let timestamp = this.toTimeStamp(this.selectedDate.toString());
 
     this.items = this.af.list('/appointments/' + this.username + '/' + this.selectedDate.getMonth());
-    this.items.subscribe(items => items.forEach(item => {
+    this.subscription = this.items.subscribe(items => items.forEach(item => {
       let str = new Date(item.date.day * 1000);
       let mon = str.getMonth();
       let dy = str.getDate();
@@ -117,7 +124,9 @@ export class BookingPage {
         this.items.update(item.$key, {'reserved':{'appointment':this.times}})
       }
 
-    }));    
+    }));
+
+     
     
     if(!foundit) {
       console.log(this.username + 'down here');
@@ -193,8 +202,8 @@ export class BookingPage {
     setTimeout(()=>{
       this.selectedDate = this.viewDate;
       console.log(this.username + "this.username");
-      this.items = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
-      this.items.subscribe(items => items.forEach(item => {
+      this.items2 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+      this.subscription2 = this.items2.subscribe(items => items.forEach(item => {
 
         let da = new Date(item.date.day * 1000);
         console.log(da + "da");
@@ -261,8 +270,8 @@ export class BookingPage {
       this.selectedDate = new Date($event);
       console.log(this.selectedDate);
 
-      this.items = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
-      this.items.subscribe(items => items.forEach(item => {
+      this.items3 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+      this.subscription3 = this.items3.subscribe(items => items.forEach(item => {
         //console.log(JSON.stringify(item));
         //console.log(item.date.day);
         console.log("dafirst    " + item.date.day )
@@ -294,6 +303,12 @@ export class BookingPage {
 
     this.isSomething = false;
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.subscription2.unsubscribe();
+    this.subscription3.unsubscribe();
+  } 
 
   reloadSource(startTime, endTime) {}
 

@@ -10,6 +10,8 @@ import { BookingPage } from '../booking/booking';
 import { CameraServicePost } from '../../services/cameraservicepost';
 import { Camera } from '@ionic-native/camera';
 import { AngularFireAuth } from 'angularfire2/auth'
+import { OnDestroy } from "@angular/core";
+import { ISubscription } from "rxjs/Subscription";
 
 
 
@@ -60,7 +62,7 @@ import { AngularFireAuth } from 'angularfire2/auth'
 
   ]
 })
-export class FeedStylist {
+export class FeedStylist implements OnDestroy {
   @ViewChild('clickme') clickme;
   @ViewChildren('feedstyle') components:QueryList<any>;
   @ViewChildren('flex') flexComponents:QueryList<any>;
@@ -83,14 +85,14 @@ export class FeedStylist {
 
   private swipeCoord?: [number, number];
   private swipeTime?: number;
-
+  private subscription: ISubscription;
+  private subscription2: ISubscription;
+  private subscription3: ISubscription;
   private nav:NavController;
 
   constructor(private afAuth: AngularFireAuth, public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, private elRef:ElementRef, public loadingController: LoadingController, public navCtrl: NavController) {
     this.nav = this.app.getActiveNav();
   }
-
-  gotTo
 
   public optionsGetMedia: any = {
         allowEdit: false,
@@ -186,7 +188,7 @@ export class FeedStylist {
           handler: () => {
             //let itemArrayTwo = this.profComponents.toArray();
             this.cameraServicePost.getMedia(this.optionsGetCamera).then((data) => {
-                this.nav.push(PostpagePage, { path: data });
+                this.navCtrl.push(PostpagePage, { path: data });
                 /*let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');
                 let loading = this.loadingController.create({content : "Loading..."});
                 loading.present();
@@ -210,7 +212,7 @@ export class FeedStylist {
             this.cameraServicePost.getMedia(this.optionsGetMedia).then((data) => {
               console.log(data + "dadadaddkdkktatatat");
               if(data) {
-                this.nav.push(PostpagePage, { path: data });
+                this.navCtrl.push(PostpagePage, { path: data });
                   /*return new Promise((resolve, reject) => {
                     let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');
                     let loading = this.loadingController.create({content : "Loading..."});
@@ -368,6 +370,12 @@ export class FeedStylist {
         }, error => {
           console.log(JSON.stringify(error));
         });*/
+  }
+
+  ngOnDestroy() {
+    //this.subscription.unsubscribe();
+    //this.subscription2.unsubscribe();
+    //this.subscription3.unsubscribe();
   }
 
   doInfinite(): Promise<any> {

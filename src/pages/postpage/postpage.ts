@@ -6,6 +6,8 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { Storage } from '@ionic/storage';
 import firebase from 'firebase';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { OnDestroy } from "@angular/core";
+import { ISubscription } from "rxjs/Subscription";
 
 
 
@@ -21,7 +23,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
   selector: 'page-postpage',
   templateUrl: 'postpage.html',
 })
-export class PostpagePage {
+export class PostpagePage implements OnDestroy {
 	@ViewChild('imagey') image:ElementRef;
   @ViewChild('sharer') share;
  	imageHolder;
@@ -29,9 +31,16 @@ export class PostpagePage {
   selectVal;
   username;
   list: FirebaseListObservable<any>
+  private subscription: ISubscription;
+  private subscription2: ISubscription;
 
   constructor(public af: AngularFireDatabase, public viewCtrl: ViewController, public storage: Storage, public keyboard: Keyboard, private datePicker: DatePicker, public myrenderer: Renderer, public navCtrl: NavController, public navParams: NavParams) {
 
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.subscription2.unsubscribe();
   }
 
   ionViewDidLoad() {
@@ -42,10 +51,10 @@ export class PostpagePage {
       console.log(r);
     }
     
-    this.keyboard.onKeyboardShow().subscribe(()=>{
+    this.subscription = this.keyboard.onKeyboardShow().subscribe(()=>{
       this.myrenderer.setElementStyle(this.share.getNativeElement(), 'bottom', '-150px');
     })
-    this.keyboard.onKeyboardHide().subscribe(()=>{
+    this.subscription2 = this.keyboard.onKeyboardHide().subscribe(()=>{
       console.log("keyboard being hid **&^&^&^&^&^&");
       console.log(this.share.getNativeElement() + " * f8d fd8 f8df8 fd8 f8d 8f fd8 8 fd");
       this.myrenderer.setElementStyle(this.share.getNativeElement(), 'bottom', '0');
@@ -111,10 +120,7 @@ export class PostpagePage {
             }
             this.list = this.af.list('/promos');
             this.list.subscribe(items => {
-              
-
-              console.log(JSON.stringify(metadata));
-              
+                            
             })
 
             this.list.push(metadata)
