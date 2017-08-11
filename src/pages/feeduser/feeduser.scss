@@ -2,6 +2,11 @@ page-feed-user {
 	.imagepost {
 		width: 100%;
 	}
+
+	ion-item {
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
 	
 	.postprofilelink {
 		position: relative;
@@ -76,7 +81,7 @@ page-feed-user {
 	}
 
 	ion-label {
-		margin: 0px 0px 0px 0px !important;
+		margin: 5px 0px 5px 0px !important
 	}
 
 	#iontoolbar {

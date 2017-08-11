@@ -161,6 +161,14 @@ export class FeedStylist implements OnDestroy {
     }
   }
 
+  swipeLeft() {
+    this.toProfile();
+  }
+
+  swipeRight() {
+    this.toBooking();
+  }
+
   switchView() {
     this.navCtrl.push(FeedUser);
   }
@@ -325,7 +333,6 @@ export class FeedStylist implements OnDestroy {
 
   getInitialImages() {
     let loading = this.loadingController.create({content : "Loading..."});
-    loading.present();
 
     this.items = /*['../../assets/hair1.jpg', '../../assets/hair2.jpg', '../../assets/hair3.jpeg', '../../assets/hair4.jpeg',
                   '../../assets/hair5.jpeg', '../../assets/hair6.jpg', '../../assets/hair7.jpg', '../../assets/hair8.jpg', 
@@ -351,7 +358,6 @@ export class FeedStylist implements OnDestroy {
                   {'pic': 'img/hair3.jpeg', 'description':'This is a description of a deal/post/sale 3', 'link':'@stylist_profile'},
                   {'pic': 'img/hair4.jpeg', 'description':'This is a description of a deal/post/sale 4', 'link':'@stylist_profile'}];
 
-    loading.dismiss();
     /*let data = new URLSearchParams();
     data.append('page', this.totalCount.toString());
     console.log("constructed");

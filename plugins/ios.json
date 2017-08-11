@@ -60,10 +60,23 @@
         },
         "cordova-plugin-datepicker": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-geolocation": {
+            "GEOLOCATION_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-nativegeocoder": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova.plugins.diagnostic": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-add-swift-support": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     }

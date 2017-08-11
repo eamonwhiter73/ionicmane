@@ -30382,8 +30382,8 @@ page-feed-stylist .plussy {
 }
 
 page-feed-stylist ion-fab {
-  position: absolute;
-  top: 63%;
+  position: fixed;
+  top: 85%;
 }
 
 page-feed-stylist .stylistviewbutton {
@@ -30653,6 +30653,11 @@ page-feed-user .imagepost {
   width: 100%;
 }
 
+page-feed-user ion-item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 page-feed-user .postprofilelink {
   position: relative;
   width: 100%;
@@ -30731,7 +30736,7 @@ page-feed-user .item-inner {
 }
 
 page-feed-user ion-label {
-  margin: 0px 0px 0px 0px !important;
+  margin: 5px 0px 5px 0px !important;
 }
 
 page-feed-user #iontoolbar {
@@ -31082,6 +31087,105 @@ page-postpage .postnamecont {
 page-postpage .backk {
   font-size: 36px;
   padding: 0 15px 0 15px;
+}
+
+page-settings ion-content {
+  top: 0%;
+}
+
+page-settings ion-content ion-input {
+  position: relative;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: white;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  font-size: 14px;
+}
+
+page-settings ion-content .ioninput {
+  position: relative;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: white;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  font-size: 14px;
+}
+
+page-settings ion-content input {
+  text-align: right;
+}
+
+page-settings ion-content .label-md {
+  margin: 0;
+}
+
+page-settings ion-content ion-label {
+  width: 33.3%;
+  display: inline-block;
+  position: relative;
+  display: table-cell;
+  vertical-align: bottom;
+  color: gray;
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+page-settings ion-content .sect {
+  width: 100%;
+  display: table;
+}
+
+page-settings .imagesquare {
+  max-width: 100%;
+  height: auto;
+  z-index: 1;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+}
+
+page-settings ion-textarea {
+  display: inline-block;
+  width: 100%;
+  font-size: 14px;
+}
+
+page-settings ion-header {
+  height: 20%;
+}
+
+page-settings ion-header ion-navbar {
+  height: 78%;
+}
+
+page-settings ion-header ion-navbar div.toolbar-background {
+  background-color: #e6c926;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+page-settings ion-header .toolbar .toolbar-background {
+  border-color: white;
+}
+
+page-settings .save {
+  position: relative;
+  height: 44px;
+}
+
+page-settings #savebutton {
+  text-align: center;
+  width: 100%;
+  top: 15px;
+  position: relative;
 }
 
 page-sign-in ion-content {

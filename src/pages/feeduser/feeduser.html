@@ -90,6 +90,23 @@
    </ion-list>
   </div>
 
+  <div class ='distance contentone' #distance [@moveList]='moveState'>
+   <ion-list class="marginstatus" no-padding>
+     <ion-item *ngFor="let z of distances" no-padding>
+      <div class="feedtoptextcontainer">
+        <div class="imageparent">
+          <img class="postprofilepic" src="{{z.pic}}">
+        </div>
+        <div class="usernamecontainer">
+          <h4 class="postusername">{{z.salon}}</h4><br>
+          <h4 class="poststudio">{{z.distance}} mi</h4>
+        </div>
+      </div>
+      <!--<img class="imagepost" src="{{i}}">-->
+     </ion-item>
+   </ion-list>
+  </div>
+
   <div class ='ratings contentone' #ratings [@moveList]='moveState'>
    <ion-list class="marginstatus" no-padding>
      <ion-item *ngFor="let a of rating" no-padding>
@@ -100,6 +117,23 @@
         <div class="usernamecontainer">
           <h4 class="postusername">{{a.salon}}</h4><br>
           <h4 class="poststudio">{{a.time}}</h4>
+        </div>
+      </div>
+      <!--<img class="imagepost" src="{{i}}">-->
+     </ion-item>
+   </ion-list>
+  </div>
+
+  <div class ='price contentone' #price [@moveList]='moveState'>
+   <ion-list class="marginstatus" no-padding>
+     <ion-item *ngFor="let a of pricesArray" no-padding>
+      <div class="feedtoptextcontainer">
+        <div class="imageparent">
+          <img class="postprofilepic" src="{{a.picURL}}">
+        </div>
+        <div class="usernamecontainer">
+          <h4 class="postusername">{{a.username}}</h4><br>
+          <h4 class="poststudio">{{a.price}}</h4>
         </div>
       </div>
       <!--<img class="imagepost" src="{{i}}">-->

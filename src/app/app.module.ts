@@ -13,7 +13,7 @@ import { PostpagePage } from '../pages/postpage/postpage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StylistProfile } from '../pages/stylistprofile/stylistprofile';
 import { BookingPage } from '../pages/booking/booking';
-
+import { SettingsPage } from '../pages/settings/settings';
 
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { Keyboard } from '@ionic-native/keyboard';
@@ -28,6 +28,8 @@ import { Crop } from '@ionic-native/crop';
 import { File } from '@ionic-native/file';
 import { CameraService } from '../services/cameraservice';
 import { CameraServicePost } from '../services/cameraservicepost';
+import { CameraServiceProfile } from '../services/cameraserviceprofile';
+
 
 import { HttpModule } from '@angular/http';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
@@ -38,6 +40,14 @@ import { Facebook } from '@ionic-native/facebook'
 import { PopUp } from '../modals/popup/popup'
 import { IonicImageLoader } from 'ionic-image-loader';
 import { DatePicker } from '@ionic-native/date-picker';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { Geolocation } from '@ionic-native/geolocation';
+import { Diagnostic } from '@ionic-native/diagnostic';
+
+
+
+
+import * as firebase from 'firebase';
 
 
 
@@ -56,6 +66,7 @@ export const firebaseConfig = {
   messagingSenderId: "446057524325"
 }
 
+firebase.initializeApp(firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -67,7 +78,8 @@ export const firebaseConfig = {
     StylistProfile,
     PostpagePage,
     BookingPage,
-    PopUp
+    PopUp,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -94,7 +106,8 @@ export const firebaseConfig = {
     StylistProfile,
     PostpagePage,
     BookingPage,
-    PopUp
+    PopUp,
+    SettingsPage
   ],
   providers: [
     StatusBar,
@@ -104,12 +117,16 @@ export const firebaseConfig = {
     Camera,
     CameraService,
     CameraServicePost,
+    CameraServiceProfile,
     Transfer,
     Crop,
     File,
     ImageViewerController,
     Facebook,
-    DatePicker
+    DatePicker,
+    NativeGeocoder,
+    Geolocation,
+    Diagnostic
   ]
 })
 export class AppModule {}

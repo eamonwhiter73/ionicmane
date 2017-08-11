@@ -1,4 +1,4 @@
-<ion-header (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+<ion-header (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
   <ion-navbar>
     <ion-title>@stylist_profile</ion-title>
     <!--<div class="stylistview">
@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content no-padding>
-<div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+<div (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
 	<ion-item no-padding no-lines>
 		<div class="imageparent">
       <img class="postprofilepic" src="img/hair5.jpeg">
@@ -108,7 +108,7 @@
 	</ion-grid>
 </div>
 
-<ion-fab bottom center >
+<!--<ion-fab bottom center >
   <button ion-fab></button>
   <ion-fab-list side="right">
     <button class="textsizebutton" (tap)='tappedPost()' ion-fab>Post</button>
@@ -116,7 +116,5 @@
   <ion-fab-list side="left">
     <button class="textsizebutton" (tap)='tappedEmergency()' ion-fab><ion-icon name="alarm"></ion-icon></button>
   </ion-fab-list>
-</ion-fab>
+</ion-fab>-->
 </ion-content>
-
-<canvas #myCanvas width="500" height="500"></canvas>

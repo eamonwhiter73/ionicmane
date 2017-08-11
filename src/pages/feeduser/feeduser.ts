@@ -11,6 +11,10 @@ import { Storage } from '@ionic/storage';
 import { PopUp } from '../../modals/popup/popup';
 import { OnDestroy } from "@angular/core";
 import { ISubscription } from "rxjs/Subscription";
+import * as firebase from 'firebase';
+import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+import { Diagnostic } from '@ionic-native/diagnostic';
 
 
 @Component({
@@ -73,6 +77,9 @@ export class FeedUser implements OnDestroy {
   @ViewChild('weeklydeals') weekly: ElementRef;
   @ViewChild('promos') promos: ElementRef;
   @ViewChild('weekly') weeklyyellow: ElementRef;
+  @ViewChild('price') price: ElementRef;
+  @ViewChild('distance') distancey: ElementRef;
+
   @ViewChild(Content  ) content: Content;
 
   downState: String = 'notDown';
@@ -86,11 +93,18 @@ export class FeedUser implements OnDestroy {
   show = true;
   lastScrollTop: number = 0;
   direction: string = "";
+  prices: FirebaseListObservable<any>;
+  distancelist: FirebaseListObservable<any>;
+  pricesArray = [];
+  distances = [];
 
   private subscription: ISubscription;
   private subscription2: ISubscription;
   private subscription3: ISubscription;
   private subscription4: ISubscription;
+  private subscription5: ISubscription;
+  private subscription6: ISubscription;
+
 
   toolbarClicks = 0;
 
@@ -105,7 +119,7 @@ export class FeedUser implements OnDestroy {
   el;
   startAtKey;
 
-  constructor(public zone: NgZone, public modalCtrl: ModalController, public af: AngularFireDatabase, public storage: Storage, private afAuth: AngularFireAuth, public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(private diagnostic: Diagnostic, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, public zone: NgZone, public modalCtrl: ModalController, public af: AngularFireDatabase, public storage: Storage, private afAuth: AngularFireAuth, public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
      
   }
 
@@ -114,6 +128,10 @@ export class FeedUser implements OnDestroy {
     this.subscription2.unsubscribe();
     this.subscription3.unsubscribe();
     this.subscription4.unsubscribe();
+    this.subscription5.unsubscribe();
+    this.subscription6.unsubscribe();
+
+
   } 
 
   pushPage(){
@@ -150,9 +168,95 @@ export class FeedUser implements OnDestroy {
    })
   }
 
+  distance(lat1, lon1, lat2, lon2, unit) {
+    let radlat1 = Math.PI * lat1/180
+    let radlat2 = Math.PI * lat2/180
+    let theta = lon1-lon2
+    let radtheta = Math.PI * theta/180
+    let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+    dist = Math.acos(dist)
+    dist = dist * 180/Math.PI
+    dist = dist * 60 * 1.1515
+    if (unit=="K") { dist = dist * 1.609344 }
+    if (unit=="N") { dist = dist * 0.8684 }
+    return dist
+  }
+
+  round(number, precision) {
+    let factor = Math.pow(10, precision);
+    let tempNumber = number * factor;
+    let roundedTempNumber = Math.round(tempNumber);
+    return roundedTempNumber / factor;
+  };
+
+  loadDistances(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.geolocation.getCurrentPosition().then((resp) => {
+     // resp.coords.latitude
+     // resp.coords.longitude
+         
+          this.distancelist = this.af.list('/profiles');
+          
+          let x = 0;
+          this.subscription6 = this.distancelist.subscribe(items => items.forEach(item => {
+
+
+
+            console.log(JSON.stringify(item) + "               *((*&*&*&*&^&*&*&*(&*(&*&*(&(&(&*(");
+            this.nativeGeocoder.forwardGeocode(item.address)
+              .then((coordinates: NativeGeocoderForwardResult) => {
+                  let rr = this.round(this.distance(coordinates.latitude, coordinates.longitude, resp.coords.latitude, resp.coords.longitude, "M"), 2);
+                  console.log('The coordinates are latitude=' + rr);
+                  this.distances.push({'pic':item.picURL, 'salon':item.username, 'distance':rr});
+
+                  x++;
+                  if(items.length - x == 0) {
+                    resolve();
+                  }
+                })
+                  
+
+
+                
+              console.log(items.length + "        ;l asdjkl;fkl aj;s   afkj;dsj ;kl         " + x);
+
+              //distances.push({'pic':item.picURL, 'salon':item.username, 'distancey':})
+
+              
+
+            
+
+            
+          }));
+
+      }).catch((error) => {
+        this.diagnostic.switchToLocationSettings();
+        console.log('Error getting location', error.message);
+        resolve();
+      });
+    });
+
+    
+  }
+
   ionViewDidLoad() {
     
+
+    this.loadDistances().then(() => {
+      console.log(JSON.stringify(this.distances) + " :FOSIEJO:SFJ::EFIJSEFIJS:EFJS:IO THIS IODIOSJ:FDSIJ :DIS");
+      //setTimeout(() => {
+        this.distances.sort(function(a,b) {
+          return a.distance - b.distance;
+        });
+      //}, 1000)
+      
+    })
+    
     this.renderer.setElementStyle(this.promos.nativeElement, 'color', '#e6c926');
+    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
+    this.renderer.setElementStyle(this.price.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.distancey.nativeElement, 'display', 'none');
+
     this.getInitialImages();
 
 
@@ -210,15 +314,14 @@ export class FeedUser implements OnDestroy {
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', '#e6c926');
     this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
 
-    //this.changeText.nativeElement.style = "color:gray";
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
-    //this.contentOne.nativeElement.style = "display: block";
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
-    //this.availability.nativeElement.style = "display: none";
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
-    //this.ratingbox.nativeElement.style= "display: none";
     this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'block');
-    //this.weekly.nativeElement.style= "display: none"
+    this.renderer.setElementStyle(this.price.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.distancey.nativeElement, 'display', 'none');
+
+
   }
 
   closeMenuP() {
@@ -230,25 +333,21 @@ export class FeedUser implements OnDestroy {
       //
     }
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', 'gray');
-    //this.changeText.nativeElement.style = "color:gray";
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
-    //this.contentOne.nativeElement.style = "display: block";
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
-    //this.availability.nativeElement.style = "display: none";
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
-    //this.ratingbox.nativeElement.style= "display: none";
     this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.promos.nativeElement, 'color', '#e6c926');
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
 
-    //this.weekly.nativeElement.style= "display: none"
+    this.renderer.setElementStyle(this.price.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.distancey.nativeElement, 'display', 'none');
+
+
   }
 
   dropDown() {
-    //this.changeText.nativeElement.style = "color:gray";
-    //this.contentOne.nativeElement.style = "display: block";
-    //this.availability.nativeElement.style = "display: none";
-    //this.ratingbox.nativeElement.style= "display: none";
+ 
     this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
     
@@ -264,31 +363,34 @@ export class FeedUser implements OnDestroy {
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
     this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.price.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.distancey.nativeElement, 'display', 'block');
+
+
 
     this.changeText.nativeElement.innerHTML = "Distance";
-    //this.changeText.nativeElement.style = "color:#e6c926";
     this.dropDown();
   }
 
   dropDownA() {
     this.changeText.nativeElement.innerHTML = "Availability";
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
-    //this.changeText.nativeElement.style = "color:gray";
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
-    //this.contentOne.nativeElement.style = "display: block";
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'block');
-    //this.availability.nativeElement.style = "display: none";
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
-    //this.ratingbox.nativeElement.style= "display: none";
+    this.renderer.setElementStyle(this.price.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.distancey.nativeElement, 'display', 'none');
+
+
     this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
     this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
 
-    /*this.changeText.nativeElement.style = "color:#e6c926";
-    this.availability.nativeElement.style = "display: block";
-    this.contentOne.nativeElement.style = "display: none";
-    this.ratingbox.nativeElement.style = "display: none";
-    this.weekly.nativeElement.style = "display: none";*/
+
     this.dropDown();
   }
 
@@ -297,6 +399,15 @@ export class FeedUser implements OnDestroy {
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
     this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+    this.renderer.setElementStyle(this.price.nativeElement, 'display', 'block');
+    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
+
+    this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.distancey.nativeElement, 'display', 'none');
+
+
 
     this.dropDown();
   }
@@ -307,14 +418,14 @@ export class FeedUser implements OnDestroy {
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
     this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
     
-    //this.changeText.nativeElement.style = "color:gray";
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
-    //this.contentOne.nativeElement.style = "display: block";
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
-    //this.availability.nativeElement.style = "display: none";
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'block');
-    //this.ratingbox.nativeElement.style= "display: none";
     this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.price.nativeElement, 'display', 'none');
+    this.renderer.setElementStyle(this.distancey.nativeElement, 'display', 'none');
+
+
     this.dropDown();
   }
 
@@ -348,23 +459,23 @@ export class FeedUser implements OnDestroy {
               item.reserved.appointment.forEach((r, index) => {
                 if(r.selected == true) {
 
+                  let string = "";
+                  let storageRef = firebase.storage().ref().child('/settings/' + userName + '/profilepicture.png');
+             
+                  storageRef.getDownloadURL().then(url => {
+                    console.log(url);
+                    let obj = {'pic':url, 'salon': userName, 'time': r.time};
+                    this.availabilities.push(obj);
+                  });
+               
                   
-
-
-                  let obj = {'pic':'img/hair5.jpeg', 'salon': userName, 'time': r.time};
-                  this.availabilities.push(obj);
                   
                   if(index == 23) {
                     resolve();
                   }
-                  //console.log(JSON.stringify(obj) + "            object");
                 }
               })
-              /*for(let r of item.reserved.appointment) {
-                //console.log(r.selected)
-                
 
-              }*/
               
             }
           }));
@@ -376,27 +487,6 @@ export class FeedUser implements OnDestroy {
       }));
     })
     
-
-    /*setTimeout(() => {
-      
-      this.availabilities.sort(function(a,b) {
-          return a.time - b.time;
-      });
-
-      console.log('*****previous******');
-      console.log(JSON.stringify(this.availabilities));
-      console.log('*****sorted********');
-      
-      for(let i of this.availabilities) {
-        console.log(i.time + "          this is itime");
-        let date = new Date(i.time);
-        console.log(date + "          this is date in idate");
-        let str = date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
-        console.log(str);
-        i.time = str;
-      }
-
-    }, 1500);*/
   }
 
   
@@ -423,7 +513,6 @@ export class FeedUser implements OnDestroy {
 
     date.setHours(hours);
     date.setMinutes(minutes);
-    //date.setSeconds(00);
 
     return date;
   }
@@ -432,9 +521,6 @@ export class FeedUser implements OnDestroy {
     let loading = this.loadingController.create({content : "Loading..."});
     loading.present();
 
-    /*let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');**/
-    //let loading = this.loadingController.create({content : "Loading..."});
-    //loading.present();
     this.list = this.af.list('/promos', {
     query: {
       limitToFirst: 15
@@ -447,36 +533,23 @@ export class FeedUser implements OnDestroy {
         this.items.push(item.customMetadata);
 
       });               
-    }) /*['img/hair1.jpg', 'img/hair2.jpg', 'img/hair3.jpeg', 'img/hair4.jpeg',
-                  'img/hair5.jpeg', 'img/hair6.jpg', 'img/hair7.jpg', 'img/hair8.jpg', 
-                  'img/hair9.jpeg', 'img/hair10.jpg'];*/
+    })
 
-    
 
-    /*this.availabilities = [
-                            
-                            {'pic': 'img/hair5.jpeg', 'salon':'Salon 5', 'time':'12:30PM'},
-                            {'pic': 'img/hair6.jpg', 'salon':'Salon 6', 'time':'1:00PM'},
-                            {'pic': 'img/hair7.jpg', 'salon':'Salon 7', 'time':'1:30PM'},
-                            {'pic': 'img/hair8.jpg', 'salon':'Salon 8', 'time':'2:00PM'},
-                            {'pic': 'img/hair9.jpeg', 'salon':'Salon 9', 'time':'2:30PM'},
-                            {'pic': 'img/hair10.jpg', 'salon':'Salon 10', 'time':'3:00PM'},
-                            {'pic': 'img/hair7.jpg', 'salon':'Salon 1', 'time':'10:30AM'},
-                            {'pic': 'img/hair2.jpg', 'salon':'Salon 2', 'time':'11:00AM'},
-                            {'pic': 'img/hair3.jpeg', 'salon':'Salon 3', 'time':'11:30AM'},
-                            {'pic': 'img/hair4.jpeg', 'salon':'Salon 4', 'time':'12:00PM'},
-                            {'pic': 'img/hair5.jpeg', 'salon':'Salon 5', 'time':'12:30PM'},
-                            {'pic': 'img/hair6.jpg', 'salon':'Salon 6', 'time':'1:00PM'},
-                            {'pic': 'img/hair7.jpg', 'salon':'Salon 7', 'time':'1:30PM'},
-                            {'pic': 'img/hair8.jpg', 'salon':'Salon 8', 'time':'2:00PM'},
-                            {'pic': 'img/hair9.jpeg', 'salon':'Salon 9', 'time':'2:30PM'},
-                            {'pic': 'img/hair10.jpg', 'salon':'Salon 10', 'time':'3:00PM'},
-                            {'pic': 'img/hair7.jpg', 'salon':'Salon 1', 'time':'10:30AM'},
-                            {'pic': 'img/hair2.jpg', 'salon':'Salon 2', 'time':'11:00AM'},
-                            {'pic': 'img/hair3.jpeg', 'salon':'Salon 3', 'time':'11:30AM'},
-                            {'pic': 'img/hair4.jpeg', 'salon':'Salon 4', 'time':'12:00PM'}
+    this.prices = this.af.list('/profiles', {
+      query: {
+        orderByChild: 'price'
+      }
+    });
+    this.subscription5 = this.prices.subscribe(items => items.forEach(item => {
 
-                          ];*/
+
+      console.log(JSON.stringify(item));
+      this.pricesArray.push(item);
+
+
+
+    }));
 
     
 
@@ -547,24 +620,6 @@ export class FeedUser implements OnDestroy {
     });                
 
     loading.dismiss();
-    /*let data = new URLSearchParams();
-    data.append('page', this.totalCount.toString());
-    console.log("constructed");
-     this.http
-      .post('http://192.168.1.131:8888/maneappback/more-items.php', data)
-        .subscribe(res => {
-          for(let i=0; i<res.json().length - 1; i++) {
-            this.totalCount+=1;
-            this.items.push(res.json()[i]);
-            console.log('this.items is pushed.....');
-          };
-
-          this.lastNumRows = res.json()[res.json().length - 1];
-          console.log(this.lastNumRows)
-          loading.dismiss();
-        }, error => {
-          console.log(JSON.stringify(error));
-        });*/
   }
 
   doInfinite(infiniteScroll) {
@@ -603,36 +658,9 @@ export class FeedUser implements OnDestroy {
       })
 
       infiniteScroll.complete(); 
-        /*let data = new URLSearchParams();
-        data.append('page', this.totalCount.toString());*/
         
-        /*this.http
-          .post('http://192.168.1.131:8888/maneappback/more-items.php', data)
-            .subscribe(res => {
-              //console.log(JSON.stringify(res));
-              //let response = JSON.stringify(res);
-                if(res.json()[0] == "0 results") {
-                  console.log('Async operation has ended');
-                  //infiniteScroll.complete();
-                  resolve();
-                  return;
-                }
-                else {
-                  for(let i=0; i<res.json().length - 1; i++) {
-                    this.totalCount+=1;
-                    console.log('items get pushed in more &&&*&**&&*&* \n\n\n\n\n\n\n');
-                    this.items.push(res.json()[i]);
-                  };
-                  console.log('Async operation has ended');
-                  //infiniteScroll.complete();
-                  resolve();
-                }
-                console.log(this.totalCount + ': totalCount!!!!!!');
-            }, error => {
-                console.log(error.json());
-            });*/
       }, 500);
-    //})
+
   }
 
   doRefresh(refresher) {
@@ -645,44 +673,7 @@ export class FeedUser implements OnDestroy {
       console.log('Async operation has ended');
       refresher.complete();
 
-      //let element = this.clickme._elementRef.nativeElement;
-      //console.log(element);
-      //element.style.cssText = "position: fixed; z-index: 99; left: 0; top: 0"; 
+     
     }, 700);
-
-
-    /*let data = new URLSearchParams();
-    data.append('page', this.totalCount.toString());
-    data.append('lastNumRows', this.lastNumRows.toString());
-
-    console.log("constructed");
-
-    this.http
-      .post('http://192.168.1.131:8888/maneappback/more-items-refresher.php', data)
-        .subscribe(res => {
-          console.log('getInitialImages completed ***********');
-
-          if(res.json()[0] == "0 results") {
-            console.log('Async operation has ended');
-            refresher.complete();
-            //infiniteScroll.complete();
-            return;
-          }
-
-          for(let i=0; i<res.json().length - 1; i++) {
-            this.totalCount+=1;
-            this.items.unshift(res.json()[i]);
-            console.log('this.items is pushed.....');
-          };
-
-          this.lastNumRows = res.json()[res.json().length - 1];
-          console.log('Async operation has ended');
-          refresher.complete();
-        }, error => {
-          console.log(JSON.stringify(error));
-          console.log('Async operation has ended');
-          refresher.complete();
-        });*/
-    
   }
 }

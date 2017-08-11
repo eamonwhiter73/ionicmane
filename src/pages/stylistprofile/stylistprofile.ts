@@ -115,7 +115,7 @@ export class StylistProfile {
           handler: () => {
             let itemArrayTwo = this.profComponents.toArray();
             this.cameraService.getMedia(this.optionsGetCamera, this.square).then(() => {
-              
+              return new Promise((resolve, reject) => {
                 let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');
                 let loading = this.loadingController.create({content : "Loading..."});
                 loading.present();
@@ -128,6 +128,7 @@ export class StylistProfile {
                   });
                   loading.dismiss();
                 }, 3000);
+              });
             }); //pass in square choice
             //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
             console.log('camera clicked');
@@ -234,6 +235,14 @@ export class StylistProfile {
       //Do whatever you want with swipe
       }
     }
+  }
+
+  swipeLeft() {
+    this.backToCal();
+  }
+
+  swipeRight() {
+    this.backToFeed();
   }
 
   downloadImages():Promise<any> {

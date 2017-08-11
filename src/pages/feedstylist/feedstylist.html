@@ -1,5 +1,5 @@
 <ion-header> <!--[@slideDown]="downState"-->
-  <div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+  <div (swiperight)="swipeRight()" (swipeleft)="swipeLeft()"> <!--(touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')"-->
   <ion-toolbar #clickme class="itemadspace" [@slideDown]="downState" no-padding> <!--[@slideDown]="downState"-->
     <!--<ion-item class="ad" no-padding no-lines>-->
     <div class="stylistview">
@@ -26,7 +26,7 @@
 </ion-header>
 
 <ion-content [@moveList]='moveState' no-padding> <!--[@moveList]='moveState'-->
-<div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+<div (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
   <!--<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>-->

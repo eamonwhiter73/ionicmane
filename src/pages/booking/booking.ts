@@ -103,6 +103,14 @@ export class BookingPage implements OnDestroy {
     }
   }
 
+  swipeLeft() {
+    this.goToFeed();
+  }
+
+  swipeRight() {
+    this.goToProfile();
+  }
+
   logForm() {
     let foundit = false;
     console.log(JSON.stringify(this.times)  + "               in logform");

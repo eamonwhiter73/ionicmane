@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SignInPage } from '../signin/signin';
 import { FeedUser } from '../feeduser/feeduser';
@@ -10,17 +10,21 @@ import { User } from '../../models/user';
 import { Storage } from '@ionic/storage';
 import { Facebook } from '@ionic-native/facebook';
 import firebase from 'firebase';
+import { ISubscription } from "rxjs/Subscription";
+
+
 
 
 @Component({
   selector: 'page-sign-up',
   templateUrl: 'signup.html'
 })
-export class SignUpPage {
+export class SignUpPage implements OnDestroy {
   stylist: boolean;
   users: boolean;
   items: FirebaseListObservable<any>;
   user = {} as User;
+  subscription: ISubscription;
 
   constructor(public facebook: Facebook, public storage: Storage, private afAuth: AngularFireAuth, public navCtrl: NavController, public keyboard: Keyboard, public af: AngularFireDatabase) {
     /*this.items = af.list('/test');
@@ -35,7 +39,7 @@ export class SignUpPage {
     if(userx.email && userx.password && this.user.username && (this.stylist || this.users)) {
 
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(userx.email, userx.password);
-      console.log(result);
+      //console.log(result);
 
       this.setUserStylist(userx);
     }
@@ -48,6 +52,10 @@ export class SignUpPage {
     }
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   setUserStylist(usery) {
     if(this.users) {
       this.storage.set('type', 'user');
@@ -57,19 +65,39 @@ export class SignUpPage {
     }
 
     this.storage.set('username', usery.username);
+    this.storage.set('password', usery.password);
+    this.storage.set('email', usery.email);
 
+    let profile = {'username': usery.username, 'password': usery.password,
+                    'email': usery.email, 'bio':"", 'address':"", 'type':""};
+
+    this.items = this.af.list('/profiles/' + usery.username + '/');
+    this.subscription = this.items.subscribe(items => {
+      console.log(JSON.stringify(items.$value));
+      if(items.$value != null) {
+        
+        
+        alert("This username is taken");
+      }
+      else {
+        if(this.users) {
+          profile.type = 'user'
+          this.items.update('/', profile);
+          this.navCtrl.setRoot(FeedUser);
+        }
+        else if(this.stylist) {
+          profile.type = 'stylist';
+          this.items.update('/', profile);
+          this.navCtrl.setRoot(FeedStylist)
+        }
+        else {
+          alert("You need to select User or Stylist.");
+        }
+      }
+    });
     // push another page on to the navigation stack
     // causing the nav controller to transition to the new page
     // optional data can also be passed to the pushed page.
-    if(this.users) {
-      this.navCtrl.setRoot(FeedUser);
-    }
-    else if(this.stylist) {
-      this.navCtrl.setRoot(FeedStylist)
-    }
-    else {
-      alert("You need to select User or Stylist.");
-    }
   }
 
   fbLogin(userx: User): Promise<any> {

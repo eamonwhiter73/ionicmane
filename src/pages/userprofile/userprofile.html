@@ -1,0 +1,120 @@
+<ion-header (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
+  <ion-navbar>
+    <ion-title>@stylist_profile</ion-title>
+    <!--<div class="stylistview">
+	    <button class="stylistviewbutton" ion-button color="secondary">Stylist View</button>
+	  </div>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+<div (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
+	<ion-item no-padding no-lines>
+		<div class="imageparent">
+      <img class="postprofilepic" src="img/hair5.jpeg">
+    </div>
+    <div class='ratecontain'>
+	    <div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+	    <div class='ratings'>(200 ratings)</div>
+	  </div>
+	  <div class="stylistviewtwo">
+	    <button class="stylistviewbuttontwo" ion-button color="primary">Follow Stylist</button>
+	  </div>
+	  <div class='stylistsect'>
+			<div class="name">Daniel T.</div>
+			<div class="bio">Bio info...</div>
+		</div>
+		<div class="social">
+			<div class="fb inlineblock">
+				<img src="img/facebook.png">
+			</div>
+			<div class="insta inlineblock">
+	  	<img src="img/instagram.png">
+			</div>
+		</div>
+		<calendar (tap)='moveCover()' class='cal' [eventSource]="eventSource"
+	      [calendarMode]="calendar.mode"
+	      [currentDate]="calendar.currentDate"
+	      (onCurrentDateChanged)="onCurrentDateChanged($event)"
+	      (onRangeChanged)="reloadSource(startTime, endTime)"
+	      (onEventSelected)="onEventSelected($event)"
+	      (onTitleChanged)="onViewTitleChanged($event)"
+	      (onTimeSelected)="onTimeSelected($event)"
+	      step="30">
+	    </calendar>
+	</ion-item>
+	<div #calendarcover [@moveCover]='moveState' class="calendarcover"></div>
+	<ion-grid>
+	  <ion-row>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(1)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img (tap)="presentImage(1)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(2)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img (tap)="presentImage(2)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(3)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img (tap)="presentImage(3)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	  </ion-row>
+	  <ion-row>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(4)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img (tap)="presentImage(4)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(5)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img (tap)="presentImage(5)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(6)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img (tap)="presentImage(6)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	  </ion-row>
+	  <ion-row>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(7)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img (tap)="presentImage(7)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(8)"class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img (tap)="presentImage(8)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	    <ion-col>
+	    	<div #pluscontain  (tap)="openCamera(9)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+	      <img (tap)="presentImage(9)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	  </ion-row>
+	</ion-grid>
+</div>
+
+<!--<ion-fab bottom center >
+  <button ion-fab></button>
+  <ion-fab-list side="right">
+    <button class="textsizebutton" (tap)='tappedPost()' ion-fab>Post</button>
+  </ion-fab-list>
+  <ion-fab-list side="left">
+    <button class="textsizebutton" (tap)='tappedEmergency()' ion-fab><ion-icon name="alarm"></ion-icon></button>
+  </ion-fab-list>
+</ion-fab>-->
+</ion-content>
