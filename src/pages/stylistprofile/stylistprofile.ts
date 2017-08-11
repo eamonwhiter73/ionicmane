@@ -47,7 +47,7 @@ export class StylistProfile {
   calendar = {'mode': 'month', 'currentDate': this.viewDate}
   moveState: String = 'up';
   items: FirebaseListObservable<any>;
-  username = "jackson";
+  username;
   picURLS = [];
   square = 0;
   _imageViewerCtrl: ImageViewerController;
@@ -152,7 +152,7 @@ export class StylistProfile {
                       resolve();
                     });
                     loading.dismiss();
-                  }, 3000);
+                  }, 3500);
                 });
               //
               
@@ -261,8 +261,9 @@ export class StylistProfile {
           console.log(z);
           resolve();
         }).catch(error => {
-          resolve();
           console.log(error.message);
+          resolve();
+          
         });
       }));
     }
@@ -277,14 +278,18 @@ export class StylistProfile {
   }
 
   ionViewDidEnter() {
-    this.downloadImages().then(() => {
-      this.loadings.dismiss();
-    })
-
     this.storage.get('username').then((val) => {
       this.username = val;
       console.log(val);
+
+      this.downloadImages().then(() => {
+        this.loadings.dismiss();
+      })
     });
+
+    
+
+    
   }
 
   moveCover() {

@@ -9,16 +9,16 @@ import firebase from 'firebase';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 //import { Ng2ImgMaxService } from 'ng2-img-max';
 //import { Ng2ImgToolsModule } from 'ng2-img-tools'; // <-- import the module
-import CanvasCompress from 'canvas-compress';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class CameraService {
   username: string;
   items: FirebaseListObservable<any>;
   
-  constructor(public transfer: Transfer, public http: Http, public platform: Platform, public camera: Camera, public crop: Crop, public file: File, af: AngularFireDatabaseModule) {
+  constructor(public storage: Storage, public transfer: Transfer, public http: Http, public platform: Platform, public camera: Camera, public crop: Crop, public file: File, af: AngularFireDatabaseModule) {
     this.http = http;
-    this.username = "jackson";
+    this.storage.get('username').then((val) => {this.username = val; console.log(val + "        getting username")});
     //console.log(JSON.stringify(compress));
   }
 

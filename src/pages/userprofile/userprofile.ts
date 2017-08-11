@@ -1,4 +1,4 @@
-import { Component, NgModule, trigger, state, style, transition, animate, keyframes, ViewChildren, Renderer, QueryList } from '@angular/core';
+import { OnDestroy, Component, NgModule, trigger, state, style, transition, animate, keyframes, ViewChildren, Renderer, QueryList } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { FeedUser } from '../feeduser/feeduser';
@@ -10,11 +10,12 @@ import { PostpagePage } from '../postpage/postpage';
 import { CameraService } from '../../services/cameraservice';
 import { Camera } from '@ionic-native/camera';
 import { ActionSheetController } from 'ionic-angular';
-import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { FirebaseApp } from 'angularfire2';
 import firebase from 'firebase';
 import { LoadingController } from 'ionic-angular';
 import { ImageViewerController } from 'ionic-img-viewer';
+import { ISubscription } from "rxjs/Subscription";
 
 import { Storage } from '@ionic/storage';
 
@@ -38,7 +39,7 @@ import { Storage } from '@ionic/storage';
     ]),
   ]
 })
-export class UserProfile {
+export class UserProfile implements OnDestroy {
   @ViewChildren('pluscontain') components:QueryList<any>;
   @ViewChildren('profsquare') profComponents:QueryList<any>;
   viewDate = new Date();
@@ -47,21 +48,42 @@ export class UserProfile {
   calendar = {'mode': 'month', 'currentDate': this.viewDate}
   moveState: String = 'up';
   items: FirebaseListObservable<any>;
-  username = "jackson";
+  profiless: FirebaseListObservable<any>;
+  username;
   picURLS = [];
   square = 0;
+  picURL = "";
+  bio = "";
+  profdata;
+  item: FirebaseObjectObservable<any>
   _imageViewerCtrl: ImageViewerController;
   private swipeCoord?: [number, number];
   private swipeTime?: number;
   loadings;
 
-  constructor(public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
+  subscription6: ISubscription;
+
+  constructor(public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController, public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
     /*this.items = af.list('/profile/' + this.username);
     this.items.subscribe(items => items.forEach(item => {
       console.log(item.$value);
       this.picURLS.push(item.$value);
     }));*/
     //this._imageViewerCtrl = imageViewerCtrl;
+  }
+
+  ngOnDestroy() {
+    this.subscription6.unsubscribe();
+  }
+
+  ionViewDidLoad() {
+    
+  }
+
+  getProfileInfo() {
+    this.item = this.af.object('https://mane-4152c.firebaseio.com/profiles/' + this.username);
+    this.subscription6 = this.item.subscribe(item => {this.picURL = item.picURL; this.bio = item.bio;});
+    
   }
 
   public optionsGetMedia: any = {
@@ -85,6 +107,8 @@ export class UserProfile {
         destinationType: this.camera.DestinationType.FILE_URI,
         saveToPhotoAlbum: true
   }
+
+  
 
   openCamera(squarez) {
     this.presentActionSheet();
@@ -257,7 +281,7 @@ export class UserProfile {
         storageRef.getDownloadURL().then(url => {
           self.myrenderer.setElementAttribute(itemArrayTwo[z - 1].nativeElement, 'src', url);
           self.myrenderer.setElementStyle(itemArrayTwo[z - 1].nativeElement, 'display', 'block');
-          self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
+          //self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
           console.log(z);
           resolve();
         }).catch(error => {
@@ -276,16 +300,18 @@ export class UserProfile {
     
   }
 
+  
+
   ionViewDidEnter() {
+    this.username = this.navParams.get("username");
+
     this.downloadImages().then(() => {
+      this.getProfileInfo();
       this.loadings.dismiss();
     })
-
-    this.storage.get('username').then((val) => {
-      this.username = val;
-      console.log(val);
-    });
   }
+
+  
 
   moveCover() {
     this.moveState = (this.moveState == 'up') ? 'down' : 'up';

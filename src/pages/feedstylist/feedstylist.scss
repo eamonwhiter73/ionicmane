@@ -125,8 +125,7 @@ page-feed-stylist {
 
 	#iontoolbar {
 		z-index: 1;
-		position: absolute;
-		top: 88px;
+		top: 0;
 		left: 0;
 		background-color: black;
 		color: white;
@@ -177,7 +176,6 @@ page-feed-stylist {
 
 	.itemadspace {
 		z-index: 1;
-		position: fixed;
 		top: 0;
 		left: 0;
 		text-align: center;
@@ -199,7 +197,7 @@ page-feed-stylist {
 	}*/
 
 	.contentone {
-		position: absolute;
+		position: relative;
 		width: 100%;
 	}
 

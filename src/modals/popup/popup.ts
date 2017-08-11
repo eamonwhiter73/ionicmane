@@ -1,5 +1,7 @@
-import { NavParams, ViewController } from 'ionic-angular';
+import { NavParams, ViewController, NavController } from 'ionic-angular';
 import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { UserProfile } from '../../pages/userprofile/userprofile';
+
 
 @Component({
 	selector: 'pop-up',
@@ -11,7 +13,7 @@ export class PopUp {
   info = {'salon':'','time':''};
 
 
- constructor(public params: NavParams, public viewCtrl:ViewController, public renderer: Renderer) {
+ constructor(public navCtrl: NavController, public params: NavParams, public viewCtrl:ViewController, public renderer: Renderer) {
    console.log('salon', this.params.get('salon'));
    console.log('time', this.params.get('time'));
 
@@ -28,6 +30,12 @@ export class PopUp {
 
  dismiss() {
  	this.viewCtrl.dismiss();
+ }
+
+ viewProfile() {
+ 	this.navCtrl.push(UserProfile, {
+      username: this.info.salon
+  })
  }
 
 }

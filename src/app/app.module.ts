@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StylistProfile } from '../pages/stylistprofile/stylistprofile';
 import { BookingPage } from '../pages/booking/booking';
 import { SettingsPage } from '../pages/settings/settings';
+import { UserProfile } from '../pages/userprofile/userprofile';
+
 
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { Keyboard } from '@ionic-native/keyboard';
@@ -79,7 +81,8 @@ firebase.initializeApp(firebaseConfig);
     PostpagePage,
     BookingPage,
     PopUp,
-    SettingsPage
+    SettingsPage,
+    UserProfile
   ],
   imports: [
     BrowserModule,
@@ -107,7 +110,8 @@ firebase.initializeApp(firebaseConfig);
     PostpagePage,
     BookingPage,
     PopUp,
-    SettingsPage
+    SettingsPage,
+    UserProfile
   ],
   providers: [
     StatusBar,

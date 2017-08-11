@@ -34,19 +34,19 @@ import { ISubscription } from "rxjs/Subscription";
     ]),
     trigger('moveList', [
       state('down', style({
-        top: 304 + "px",
+        top: 162 + "px",
       })),
       state('up', style({
-        top: 142 + "px",
+        top: 0 + "px",
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),
     trigger('toolSlide', [
       state('down', style({
-        top: '250px'
+        top: '0px'
       })),
       state('up', style({
-        top: '88px'
+        top: '0px'
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),

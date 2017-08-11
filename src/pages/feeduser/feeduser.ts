@@ -33,19 +33,19 @@ import { Diagnostic } from '@ionic-native/diagnostic';
     ]),
     trigger('moveList', [
       state('down', style({
-        top: 307 + "px",
+        top: 200 + "px",
       })),
       state('up', style({
-        top: 145 + "px",
+        top: 38 + "px",
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),
     trigger('toolSlide', [
       state('down', style({
-        top: '250px'
+        top: '0px'
       })),
       state('up', style({
-        top: '88px'
+        top: '0px'
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),
@@ -121,6 +121,24 @@ export class FeedUser implements OnDestroy {
 
   constructor(private diagnostic: Diagnostic, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, public zone: NgZone, public modalCtrl: ModalController, public af: AngularFireDatabase, public storage: Storage, private afAuth: AngularFireAuth, public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
      
+  }
+
+  swipeLeft() {
+    this.toProfile();
+  }
+
+  swipeRight() {
+    this.toBooking();
+  }
+
+  toProfile() {
+    this.navCtrl.push(StylistProfile,{},{animate:true,animation:'transition',duration:500,direction:'forward'});
+  }
+
+  toBooking() {
+    this.navCtrl.push(BookingPage,{
+      param1: 'user'
+    },{animate:true,animation:'transition',duration:500,direction:'back'});
   }
 
   ngOnDestroy() {
@@ -213,6 +231,8 @@ export class FeedUser implements OnDestroy {
                   if(items.length - x == 0) {
                     resolve();
                   }
+                }).catch(e => {
+                  console.log(e.message + " THI SI THE RED ONE!");
                 })
                   
 
@@ -265,12 +285,6 @@ export class FeedUser implements OnDestroy {
   presentProfileModal(salon, time) {
     let profileModal = this.modalCtrl.create(PopUp, { salon: salon, time: time});
     profileModal.present();
-  }
-
-  toProfile() {
-    this.navCtrl.push(StylistProfile,{
-      param1: 'user'
-    },{animate:true,animation:'transition',duration:500,direction:'forward'});
   }
 
   toolClicked(event) {

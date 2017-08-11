@@ -86,8 +86,7 @@ page-feed-user {
 
 	#iontoolbar {
 		z-index: 1;
-		position: fixed;
-		top: 88px;
+		top: 0;
 		left: 0;
 		background-color: black;
 		color: white;
@@ -124,7 +123,6 @@ page-feed-user {
 
 	.itemadspace {
 		z-index: 1;
-		position: fixed;
 		top: 0;
 		left: 0;
 		background-image: url('../img/tresemme.png');
@@ -138,8 +136,7 @@ page-feed-user {
 	}*/
 
 	.contentone {
-		position: absolute;
-		top: 145px;
+		position: relative;
 		width: 100%;
 	}
 

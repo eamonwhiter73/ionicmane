@@ -13,6 +13,7 @@ import { BookingPage } from '../pages/booking/booking';
 import { SettingsPage } from '../pages/settings/settings';
 
 
+
 @Component({
   templateUrl: 'app.html'
 })
