@@ -94,9 +94,12 @@ export class FeedUser implements OnDestroy {
   lastScrollTop: number = 0;
   direction: string = "";
   prices: FirebaseListObservable<any>;
+  ratingslist:FirebaseListObservable<any>
   distancelist: FirebaseListObservable<any>;
   pricesArray = [];
   distances = [];
+  stars;
+  starsArray = [];
 
   private subscription: ISubscription;
   private subscription2: ISubscription;
@@ -104,6 +107,8 @@ export class FeedUser implements OnDestroy {
   private subscription4: ISubscription;
   private subscription5: ISubscription;
   private subscription6: ISubscription;
+   private subscription7: ISubscription;
+
 
 
   toolbarClicks = 0;
@@ -148,6 +153,8 @@ export class FeedUser implements OnDestroy {
     this.subscription4.unsubscribe();
     this.subscription5.unsubscribe();
     this.subscription6.unsubscribe();
+    this.subscription7.unsubscribe();
+
 
 
   } 
@@ -259,8 +266,70 @@ export class FeedUser implements OnDestroy {
     
   }
 
+  loadRatings(): Promise<any> {
+    return new Promise((resolve, reject) => {
+
+      this.ratingslist = this.af.list('/profiles');
+       let ratings;
+       let totalPotential;
+      let x = 0;
+      this.subscription7 = this.ratingslist.subscribe(items => items.forEach(item => {
+
+        console.log(typeof item.rating.one + "this is the rating string");
+
+        for (let x in item.rating) {
+          if(typeof x == 'string') {
+            console.log(x+"        intparsed88888888");
+            item.rating[x] = parseInt(item.rating[x]);
+          }
+        }
+
+        if(item.rating.one == 0 && item.rating.two == 0 && item.rating.three == 0 && item.rating.four == 0 && item.rating.five == 0) {
+          this.stars = "No ratings";
+        }
+        else {
+
+          totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
+          ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five *5;
+          
+
+          let i = (ratings / totalPotential) * 100;
+          let reversei = totalPotential / ratings;
+          if(Math.round(i) <= 20) {
+            this.stars = '\u2605';
+          }
+          if(Math.round(i) > 20 && Math.round(i) <= 40) {
+            this.stars = '\u2605\u2605';
+          }
+          if(Math.round(i) > 40 && Math.round(i) <= 60) {
+            this.stars = '\u2605\u2605\u2605';
+          }
+          if(Math.round(i) > 60 && Math.round(i) <= 80) {
+            this.stars = '\u2605\u2605\u2605\u2605';
+          }
+          if(Math.round(i) > 80) {
+            this.stars = '\u2605\u2605\u2605\u2605\u2605';
+          }
+        }
+
+        this.rating.push(item);
+
+        this.starsArray.push(this.stars);
+
+        x++;
+        if(items.length - x == 0) {
+          /*this.starsArray.sort(function(a,b) {
+            return a.length - b.length;
+          });*/
+          resolve();
+        }
+      }));
+    });
+  }
+
   ionViewDidLoad() {
     
+    this.getInitialImages();
 
     this.loadDistances().then(() => {
       console.log(JSON.stringify(this.distances) + " :FOSIEJO:SFJ::EFIJSEFIJS:EFJS:IO THIS IODIOSJ:FDSIJ :DIS");
@@ -271,13 +340,15 @@ export class FeedUser implements OnDestroy {
       //}, 1000)
       
     })
+
+    this.loadRatings().then(() =>{});
     
     this.renderer.setElementStyle(this.promos.nativeElement, 'color', '#e6c926');
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
     this.renderer.setElementStyle(this.price.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.distancey.nativeElement, 'display', 'none');
 
-    this.getInitialImages();
+    
 
 
   }
@@ -568,7 +639,7 @@ export class FeedUser implements OnDestroy {
     
 
 
-    this.rating = [
+    /*this.rating = [
                     {'pic': 'img/hair5.jpeg', 'salon':'Salon 5', 'time':'\u2605\u2605\u2605'},
                     {'pic': 'img/hair6.jpg', 'salon':'Salon 6', 'time':'\u2605\u2605'},
                     {'pic': 'img/hair7.jpg', 'salon':'Salon 7', 'time':'\u2605\u2605\u2605\u2605'},
@@ -589,7 +660,7 @@ export class FeedUser implements OnDestroy {
                     {'pic': 'img/hair2.jpg', 'salon':'Salon 2', 'time':'\u2605\u2605'},
                     {'pic': 'img/hair3.jpeg', 'salon':'Salon 3', 'time':'\u2605\u2605\u2605'},
                     {'pic': 'img/hair4.jpeg', 'salon':'Salon 4', 'time':'\u2605\u2605\u2605\u2605'}
-                  ];
+                  ];*/
     
     this.weeklydeal = [
                     {'pic': 'Weekly Deal', 'salon':'@salon_ 5', 'time':'$20 off coloring'},

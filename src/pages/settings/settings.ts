@@ -9,7 +9,7 @@ import { ISubscription } from "rxjs/Subscription";
 import { Observable } from "rxjs/Observable";
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 
 
@@ -43,7 +43,7 @@ export class SettingsPage implements OnDestroy {
   price;
   subscription: ISubscription;
   subscription2: ISubscription;
-  items: FirebaseListObservable<any>;
+  items: FirebaseObjectObservable<any>;
   items2: FirebaseListObservable<any>;
   oldUser: string;
   picURL: string;
@@ -93,24 +93,25 @@ export class SettingsPage implements OnDestroy {
 
     this.x = 0;
 
-    this.items = this.af.list('/profiles');
+    this.items = this.af.object('/profiles');
+    if(this.username == this.oldUser) {
+        console.log(this.username + "      " + this.oldUser);  
+        this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
+                              'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL}});
+      }
+      else {
+        this.af.object('/profiles/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
+        this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
+                          'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL}});
+      }
     /*this.subscription = this.items.subscribe(items => {
       console.log(JSON.stringify(items.$value));
-
+    
         
       
     });*/
 
-    if(this.username == this.oldUser) {
-      console.log(this.username + "      " + this.oldUser);  
-      this.items.update(this.username, {'username': this.username, 'password': this.password, 'email': this.email,
-                            'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL});
-    }
-    else {
-      this.items.remove(this.oldUser).then(_ => console.log('item deleted!'));
-      this.items.update(this.username, {'username': this.username, 'password': this.password, 'email': this.email,
-                        'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL});
-    }
+    
 
     /*console.log(this.x);
 

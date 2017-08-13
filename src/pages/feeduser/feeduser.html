@@ -111,14 +111,14 @@
 
   <div class ='ratings contentone' #ratings [@moveList]='moveState'>
    <ion-list class="marginstatus" no-padding>
-     <ion-item *ngFor="let a of rating" no-padding>
+     <ion-item *ngFor="let a of rating ; let i = index" no-padding>
       <div class="feedtoptextcontainer">
         <div class="imageparent">
-          <img class="postprofilepic" src="{{a.pic}}">
+          <img class="postprofilepic" src="{{a.picURL}}">
         </div>
         <div class="usernamecontainer">
-          <h4 class="postusername">{{a.salon}}</h4><br>
-          <h4 class="poststudio">{{a.time}}</h4>
+          <h4 class="postusername">{{a.username}}</h4><br>
+          <h4 class="poststudio">{{starsArray[i]}}</h4>
         </div>
       </div>
       <!--<img class="imagepost" src="{{i}}">-->

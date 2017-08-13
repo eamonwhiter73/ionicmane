@@ -39,7 +39,8 @@ import { ImageViewerController } from 'ionic-img-viewer';
 import { IonicStorageModule } from '@ionic/storage';
 import { Storage } from '@ionic/storage';
 import { Facebook } from '@ionic-native/facebook'
-import { PopUp } from '../modals/popup/popup'
+import { PopUp } from '../modals/popup/popup';
+import { Rate } from '../modals/rate/rate'
 import { IonicImageLoader } from 'ionic-image-loader';
 import { DatePicker } from '@ionic-native/date-picker';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
@@ -82,7 +83,8 @@ firebase.initializeApp(firebaseConfig);
     BookingPage,
     PopUp,
     SettingsPage,
-    UserProfile
+    UserProfile,
+    Rate
   ],
   imports: [
     BrowserModule,
@@ -110,6 +112,7 @@ firebase.initializeApp(firebaseConfig);
     PostpagePage,
     BookingPage,
     PopUp,
+    Rate,
     SettingsPage,
     UserProfile
   ],

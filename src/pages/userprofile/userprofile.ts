@@ -1,5 +1,5 @@
 import { OnDestroy, Component, NgModule, trigger, state, style, transition, animate, keyframes, ViewChildren, Renderer, QueryList } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { FeedUser } from '../feeduser/feeduser';
 import { FeedStylist } from '../feedstylist/feedstylist';
@@ -16,6 +16,7 @@ import firebase from 'firebase';
 import { LoadingController } from 'ionic-angular';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { ISubscription } from "rxjs/Subscription";
+import { Rate } from '../../modals/rate/rate';
 
 import { Storage } from '@ionic/storage';
 
@@ -63,7 +64,7 @@ export class UserProfile implements OnDestroy {
 
   subscription6: ISubscription;
 
-  constructor(public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController, public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
+  constructor(public modalCtrl: ModalController, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController, public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
     /*this.items = af.list('/profile/' + this.username);
     this.items.subscribe(items => items.forEach(item => {
       console.log(item.$value);
@@ -202,6 +203,12 @@ export class UserProfile implements OnDestroy {
     // optional data can also be passed to the pushed page.
     //this.navCtrl.push(SignUpPage);
   }
+
+  presentProfileModal() {
+    let profileModal = this.modalCtrl.create(Rate, {"user": this.username});
+    profileModal.present();
+  }
+  
 
   tappedPost() {
     this.navCtrl.push(PostpagePage);

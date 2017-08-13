@@ -1,0 +1,41 @@
+<ion-content class="main-view">
+<div class="overlay" (tap)="dismiss()"></div>
+  <div class="modal_content"> <!-- (tap)="dismiss()"-->
+    <div class="innerbox">
+    	<div class="titletext">
+    		<h3>Rate: </h3>
+            <ion-grid>
+              <ion-row>
+                <ion-col (tap)="star(1)">
+                    <ion-icon #star1 name="star-outline"></ion-icon>
+                    <ion-icon #star1full name="star" color="primary" class="full"></ion-icon>
+                </ion-col>
+                <ion-col (tap)="star(2)">
+                    <ion-icon #star2 name="star-outline"></ion-icon>
+                    <ion-icon #star2full name="star" color="primary" class="full"></ion-icon>
+
+                </ion-col>
+                <ion-col (tap)="star(3)">
+                    <ion-icon #star3 name="star-outline"></ion-icon>
+                    <ion-icon #star3full name="star" color="primary" class="full"></ion-icon>
+
+                </ion-col>
+                <ion-col (tap)="star(4)">
+                    <ion-icon #star4 name="star-outline"></ion-icon>
+                    <ion-icon #star4full name="star" color="primary" class="full"></ion-icon>
+
+                </ion-col>
+                <ion-col (tap)="star(5)">
+                    <ion-icon #star5 name="star-outline"></ion-icon>
+                    <ion-icon #star5full name="star" color="primary" class="full"></ion-icon>
+
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+    	</div>
+        <div class="buttoncont">
+            <button class="reservebutton" ion-button (tap)="rate()" round>Rate</button>
+        </div>
+    </div>
+  </div>
+</ion-content>
