@@ -154,9 +154,6 @@ export class FeedUser implements OnDestroy {
     this.subscription5.unsubscribe();
     this.subscription6.unsubscribe();
     this.subscription7.unsubscribe();
-
-
-
   } 
 
   pushPage(){
@@ -312,20 +309,47 @@ export class FeedUser implements OnDestroy {
           }
         }
 
+        item.stars = this.stars;
         this.rating.push(item);
 
-        this.starsArray.push(this.stars);
+        //this.starsArray.push(this.stars);
 
         x++;
         if(items.length - x == 0) {
-          /*this.starsArray.sort(function(a,b) {
-            return a.length - b.length;
-          });*/
+
+          
+
+          console.log("THIS IS THE SORTED ARRAY TO BE SORRRED        " + JSON.stringify(this.rating));
+
+          this.rating.sort(function(a,b){ 
+            if(a.stars !== "No ratings" && b.stars !== "No ratings") {
+              if(a.stars === b.stars){
+                return 0;
+              }
+              else {
+                return a.stars.length < b.stars.length ? 1 : -1;
+              }
+            }
+            else {
+              if(a.stars === "No ratings"){
+                return 1;
+              }
+              else if(b.stars === "No ratings"){
+                return -1;
+              }
+            }
+
+          });
+          
           resolve();
         }
       }));
     });
   }
+
+  sorter(ascending) {
+    return 
+}
 
   ionViewDidLoad() {
     

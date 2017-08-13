@@ -47,9 +47,7 @@ export class PostpagePage implements OnDestroy {
     
     this.imageHolder = this.navParams.get("path");
     this.myrenderer.setElementAttribute(this.image.nativeElement, 'src', this.imageHolder);
-    for (let r in this.share) {
-      console.log(r);
-    }
+
     
     this.subscription = this.keyboard.onKeyboardShow().subscribe(()=>{
       this.myrenderer.setElementStyle(this.share.getNativeElement(), 'bottom', '-150px');
