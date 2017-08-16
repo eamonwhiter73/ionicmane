@@ -276,12 +276,9 @@ export class FeedUser implements OnDestroy {
 
         console.log(typeof item.rating + "this is the rating string");
 
-
-        array.push(item);
-
-        
-
-        
+        if(item.type == "stylist") {
+          array.push(item);
+        }
 
         //this.starsArray.push(this.stars);
 
