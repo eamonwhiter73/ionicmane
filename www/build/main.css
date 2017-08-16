@@ -30329,6 +30329,11 @@ rate-popup .reservebutton {
   color: white;
 }
 
+page-booking .content {
+  position: absolute;
+  background-color: #25292c;
+}
+
 page-booking .monthview-container {
   height: 50%;
 }
@@ -30361,8 +30366,35 @@ page-booking ion-slides {
   height: 50%;
 }
 
+page-booking div.toolbar-background {
+  background: #25292c;
+  border: none;
+}
+
+page-booking div.toolbar-background-ios {
+  background: #25292c;
+  border: none;
+}
+
+page-booking .header-ios .toolbar-background-ios, page-booking .footer-ios .toolbar-background-ios {
+  border-style: none;
+  border-color: none;
+}
+
+page-booking .header .toolbar-background, page-booking .footer .toolbar-background {
+  border-style: none;
+  border-color: none;
+}
+
+page-booking .monthview-selected[_ngcontent-c0] {
+  color: white;
+  background-image: url("../../assets/greencircle.png");
+}
+
 page-booking .monthview-selected[_ngcontent-c1] {
-  background-color: #e6c926;
+  background: url("../../assets/greencircle.png") no-repeat center;
+  background-size: 71%;
+  background-color: #25292c;
   color: white;
 }
 
@@ -30381,15 +30413,36 @@ page-booking .monthview-selected[_ngcontent-c4] {
   color: white;
 }
 
+page-booking .monthview-current[_ngcontent-c1] {
+  background-color: #25292c;
+}
+
+page-booking .monthview-current[_ngcontent-c2] {
+  background-color: #25292c;
+}
+
+page-booking .monthview-current[_ngcontent-c3] {
+  background-color: #25292c;
+}
+
+page-booking .monthview-current[_ngcontent-c4] {
+  background-color: #25292c;
+}
+
+page-booking .monthview-current[_ngcontent-c5] {
+  background-color: #25292c;
+}
+
 page-booking #slot {
-  width: 33.3%;
+  width: 32%;
   float: left;
   padding-left: 3%;
-  border-style: solid;
-  border-width: 0.5px;
-  border-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 0.5px;
+  border-bottom-color: #999;
   min-height: 0;
   height: 4.9vh;
+  margin: 2px;
 }
 
 page-booking #slot p {
@@ -30414,7 +30467,9 @@ page-booking .slots {
   white-space: nowrap;
   overflow: hidden;
   position: relative;
-  top: -43vh;
+  top: -54vh;
+  background-color: #fff;
+  z-index: 4;
 }
 
 page-booking .slotcontainer {
@@ -30439,24 +30494,72 @@ page-booking .back-button.show-back-button {
   display: none;
 }
 
+page-booking .table-bordered[_ngcontent-c0] > thead[_ngcontent-c0] > tr[_ngcontent-c0] > th[_ngcontent-c0], page-booking .table-bordered[_ngcontent-c0] > tbody[_ngcontent-c0] > tr[_ngcontent-c0] > th[_ngcontent-c0], page-booking .table-bordered[_ngcontent-c0] > tfoot[_ngcontent-c0] > tr[_ngcontent-c0] > th[_ngcontent-c0], page-booking .table-bordered[_ngcontent-c0] > thead[_ngcontent-c0] > tr[_ngcontent-c0] > td[_ngcontent-c0], page-booking .table-bordered[_ngcontent-c0] > tbody[_ngcontent-c0] > tr[_ngcontent-c0] > td[_ngcontent-c0], page-booking .table-bordered[_ngcontent-c0] > tfoot[_ngcontent-c0] > tr[_ngcontent-c0] > td[_ngcontent-c0] {
+  line-height: 2.5vh;
+  border: none;
+  font-size: 14px;
+  padding-left: 7px;
+}
+
 page-booking .table-bordered[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-booking .table-bordered[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
   line-height: 2.5vh;
+  border: none;
+  font-size: 14px;
+  padding-left: 7px;
 }
 
 page-booking .table-bordered[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-booking .table-bordered[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-booking .table-bordered[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-booking .table-bordered[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-booking .table-bordered[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-booking .table-bordered[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2] {
   line-height: 2.5vh;
+  border: none;
+  font-size: 14px;
+  padding-left: 7px;
 }
 
 page-booking .table-bordered[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-booking .table-bordered[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3] {
   line-height: 2.5vh;
+  border: none;
+  font-size: 14px;
+  padding-left: 7px;
 }
 
 page-booking .table-bordered[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-booking .table-bordered[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-booking .table-bordered[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-booking .table-bordered[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-booking .table-bordered[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-booking .table-bordered[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4] {
   line-height: 2.5vh;
+  border: none;
+  font-size: 14px;
+  padding-left: 7px;
+}
+
+page-booking .table-bordered[_ngcontent-c0] {
+  border: none;
+  color: #999;
+}
+
+page-booking .table-bordered[_ngcontent-c1] {
+  border: none;
+  color: #999;
+}
+
+page-booking .table-bordered[_ngcontent-c2] {
+  border: none;
+  color: #999;
+}
+
+page-booking .table-bordered[_ngcontent-c3] {
+  border: none;
+  color: #999;
+}
+
+page-booking .table-bordered[_ngcontent-c4] {
+  border: none;
+  color: #999;
+}
+
+page-booking .text-muted[_ngcontent-c1] {
+  color: #616160;
 }
 
 page-booking .swiper-slide {
-  height: 95%;
+  height: 81%;
 }
 
 page-booking .save {
@@ -30468,7 +30571,7 @@ page-booking .save {
 page-booking #savebutton {
   text-align: center;
   width: 100%;
-  top: -40vh;
+  top: -50vh;
   position: relative;
 }
 
