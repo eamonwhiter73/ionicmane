@@ -34,7 +34,7 @@ import { ISubscription } from "rxjs/Subscription";
     ]),
     trigger('moveList', [
       state('down', style({
-        top: 162 + "px",
+        top: 82 + "px",
       })),
       state('up', style({
         top: 0 + "px",
@@ -55,7 +55,7 @@ import { ISubscription } from "rxjs/Subscription";
         top: '185px'
       })),
       state('notDown', style({
-        top: '23px'
+        top: '20px'
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),

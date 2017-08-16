@@ -1,8 +1,17 @@
 page-settings {
+	.backk{
+		font-size: 36px;
+		float: left;
+		margin-left: 5px;
+	}
+
+	.back-button.show-back-button {
+	    display: none;
+	}
+
 	ion-content {
-		top: 0%;
+		top: 0;
 		ion-input {
-			position: relative;
 			width:100%;
 		  border: 0;
 		  outline: 0;
@@ -10,22 +19,21 @@ page-settings {
 		  display: inline-block;
 		  margin-left: auto;
 		  margin-right: auto;
+		  margin-bottom: 3px;
 		  color: black;
 		  font-size: 14px;
 		}
 
-		.ioninput {
-			position: relative;
-			width:100%;
-		  border: 0;
-		  outline: 0;
-		  background: white;
-		  display: inline-block;
-		  margin-left: auto;
-		  margin-right: auto;
-		  color: black;
-		  font-size: 14px;
+		.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+		    border-bottom-color: #dedede;
+		    -webkit-box-shadow: none;
+		    box-shadow: none
 		}
+
+		/*ion-item .item-inner{
+		 border-bottom:1px solid #eee; // or any thing
+		 box-shadow: none;
+		}*/
 
 		input {
 			text-align: right;
@@ -38,17 +46,29 @@ page-settings {
 		ion-label {
 			width: 33.3%;
 			display: inline-block;
-			position: relative;
-			display: table-cell;
 	    vertical-align: bottom;
 	    color: gray;
 	    font-size: 14px;
 	    padding-left: 10px;
 		}
 
+		.label-md {
+		  margin: 11px 8px 11px 0;
+		}
+
+		.list-md > .item-block:last-child ion-label, .list-md > .item-block:last-child .item-inner, .list-md > .item-wrapper:last-child ion-label, .list-md > .item-wrapper:last-child .item-inner {
+		    border-bottom: 0;
+		    padding-top: 8px;
+		}
+
+		.text-input-md {
+		    margin: 8px 8px;
+		    padding: 0;
+		    width: calc(100% - 8px - 8px);
+		}
+
 		.sect {
 			width: 100%;
-			display: table;
 		}
 
 	}

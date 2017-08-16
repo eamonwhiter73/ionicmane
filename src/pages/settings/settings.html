@@ -5,14 +5,14 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
+  <!---->
 	<div style="position: absolute; left: 50%; width:35%; z-index: 1">
     <div style="position: relative; left: -50%; width:100%">
-      <img (tap)="change()" class="imagesquare" #profsquare src="../../assets/blankprof.png">
+      <img (tap)="presentActionSheet()" class="imagesquare" #profsquare src="../../assets/blankprof.png">
     </div>
   </div>
   <ion-navbar>
-    
+    <ion-icon (tap)="goToProfile()" class='backk' name="arrow-back"></ion-icon>
   </ion-navbar>
 
 </ion-header>
@@ -42,11 +42,10 @@
       <ion-option *ngFor="let z of priceRanges" value="{{z}}">{{z}}</ion-option>
     </ion-select>
 
-    <!--<ion-input type="text" (keypress)="goButton($event.keyCode)" placeholder="ex. 40-80" [(ngModel)]="price" name="price"></ion-input>--> <!--[(ngModel)]="user.username" name="password"-->
   </ion-item>
   <ion-item no-padding class="sect">
   	<ion-label>Bio</ion-label>
-  	<ion-textarea style="width: 65%" placeholder="Bio..." [(ngModel)]="bio" name="bio"></ion-textarea> <!--[(ngModel)]="user.username" name="password"-->
+  	<ion-textarea style="width: 65%" placeholder="Bio..." [(ngModel)]="bio" name="bio"></ion-textarea>
   </ion-item>
 
   <div id="savebutton">

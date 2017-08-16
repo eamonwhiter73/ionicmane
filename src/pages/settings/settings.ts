@@ -10,6 +10,9 @@ import { Observable } from "rxjs/Observable";
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { StylistProfile } from '../stylistprofile/stylistprofile';
+import { FeedStylist } from '../feedstylist/feedstylist';
+
 
 
 
@@ -82,6 +85,10 @@ export class SettingsPage implements OnDestroy {
     this.price = shape.value;
   }
 
+  goToProfile() {
+    this.navCtrl.push(StylistProfile);
+  }
+
   logForm() {
     this.storage.set('username', this.username);
     this.storage.set('password', this.password);
@@ -102,8 +109,10 @@ export class SettingsPage implements OnDestroy {
       else {
         this.af.object('/profiles/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
         this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                          'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL}});
+                          'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
       }
+
+      this.navCtrl.setRoot(FeedStylist);
     /*this.subscription = this.items.subscribe(items => {
       console.log(JSON.stringify(items.$value));
     
@@ -132,7 +141,6 @@ export class SettingsPage implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   ionViewDidLoad() {

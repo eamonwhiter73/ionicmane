@@ -36,7 +36,13 @@
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
         "cordova-plugin-googleplus": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-nativegeocoder": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
         "cordova-plugin-nativestorage": {
@@ -54,20 +60,17 @@
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.maneApp"
-        },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.ionicframework.maneApp"
-        },
-        "cordova-plugin-nativegeocoder": {
-            "PACKAGE_NAME": "com.ionicframework.maneApp"
-        },
         "cordova.plugins.diagnostic": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     },
     "dependent_plugins": {
+        "cordova-plugin-add-swift-support": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
         "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         }

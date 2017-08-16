@@ -13987,16 +13987,16 @@ input.text-input:-webkit-autofill {
 
 .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
 .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
-  border-bottom-color: #32db64;
-  -webkit-box-shadow: inset 0 -1px 0 0 #32db64;
-  box-shadow: inset 0 -1px 0 0 #32db64;
+  border-bottom-color: #dedede;
+  -webkit-box-shadow: inset 0 -1px 0 0 #dedede;
+  box-shadow: inset 0 -1px 0 0 #dedede;
 }
 
 .list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
 .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child {
-  border-bottom-color: #32db64;
-  -webkit-box-shadow: inset 0 -1px 0 0 #32db64;
-  box-shadow: inset 0 -1px 0 0 #32db64;
+  border-bottom-color: #dedede;
+  -webkit-box-shadow: inset 0 -1px 0 0 #dedede;
+  box-shadow: inset 0 -1px 0 0 #dedede;
 }
 
 .list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child .item-inner,
@@ -14072,7 +14072,7 @@ input.text-input:-webkit-autofill {
 
 .item-wp.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .text-input,
 .item-wp.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .text-input {
-  border-color: #32db64;
+  border-color: #dedede;
 }
 
 .item-wp.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .text-input {
@@ -30382,7 +30382,6 @@ page-booking .monthview-selected[_ngcontent-c4] {
 }
 
 page-booking #slot {
-  display: inline-block;
   width: 33.3%;
   float: left;
   padding-left: 3%;
@@ -30398,14 +30397,17 @@ page-booking #slot p {
 }
 
 page-booking ion-checkbox {
-  display: inline-block;
-  float: right;
+  display: block;
   -webkit-transform: scale(0.8);
   transform: scale(0.8);
+  float: right;
+  top: 18%;
+  right: 5%;
 }
 
 page-booking ion-label {
-  font-size: 10px;
+  display: inline-block;
+  font-size: 9px;
 }
 
 page-booking .slots {
@@ -31186,12 +31188,25 @@ page-postpage .backk {
   padding: 0 15px 0 15px;
 }
 
+page-settings .backk {
+  font-size: 36px;
+  float: left;
+  margin-left: 5px;
+}
+
+page-settings .back-button.show-back-button {
+  display: none;
+}
+
 page-settings ion-content {
-  top: 0%;
+  top: 0;
+  /*ion-item .item-inner{
+		 border-bottom:1px solid #eee; // or any thing
+		 box-shadow: none;
+		}*/
 }
 
 page-settings ion-content ion-input {
-  position: relative;
   width: 100%;
   border: 0;
   outline: 0;
@@ -31199,21 +31214,15 @@ page-settings ion-content ion-input {
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 3px;
   color: black;
   font-size: 14px;
 }
 
-page-settings ion-content .ioninput {
-  position: relative;
-  width: 100%;
-  border: 0;
-  outline: 0;
-  background: white;
-  display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
-  color: black;
-  font-size: 14px;
+page-settings ion-content .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, page-settings ion-content .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+  border-bottom-color: #dedede;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 page-settings ion-content input {
@@ -31227,17 +31236,29 @@ page-settings ion-content .label-md {
 page-settings ion-content ion-label {
   width: 33.3%;
   display: inline-block;
-  position: relative;
-  display: table-cell;
   vertical-align: bottom;
   color: gray;
   font-size: 14px;
   padding-left: 10px;
 }
 
+page-settings ion-content .label-md {
+  margin: 11px 8px 11px 0;
+}
+
+page-settings ion-content .list-md > .item-block:last-child ion-label, page-settings ion-content .list-md > .item-block:last-child .item-inner, page-settings ion-content .list-md > .item-wrapper:last-child ion-label, page-settings ion-content .list-md > .item-wrapper:last-child .item-inner {
+  border-bottom: 0;
+  padding-top: 8px;
+}
+
+page-settings ion-content .text-input-md {
+  margin: 8px 8px;
+  padding: 0;
+  width: calc(100% - 8px - 8px);
+}
+
 page-settings ion-content .sect {
   width: 100%;
-  display: table;
 }
 
 page-settings .imagesquare {
@@ -31533,6 +31554,17 @@ page-stylist-profile .postprofilepic {
   width: auto;
 }
 
+page-stylist-profile .settings {
+  font-size: 36px;
+}
+
+page-stylist-profile .settingscontainer {
+  position: relative;
+  z-index: 2;
+  left: 88%;
+  top: 32%;
+}
+
 page-stylist-profile .imageparent {
   width: 20vw;
   height: 20vw;
@@ -31759,7 +31791,6 @@ page-stylist-profile .insta {
 
 page-user-profile ion-title {
   text-align: center;
-  position: absolute;
 }
 
 page-user-profile .postprofilepic {

@@ -12,6 +12,17 @@ page-stylist-profile {
     width: auto;
   }
 
+  .settings {
+    font-size: 36px;
+  }
+
+  .settingscontainer {
+    position: relative;
+    z-index: 2;
+    left: 88%;
+    top: 32%;
+  }
+
   .imageparent {
   	width:20vw;
     height:20vw;

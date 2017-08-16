@@ -5,6 +5,8 @@ import { FeedUser } from '../feeduser/feeduser';
 import { FeedStylist } from '../feedstylist/feedstylist';
 import { BookingPage } from '../booking/booking';
 import { PostpagePage } from '../postpage/postpage';
+import { SettingsPage } from '../settings/settings';
+
 
 
 import { CameraService } from '../../services/cameraservice';
@@ -15,7 +17,6 @@ import { FirebaseApp } from 'angularfire2';
 import firebase from 'firebase';
 import { LoadingController } from 'ionic-angular';
 import { ImageViewerController } from 'ionic-img-viewer';
-
 import { Storage } from '@ionic/storage';
 
 
@@ -122,6 +123,7 @@ export class StylistProfile {
                 setTimeout(() => {
                   storageRef.getDownloadURL().then(url => {
                     console.log(url);
+                    this.storage.set("profile"+this.square, url);
                     this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
                     this.showSquare();
                     
@@ -146,6 +148,7 @@ export class StylistProfile {
                   setTimeout(() => {
                     storageRef.getDownloadURL().then(url => {
                       console.log(url);
+                      this.storage.set("profile"+this.square, url);
                       this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
                       this.showSquare();
                       
@@ -185,6 +188,10 @@ export class StylistProfile {
 
   tappedEmergency() {
     this.navCtrl.push(BookingPage);
+  }
+
+  goToSettings() {
+    this.navCtrl.push(SettingsPage);
   }
 
   backToFeed() {
@@ -252,44 +259,44 @@ export class StylistProfile {
     let itemArray = this.components.toArray();
 
     for (let z = 1; z < 10; z++) {
-      promises_array.push(new Promise(function(resolve,reject) {
-        let storageRef = firebase.storage().ref().child('/profile/'+ self.username + '/profile_' + self.username + '_' + z + '.png');
-        storageRef.getDownloadURL().then(url => {
-          self.myrenderer.setElementAttribute(itemArrayTwo[z - 1].nativeElement, 'src', url);
-          self.myrenderer.setElementStyle(itemArrayTwo[z - 1].nativeElement, 'display', 'block');
-          self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
-          console.log(z);
-          resolve();
-        }).catch(error => {
+      //promises_array.push(new Promise(function(resolve,reject) {
+        //let storageRef = firebase.storage().ref().child('/profile/'+ self.username + '/profile_' + self.username + '_' + z + '.png');
+        //storageRef.getDownloadURL().then(url => {
+          self.storage.get("profile"+z).then((val) =>{
+            if(val!=null) {
+              self.myrenderer.setElementAttribute(itemArrayTwo[z - 1].nativeElement, 'src', val);
+              self.myrenderer.setElementStyle(itemArrayTwo[z - 1].nativeElement, 'display', 'block');
+              self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
+              console.log(z);
+              
+            }
+            //resolve();
+          })         
+        /*}).catch(error => {
           console.log(error.message);
-          resolve();
+          resolve();*/
           
-        });
-      }));
+      //}));
     }
 
     return Promise.all(promises_array);
   }
 
   ionViewWillEnter() {
-    this.loadings = this.loadingController.create({content : "Loading..."});
-    this.loadings.present();
+    //this.loadings = this.loadingController.create({content : "Loading..."});
+    //this.loadings.present();
     
   }
 
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     this.storage.get('username').then((val) => {
       this.username = val;
       console.log(val);
 
       this.downloadImages().then(() => {
-        this.loadings.dismiss();
+        //this.loadings.dismiss();
       })
     });
-
-    
-
-    
   }
 
   moveCover() {

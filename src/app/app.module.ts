@@ -46,6 +46,10 @@ import { DatePicker } from '@ionic-native/date-picker';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Diagnostic } from '@ionic-native/diagnostic';
+import { ImgcacheService } from '../services/imgcacheservice';
+import { LazyLoadDirective } from '../directives/imgcachedirective';
+
+
 
 
 
@@ -84,7 +88,8 @@ firebase.initializeApp(firebaseConfig);
     PopUp,
     SettingsPage,
     UserProfile,
-    Rate
+    Rate,
+    LazyLoadDirective
   ],
   imports: [
     BrowserModule,
@@ -133,7 +138,8 @@ firebase.initializeApp(firebaseConfig);
     DatePicker,
     NativeGeocoder,
     Geolocation,
-    Diagnostic
+    Diagnostic,
+    ImgcacheService
   ]
 })
 export class AppModule {}

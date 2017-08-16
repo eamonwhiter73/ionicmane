@@ -51,7 +51,6 @@ page-booking {
 	}
 
 	#slot {
-		display: inline-block;
 		width: 33.3%;
 		float: left;
 		padding-left: 3%;
@@ -67,13 +66,16 @@ page-booking {
 	}
 
 	ion-checkbox {
-		display: inline-block;
-		float: right;
+		display: block;
 		transform: scale(.8);
+		float: right;
+		top: 18%;
+		right: 5%;
 	}
 
 	ion-label {
-		font-size: 10px;
+		display: inline-block;
+		font-size: 9px;
 	}
 
 	.slots {

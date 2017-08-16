@@ -152,7 +152,9 @@ export class FeedUser implements OnDestroy {
     this.subscription3.unsubscribe();
     this.subscription4.unsubscribe();
     this.subscription5.unsubscribe();
-    this.subscription6.unsubscribe();
+    if(this.subscription6 != null) {
+      this.subscription6.unsubscribe();
+    }
     this.subscription7.unsubscribe();
   } 
 
@@ -272,7 +274,7 @@ export class FeedUser implements OnDestroy {
       let x = 0;
       this.subscription7 = this.ratingslist.subscribe(items => items.forEach(item => {
 
-        console.log(typeof item.rating.one + "this is the rating string");
+        console.log(typeof item.rating + "this is the rating string");
 
         for (let x in item.rating) {
           if(typeof x == 'string') {
