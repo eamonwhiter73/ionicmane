@@ -71,7 +71,7 @@ export class SignUpPage implements OnDestroy {
     this.storage.set('email', usery.email);
 
     let profile = {'username': usery.username, 'password': usery.password,
-                    'email': usery.email, 'bio':"", 'address':"", 'type':""};
+                    'email': usery.email, 'bio':"", 'address':"", 'type':"", 'rating':{'one':0,'two':0,'three':0,'four':0,'five':0}};
 
     this.items = this.af.list('/profiles/' + usery.username + '/');
     this.subscription = this.items.subscribe(items => {

@@ -269,57 +269,86 @@ export class FeedUser implements OnDestroy {
     return new Promise((resolve, reject) => {
 
       this.ratingslist = this.af.list('/profiles');
-       let ratings;
-       let totalPotential;
+       
+      let array = [];
       let x = 0;
       this.subscription7 = this.ratingslist.subscribe(items => items.forEach(item => {
 
         console.log(typeof item.rating + "this is the rating string");
 
-        for (let x in item.rating) {
-          if(typeof x == 'string') {
-            console.log(x+"        intparsed88888888");
-            item.rating[x] = parseInt(item.rating[x]);
-          }
-        }
 
-        if(item.rating.one == 0 && item.rating.two == 0 && item.rating.three == 0 && item.rating.four == 0 && item.rating.five == 0) {
-          this.stars = "No ratings";
-        }
-        else {
+        array.push(item);
 
-          totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
-          ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five *5;
-          
+        
 
-          let i = (ratings / totalPotential) * 100;
-          let reversei = totalPotential / ratings;
-          if(Math.round(i) <= 20) {
-            this.stars = '\u2605';
-          }
-          if(Math.round(i) > 20 && Math.round(i) <= 40) {
-            this.stars = '\u2605\u2605';
-          }
-          if(Math.round(i) > 40 && Math.round(i) <= 60) {
-            this.stars = '\u2605\u2605\u2605';
-          }
-          if(Math.round(i) > 60 && Math.round(i) <= 80) {
-            this.stars = '\u2605\u2605\u2605\u2605';
-          }
-          if(Math.round(i) > 80) {
-            this.stars = '\u2605\u2605\u2605\u2605\u2605';
-          }
-        }
-
-        item.stars = this.stars;
-        this.rating.push(item);
+        
 
         //this.starsArray.push(this.stars);
 
         x++;
         if(items.length - x == 0) {
-
           
+          resolve(array);
+        }
+      }));
+    });
+  }
+
+  sorter(ascending) {
+    return 
+}
+
+  ionViewDidLoad() {
+    let ratings;
+    let totalPotential;
+    
+    this.getInitialImages();
+
+    this.loadDistances().then(() => {
+      console.log(JSON.stringify(this.distances) + " :FOSIEJO:SFJ::EFIJSEFIJS:EFJS:IO THIS IODIOSJ:FDSIJ :DIS");
+      //setTimeout(() => {
+        this.distances.sort(function(a,b) {
+          return a.distance - b.distance;
+        });
+      //}, 1000)
+    })
+
+    this.loadRatings().then((array) =>{
+
+          let r = 0;
+          for(let item of array) {
+            if(item.rating.one == 0 && item.rating.two == 0 && item.rating.three == 0 && item.rating.four == 0 && item.rating.five == 0) {
+              this.stars = "No ratings";
+            }
+            else {
+
+              totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
+              ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five *5;
+              
+
+              let i = (ratings / totalPotential) * 100;
+              let reversei = totalPotential / ratings;
+              if(Math.round(i) <= 20) {
+                this.stars = '\u2605';
+              }
+              if(Math.round(i) > 20 && Math.round(i) <= 40) {
+                this.stars = '\u2605\u2605';
+              }
+              if(Math.round(i) > 40 && Math.round(i) <= 60) {
+                this.stars = '\u2605\u2605\u2605';
+              }
+              if(Math.round(i) > 60 && Math.round(i) <= 80) {
+                this.stars = '\u2605\u2605\u2605\u2605';
+              }
+              if(Math.round(i) > 80) {
+                this.stars = '\u2605\u2605\u2605\u2605\u2605';
+              }
+            }
+
+            item.stars = this.stars;
+            this.rating.push(item);
+            r++;
+          }
 
           console.log("THIS IS THE SORTED ARRAY TO BE SORRRED        " + JSON.stringify(this.rating));
 
@@ -342,32 +371,7 @@ export class FeedUser implements OnDestroy {
             }
 
           });
-          
-          resolve();
-        }
-      }));
-    });
-  }
-
-  sorter(ascending) {
-    return 
-}
-
-  ionViewDidLoad() {
-    
-    this.getInitialImages();
-
-    this.loadDistances().then(() => {
-      console.log(JSON.stringify(this.distances) + " :FOSIEJO:SFJ::EFIJSEFIJS:EFJS:IO THIS IODIOSJ:FDSIJ :DIS");
-      //setTimeout(() => {
-        this.distances.sort(function(a,b) {
-          return a.distance - b.distance;
-        });
-      //}, 1000)
-      
-    })
-
-    this.loadRatings().then(() =>{});
+        })
     
     this.renderer.setElementStyle(this.promos.nativeElement, 'color', '#e6c926');
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
