@@ -10,6 +10,8 @@ import { FeedUser } from '../pages/feeduser/feeduser';
 import { StylistProfile } from '../pages/stylistprofile/stylistprofile';
 import { PostpagePage } from '../pages/postpage/postpage';
 import { BookingPage } from '../pages/booking/booking';
+import { UserBooking } from '../pages/userbooking/userbooking';
+
 import { SettingsPage } from '../pages/settings/settings';
 import { ImgcacheService } from '../services/imgcacheservice';
 

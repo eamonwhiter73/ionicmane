@@ -38,13 +38,16 @@ export class BookingPage implements OnDestroy {
   items2 : FirebaseListObservable<any>;
   items3 : FirebaseListObservable<any>;
   isSomething : boolean;
+  titleYear;
+  datesToSelect = [];
+  tds;
   private swipeCoord?: [number, number];
   private swipeTime?: number;
   private subscription: ISubscription;
   private subscription2: ISubscription;
   private subscription3: ISubscription;
 
-  constructor(public myrenderer: Renderer, public loadingController: LoadingController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public af: AngularFireDatabase) {
+  constructor(private elRef:ElementRef, public myrenderer: Renderer, public loadingController: LoadingController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public af: AngularFireDatabase) {
     this.times = [{'time':'8:00 AM', 'selected': false}, {'time':'12:00 PM', 'selected': false}, {'time':'4:00 PM', 'selected': false},
                   {'time':'8:30 AM', 'selected': false}, {'time':'12:30 PM', 'selected': false}, {'time':'4:30 PM', 'selected': false},
                   {'time':'9:00 AM', 'selected': false}, {'time':'1:00 PM', 'selected': false}, {'time':'5:00 PM', 'selected': false},
@@ -59,6 +62,13 @@ export class BookingPage implements OnDestroy {
     //this.items = this.af.list('/appointments/' + this.username);
     //console.log(this.items);
         
+    
+  }
+
+  ngAfterViewInit() {
+    console.log("IN NGAFTER");
+    //console.log(this.elRef.nativeElement.querySelectorAll('td[tappable]'));
+    
     
   }
 
@@ -187,13 +197,13 @@ export class BookingPage implements OnDestroy {
     //this.loading.dismiss();
   }
 
-  ionViewDidLoad() {
+  //ionViewDidLoad() {
     /*this.isSomething = true;
 
     this.storage.get('username').then((val) => {
       this.getData(val);
     });*/
-  }
+  //}
 
   
 
@@ -202,18 +212,25 @@ export class BookingPage implements OnDestroy {
     //loading.present();
     this.isSomething = true;
 
+    this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+
     this.storage.get('username').then((val) => {
       this.getData(val);
     });
   
     console.log(this.viewDate + " view date ");
     setTimeout(()=>{
-      this.selectedDate = this.viewDate;
+      //this.selectedDate = this.viewDate;
       console.log(this.username + "this.username");
       this.items2 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
       this.subscription2 = this.items2.subscribe(items => items.forEach(item => {
 
+        console.log(item);
+
         let da = new Date(item.date.day * 1000);
+        this.datesToSelect.push(da.getDate());
+
+
         console.log(da + "da");
         console.log(da.getDate() + "dagetdate");
         console.log(this.selectedDate.getDate());
@@ -252,8 +269,23 @@ export class BookingPage implements OnDestroy {
             }*/
           /*}
         }*/
+        for(let item of this.tds) {
+          if(!item.classList.contains('text-muted')) {
+            console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
+            let count = 0;
+            if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
+              console.log("Inner text in      " + item.innerText);
+              this.myrenderer.setElementClass(item,"greencircle",true);            
+            }
+            else {
+              //this.myrenderer.setElementClass(item,"monthview-selected",false);
+            }
+          }
+        }
         
       }));
+      
+      
       //loading.dismiss();
     },1500)
 
@@ -266,17 +298,31 @@ export class BookingPage implements OnDestroy {
   }
 
   onCurrentDateChanged($event) {
-
-    if(!this.isSomething) {
     //console.log(typeof $event);
       for(let x of this.times) {
         x.selected = false;
       }
 
-      //console.log($event);
-      
+      console.log(typeof $event + "event event event *******");
+
       this.selectedDate = new Date($event);
       console.log(this.selectedDate);
+
+      this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+      //console.log($event);
+      for(let item of this.tds) {
+        if(!item.classList.contains('text-muted')) {
+          console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
+          let count = 0;
+          if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
+            console.log("Inner text in      " + item.innerText);
+            this.myrenderer.setElementClass(item,"greencircle",true);
+          }
+          else {
+            //this.myrenderer.setElementClass(item,"monthview-selected",false);
+          }
+        }
+      }
 
       this.items3 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
       this.subscription3 = this.items3.subscribe(items => items.forEach(item => {
@@ -305,11 +351,6 @@ export class BookingPage implements OnDestroy {
           //}
         }
       }));
-
-    
-    }
-
-    this.isSomething = false;
   }
 
   ngOnDestroy() {
@@ -323,7 +364,10 @@ export class BookingPage implements OnDestroy {
   onEventSelected($event) {}
 
   onViewTitleChanged(title) {
-    this.viewTitle = title;
+    let array = title.split(" ");
+    //array[1];
+    this.viewTitle = array[0];
+    this.titleYear = array[1];
   }
 
   onTimeSelected($event) {}

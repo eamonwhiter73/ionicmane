@@ -15,6 +15,8 @@ import { StylistProfile } from '../pages/stylistprofile/stylistprofile';
 import { BookingPage } from '../pages/booking/booking';
 import { SettingsPage } from '../pages/settings/settings';
 import { UserProfile } from '../pages/userprofile/userprofile';
+import { UserBooking } from '../pages/userbooking/userbooking';
+
 
 
 import { NgCalendarModule  } from 'ionic2-calendar';
@@ -85,6 +87,7 @@ firebase.initializeApp(firebaseConfig);
     StylistProfile,
     PostpagePage,
     BookingPage,
+    UserBooking,
     PopUp,
     SettingsPage,
     UserProfile,
@@ -119,7 +122,8 @@ firebase.initializeApp(firebaseConfig);
     PopUp,
     Rate,
     SettingsPage,
-    UserProfile
+    UserProfile,
+    UserBooking
   ],
   providers: [
     StatusBar,

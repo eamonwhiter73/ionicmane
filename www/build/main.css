@@ -30388,28 +30388,38 @@ page-booking .header .toolbar-background, page-booking .footer .toolbar-backgrou
 
 page-booking .monthview-selected[_ngcontent-c0] {
   color: white;
-  background-image: url("../../assets/greencircle.png");
+  font-weight: 900;
+  background-color: #25292c;
 }
 
 page-booking .monthview-selected[_ngcontent-c1] {
-  background: url("../../assets/greencircle.png") no-repeat center;
-  background-size: 71%;
-  background-color: #25292c;
   color: white;
+  font-weight: 900;
+  background-color: #25292c;
 }
 
 page-booking .monthview-selected[_ngcontent-c2] {
-  background-color: #e6c926;
   color: white;
+  font-weight: 900;
+  background-color: #25292c;
 }
 
 page-booking .monthview-selected[_ngcontent-c3] {
-  background-color: #e6c926;
   color: white;
+  font-weight: 900;
+  background-color: #25292c;
 }
 
 page-booking .monthview-selected[_ngcontent-c4] {
-  background-color: #e6c926;
+  color: white;
+  font-weight: 900;
+  background-color: #25292c;
+}
+
+page-booking .greencircle {
+  background: url("../../assets/greencircle.png") no-repeat center;
+  background-size: 71%;
+  background-color: #25292c;
   color: white;
 }
 
@@ -30439,7 +30449,7 @@ page-booking #slot {
   padding-left: 3%;
   border-bottom-style: solid;
   border-bottom-width: 0.5px;
-  border-bottom-color: #999;
+  border-bottom-color: gray;
   min-height: 0;
   height: 4.9vh;
   margin: 2px;
@@ -30558,20 +30568,49 @@ page-booking .text-muted[_ngcontent-c1] {
   color: #616160;
 }
 
+page-booking .monthclass {
+  display: inline-block;
+  margin-right: 2px;
+  color: white;
+  font-size: 20px;
+}
+
+page-booking .yearclass {
+  display: inline-block;
+  margin-left: 2px;
+  color: #e6c926;
+  font-size: 20px;
+}
+
+page-booking ion-navbar {
+  position: absolute;
+  top: 0;
+  text-align: center;
+}
+
 page-booking .swiper-slide {
-  height: 81%;
+  height: 92%;
 }
 
 page-booking .save {
+  display: table-cell;
+  vertical-align: middle;
   position: relative;
-  height: 24px;
-  top: -2vh;
+  font-size: 22px;
+  line-height: 100%;
+  height: 100%;
+  padding-bottom: 3%;
+  font-weight: 700;
+  color: white;
 }
 
 page-booking #savebutton {
+  display: table;
   text-align: center;
   width: 100%;
-  top: -50vh;
+  top: -54vh;
+  height: 12%;
+  background-color: #e6c926;
   position: relative;
 }
 
@@ -31890,6 +31929,281 @@ page-stylist-profile .fb {
 
 page-stylist-profile .insta {
   width: 28px;
+}
+
+page-user-booking .content {
+  position: absolute;
+  background-color: #25292c;
+}
+
+page-user-booking .monthview-container {
+  height: 50%;
+}
+
+page-user-booking .event-detail-container {
+  display: none;
+}
+
+page-user-booking [_nghost-c0] > div[_ngcontent-c0] {
+  height: 100%;
+}
+
+page-user-booking [_nghost-c1] > div[_ngcontent-c1] {
+  height: 100%;
+}
+
+page-user-booking [_nghost-c2] > div[_ngcontent-c2] {
+  height: 100%;
+}
+
+page-user-booking [_nghost-c3] > div[_ngcontent-c3] {
+  height: 100%;
+}
+
+page-user-booking [_nghost-c4] > div[_ngcontent-c3] {
+  height: 100%;
+}
+
+page-user-booking ion-slides {
+  height: 50%;
+}
+
+page-user-booking div.toolbar-background {
+  background: #25292c;
+  border: none;
+}
+
+page-user-booking div.toolbar-background-ios {
+  background: #25292c;
+  border: none;
+}
+
+page-user-booking .header-ios .toolbar-background-ios, page-user-booking .footer-ios .toolbar-background-ios {
+  border-style: none;
+  border-color: none;
+}
+
+page-user-booking .header .toolbar-background, page-user-booking .footer .toolbar-background {
+  border-style: none;
+  border-color: none;
+}
+
+page-user-booking .monthview-selected[_ngcontent-c0] {
+  color: white;
+  background-image: url("../../assets/greencircle.png");
+}
+
+page-user-booking .monthview-selected[_ngcontent-c1] {
+  background: url("../../assets/greencircle.png") no-repeat center;
+  background-size: 71%;
+  background-color: #25292c;
+  color: white;
+}
+
+page-user-booking .monthview-selected[_ngcontent-c2] {
+  background-color: #e6c926;
+  color: white;
+}
+
+page-user-booking .monthview-selected[_ngcontent-c3] {
+  background-color: #e6c926;
+  color: white;
+}
+
+page-user-booking .monthview-selected[_ngcontent-c4] {
+  background-color: #e6c926;
+  color: white;
+}
+
+page-user-booking .monthview-current[_ngcontent-c1] {
+  background-color: #25292c;
+}
+
+page-user-booking .monthview-current[_ngcontent-c2] {
+  background-color: #25292c;
+}
+
+page-user-booking .monthview-current[_ngcontent-c3] {
+  background-color: #25292c;
+}
+
+page-user-booking .monthview-current[_ngcontent-c4] {
+  background-color: #25292c;
+}
+
+page-user-booking .monthview-current[_ngcontent-c5] {
+  background-color: #25292c;
+}
+
+page-user-booking #slot {
+  width: 32%;
+  float: left;
+  padding-left: 3%;
+  border-bottom-style: solid;
+  border-bottom-width: 0.5px;
+  border-bottom-color: gray;
+  min-height: 0;
+  height: 4.9vh;
+  margin: 2px;
+}
+
+page-user-booking #slot p {
+  font-size: 1.2rem;
+}
+
+page-user-booking ion-checkbox {
+  display: block;
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  float: right;
+  top: 18%;
+  right: 5%;
+}
+
+page-user-booking ion-label {
+  display: inline-block;
+  font-size: 9px;
+}
+
+page-user-booking .slots {
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  top: -54vh;
+  background-color: #fff;
+  z-index: 4;
+}
+
+page-user-booking .slotcontainer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+page-user-booking table thead {
+  font-size: 12px;
+}
+
+page-user-booking .time {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+}
+
+page-user-booking .back-button.show-back-button {
+  display: none;
+}
+
+page-user-booking .table-bordered[_ngcontent-c0] > thead[_ngcontent-c0] > tr[_ngcontent-c0] > th[_ngcontent-c0], page-user-booking .table-bordered[_ngcontent-c0] > tbody[_ngcontent-c0] > tr[_ngcontent-c0] > th[_ngcontent-c0], page-user-booking .table-bordered[_ngcontent-c0] > tfoot[_ngcontent-c0] > tr[_ngcontent-c0] > th[_ngcontent-c0], page-user-booking .table-bordered[_ngcontent-c0] > thead[_ngcontent-c0] > tr[_ngcontent-c0] > td[_ngcontent-c0], page-user-booking .table-bordered[_ngcontent-c0] > tbody[_ngcontent-c0] > tr[_ngcontent-c0] > td[_ngcontent-c0], page-user-booking .table-bordered[_ngcontent-c0] > tfoot[_ngcontent-c0] > tr[_ngcontent-c0] > td[_ngcontent-c0] {
+  line-height: 2.5vh;
+  border: none;
+  font-size: 14px;
+  padding-left: 7px;
+}
+
+page-user-booking .table-bordered[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-user-booking .table-bordered[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-user-booking .table-bordered[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-user-booking .table-bordered[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-user-booking .table-bordered[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-user-booking .table-bordered[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
+  line-height: 2.5vh;
+  border: none;
+  font-size: 14px;
+  padding-left: 7px;
+}
+
+page-user-booking .table-bordered[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-user-booking .table-bordered[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-user-booking .table-bordered[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-user-booking .table-bordered[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-user-booking .table-bordered[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-user-booking .table-bordered[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2] {
+  line-height: 2.5vh;
+  border: none;
+  font-size: 14px;
+  padding-left: 7px;
+}
+
+page-user-booking .table-bordered[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-user-booking .table-bordered[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-user-booking .table-bordered[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-user-booking .table-bordered[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-user-booking .table-bordered[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-user-booking .table-bordered[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3] {
+  line-height: 2.5vh;
+  border: none;
+  font-size: 14px;
+  padding-left: 7px;
+}
+
+page-user-booking .table-bordered[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-user-booking .table-bordered[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-user-booking .table-bordered[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-user-booking .table-bordered[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-user-booking .table-bordered[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-user-booking .table-bordered[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4] {
+  line-height: 2.5vh;
+  border: none;
+  font-size: 14px;
+  padding-left: 7px;
+}
+
+page-user-booking .table-bordered[_ngcontent-c0] {
+  border: none;
+  color: #999;
+}
+
+page-user-booking .table-bordered[_ngcontent-c1] {
+  border: none;
+  color: #999;
+}
+
+page-user-booking .table-bordered[_ngcontent-c2] {
+  border: none;
+  color: #999;
+}
+
+page-user-booking .table-bordered[_ngcontent-c3] {
+  border: none;
+  color: #999;
+}
+
+page-user-booking .table-bordered[_ngcontent-c4] {
+  border: none;
+  color: #999;
+}
+
+page-user-booking .text-muted[_ngcontent-c1] {
+  color: #616160;
+}
+
+page-user-booking .monthclass {
+  display: inline-block;
+  margin-right: 2px;
+  color: white;
+  font-size: 20px;
+}
+
+page-user-booking .yearclass {
+  display: inline-block;
+  margin-left: 2px;
+  color: #e6c926;
+  font-size: 20px;
+}
+
+page-user-booking ion-navbar {
+  position: absolute;
+  top: 0;
+  text-align: center;
+}
+
+page-user-booking .swiper-slide {
+  height: 92%;
+}
+
+page-user-booking .save {
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+  font-size: 22px;
+  line-height: 100%;
+  height: 100%;
+  padding-bottom: 3%;
+  font-weight: 700;
+  color: white;
+}
+
+page-user-booking #savebutton {
+  display: table;
+  text-align: center;
+  width: 100%;
+  top: -54vh;
+  height: 12%;
+  background-color: #e6c926;
+  position: relative;
 }
 
 page-user-profile ion-title {
