@@ -154,11 +154,19 @@ export class BookingPage implements OnDestroy {
      
     
     if(!foundit) {
+      let bool = false;
       console.log(this.username + 'down here');
-      this.items.push({date:{day:this.selectedDate.getTime() / 1000}, reserved:{appointment:this.times}}).then((snap) => {
-        const key = snap.key 
-        console.log(key);
-      });
+      for(let x of this.times) {
+        if(x.selected) {
+          bool = true;
+        }
+      }
+      if(bool) {
+        this.items.push({date:{day:this.selectedDate.getTime() / 1000}, reserved:{appointment:this.times}}).then((snap) => {
+          const key = snap.key;
+          console.log(key);
+        });
+      } 
     }
 
     alert("Availability Saved");
@@ -227,7 +235,7 @@ export class BookingPage implements OnDestroy {
   
     console.log(this.viewDate + " view date ");
     setTimeout(()=>{
-      //this.selectedDate = this.viewDate;
+      this.selectedDate = this.viewDate;
       console.log(this.username + "this.username");
       this.items2 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
       this.subscription2 = this.items2.subscribe(items => items.forEach(item => {
@@ -313,23 +321,10 @@ export class BookingPage implements OnDestroy {
       console.log(typeof $event + "event event event *******");
 
       this.selectedDate = new Date($event);
-      console.log(this.selectedDate);
+      console.log(this.selectedDate + " thi si the selected date ((())))))");
 
       this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
       //console.log($event);
-      for(let item of this.tds) {
-        if(!item.classList.contains('text-muted')) {
-          console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
-          let count = 0;
-          if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
-            console.log("Inner text in      " + item.innerText);
-            this.myrenderer.setElementClass(item,"greencircle",true);
-          }
-          else {
-            //this.myrenderer.setElementClass(item,"monthview-selected",false);
-          }
-        }
-      }
 
       this.items3 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
       this.subscription3 = this.items3.subscribe(items => items.forEach(item => {
@@ -337,6 +332,9 @@ export class BookingPage implements OnDestroy {
         //console.log(item.date.day);
         console.log("dafirst    " + item.date.day )
         let da = new Date(item.date.day * 1000);
+        this.datesToSelect = [];
+        this.datesToSelect.push(da.getDate());
+
         console.log(da + "da");
         console.log(da.getDate() + "dagetdate");
         console.log(this.selectedDate.getDate());
@@ -366,7 +364,9 @@ export class BookingPage implements OnDestroy {
     this.subscription3.unsubscribe();
   } 
 
-  reloadSource(startTime, endTime) {}
+  reloadSource(startTime, endTime) {
+    console.log(startTime + " : starttime           endtime: " + endTime);
+  }
 
   onEventSelected($event) {}
 
@@ -377,5 +377,68 @@ export class BookingPage implements OnDestroy {
     this.titleYear = array[1];
   }
 
-  onTimeSelected($event) {}
+  onTimeSelected($event) {
+    console.log(JSON.stringify($event) + "      THI SIIS EVENT @(@(@(@(@(");
+    this.selectedDate = new Date($event.selectedTime);
+    console.log(this.selectedDate + " thi si the selected date ((())))))");
+
+    this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+    if($event.dontRunCode) {
+    //console.log($event);
+      this.items3 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+      this.subscription3 = this.items3.subscribe(items => items.forEach(item => {
+        //console.log(JSON.stringify(item));
+        //console.log(item.date.day);
+        console.log("dafirst    " + item.date.day )
+        let da = new Date(item.date.day * 1000);
+        this.datesToSelect = [];
+        this.datesToSelect.push(da.getDate());
+
+        console.log(da + "da");
+        console.log(da.getDate() + "dagetdate");
+        console.log(this.selectedDate.getDate());
+        if(this.selectedDate.getDate() == da.getDate() && this.selectedDate.getMonth() == da.getMonth()) {
+          console.log("selected = item");
+          console.log(JSON.stringify(item.reserved) + "         item resesrved");
+          //for(let r of item.reserved.appointment) {
+            //console.log(JSON.stringify(r));
+            /*let bool = false;
+            for(let r in item.reserved.appointment) {
+              if(r['selected'] == "true") {
+                bool = true;
+              }
+            }*/
+            this.times = item.reserved.appointment.slice(0);
+            console.log('hit appointment');
+            console.log(JSON.stringify(this.times));
+            
+            /*for(let x of this.times) {
+              if(x.time == r) {
+                console.log('change selected');
+                x.selected = true;
+              }
+            }*/
+          //}
+        }
+        //console.log($event.runCode + "     dont run code!!!!!!");
+        //if($event.runCode == true) {
+          for(let item of this.tds) {
+            if(!item.classList.contains('text-muted')) {
+              console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
+              let count = 0;
+              if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
+                console.log("Inner text in      " + item.innerText);
+                this.myrenderer.setElementClass(item,"greencircle",true);
+              }
+              else {
+                //this.myrenderer.setElementClass(item,"monthview-selected",false);
+              }
+            }
+          }
+        //}
+
+        
+      }));
+    }
+  }
 }

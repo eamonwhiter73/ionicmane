@@ -1,150 +1,150 @@
 {
-  "name": "ionic-hello-world",
-  "version": "0.0.0",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
-  "private": true,
-  "scripts": {
-    "clean": "ionic-app-scripts clean",
-    "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint",
-    "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve"
-  },
-  "dependencies": {
-    "@angular/animations": "^4.0.0",
-    "@angular/common": "4.1.3",
-    "@angular/compiler": "4.1.3",
-    "@angular/compiler-cli": "4.1.3",
-    "@angular/core": "4.1.3",
-    "@angular/forms": "4.1.3",
-    "@angular/http": "4.1.3",
-    "@angular/platform-browser": "4.1.3",
-    "@angular/platform-browser-dynamic": "4.1.3",
-    "@ionic-native/calendar": "^3.14.0",
-    "@ionic-native/camera": "^4.0.1",
-    "@ionic-native/core": "3.12.1",
-    "@ionic-native/crop": "^4.0.1",
-    "@ionic-native/date-picker": "^4.1.0",
-    "@ionic-native/diagnostic": "^4.1.0",
-    "@ionic-native/facebook": "^4.1.0",
-    "@ionic-native/file": "^4.0.1",
-    "@ionic-native/file-transfer": "^4.0.1",
-    "@ionic-native/geolocation": "^4.1.0",
-    "@ionic-native/keyboard": "^4.0.0",
-    "@ionic-native/native-geocoder": "^4.1.0",
-    "@ionic-native/native-storage": "^4.1.0",
-    "@ionic-native/splash-screen": "3.12.1",
-    "@ionic-native/status-bar": "3.12.1",
-    "@ionic-native/transfer": "^3.14.0",
-    "@ionic/storage": "^2.0.1",
-    "ahdin": "^1.0.0",
-    "angular-calendar": "^0.18.3",
-    "angularfire2": "^4.0.0-rc.1",
-    "blueimp-canvas-to-blob": "^3.9.0",
-    "canvas-compress": "^1.1.5",
-    "cordova-android": "^6.2.3",
-    "cordova-ios": "^4.4.0",
-    "cordova-plugin-add-swift-support": "^1.7.0",
-    "cordova-plugin-calendar": "^4.6.0",
-    "cordova-plugin-camera": "^2.4.1",
-    "cordova-plugin-compat": "^1.1.0",
-    "cordova-plugin-console": "1.0.5",
-    "cordova-plugin-crop": "^0.4.0",
-    "cordova-plugin-datepicker": "^0.9.3",
-    "cordova-plugin-device": "1.1.4",
-    "cordova-plugin-facebook4": "^1.9.1",
-    "cordova-plugin-file": "^4.3.3",
-    "cordova-plugin-file-transfer": "^1.6.3",
-    "cordova-plugin-geolocation": "^2.4.3",
-    "cordova-plugin-googleplus": "^5.1.1",
-    "cordova-plugin-nativegeocoder": "^2.0.2",
-    "cordova-plugin-nativestorage": "^2.2.2",
-    "cordova-plugin-splashscreen": "~4.0.1",
-    "cordova-plugin-statusbar": "2.2.2",
-    "cordova-plugin-whitelist": "1.3.1",
-    "cordova-sqlite-storage": "^2.0.4",
-    "cordova.plugins.diagnostic": "^3.6.6",
-    "firebase": "^4.1.3",
-    "imgcache.js": "^1.1.1",
-    "intl": "^1.2.5",
-    "ionic-angular": "3.5.0",
-    "ionic-image-loader": "^4.1.1",
-    "ionic-img-viewer": "^2.4.0",
-    "ionic-plugin-keyboard": "~2.2.1",
-    "ionic2-calendar": "^0.3.7",
-    "ionicons": "3.0.0",
-    "j-i-c": "^2.0.2",
-    "localforage": "^1.5.0",
-    "ng2-img-max": "^2.1.4",
-    "ng2-img-tools": "^1.0.4",
-    "rxjs": "5.4.0",
-    "sw-toolbox": "3.6.0",
-    "tinify": "^1.5.0",
-    "web-animations-js": "^2.2.5",
-    "zone.js": "0.8.12"
-  },
-  "devDependencies": {
-    "@ionic/app-scripts": "1.3.12",
-    "@ionic/cli-plugin-cordova": "1.4.1",
-    "@ionic/cli-plugin-ionic-angular": "1.3.2",
-    "ionic": "3.6.0",
-    "ionic-minify": "^2.0.10",
-    "typescript": "2.3.4"
-  },
-  "cordovaPlugins": [
-    "cordova-plugin-whitelist",
-    "cordova-plugin-statusbar",
-    "cordova-plugin-device",
-    "cordova-plugin-console",
-    "cordova-plugin-splashscreen",
-    "ionic-plugin-keyboard"
-  ],
-  "cordovaPlatforms": [
-    "ios",
-    {
-      "platform": "ios",
-      "version": "",
-      "locator": "ios"
-    }
-  ],
-  "description": "myApp: An Ionic project",
-  "cordova": {
-    "plugins": {
-      "cordova-plugin-calendar": {
-        "CALENDAR_USAGE_DESCRIPTION": " "
-      },
-      "cordova-plugin-console": {},
-      "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-statusbar": {},
-      "cordova-plugin-whitelist": {},
-      "ionic-plugin-keyboard": {},
-      "cordova-plugin-camera": {
-        "CAMERA_USAGE_DESCRIPTION": " ",
-        "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
-      },
-      "cordova-plugin-crop": {},
-      "cordova-plugin-file": {},
-      "cordova-plugin-file-transfer": {},
-      "cordova-sqlite-storage": {},
-      "cordova-plugin-nativestorage": {},
-      "cordova-plugin-facebook4": {
-        "APP_ID": "1395258797190658",
-        "APP_NAME": "ManeEmergency"
-      },
-      "cordova-plugin-googleplus": {
-        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1059751557247-aro48ncpaq2ffiae4cpsnjp941e09hao"
-      },
-      "cordova-plugin-datepicker": {},
-      "cordova-plugin-geolocation": {
-        "GEOLOCATION_USAGE_DESCRIPTION": " "
-      },
-      "cordova-plugin-nativegeocoder": {},
-      "cordova.plugins.diagnostic": {}
+    "name": "ionic-hello-world",
+    "version": "0.0.0",
+    "author": "Ionic Framework",
+    "homepage": "http://ionicframework.com/",
+    "private": true,
+    "scripts": {
+        "clean": "ionic-app-scripts clean",
+        "build": "ionic-app-scripts build",
+        "lint": "ionic-app-scripts lint",
+        "ionic:build": "ionic-app-scripts build",
+        "ionic:serve": "ionic-app-scripts serve"
     },
-    "platforms": [
-      "android"
-    ]
-  }
+    "dependencies": {
+        "@angular/animations": "^4.0.0",
+        "@angular/common": "4.1.3",
+        "@angular/compiler": "4.1.3",
+        "@angular/compiler-cli": "4.1.3",
+        "@angular/core": "4.1.3",
+        "@angular/forms": "4.1.3",
+        "@angular/http": "4.1.3",
+        "@angular/platform-browser": "4.1.3",
+        "@angular/platform-browser-dynamic": "4.1.3",
+        "@ionic-native/calendar": "^3.14.0",
+        "@ionic-native/camera": "^4.0.1",
+        "@ionic-native/core": "3.12.1",
+        "@ionic-native/crop": "^4.0.1",
+        "@ionic-native/date-picker": "^4.1.0",
+        "@ionic-native/diagnostic": "^4.1.0",
+        "@ionic-native/facebook": "^4.1.0",
+        "@ionic-native/file": "^4.0.1",
+        "@ionic-native/file-transfer": "^4.0.1",
+        "@ionic-native/geolocation": "^4.1.0",
+        "@ionic-native/keyboard": "^4.0.0",
+        "@ionic-native/native-geocoder": "^4.1.0",
+        "@ionic-native/native-storage": "^4.1.0",
+        "@ionic-native/splash-screen": "3.12.1",
+        "@ionic-native/status-bar": "3.12.1",
+        "@ionic-native/transfer": "^3.14.0",
+        "@ionic/storage": "^2.0.1",
+        "ahdin": "^1.0.0",
+        "angular-calendar": "^0.18.3",
+        "angularfire2": "^4.0.0-rc.1",
+        "blueimp-canvas-to-blob": "^3.9.0",
+        "canvas-compress": "^1.1.5",
+        "cordova-android": "^6.2.3",
+        "cordova-ios": "^4.4.0",
+        "cordova-plugin-add-swift-support": "^1.7.0",
+        "cordova-plugin-calendar": "^4.6.0",
+        "cordova-plugin-camera": "^2.4.1",
+        "cordova-plugin-compat": "^1.1.0",
+        "cordova-plugin-console": "1.0.5",
+        "cordova-plugin-crop": "^0.4.0",
+        "cordova-plugin-datepicker": "^0.9.3",
+        "cordova-plugin-device": "1.1.4",
+        "cordova-plugin-facebook4": "^1.9.1",
+        "cordova-plugin-file": "^4.3.3",
+        "cordova-plugin-file-transfer": "^1.6.3",
+        "cordova-plugin-geolocation": "^2.4.3",
+        "cordova-plugin-googleplus": "^5.1.1",
+        "cordova-plugin-nativegeocoder": "^2.0.2",
+        "cordova-plugin-nativestorage": "^2.2.2",
+        "cordova-plugin-splashscreen": "~4.0.1",
+        "cordova-plugin-statusbar": "2.2.2",
+        "cordova-plugin-whitelist": "1.3.1",
+        "cordova-sqlite-storage": "^2.0.4",
+        "cordova.plugins.diagnostic": "^3.6.6",
+        "firebase": "^4.1.3",
+        "imgcache.js": "^1.1.1",
+        "intl": "^1.2.5",
+        "ionic-angular": "3.5.0",
+        "ionic-image-loader": "^4.1.1",
+        "ionic-img-viewer": "^2.4.0",
+        "ionic-plugin-keyboard": "~2.2.1",
+        "ionic2-calendar": "^0.3.7",
+        "ionicons": "3.0.0",
+        "j-i-c": "^2.0.2",
+        "localforage": "^1.5.0",
+        "ng2-img-max": "^2.1.4",
+        "ng2-img-tools": "^1.0.4",
+        "rxjs": "5.4.0",
+        "sw-toolbox": "3.6.0",
+        "tinify": "^1.5.0",
+        "web-animations-js": "^2.2.5",
+        "zone.js": "0.8.12"
+    },
+    "devDependencies": {
+        "@ionic/app-scripts": "1.3.12",
+        "@ionic/cli-plugin-cordova": "1.4.1",
+        "@ionic/cli-plugin-ionic-angular": "1.3.2",
+        "ionic": "3.6.0",
+        "ionic-minify": "^2.0.10",
+        "typescript": "2.3.4"
+    },
+    "cordovaPlugins": [
+        "cordova-plugin-whitelist",
+        "cordova-plugin-statusbar",
+        "cordova-plugin-device",
+        "cordova-plugin-console",
+        "cordova-plugin-splashscreen",
+        "ionic-plugin-keyboard"
+    ],
+    "cordovaPlatforms": [
+        "ios",
+        {
+            "platform": "ios",
+            "version": "",
+            "locator": "ios"
+        }
+    ],
+    "description": "myApp: An Ionic project",
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-calendar": {
+                "CALENDAR_USAGE_DESCRIPTION": " "
+            },
+            "cordova-plugin-console": {},
+            "cordova-plugin-device": {},
+            "cordova-plugin-splashscreen": {},
+            "cordova-plugin-statusbar": {},
+            "cordova-plugin-whitelist": {},
+            "ionic-plugin-keyboard": {},
+            "cordova-plugin-camera": {
+                "CAMERA_USAGE_DESCRIPTION": " ",
+                "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
+            },
+            "cordova-plugin-crop": {},
+            "cordova-plugin-file": {},
+            "cordova-plugin-file-transfer": {},
+            "cordova-sqlite-storage": {},
+            "cordova-plugin-nativestorage": {},
+            "cordova-plugin-facebook4": {
+                "APP_ID": "1395258797190658",
+                "APP_NAME": "ManeEmergency"
+            },
+            "cordova-plugin-googleplus": {
+                "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1059751557247-aro48ncpaq2ffiae4cpsnjp941e09hao"
+            },
+            "cordova-plugin-datepicker": {},
+            "cordova-plugin-geolocation": {
+                "GEOLOCATION_USAGE_DESCRIPTION": " "
+            },
+            "cordova-plugin-nativegeocoder": {},
+            "cordova.plugins.diagnostic": {}
+        },
+        "platforms": [
+            "android"
+        ]
+    }
 }

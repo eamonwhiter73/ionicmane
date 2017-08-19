@@ -33,29 +33,29 @@ page-booking {
 
 	ion-slides {
 		height: 50%;
-    position: absolute;
-    top: 10px;
+    	position: absolute;
+    	top: 10px;
 	}
 
-		div.toolbar-background {
-			background: #25292c;
-			border: none;
-		}
+	div.toolbar-background {
+		background: #25292c;
+		border: none;
+	}
 
-		div.toolbar-background-ios {
-			background: #25292c;
-			border: none;
-		}
+	div.toolbar-background-ios {
+		background: #25292c;
+		border: none;
+	}
 
-		.header-ios .toolbar-background-ios, .footer-ios .toolbar-background-ios {
-		    border-style: none;
-		    border-color: none;
-		}
+	.header-ios .toolbar-background-ios, .footer-ios .toolbar-background-ios {
+	    border-style: none;
+	    border-color: none;
+	}
 
-		.header .toolbar-background, .footer .toolbar-background {
-		    border-style: none;
-		    border-color: none;
-		}
+	.header .toolbar-background, .footer .toolbar-background {
+	    border-style: none;
+	    border-color: none;
+	}
 
 	.monthview-selected[_ngcontent-c0] {
 		color: white;
@@ -94,42 +94,41 @@ page-booking {
 	}
 
 	.arrowrightholder {
-    display: inline-block;
-    position: absolute;
-    top: 5px;
-    right: 20%;
-    height: 32px;
-    z-index: 5;
-    width: 30px;
+	    display: inline-block;
+	    position: absolute;
+	    top: 5px;
+	    right: 20%;
+	    height: 32px;
+	    z-index: 5;
+	    width: 30px;
 	}
 
 	.arrowleftholder {
-    display: inline-block;
-    position: absolute;
-    top: 5px;
-    left: 20%;
-    width: 30px;
-    z-index: 5;
+	    display: inline-block;
+	    position: absolute;
+	    top: 5px;
+	    left: 20%;
+	    width: 30px;
+	    z-index: 5;
 	}
 
 	.titleholder {
 		position: relative;
-		margin-top: 10px;
+		margin-top: -7%;
 		text-align: center;
+		font-size: 4.5vw;
 	}
 
 	.monthclass {
 		display: inline-block;
 		margin-right: 2px;
 		color: white;
-		font-size: 20px;
 	}
 
 	.yearclass {
 		display: inline-block;
 		margin-left: 2px;
 		color: map-get($colors, primary);
-		font-size: 20px;
 	}
 
 	.greencircle {
