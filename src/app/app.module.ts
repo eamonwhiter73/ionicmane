@@ -19,7 +19,8 @@ import { UserBooking } from '../pages/userbooking/userbooking';
 
 
 
-import { NgCalendarModule  } from 'ionic2-calendar';
+import { NgCalendarModule } from 'ionic2-calendar';
+
 import { Keyboard } from '@ionic-native/keyboard';
 
 // Import the AF2 Module
@@ -143,7 +144,7 @@ firebase.initializeApp(firebaseConfig);
     NativeGeocoder,
     Geolocation,
     Diagnostic,
-    ImgcacheService
+    ImgcacheService,
   ]
 })
 export class AppModule {}

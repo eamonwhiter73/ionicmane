@@ -1,4 +1,4 @@
-import { Component, ViewChild, Renderer, QueryList, ElementRef, ViewChildren } from '@angular/core';
+import { Component, ViewChild, Renderer, QueryList, ElementRef, ViewChildren, NgModule } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Appointment } from '../../models/appointment';
 import { FeedStylist } from '../../pages/feedstylist/feedstylist';
@@ -8,6 +8,7 @@ import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { LoadingController } from 'ionic-angular';
 import { OnDestroy } from "@angular/core";
 import { ISubscription } from "rxjs/Subscription";
+import { NgCalendarModule } from 'ionic2-calendar';
 
 
 
@@ -68,8 +69,14 @@ export class BookingPage implements OnDestroy {
   ngAfterViewInit() {
     console.log("IN NGAFTER");
     //console.log(this.elRef.nativeElement.querySelectorAll('td[tappable]'));
-    
-    
+  }
+
+  ionViewDidLoad() {
+
+  }
+
+  selectArrowRight() {
+    console.log("month view component   *******  ******8    " + JSON.stringify(NgCalendarModule));
   }
 
   emergency(i) {

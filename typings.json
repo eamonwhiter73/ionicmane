@@ -1,5 +1,12 @@
 {
   "globalDependencies": {
     "JIC": "file:./src/assets/JIC.d.ts"
+  },
+  "dependencies": {
+    "MonthViewComponent": "file:./node_modules/ionic2-calendar/monthview.d.ts",
+    "debug": "registry:npm/debug#2.0.0+20170504163145"
+  },
+  "devDependencies": {
+    "monthview": "file:./node_modules/ionic2-calendar/monthview.d.ts"
   }
 }

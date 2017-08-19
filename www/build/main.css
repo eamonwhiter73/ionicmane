@@ -30329,6 +30329,28 @@ rate-popup .reservebutton {
   color: white;
 }
 
+page-booking {
+  /*[_nghost-c0] > div[_ngcontent-c0] {
+    height: 100%;
+	}
+
+	[_nghost-c1] > div[_ngcontent-c1] {
+    top: 15%;
+	}
+
+	[_nghost-c2] > div[_ngcontent-c2] {
+    height: 100%;
+	}
+
+	[_nghost-c3] > div[_ngcontent-c3] {
+    height: 100%;
+	}
+
+	[_nghost-c4] > div[_ngcontent-c3] {
+    height: 100%;
+	}*/
+}
+
 page-booking .content {
   position: absolute;
   background-color: #25292c;
@@ -30342,28 +30364,10 @@ page-booking .event-detail-container {
   display: none;
 }
 
-page-booking [_nghost-c0] > div[_ngcontent-c0] {
-  height: 100%;
-}
-
-page-booking [_nghost-c1] > div[_ngcontent-c1] {
-  height: 100%;
-}
-
-page-booking [_nghost-c2] > div[_ngcontent-c2] {
-  height: 100%;
-}
-
-page-booking [_nghost-c3] > div[_ngcontent-c3] {
-  height: 100%;
-}
-
-page-booking [_nghost-c4] > div[_ngcontent-c3] {
-  height: 100%;
-}
-
 page-booking ion-slides {
   height: 50%;
+  position: absolute;
+  top: 10px;
 }
 
 page-booking div.toolbar-background {
@@ -30414,6 +30418,51 @@ page-booking .monthview-selected[_ngcontent-c4] {
   color: white;
   font-weight: 900;
   background-color: #25292c;
+}
+
+page-booking .forward {
+  font-size: 32px;
+  margin-left: 10px;
+  color: #e6c926;
+}
+
+page-booking .arrowrightholder {
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  right: 20%;
+  height: 32px;
+  z-index: 5;
+  width: 30px;
+}
+
+page-booking .arrowleftholder {
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  left: 20%;
+  width: 30px;
+  z-index: 5;
+}
+
+page-booking .titleholder {
+  position: relative;
+  margin-top: 10px;
+  text-align: center;
+}
+
+page-booking .monthclass {
+  display: inline-block;
+  margin-right: 2px;
+  color: white;
+  font-size: 20px;
+}
+
+page-booking .yearclass {
+  display: inline-block;
+  margin-left: 2px;
+  color: #e6c926;
+  font-size: 20px;
 }
 
 page-booking .greencircle {
@@ -30566,20 +30615,6 @@ page-booking .table-bordered[_ngcontent-c4] {
 
 page-booking .text-muted[_ngcontent-c1] {
   color: #616160;
-}
-
-page-booking .monthclass {
-  display: inline-block;
-  margin-right: 2px;
-  color: white;
-  font-size: 20px;
-}
-
-page-booking .yearclass {
-  display: inline-block;
-  margin-left: 2px;
-  color: #e6c926;
-  font-size: 20px;
 }
 
 page-booking ion-navbar {

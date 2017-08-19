@@ -11,12 +11,12 @@ page-booking {
 		display: none;
 	}
 
-	[_nghost-c0] > div[_ngcontent-c0] {
+	/*[_nghost-c0] > div[_ngcontent-c0] {
     height: 100%;
 	}
 
 	[_nghost-c1] > div[_ngcontent-c1] {
-    height: 100%;
+    top: 15%;
 	}
 
 	[_nghost-c2] > div[_ngcontent-c2] {
@@ -29,10 +29,12 @@ page-booking {
 
 	[_nghost-c4] > div[_ngcontent-c3] {
     height: 100%;
-	}
+	}*/
 
 	ion-slides {
 		height: 50%;
+    position: absolute;
+    top: 10px;
 	}
 
 		div.toolbar-background {
@@ -83,6 +85,51 @@ page-booking {
     color: white;
     font-weight: 900;
     background-color: #25292c;
+	}
+
+	.forward {
+		font-size: 32px;
+		margin-left: 10px;
+		color: map-get($colors, primary);
+	}
+
+	.arrowrightholder {
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    right: 20%;
+    height: 32px;
+    z-index: 5;
+    width: 30px;
+	}
+
+	.arrowleftholder {
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    left: 20%;
+    width: 30px;
+    z-index: 5;
+	}
+
+	.titleholder {
+		position: relative;
+		margin-top: 10px;
+		text-align: center;
+	}
+
+	.monthclass {
+		display: inline-block;
+		margin-right: 2px;
+		color: white;
+		font-size: 20px;
+	}
+
+	.yearclass {
+		display: inline-block;
+		margin-left: 2px;
+		color: map-get($colors, primary);
+		font-size: 20px;
 	}
 
 	.greencircle {
@@ -233,19 +280,7 @@ page-booking {
     color: #616160;
 	}
 
-	.monthclass {
-		display: inline-block;
-		margin-right: 2px;
-		color: white;
-		font-size: 20px;
-	}
-
-	.yearclass {
-		display: inline-block;
-		margin-left: 2px;
-		color: map-get($colors, primary);
-		font-size: 20px;
-	}
+	
 
 	ion-navbar {
 		position: absolute;

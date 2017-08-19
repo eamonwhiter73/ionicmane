@@ -12,7 +12,8 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "target": "es5",
-    "allowJs":true
+    "allowJs":true,
+    "typeRoots" : ["node_modules/@types"]
   },
   "include": [
     "src/**/*.ts"

@@ -16,7 +16,6 @@ import { SettingsPage } from '../pages/settings/settings';
 import { ImgcacheService } from '../services/imgcacheservice';
 
 
-
 @Component({
   templateUrl: 'app.html'
 })
