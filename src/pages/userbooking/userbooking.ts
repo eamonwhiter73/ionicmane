@@ -1,4 +1,4 @@
-import { Component, ViewChild, Renderer, QueryList, ElementRef, ViewChildren } from '@angular/core';
+import { Component, ViewChild, Renderer, QueryList, ElementRef, ViewChildren, NgModule } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Appointment } from '../../models/appointment';
 import { FeedStylist } from '../../pages/feedstylist/feedstylist';
@@ -8,6 +8,7 @@ import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { LoadingController } from 'ionic-angular';
 import { OnDestroy } from "@angular/core";
 import { ISubscription } from "rxjs/Subscription";
+import { NgCalendarModule } from 'ionic2-calendar';
 
 
 
@@ -24,7 +25,7 @@ import { ISubscription } from "rxjs/Subscription";
 })
 export class UserBooking implements OnDestroy {
   @ViewChildren('slot') slots:QueryList<any>;
-	viewDate = new Date();
+  viewDate = new Date();
   events = [];
   viewTitle: string;
   calendar = {'mode': 'month', 'currentDate': this.viewDate};
@@ -36,13 +37,17 @@ export class UserBooking implements OnDestroy {
   items : FirebaseListObservable<any>;
   items2 : FirebaseListObservable<any>;
   items3 : FirebaseListObservable<any>;
+  items4 : FirebaseListObservable<any>;
   isSomething : boolean;
   titleYear;
+  datesToSelect = [];
+  tds;
   private swipeCoord?: [number, number];
   private swipeTime?: number;
   private subscription: ISubscription;
   private subscription2: ISubscription;
   private subscription3: ISubscription;
+  private subscription4: ISubscription;
 
   constructor(private elRef:ElementRef, public myrenderer: Renderer, public loadingController: LoadingController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public af: AngularFireDatabase) {
     this.times = [{'time':'8:00 AM', 'selected': false}, {'time':'12:00 PM', 'selected': false}, {'time':'4:00 PM', 'selected': false},
@@ -64,7 +69,11 @@ export class UserBooking implements OnDestroy {
 
   ngAfterViewInit() {
     console.log("IN NGAFTER");
-    console.log(this.elRef.nativeElement.querySelectorAll('.text-muted'));
+    //console.log(this.elRef.nativeElement.querySelectorAll('td[tappable]'));
+  }
+
+  ionViewDidLoad() {
+
   }
 
   emergency(i) {
@@ -142,11 +151,19 @@ export class UserBooking implements OnDestroy {
      
     
     if(!foundit) {
+      let bool = false;
       console.log(this.username + 'down here');
-      this.items.push({date:{day:this.selectedDate.getTime() / 1000}, reserved:{appointment:this.times}}).then((snap) => {
-        const key = snap.key 
-        console.log(key);
-      });
+      for(let x of this.times) {
+        if(x.selected) {
+          bool = true;
+        }
+      }
+      if(bool) {
+        this.items.push({date:{day:this.selectedDate.getTime() / 1000}, reserved:{appointment:this.times}}).then((snap) => {
+          const key = snap.key;
+          console.log(key);
+        });
+      } 
     }
 
     alert("Availability Saved");
@@ -192,13 +209,13 @@ export class UserBooking implements OnDestroy {
     //this.loading.dismiss();
   }
 
-  ionViewDidLoad() {
+  //ionViewDidLoad() {
     /*this.isSomething = true;
 
     this.storage.get('username').then((val) => {
       this.getData(val);
     });*/
-  }
+  //}
 
   
 
@@ -206,6 +223,8 @@ export class UserBooking implements OnDestroy {
     //let loading = this.loadingController.create({content : "Loading..."});
     //loading.present();
     this.isSomething = true;
+
+    this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
 
     this.storage.get('username').then((val) => {
       this.getData(val);
@@ -218,7 +237,12 @@ export class UserBooking implements OnDestroy {
       this.items2 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
       this.subscription2 = this.items2.subscribe(items => items.forEach(item => {
 
+        console.log(item);
+
         let da = new Date(item.date.day * 1000);
+        this.datesToSelect.push(da.getDate());
+
+
         console.log(da + "da");
         console.log(da.getDate() + "dagetdate");
         console.log(this.selectedDate.getDate());
@@ -257,8 +281,23 @@ export class UserBooking implements OnDestroy {
             }*/
           /*}
         }*/
+        for(let item of this.tds) {
+          if(!item.classList.contains('text-muted')) {
+            console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
+            let count = 0;
+            if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
+              console.log("Inner text in      " + item.innerText);
+              this.myrenderer.setElementClass(item,"greencircle",true);            
+            }
+            else {
+              //this.myrenderer.setElementClass(item,"monthview-selected",false);
+            }
+          }
+        }
         
       }));
+      
+      
       //loading.dismiss();
     },1500)
 
@@ -271,24 +310,28 @@ export class UserBooking implements OnDestroy {
   }
 
   onCurrentDateChanged($event) {
-
-    if(!this.isSomething) {
     //console.log(typeof $event);
       for(let x of this.times) {
         x.selected = false;
       }
 
-      //console.log($event);
-      
-      this.selectedDate = new Date($event);
-      console.log(this.selectedDate);
+      console.log(typeof $event + "event event event *******");
 
-      this.items3 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
-      this.subscription3 = this.items3.subscribe(items => items.forEach(item => {
+      this.selectedDate = new Date($event);
+      console.log(this.selectedDate + " thi si the selected date ((())))))");
+
+      this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+      //console.log($event);
+
+      this.items4 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+      this.subscription4 = this.items4.subscribe(items => items.forEach(item => {
         //console.log(JSON.stringify(item));
         //console.log(item.date.day);
         console.log("dafirst    " + item.date.day )
         let da = new Date(item.date.day * 1000);
+        this.datesToSelect = [];
+        this.datesToSelect.push(da.getDate());
+
         console.log(da + "da");
         console.log(da.getDate() + "dagetdate");
         console.log(this.selectedDate.getDate());
@@ -310,20 +353,18 @@ export class UserBooking implements OnDestroy {
           //}
         }
       }));
-
-    
-    }
-
-    this.isSomething = false;
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.subscription2.unsubscribe();
     this.subscription3.unsubscribe();
+    this.subscription4.unsubscribe();
   } 
 
-  reloadSource(startTime, endTime) {}
+  reloadSource(startTime, endTime) {
+    console.log(startTime + " : starttime           endtime: " + endTime);
+  }
 
   onEventSelected($event) {}
 
@@ -334,5 +375,68 @@ export class UserBooking implements OnDestroy {
     this.titleYear = array[1];
   }
 
-  onTimeSelected($event) {}
+  onTimeSelected($event) {
+    console.log(JSON.stringify($event) + "      THI SIIS EVENT @(@(@(@(@(");
+    this.selectedDate = new Date($event.selectedTime);
+    console.log(this.selectedDate + " thi si the selected date ((())))))");
+
+    this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+    if($event.dontRunCode) {
+    //console.log($event);
+      this.items3 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+      this.subscription3 = this.items3.subscribe(items => items.forEach(item => {
+        //console.log(JSON.stringify(item));
+        //console.log(item.date.day);
+        console.log("dafirst    " + item.date.day )
+        let da = new Date(item.date.day * 1000);
+        this.datesToSelect = [];
+        this.datesToSelect.push(da.getDate());
+
+        console.log(da + "da");
+        console.log(da.getDate() + "dagetdate");
+        console.log(this.selectedDate.getDate());
+        if(this.selectedDate.getDate() == da.getDate() && this.selectedDate.getMonth() == da.getMonth()) {
+          console.log("selected = item");
+          console.log(JSON.stringify(item.reserved) + "         item resesrved");
+          //for(let r of item.reserved.appointment) {
+            //console.log(JSON.stringify(r));
+            /*let bool = false;
+            for(let r in item.reserved.appointment) {
+              if(r['selected'] == "true") {
+                bool = true;
+              }
+            }*/
+            this.times = item.reserved.appointment.slice(0);
+            console.log('hit appointment');
+            console.log(JSON.stringify(this.times));
+            
+            /*for(let x of this.times) {
+              if(x.time == r) {
+                console.log('change selected');
+                x.selected = true;
+              }
+            }*/
+          //}
+        }
+        //console.log($event.runCode + "     dont run code!!!!!!");
+        //if($event.runCode == true) {
+          for(let item of this.tds) {
+            if(!item.classList.contains('text-muted')) {
+              console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
+              let count = 0;
+              if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
+                console.log("Inner text in      " + item.innerText);
+                this.myrenderer.setElementClass(item,"greencircle",true);
+              }
+              else {
+                //this.myrenderer.setElementClass(item,"monthview-selected",false);
+              }
+            }
+          }
+        //}
+
+        
+      }));
+    }
+  }
 }

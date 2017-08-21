@@ -1,4 +1,4 @@
-import { Component, NgModule, trigger, state, style, transition, animate, keyframes, ViewChildren, Renderer, QueryList } from '@angular/core';
+import { Component, NgModule, trigger, state, style, transition, animate, keyframes, ViewChildren, OnDestroy, Renderer, ElementRef, QueryList } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { FeedUser } from '../feeduser/feeduser';
@@ -6,6 +6,7 @@ import { FeedStylist } from '../feedstylist/feedstylist';
 import { BookingPage } from '../booking/booking';
 import { PostpagePage } from '../postpage/postpage';
 import { SettingsPage } from '../settings/settings';
+import { ISubscription } from "rxjs/Subscription";
 
 
 
@@ -30,16 +31,16 @@ import { Storage } from '@ionic/storage';
   animations: [
     trigger('moveCover', [
       state('down', style({
-        top: '-109px',
+        height: '100%',
       })),
       state('up', style({
-        top: '-188px',
+        height: '75px',
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),
   ]
 })
-export class StylistProfile {
+export class StylistProfile implements OnDestroy {
   @ViewChildren('pluscontain') components:QueryList<any>;
   @ViewChildren('profsquare') profComponents:QueryList<any>;
   viewDate = new Date();
@@ -48,6 +49,12 @@ export class StylistProfile {
   calendar = {'mode': 'month', 'currentDate': this.viewDate}
   moveState: String = 'up';
   items: FirebaseListObservable<any>;
+  items4: FirebaseListObservable<any>;
+  items3: FirebaseListObservable<any>;
+  items2: FirebaseListObservable<any>;
+  subscription2: ISubscription;
+  subscription3: ISubscription;
+  subscription4: ISubscription;
   username;
   picURLS = [];
   square = 0;
@@ -55,14 +62,22 @@ export class StylistProfile {
   private swipeCoord?: [number, number];
   private swipeTime?: number;
   loadings;
+  tds;
+  selectedDate;
+  titleYear;
+  times;
+  datesToSelect = [];
 
-  constructor(public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
-    /*this.items = af.list('/profile/' + this.username);
-    this.items.subscribe(items => items.forEach(item => {
-      console.log(item.$value);
-      this.picURLS.push(item.$value);
-    }));*/
-    //this._imageViewerCtrl = imageViewerCtrl;
+  constructor(public elRef: ElementRef, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
+    this.times = [{'time':'8:00 AM', 'selected': false}, {'time':'12:00 PM', 'selected': false}, {'time':'4:00 PM', 'selected': false},
+                  {'time':'8:30 AM', 'selected': false}, {'time':'12:30 PM', 'selected': false}, {'time':'4:30 PM', 'selected': false},
+                  {'time':'9:00 AM', 'selected': false}, {'time':'1:00 PM', 'selected': false}, {'time':'5:00 PM', 'selected': false},
+                  {'time':'9:30 AM', 'selected': false}, {'time':'1:30 PM', 'selected': false}, {'time':'5:30 PM', 'selected': false},
+                  {'time':'10:00 AM', 'selected': false}, {'time':'2:00 PM', 'selected': false}, {'time':'6:00 PM', 'selected': false},
+                  {'time':'10:30 AM', 'selected': false}, {'time':'2:30 PM', 'selected': false}, {'time':'6:30 PM', 'selected': false},
+                  {'time':'11:00 AM', 'selected': false}, {'time':'3:00 PM', 'selected': false}, {'time':'7:00 PM', 'selected': false},
+                  {'time':'11:30 AM', 'selected': false}, {'time':'3:30 PM', 'selected': false}, {'time': '7:30 PM', 'selected': false}
+                ];
   }
 
   public optionsGetMedia: any = {
@@ -85,6 +100,103 @@ export class StylistProfile {
         mediaType: this.camera.MediaType.PICTURE,
         destinationType: this.camera.DestinationType.FILE_URI,
         saveToPhotoAlbum: true
+  }
+
+  ionViewDidEnter() {
+    //let loading = this.loadingController.create({content : "Loading..."});
+    //loading.present();
+  } 
+
+  ionViewDidLoad() {
+    this.storage.get('username').then((val) => {
+      this.username = val;
+      console.log(val);
+
+      this.downloadImages().then(() => {
+        //this.loadings.dismiss();
+      })
+    });
+
+    //this.isSomething = true;
+
+    this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+  
+    console.log(this.viewDate + " view date ");
+      setTimeout(()=>{
+        this.selectedDate = this.viewDate;
+        console.log(this.username + "this.username");
+        this.items2 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+        this.subscription2 = this.items2.subscribe(items => items.forEach(item => {
+
+          console.log(item);
+
+          let da = new Date(item.date.day * 1000);
+          this.datesToSelect.push(da.getDate());
+
+
+          console.log(da + "da");
+          console.log(da.getDate() + "dagetdate");
+          console.log(this.selectedDate.getDate());
+          if(this.selectedDate.getDate() == da.getDate() && this.selectedDate.getMonth() == da.getMonth()) {
+            console.log("selected = item");
+            console.log(JSON.stringify(item.reserved) + "         item resesrved above");
+            //for(let m = 0; m < item.reserved.length; m++) {
+            //for(let r of item.reserved) {
+              //console.log(JSON.stringify(r));
+              this.times = item.reserved.appointment.slice(0);
+              console.log('hit appointment');
+              //count++;
+              /*for(let x of this.times) {
+                if(x.time == r) {
+                  console.log('change selected');
+                  x.selected = true;
+                }
+              }*/
+            //}
+          }
+
+          /*let da = new Date(item.date.day*1000);
+          if(this.viewDate.getDate() == da.getDate() && this.viewDate.getMonth() == da.getMonth()) {
+            console.log("selected = item");
+            let count = 0;
+            console.log(JSON.stringify(item.reserved) + "         item resesrved");
+            for(let r in item.reserved) {
+              this.times[count].selected = r[count].selected;
+              console.log('hit appointment');
+              count++;
+              /*for(let x of this.times) {
+                if(x.time == r) {
+                  console.log('change selected');
+                  x.selected = true;
+                }
+              }*/
+            /*}
+          }*/
+          for(let item of this.tds) {
+            if(!item.classList.contains('text-muted')) {
+              console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
+              let count = 0;
+              if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
+                console.log("Inner text in      " + item.innerText);
+                this.myrenderer.setElementClass(item,"greencircle",true);            
+              }
+              else {
+                //this.myrenderer.setElementClass(item,"monthview-selected",false);
+              }
+            }
+          }
+          
+        }));
+        
+        
+        //loading.dismiss();
+      },1500)
+  }
+
+  ngOnDestroy() {
+    this.subscription2.unsubscribe();
+    this.subscription3.unsubscribe();
+    this.subscription4.unsubscribe();
   }
 
   openCamera(squarez) {
@@ -282,36 +394,140 @@ export class StylistProfile {
     return Promise.all(promises_array);
   }
 
-  ionViewWillEnter() {
-    //this.loadings = this.loadingController.create({content : "Loading..."});
-    //this.loadings.present();
-    
-  }
-
-  ionViewDidLoad() {
-    this.storage.get('username').then((val) => {
-      this.username = val;
-      console.log(val);
-
-      this.downloadImages().then(() => {
-        //this.loadings.dismiss();
-      })
-    });
-  }
+  //changed this***
 
   moveCover() {
     this.moveState = (this.moveState == 'up') ? 'down' : 'up';
+    this.tds = this.elRef.nativeElement.querySelector('ion-slides');
+    this.myrenderer.setElementClass(this.tds, 'moveCover', true);
+    let thisel  = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-stylist-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides > div > div.swiper-wrapper > ion-slide.swiper-slide.swiper-slide-active > div > table');
+
+    this.myrenderer.setElementClass(thisel, 'marginchange', true);
+
+    console.log('element class list   ' + thisel.classList);
   }
 
-  onCurrentDateChanged($event) {}
+  onCurrentDateChanged($event) {
+    //console.log(typeof $event);
+      for(let x of this.times) {
+        x.selected = false;
+      }
 
-  reloadSource(startTime, endTime) {}
+      console.log(typeof $event + "event event event *******");
+
+      this.selectedDate = new Date($event);
+      console.log(this.selectedDate + " thi si the selected date ((())))))");
+
+      this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+      //console.log($event);
+
+      this.items4 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+      this.subscription4 = this.items4.subscribe(items => items.forEach(item => {
+        //console.log(JSON.stringify(item));
+        //console.log(item.date.day);
+        console.log("dafirst    " + item.date.day )
+        let da = new Date(item.date.day * 1000);
+        this.datesToSelect = [];
+        this.datesToSelect.push(da.getDate());
+
+        console.log(da + "da");
+        console.log(da.getDate() + "dagetdate");
+        console.log(this.selectedDate.getDate());
+        if(this.selectedDate.getDate() == da.getDate() && this.selectedDate.getMonth() == da.getMonth()) {
+          console.log("selected = item");
+          console.log(JSON.stringify(item.reserved) + "         item resesrved");
+          //for(let r of item.reserved.appointment) {
+            //console.log(JSON.stringify(r));
+            this.times = item.reserved.appointment.slice(0);
+            console.log('hit appointment');
+            console.log(JSON.stringify(this.times));
+            
+            /*for(let x of this.times) {
+              if(x.time == r) {
+                console.log('change selected');
+                x.selected = true;
+              }
+            }*/
+          //}
+        }
+      }));
+  }
+
+  reloadSource(startTime, endTime) {
+    console.log(startTime + " : starttime           endtime: " + endTime);
+  }
 
   onEventSelected($event) {}
 
   onViewTitleChanged(title) {
-    this.viewTitle = title;
+    let array = title.split(" ");
+    //array[1];
+    this.viewTitle = array[0];
+    this.titleYear = array[1];
   }
 
-  onTimeSelected($event) {}
+  onTimeSelected($event) {
+    console.log(JSON.stringify($event) + "      THI SIIS EVENT @(@(@(@(@(");
+    this.selectedDate = new Date($event.selectedTime);
+    console.log(this.selectedDate + " thi si the selected date ((())))))");
+
+    this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+    if($event.dontRunCode) {
+    //console.log($event);
+      this.items3 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+      this.subscription3 = this.items3.subscribe(items => items.forEach(item => {
+        //console.log(JSON.stringify(item));
+        //console.log(item.date.day);
+        console.log("dafirst    " + item.date.day )
+        let da = new Date(item.date.day * 1000);
+        this.datesToSelect = [];
+        this.datesToSelect.push(da.getDate());
+
+        console.log(da + "da");
+        console.log(da.getDate() + "dagetdate");
+        console.log(this.selectedDate.getDate());
+        if(this.selectedDate.getDate() == da.getDate() && this.selectedDate.getMonth() == da.getMonth()) {
+          console.log("selected = item");
+          console.log(JSON.stringify(item.reserved) + "         item resesrved");
+          //for(let r of item.reserved.appointment) {
+            //console.log(JSON.stringify(r));
+            /*let bool = false;
+            for(let r in item.reserved.appointment) {
+              if(r['selected'] == "true") {
+                bool = true;
+              }
+            }*/
+            this.times = item.reserved.appointment.slice(0);
+            console.log('hit appointment');
+            console.log(JSON.stringify(this.times));
+            
+            /*for(let x of this.times) {
+              if(x.time == r) {
+                console.log('change selected');
+                x.selected = true;
+              }
+            }*/
+          //}
+        }
+        //console.log($event.runCode + "     dont run code!!!!!!");
+        //if($event.runCode == true) {
+          for(let item of this.tds) {
+            if(!item.classList.contains('text-muted')) {
+              console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
+              let count = 0;
+              if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
+                console.log("Inner text in      " + item.innerText);
+                this.myrenderer.setElementClass(item,"greencircle",true);
+              }
+              else {
+                //this.myrenderer.setElementClass(item,"monthview-selected",false);
+              }
+            }
+          }
+        //}
+
+        
+      }));
+    }
+  }
 }

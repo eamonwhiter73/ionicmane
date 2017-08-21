@@ -5,11 +5,21 @@
   Ionic pages and navigation.
 -->
 <ion-content (swiperight)="swipeRight()" (swipeleft)="swipeLeft()" no-padding>
-	<ion-navbar>
-    <div class="monthclass">{{viewTitle}}</div><div class="yearclass">{{titleYear}}</div>
-  </ion-navbar>
+		<div class='arrowleftholder'>
+    	<ion-icon class='forward' name="arrow-back"></ion-icon>
+    </div>
+    <div style="width: 100%; position: absolute; left: 50%; width: 35%; z-index: 14;">
+	    <div style="position: relative; left: -50%; width:100%;">
+	    	<div class="titleholder">
+		      <div class="monthclass">{{viewTitle}}</div><div class="yearclass">{{titleYear}}</div>
+		    </div>
+		  </div>
+	  </div>
+    <div class='arrowrightholder' (tap)="selectArrowRight()">
+    	<ion-icon class='forward' name="arrow-forward"></ion-icon>
+    </div>
 	<calendar class='cal' 
-		[eventSource]="eventSource"
+	  [eventSource]="eventSource"
 	  [calendarMode]="calendar.mode"
 	  [currentDate]="calendar.currentDate"
 	  (onCurrentDateChanged)="onCurrentDateChanged($event)"
@@ -20,13 +30,16 @@
 	  step="30">
 	</calendar>
 	<!--<form>-->
-		<div class="slots">
-	     <div id="slot" *ngFor="let i of times ; let z = index" (press)='emergency(z)' #slot>
+	<div class="slots">
+	  <ion-list class="scrolling">
+	     <ion-item *ngFor="let i of times ; let z = index" (press)="emergency(z)" #slot no-padding>
 	      	<ion-label>{{i.time}}</ion-label>
-	     		<ion-checkbox name="time" [(ngModel)]="times[z].selected" [checked]="times[z].selected" (ionChange)="checkboxCheck(z)"></ion-checkbox>
-	     </div>
-	  </div>
-	  <div id="savebutton">
+	     	<!--<ion-checkbox name="time" [(ngModel)]="times[z].selected" [checked]="times[z].selected" (ionChange)="checkboxCheck(z)"></ion-checkbox>-->
+	     </ion-item>
+	  </ion-list>
+	  
+	</div>
+	<div id="savebutton">
 	  	<div class="save" (tap)='logForm()'>SAVE</div>
 	  </div>
 	<!--</form>-->

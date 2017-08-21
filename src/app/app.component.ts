@@ -20,7 +20,7 @@ import { ImgcacheService } from '../services/imgcacheservice';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = BookingPage;
+  rootPage:any = StylistProfile;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, imgcacheService: ImgcacheService) {
 

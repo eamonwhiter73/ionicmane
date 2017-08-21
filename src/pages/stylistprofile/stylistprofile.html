@@ -37,15 +37,15 @@
 			</div>
 		</div>
 		<calendar (tap)='moveCover()' class='cal' [eventSource]="eventSource"
-      [calendarMode]="calendar.mode"
-      [currentDate]="calendar.currentDate"
-      (onCurrentDateChanged)="onCurrentDateChanged($event)"
-      (onRangeChanged)="reloadSource(startTime, endTime)"
-      (onEventSelected)="onEventSelected($event)"
-      (onTitleChanged)="onViewTitleChanged($event)"
-      (onTimeSelected)="onTimeSelected($event)"
-      step="30">
-    </calendar>
+	      [calendarMode]="calendar.mode"
+	      [currentDate]="calendar.currentDate"
+	      (onCurrentDateChanged)="onCurrentDateChanged($event)"
+	      (onRangeChanged)="reloadSource(startTime, endTime)"
+	      (onEventSelected)="onEventSelected($event)"
+	      (onTitleChanged)="onViewTitleChanged($event)"
+	      (onTimeSelected)="onTimeSelected($event)"
+	      step="30">
+	    </calendar>
 	</ion-item>
 	<div #calendarcover [@moveCover]='moveState' class="calendarcover"></div>
 	<ion-grid>
