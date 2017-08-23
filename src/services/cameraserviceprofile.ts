@@ -4,9 +4,8 @@ import { Camera } from '@ionic-native/camera';
 import { Crop } from '@ionic-native/crop';
 import { File } from '@ionic-native/file';
 import { Http } from '@angular/http';
-import { Transfer, TransferObject } from '@ionic-native/transfer';
+import { Transfer } from '@ionic-native/transfer';
 import firebase from 'firebase';
-import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 //import { Ng2ImgMaxService } from 'ng2-img-max';
 //import { Ng2ImgToolsModule } from 'ng2-img-tools'; // <-- import the module
 import CanvasCompress from 'canvas-compress';
@@ -15,10 +14,8 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class CameraServiceProfile {
-  username: string;
-  items: FirebaseListObservable<any>;
-  
-  constructor(public storage: Storage, public transfer: Transfer, public http: Http, public platform: Platform, public camera: Camera, public crop: Crop, public file: File, af: AngularFireDatabaseModule) {
+  username: string;  
+  constructor(public storage: Storage, public transfer: Transfer, public http: Http, public platform: Platform, public camera: Camera, public crop: Crop, public file: File) {
     this.http = http;
     this.storage.get('username').then((val) => {this.username = val; console.log(val + "        getting username")});
     //console.log(JSON.stringify(compress));
@@ -75,7 +72,6 @@ export class CameraServiceProfile {
   readFile(fileEntry, square) {
     console.log('in readfile')
     let self = this;
-    let compressed;
 
     fileEntry.file(function (file) {
 

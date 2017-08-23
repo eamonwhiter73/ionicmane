@@ -59,19 +59,24 @@ export class SignUpPage implements OnDestroy {
   }
 
   setUserStylist(usery) {
+
+    let profile = {'username': usery.username, 'password': usery.password,
+                    'email': usery.email, 'bio':"", 'address':"", 'type':"", 'rating':{'one':'0','two':'0','three':'0','four':'0','five':'0'}};
+
     if(this.users) {
       this.storage.set('type', 'user');
+      profile.type = "user";
     }
     else {
       this.storage.set('type', 'stylist');
+      profile.type = "stylist";
     }
 
     this.storage.set('username', usery.username);
     this.storage.set('password', usery.password);
     this.storage.set('email', usery.email);
 
-    let profile = {'username': usery.username, 'password': usery.password,
-                    'email': usery.email, 'bio':"", 'address':"", 'type':"", 'rating':{'one':'0','two':'0','three':'0','four':'0','five':'0'}};
+    
 
     this.items = this.af.list('/profiles/' + usery.username + '/');
     this.subscription = this.items.subscribe(items => {

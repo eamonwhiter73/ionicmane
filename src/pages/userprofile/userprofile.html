@@ -1,36 +1,42 @@
-<ion-header (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
-  <ion-navbar>
+<ion-header (swiperight)="swipeRight()">
+  <ion-toolbar>
     <ion-title>@{{username}}</ion-title>
+
+    <!--<div class="settingscontainer">
+    	<ion-icon class="settings" name="settings" (tap)="goToSettings()"></ion-icon>
+    </div>-->
+  </ion-toolbar>
     <!--<div class="stylistview">
 	    <button class="stylistviewbutton" ion-button color="secondary">Stylist View</button>
 	  </div>-->
-  </ion-navbar>
 </ion-header>
 
 <ion-content no-padding>
-<div (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
+<div (swiperight)="swipeRight()">
 	<ion-item no-padding no-lines>
 		<div class="imageparent">
-      <img class="postprofilepic" src="{{picURL}}">
-    </div>
-    <div class='ratecontain' >
-	    <div class='stars' (tap)="presentProfileModal()">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-	    <div class='ratings'>(200 ratings)</div>
-	  </div>
-	  <div class="stylistviewtwo">
-	    <button class="stylistviewbuttontwo" ion-button color="primary">Follow Stylist</button>
-	  </div>
-	  <div class='stylistsect'>
-			<div class="name">Daniel T.</div>
-			<div class="bio">{{bio}}</div>
+		  <img class="postprofilepic" src="img/hair5.jpeg">
 		</div>
-		<div class="social">
-			<div class="fb inlineblock">
-				<img src="img/facebook.png">
+	    <div class="rateandsocial">
+		    <div class='ratecontain'>
+			    <div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+			    <div class='ratings'>(200 ratings)</div>
 			</div>
-			<div class="insta inlineblock">
-	  	<img src="img/instagram.png">
+		    <div class="social">
+				<div class="fb inlineblock">
+					<img src="img/facebook.png">
+				</div>
+				<div class="insta inlineblock">
+		  			<img src="img/instagram.png">
+				</div>
 			</div>
+		</div>
+	  	<div class="stylistviewtwo">
+	    	<button class="stylistviewbuttontwo" ion-button color="primary">Follow Stylist</button>
+	  	</div>
+	  	<div class='stylistsect'>
+			<div class="name">username</div>
+			<div class="bio">I am a hair stylist. This is my bio, I wrote it. I need to make money so please book me!</div>
 		</div>
 		<calendar (tap)='moveCover()' class='cal' [eventSource]="eventSource"
 	      [calendarMode]="calendar.mode"
@@ -43,7 +49,6 @@
 	      step="30">
 	    </calendar>
 	</ion-item>
-	<div #calendarcover [@moveCover]='moveState' class="calendarcover"></div>
 	<ion-grid>
 	  <ion-row>
 	    <ion-col>

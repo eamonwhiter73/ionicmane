@@ -1,6 +1,6 @@
-import { Component, ViewChild, Renderer, QueryList, ElementRef, ViewChildren, NgModule } from '@angular/core';
+import { Component, Renderer, QueryList, ElementRef, ViewChildren } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Appointment } from '../../models/appointment';
+//import { Appointment } from '../../models/appointment';
 import { FeedStylist } from '../../pages/feedstylist/feedstylist';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
@@ -287,7 +287,6 @@ export class BookingPage implements OnDestroy {
         for(let item of this.tds) {
           if(!item.classList.contains('text-muted')) {
             console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
-            let count = 0;
             if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
               console.log("Inner text in      " + item.innerText);
               this.myrenderer.setElementClass(item,"greencircle",true);            
@@ -425,7 +424,6 @@ export class BookingPage implements OnDestroy {
           for(let item of this.tds) {
             if(!item.classList.contains('text-muted')) {
               console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
-              let count = 0;
               if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
                 console.log("Inner text in      " + item.innerText);
                 this.myrenderer.setElementClass(item,"greencircle",true);

@@ -1,14 +1,13 @@
-import { Component, ViewChild, Renderer, QueryList, ElementRef, ViewChildren, NgModule } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Appointment } from '../../models/appointment';
-import { FeedStylist } from '../../pages/feedstylist/feedstylist';
+import { Component, Renderer, QueryList, ElementRef, ViewChildren } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
+import { FeedUser } from '../../pages/feeduser/feeduser';
+
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { LoadingController } from 'ionic-angular';
 import { OnDestroy } from "@angular/core";
 import { ISubscription } from "rxjs/Subscription";
-import { NgCalendarModule } from 'ionic2-calendar';
 
 
 
@@ -42,6 +41,8 @@ export class UserBooking implements OnDestroy {
   titleYear;
   datesToSelect = [];
   tds;
+  timesOpen = [];
+
   private swipeCoord?: [number, number];
   private swipeTime?: number;
   private subscription: ISubscription;
@@ -122,7 +123,7 @@ export class UserBooking implements OnDestroy {
   }
 
   swipeRight() {
-    this.goToProfile();
+    this.goToFeed();
   }
 
   logForm() {
@@ -192,7 +193,7 @@ export class UserBooking implements OnDestroy {
   }
 
   goToFeed() {
-    this.navCtrl.push(FeedStylist,{},{animate:true,animation:'transition',duration:500,direction:'forward'})
+    this.navCtrl.push(FeedUser,{},{animate:true,animation:'transition',duration:500,direction:'forward'})
   }
 
   goToProfile() {
@@ -252,8 +253,14 @@ export class UserBooking implements OnDestroy {
           //for(let m = 0; m < item.reserved.length; m++) {
           //for(let r of item.reserved) {
             //console.log(JSON.stringify(r));
-            this.times = item.reserved.appointment.slice(0);
-            console.log('hit appointment');
+            this.timesOpen = [];
+            for (let r of item.reserved.appointment) {
+              if(r.selected == true) {
+                this.timesOpen.push(r);
+                console.log('hit appointment');
+              }
+            }
+            
             //count++;
             /*for(let x of this.times) {
               if(x.time == r) {
@@ -284,7 +291,6 @@ export class UserBooking implements OnDestroy {
         for(let item of this.tds) {
           if(!item.classList.contains('text-muted')) {
             console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
-            let count = 0;
             if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
               console.log("Inner text in      " + item.innerText);
               this.myrenderer.setElementClass(item,"greencircle",true);            
@@ -340,9 +346,13 @@ export class UserBooking implements OnDestroy {
           console.log(JSON.stringify(item.reserved) + "         item resesrved");
           //for(let r of item.reserved.appointment) {
             //console.log(JSON.stringify(r));
-            this.times = item.reserved.appointment.slice(0);
-            console.log('hit appointment');
-            console.log(JSON.stringify(this.times));
+            this.timesOpen = [];
+            for (let r of item.reserved.appointment) {
+              if(r.selected == true) {
+                this.timesOpen.push(r);
+                console.log('hit appointment');
+              }
+            }
             
             /*for(let x of this.times) {
               if(x.time == r) {
@@ -423,7 +433,6 @@ export class UserBooking implements OnDestroy {
           for(let item of this.tds) {
             if(!item.classList.contains('text-muted')) {
               console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
-              let count = 0;
               if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
                 console.log("Inner text in      " + item.innerText);
                 this.myrenderer.setElementClass(item,"greencircle",true);

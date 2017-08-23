@@ -40,7 +40,6 @@ import { HttpModule } from '@angular/http';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { IonicStorageModule } from '@ionic/storage';
-import { Storage } from '@ionic/storage';
 import { Facebook } from '@ionic-native/facebook'
 import { PopUp } from '../modals/popup/popup';
 import { Rate } from '../modals/rate/rate'

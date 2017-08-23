@@ -1,5 +1,5 @@
 import { NavParams, ViewController, NavController } from 'ionic-angular';
-import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { Component, Renderer } from '@angular/core';
 import { UserProfile } from '../../pages/userprofile/userprofile';
 
 

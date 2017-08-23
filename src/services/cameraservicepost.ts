@@ -6,19 +6,15 @@ import { File } from '@ionic-native/file';
 import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 
-import { Transfer, TransferObject } from '@ionic-native/transfer';
+import { Transfer } from '@ionic-native/transfer';
 import firebase from 'firebase';
-import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { PostpagePage } from '../pages/postpage/postpage';
-
 
 
 @Injectable()
 export class CameraServicePost {
   username: string;
-  items: FirebaseListObservable<any>;
   
-  constructor(public storage: Storage, public transfer: Transfer, public http: Http, public platform: Platform, public camera: Camera, public crop: Crop, public file: File, af: AngularFireDatabaseModule) {
+  constructor(public storage: Storage, public transfer: Transfer, public http: Http, public platform: Platform, public camera: Camera, public crop: Crop, public file: File) {
     this.http = http;
     this.storage.get('username').then((val) => {this.username = val; console.log(val + "        getting username")});
     //console.log(JSON.stringify(compress));
@@ -75,7 +71,6 @@ export class CameraServicePost {
   readFile(fileEntry, square) {
     console.log('in readfile')
     let self = this;
-    let compressed;
 
     fileEntry.file(function (file) {
 

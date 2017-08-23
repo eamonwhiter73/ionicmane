@@ -3,7 +3,7 @@ import { Directive,
          EventEmitter,
          Input,
          Output,
-         OnInit, OnDestroy, OnChanges, Renderer2 } from '@angular/core';
+         OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { ImgcacheService } from '../services/imgcacheservice';
 /**
  * This directive is charge of cache the images and emit a loaded event

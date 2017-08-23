@@ -1,7 +1,5 @@
-import { Component, NgModule, trigger, state, style, transition, animate, keyframes, ViewChildren, OnDestroy, Renderer, ElementRef, QueryList } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { NgCalendarModule  } from 'ionic2-calendar';
-import { FeedUser } from '../feeduser/feeduser';
+import { Component, trigger, state, style, transition, animate, ViewChildren, OnDestroy, Renderer, ElementRef, QueryList } from '@angular/core';
+import { NavController } from 'ionic-angular';
 import { FeedStylist } from '../feedstylist/feedstylist';
 import { BookingPage } from '../booking/booking';
 import { PostpagePage } from '../postpage/postpage';
@@ -13,8 +11,7 @@ import { ISubscription } from "rxjs/Subscription";
 import { CameraService } from '../../services/cameraservice';
 import { Camera } from '@ionic-native/camera';
 import { ActionSheetController } from 'ionic-angular';
-import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { FirebaseApp } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import firebase from 'firebase';
 import { LoadingController } from 'ionic-angular';
 import { ImageViewerController } from 'ionic-img-viewer';
@@ -68,7 +65,7 @@ export class StylistProfile implements OnDestroy {
   times;
   datesToSelect = [];
 
-  constructor(public elRef: ElementRef, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
+  constructor(public elRef: ElementRef, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, public cameraService: CameraService) {
     this.times = [{'time':'8:00 AM', 'selected': false}, {'time':'12:00 PM', 'selected': false}, {'time':'4:00 PM', 'selected': false},
                   {'time':'8:30 AM', 'selected': false}, {'time':'12:30 PM', 'selected': false}, {'time':'4:30 PM', 'selected': false},
                   {'time':'9:00 AM', 'selected': false}, {'time':'1:00 PM', 'selected': false}, {'time':'5:00 PM', 'selected': false},
@@ -175,7 +172,6 @@ export class StylistProfile implements OnDestroy {
           for(let item of this.tds) {
             if(!item.classList.contains('text-muted')) {
               console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
-              let count = 0;
               if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
                 console.log("Inner text in      " + item.innerText);
                 this.myrenderer.setElementClass(item,"greencircle",true);            
@@ -398,7 +394,7 @@ export class StylistProfile implements OnDestroy {
 
   moveCover() {
     this.moveState = (this.moveState == 'up') ? 'down' : 'up';
-    this.tds = this.elRef.nativeElement.querySelector('ion-slides');
+    this.tds = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-stylist-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides');
     this.myrenderer.setElementClass(this.tds, 'moveCover', true);
     let thisel  = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-stylist-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides > div > div.swiper-wrapper > ion-slide.swiper-slide.swiper-slide-active > div > table');
 
@@ -406,6 +402,8 @@ export class StylistProfile implements OnDestroy {
 
     console.log('element class list   ' + thisel.classList);
   }
+
+  onNgDes
 
   onCurrentDateChanged($event) {
     //console.log(typeof $event);
@@ -514,7 +512,6 @@ export class StylistProfile implements OnDestroy {
           for(let item of this.tds) {
             if(!item.classList.contains('text-muted')) {
               console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
-              let count = 0;
               if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
                 console.log("Inner text in      " + item.innerText);
                 this.myrenderer.setElementClass(item,"greencircle",true);

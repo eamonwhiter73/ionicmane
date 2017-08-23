@@ -1,6 +1,5 @@
 import { NavParams, ViewController, NavController } from 'ionic-angular';
 import { Component, ViewChild, ElementRef, Renderer, OnDestroy } from '@angular/core';
-import { UserProfile } from '../../pages/userprofile/userprofile';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { ISubscription } from "rxjs/Subscription";
 
@@ -169,9 +168,7 @@ export class Rate implements OnDestroy{
  }
 
  rate() {
-   let object;
    let added;
-   let select = this.selected;
    let ratingObject;
 
      console.log(this.username + "       :::::IJOSDF:IJ:IJ:J I:IJ :::::           " + this.selected);
@@ -181,7 +178,6 @@ export class Rate implements OnDestroy{
         let object = snapshot;
         
         if(this.selected == 1) {
-          let select = "one";
           added = object.rating.one;
           added++;
           ratingObject = {'rating': {"one": added, "two":snapshot.rating.two, "three":snapshot.rating.three,
@@ -189,14 +185,12 @@ export class Rate implements OnDestroy{
           
         }
         if(this.selected == 2) {
-          let select = "two";
           added = object.rating.two;
           added++;
           ratingObject = {'rating': {"one": snapshot.rating.one, "two":added, "three":snapshot.rating.three,
                                         "four":snapshot.rating.four, "five":snapshot.rating.five}}
         }
         if(this.selected == 3) {
-          let select = "three";
           added = object.rating.three;
           added++;
           ratingObject = {'rating': {"three": added, "two":snapshot.rating.two, "one":snapshot.rating.one,
@@ -204,14 +198,12 @@ export class Rate implements OnDestroy{
          
         }
         if(this.selected == 4) {
-          let select = "four";
           added = object.rating.four;
           added++;
           ratingObject = {'rating': {"three": snapshot.rating.three, "two":snapshot.rating.two, "one":snapshot.rating.one,
                                         "four":added, "five":snapshot.rating.five}};
         }
         if(this.selected == 5) {
-          let select = "five";
           added = object.rating.five;
           added++;
           ratingObject = {'rating': {"five": added, "two":snapshot.rating.two, "one":snapshot.rating.one,

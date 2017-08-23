@@ -1,4 +1,4 @@
-import { Component, trigger, state, style, transition, animate, keyframes, ElementRef, ViewChild, ViewChildren, QueryList, Renderer } from '@angular/core';
+import { Component, trigger, state, style, transition, animate, ViewChildren, QueryList, Renderer } from '@angular/core';
 import { NavController, App } from 'ionic-angular';
 import { LoadingController, ActionSheetController } from 'ionic-angular';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
@@ -9,9 +9,7 @@ import { BookingPage } from '../booking/booking';
 
 import { CameraServicePost } from '../../services/cameraservicepost';
 import { Camera } from '@ionic-native/camera';
-import { AngularFireAuth } from 'angularfire2/auth'
 import { OnDestroy } from "@angular/core";
-import { ISubscription } from "rxjs/Subscription";
 
 
 
@@ -63,7 +61,6 @@ import { ISubscription } from "rxjs/Subscription";
   ]
 })
 export class FeedStylist implements OnDestroy {
-  @ViewChild('clickme') clickme;
   @ViewChildren('feedstyle') components:QueryList<any>;
   @ViewChildren('flex') flexComponents:QueryList<any>;
   @ViewChildren('feedtop') feedComponents:QueryList<any>;
@@ -71,7 +68,6 @@ export class FeedStylist implements OnDestroy {
   @ViewChildren('allF') allFeed:QueryList<any>;
   @ViewChildren('productsFeed') productsF:QueryList<any>;
   @ViewChildren('classesFeed') classesF:QueryList<any>;
-  @ViewChild('ionheader') ionHeader:ElementRef
 
   downState: String = 'notDown';
   moveState: String = 'up';
@@ -85,12 +81,9 @@ export class FeedStylist implements OnDestroy {
 
   private swipeCoord?: [number, number];
   private swipeTime?: number;
-  private subscription: ISubscription;
-  private subscription2: ISubscription;
-  private subscription3: ISubscription;
   private nav:NavController;
 
-  constructor(private afAuth: AngularFireAuth, public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, private elRef:ElementRef, public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
     this.nav = this.app.getActiveNav();
   }
 
@@ -332,7 +325,6 @@ export class FeedStylist implements OnDestroy {
   }
 
   getInitialImages() {
-    let loading = this.loadingController.create({content : "Loading..."});
 
     this.items = /*['../../assets/hair1.jpg', '../../assets/hair2.jpg', '../../assets/hair3.jpeg', '../../assets/hair4.jpeg',
                   '../../assets/hair5.jpeg', '../../assets/hair6.jpg', '../../assets/hair7.jpg', '../../assets/hair8.jpg', 

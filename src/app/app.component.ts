@@ -11,6 +11,7 @@ import { StylistProfile } from '../pages/stylistprofile/stylistprofile';
 import { PostpagePage } from '../pages/postpage/postpage';
 import { BookingPage } from '../pages/booking/booking';
 import { UserBooking } from '../pages/userbooking/userbooking';
+import { UserProfile } from '../pages/userprofile/userprofile';
 
 import { SettingsPage } from '../pages/settings/settings';
 import { ImgcacheService } from '../services/imgcacheservice';
@@ -20,7 +21,7 @@ import { ImgcacheService } from '../services/imgcacheservice';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = StylistProfile;
+  rootPage:any = FeedUser;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, imgcacheService: ImgcacheService) {
 

@@ -77,32 +77,32 @@ page-user-booking {
 
 	.monthview-selected[_ngcontent-c0] {
 		color: white;
-    font-weight: 900;	
-    background-color: #25292c;
-  }
+	    font-weight: 900;	
+	    background-color: #25292c;
+	  }
 
 	.monthview-selected[_ngcontent-c1] {
 		color: white;
-    font-weight: 900;	
-    background-color: #25292c;
-  }
+	    font-weight: 900;	
+	    background-color: #25292c;
+	  }
 
 	.monthview-selected[_ngcontent-c2] {
 		color: white;
-    font-weight: 900;	
-    background-color: #25292c;
-  }
+	    font-weight: 900;	
+	    background-color: #25292c;
+	  }
 
 	.monthview-selected[_ngcontent-c3] {
 		color: white;
-    font-weight: 900;	
-    background-color: #25292c;
-  }
+	    font-weight: 900;	
+	    background-color: #25292c;
+	  }
 
 	.monthview-selected[_ngcontent-c4] {
-    color: white;
-    font-weight: 900;
-    background-color: #25292c;
+	    color: white;
+	    font-weight: 900;
+	    background-color: #25292c;
 	}
 
 	.forward {
@@ -216,9 +216,10 @@ page-user-booking {
 	    background-color: #fff;
 	    z-index: 4;
 	    width: 100%;
-	    margin-top: -100%;
+	    margin-top: -95%;
 	    position: relative;
 	    bottom: -2%;
+	    height: 100%;
 	}
 
 	.scrolling {
@@ -227,7 +228,6 @@ page-user-booking {
 	    background-color: #fff;
 	    z-index: 4;
 	    width: 100%;
-	    
 	}
 
 	.slotcontainer {
@@ -363,4 +363,16 @@ page-user-booking {
 	    position: fixed;
 	    z-index: 20;
 	}
+
+	@media (max-width:411px) and (min-width:375px) {
+    	.slots {
+    		margin-top: -100%;
+    	}
+  	}
+
+  	@media (min-width:375px) {
+    	.slots {
+    		margin-top: -100%;
+    	}
+  	}
 }

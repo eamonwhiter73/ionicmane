@@ -31744,13 +31744,19 @@ page-stylist-profile .settingscontainer {
   top: 32%;
 }
 
+page-stylist-profile .grid {
+  padding: 1px 1px 1px 1px;
+  bottom: 1px;
+}
+
 page-stylist-profile .imageparent {
   width: 20vw;
   height: 20vw;
   border-radius: 50%;
   overflow: hidden;
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-top: 2%;
 }
 
 page-stylist-profile ion-fab {
@@ -31791,10 +31797,6 @@ page-stylist-profile .moveCover {
   padding-bottom: 5px;
 }
 
-page-stylist-profile .marginchange {
-  top: 2px !important;
-}
-
 page-stylist-profile .textsizebutton {
   font-size: 12px;
   background-color: black;
@@ -31806,9 +31808,9 @@ page-stylist-profile .stylistview {
 }
 
 page-stylist-profile .stylistviewtwo {
-  text-align: right;
-  position: relative;
-  top: -70px;
+  position: absolute;
+  top: 1%;
+  right: 1%;
 }
 
 page-stylist-profile .stylistviewbutton {
@@ -31817,17 +31819,18 @@ page-stylist-profile .stylistviewbutton {
 }
 
 page-stylist-profile .stylistviewbuttontwo {
-  width: 30%;
+  width: 100%;
   font-size: 15px;
   display: inline-block;
+  /* margin-bottom: 8px; */
 }
 
 page-stylist-profile .stars {
   display: inline-block;
   position: relative;
   color: #e6c926;
-  /*top: -70px;
-    left: 110px;*/
+  left: 2.5vw;
+  font-size: 15px;
 }
 
 page-stylist-profile .ratings {
@@ -31836,29 +31839,40 @@ page-stylist-profile .ratings {
     left: 113px;*/
   font-size: 10px;
   top: -4px;
-  left: 15%;
+  width: 100%;
+  text-align: center;
 }
 
 page-stylist-profile .stylistsect {
-  max-width: 35%;
-  top: -30px;
-  left: 25px;
+  max-width: 46%;
+  top: 60%;
+  left: 10px;
   position: relative;
 }
 
 page-stylist-profile .bio {
-  font-size: 12px;
+  font-size: 10px;
+  white-space: normal;
+  min-height: 60px;
+  max-height: 60px;
 }
 
 page-stylist-profile .name {
   font-weight: 700;
+  font-size: 12px;
+  margin-left: 3%;
+  width: 18vw;
+  text-align: center;
 }
 
 page-stylist-profile .ratecontain {
+  width: 100%;
+}
+
+page-stylist-profile .rateandsocial {
+  width: 23%;
   position: relative;
   display: inline-block;
-  top: -33px;
-  left: 10px;
 }
 
 page-stylist-profile .cal {
@@ -31881,7 +31895,7 @@ page-stylist-profile .calendarcover {
 
 page-stylist-profile .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4] {
   padding: 2px 0px 2px 0px;
-  line-height: 12px;
+  line-height: 10.5px;
   vertical-align: top;
   font-size: 11px;
   border: none;
@@ -31889,7 +31903,7 @@ page-stylist-profile .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngconten
 
 page-stylist-profile .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-stylist-profile .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3] {
   padding: 2px 0px 2px 0px;
-  line-height: 12px;
+  line-height: 10.5px;
   vertical-align: top;
   font-size: 11px;
   border: none;
@@ -31897,7 +31911,7 @@ page-stylist-profile .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngconten
 
 page-stylist-profile .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-stylist-profile .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2] {
   padding: 2px 0px 2px 0px;
-  line-height: 12px;
+  line-height: 10.5px;
   vertical-align: top;
   font-size: 11px;
   border: none;
@@ -31905,7 +31919,7 @@ page-stylist-profile .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngconten
 
 page-stylist-profile .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-stylist-profile .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-stylist-profile .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-stylist-profile .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-stylist-profile .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-stylist-profile .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
   padding: 2px 0px 2px 0px;
-  line-height: 12px;
+  line-height: 10.5px;
   vertical-align: top;
   font-size: 11px;
   border: none;
@@ -32016,19 +32030,39 @@ page-stylist-profile ion-grid .col {
   padding: 0.5px 0.5px 0.5px 0.5px;
 }
 
+page-stylist-profile .label {
+  margin: 2px 0px 2px 0px;
+}
+
+page-stylist-profile .item[no-lines], page-stylist-profile .item.item[no-lines] .item-inner {
+  border: 0;
+  padding-right: 0px;
+}
+
+page-stylist-profile .slide-zoom {
+  text-align: center;
+  display: block;
+  width: 90%;
+  left: 0px;
+  position: relative;
+}
+
 page-stylist-profile ion-slides {
   background-color: #25292c;
   border-radius: 5px;
-  width: 65%;
+  width: 49vw;
   padding-bottom: 0px;
   height: 68px;
+  top: 3vh;
+  margin-left: 15.5vw;
+  position: absolute;
 }
 
 page-stylist-profile .table.table-bordered.table-fixed.monthview-datetable {
   width: 100%;
   max-width: 100%;
   position: relative;
-  top: 25px;
+  top: 8px;
 }
 
 page-stylist-profile .back-button.show-back-button {
@@ -32046,8 +32080,11 @@ page-stylist-profile .inlineblock {
 
 page-stylist-profile .social {
   position: relative;
-  left: 18px;
-  top: -15px;
+  width: 100%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -32056,6 +32093,7 @@ page-stylist-profile .social {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+  right: 1vw;
 }
 
 page-stylist-profile .imagesquare {
@@ -32080,6 +32118,180 @@ page-stylist-profile .fb {
 
 page-stylist-profile .insta {
   width: 28px;
+}
+
+@media (max-width: 374px) and (min-width: 320px) {
+  page-stylist-profile .slides {
+    background-color: #25292c;
+    border-radius: 5px;
+    width: 49vw;
+    padding-bottom: 0px;
+    height: 65px;
+    top: 3vh;
+    margin-left: 15.5vw;
+    position: absolute;
+  }
+  page-stylist-profile .stars {
+    display: inline-block;
+    position: relative;
+    color: #e6c926;
+    left: 1vw;
+    font-size: 15px;
+  }
+  page-stylist-profile .moveCover {
+    height: 108px;
+    -webkit-transition: height 0.5s ease-in;
+    transition: height 0.5s ease-in;
+    padding-bottom: 5px;
+  }
+  page-stylist-profile .swiper-slide {
+    text-align: center;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 95px;
+    font-size: 18px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 411px) and (min-width: 375px) {
+  page-stylist-profile .slides {
+    background-color: #25292c;
+    border-radius: 5px;
+    width: 52vw;
+    padding-bottom: 0px;
+    height: 60px;
+    top: 1vh;
+    margin-left: 12.5vw;
+    position: absolute;
+  }
+  page-stylist-profile .table.table-bordered.table-fixed.monthview-datetable {
+    width: 177px;
+    max-width: 100%;
+    position: relative;
+    top: 22px;
+  }
+  page-stylist-profile .moveCover {
+    height: 108px;
+    -webkit-transition: height 0.5s ease-in;
+    transition: height 0.5s ease-in;
+    padding-bottom: 5px;
+  }
+  page-stylist-profile .stars {
+    display: inline-block;
+    position: relative;
+    color: #e6c926;
+    left: 1.5vw;
+    font-size: 15px;
+  }
+  page-stylist-profile .swiper-slide {
+    text-align: center;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 62px;
+    font-size: 18px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  page-stylist-profile .stylistsect {
+    max-width: 44%;
+  }
+}
+
+@media (min-width: 412px) {
+  page-stylist-profile .slides {
+    background-color: #25292c;
+    border-radius: 5px;
+    width: 49vw;
+    padding-bottom: 0px;
+    height: 68px;
+    top: 0;
+    margin-left: 15.5vw;
+    position: absolute;
+  }
+  page-stylist-profile .table.table-bordered.table-fixed.monthview-datetable {
+    width: 177px;
+    max-width: 100%;
+    position: relative;
+    top: 22px;
+  }
+  page-stylist-profile .moveCover {
+    height: 108px;
+    -webkit-transition: height 0.5s ease-in;
+    transition: height 0.5s ease-in;
+    padding-bottom: 5px;
+  }
+  page-stylist-profile .stars {
+    display: inline-block;
+    position: relative;
+    color: #e6c926;
+    left: 1.5vw;
+    font-size: 15px;
+  }
+  page-stylist-profile .swiper-slide {
+    text-align: center;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 62px;
+    font-size: 18px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  page-stylist-profile .stylistsect {
+    max-width: 44%;
+  }
+  page-stylist-profile .rateandsocial {
+    width: 23%;
+    position: relative;
+    display: inline-block;
+    top: -8px;
+  }
 }
 
 page-user-booking {
@@ -32303,9 +32515,10 @@ page-user-booking .slots {
   background-color: #fff;
   z-index: 4;
   width: 100%;
-  margin-top: -100%;
+  margin-top: -95%;
   position: relative;
   bottom: -2%;
+  height: 100%;
 }
 
 page-user-booking .scrolling {
@@ -32451,8 +32664,21 @@ page-user-booking #savebutton {
   z-index: 20;
 }
 
+@media (max-width: 411px) and (min-width: 375px) {
+  page-user-booking .slots {
+    margin-top: -100%;
+  }
+}
+
+@media (min-width: 375px) {
+  page-user-booking .slots {
+    margin-top: -100%;
+  }
+}
+
 page-user-profile ion-title {
   text-align: center;
+  position: absolute;
 }
 
 page-user-profile .postprofilepic {
@@ -32462,17 +32688,68 @@ page-user-profile .postprofilepic {
   width: auto;
 }
 
+page-user-profile .settings {
+  font-size: 36px;
+}
+
+page-user-profile .settingscontainer {
+  position: relative;
+  z-index: 2;
+  left: 88%;
+  top: 32%;
+}
+
+page-user-profile .grid {
+  padding: 1px 1px 1px 1px;
+  bottom: 1px;
+}
+
 page-user-profile .imageparent {
   width: 20vw;
   height: 20vw;
   border-radius: 50%;
   overflow: hidden;
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-top: 2%;
 }
 
 page-user-profile ion-fab {
   position: absolute;
+}
+
+page-user-profile .greencircle {
+  background: url("../../assets/greencircle.png") no-repeat center;
+  background-size: 17px;
+  background-color: #25292c;
+  color: white;
+}
+
+page-user-profile .text-muted[_ngcontent-c1] {
+  color: #616160;
+}
+
+page-user-profile .text-muted[_ngcontent-c2] {
+  color: #616160;
+}
+
+page-user-profile .text-muted[_ngcontent-c3] {
+  color: #616160;
+}
+
+page-user-profile .text-muted[_ngcontent-c4] {
+  color: #616160;
+}
+
+page-user-profile .text-muted[_ngcontent-c5] {
+  color: #616160;
+}
+
+page-user-profile .moveCover {
+  height: 100%;
+  -webkit-transition: height 0.75s ease-in;
+  transition: height 0.75s ease-in;
+  padding-bottom: 5px;
 }
 
 page-user-profile .textsizebutton {
@@ -32486,9 +32763,9 @@ page-user-profile .stylistview {
 }
 
 page-user-profile .stylistviewtwo {
-  text-align: right;
-  position: relative;
-  top: -70px;
+  position: absolute;
+  top: 1%;
+  right: 1%;
 }
 
 page-user-profile .stylistviewbutton {
@@ -32497,52 +32774,60 @@ page-user-profile .stylistviewbutton {
 }
 
 page-user-profile .stylistviewbuttontwo {
-  width: 30%;
+  width: 100%;
   font-size: 15px;
   display: inline-block;
+  /* margin-bottom: 8px; */
 }
 
 page-user-profile .stars {
   display: inline-block;
   position: relative;
   color: #e6c926;
-  /*top: -70px;
-    left: 110px;*/
+  left: 2.5vw;
+  font-size: 15px;
 }
 
 page-user-profile .ratings {
   position: relative;
   /*top: -70px;
     left: 113px;*/
-  font-size: 14px;
+  font-size: 10px;
+  top: -4px;
+  width: 100%;
+  text-align: center;
 }
 
 page-user-profile .stylistsect {
-  max-width: 35%;
-  top: -30px;
-  left: 25px;
+  max-width: 46%;
+  top: 60%;
+  left: 10px;
   position: relative;
 }
 
 page-user-profile .bio {
-  font-size: 12px;
+  font-size: 10px;
+  white-space: normal;
+  min-height: 60px;
+  max-height: 60px;
 }
 
 page-user-profile .name {
   font-weight: 700;
+  font-size: 12px;
+  margin-left: 3%;
+  width: 18vw;
+  text-align: center;
 }
 
 page-user-profile .ratecontain {
-  position: relative;
-  display: inline-block;
-  top: -33px;
-  left: 10px;
-  z-index: 3;
+  width: 100%;
 }
 
-page-user-profile .table.table-bordered.table-fixed.monthview-datetable {
-  width: 60%;
-  max-width: 60%;
+page-user-profile .rateandsocial {
+  width: 23%;
+  position: relative;
+  display: inline-block;
 }
 
 page-user-profile .cal {
@@ -32560,34 +32845,114 @@ page-user-profile .calendarcover {
   position: relative;
   top: -182px;
   left: 33%;
+  display: none;
 }
 
 page-user-profile .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-user-profile .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-user-profile .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-user-profile .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-user-profile .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-user-profile .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4] {
-  padding: 2px;
-  line-height: 12px;
+  padding: 2px 0px 2px 0px;
+  line-height: 10.5px;
   vertical-align: top;
   font-size: 11px;
+  border: none;
 }
 
 page-user-profile .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-user-profile .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-user-profile .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], page-user-profile .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-user-profile .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], page-user-profile .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3] {
-  padding: 2px;
-  line-height: 12px;
+  padding: 2px 0px 2px 0px;
+  line-height: 10.5px;
   vertical-align: top;
   font-size: 11px;
+  border: none;
 }
 
 page-user-profile .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-user-profile .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-user-profile .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], page-user-profile .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-user-profile .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], page-user-profile .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2] {
-  padding: 2px;
-  line-height: 12px;
+  padding: 2px 0px 2px 0px;
+  line-height: 10.5px;
   vertical-align: top;
   font-size: 11px;
+  border: none;
 }
 
 page-user-profile .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-user-profile .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-user-profile .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], page-user-profile .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-user-profile .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], page-user-profile .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
-  padding: 2px;
-  line-height: 12px;
+  padding: 2px 0px 2px 0px;
+  line-height: 10.5px;
   vertical-align: top;
   font-size: 11px;
+  border: none;
+}
+
+page-user-profile .monthview-selected[_ngcontent-c0] {
+  color: white;
+  font-weight: 900;
+  background-color: #25292c;
+}
+
+page-user-profile .monthview-selected[_ngcontent-c1] {
+  color: white;
+  font-weight: 900;
+  background-color: #25292c;
+}
+
+page-user-profile .monthview-selected[_ngcontent-c2] {
+  color: white;
+  font-weight: 900;
+  background-color: #25292c;
+}
+
+page-user-profile .monthview-selected[_ngcontent-c3] {
+  color: white;
+  font-weight: 900;
+  background-color: #25292c;
+}
+
+page-user-profile .monthview-selected[_ngcontent-c4] {
+  color: white;
+  font-weight: 900;
+  background-color: #25292c;
+}
+
+page-user-profile .monthview-current[_ngcontent-c1] {
+  background-color: #25292c;
+}
+
+page-user-profile .monthview-current[_ngcontent-c2] {
+  background-color: #25292c;
+}
+
+page-user-profile .monthview-current[_ngcontent-c3] {
+  background-color: #25292c;
+}
+
+page-user-profile .monthview-current[_ngcontent-c4] {
+  background-color: #25292c;
+}
+
+page-user-profile .monthview-current[_ngcontent-c5] {
+  background-color: #25292c;
+}
+
+page-user-profile .table-bordered[_ngcontent-c0] {
+  border: none;
+  color: #999;
+}
+
+page-user-profile .table-bordered[_ngcontent-c1] {
+  border: none;
+  color: #999;
+}
+
+page-user-profile .table-bordered[_ngcontent-c2] {
+  border: none;
+  color: #999;
+}
+
+page-user-profile .table-bordered[_ngcontent-c3] {
+  border: none;
+  color: #999;
+}
+
+page-user-profile .table-bordered[_ngcontent-c4] {
+  border: none;
+  color: #999;
 }
 
 page-user-profile [_nghost-c1] > div[_ngcontent-c1] {
@@ -32620,24 +32985,44 @@ page-user-profile ion-grid .col {
   padding: 0.5px 0.5px 0.5px 0.5px;
 }
 
+page-user-profile .label {
+  margin: 2px 0px 2px 0px;
+}
+
+page-user-profile .item[no-lines], page-user-profile .item.item[no-lines] .item-inner {
+  border: 0;
+  padding-right: 0px;
+}
+
+page-user-profile .slide-zoom {
+  text-align: center;
+  display: block;
+  width: 90%;
+  left: 0px;
+  position: relative;
+}
+
+page-user-profile ion-slides {
+  background-color: #25292c;
+  border-radius: 5px;
+  width: 49vw;
+  padding-bottom: 0px;
+  height: 68px;
+  top: 3vh;
+  margin-left: 15.5vw;
+  position: absolute;
+}
+
+page-user-profile .table.table-bordered.table-fixed.monthview-datetable {
+  /* width: 100%; */
+  max-width: 100%;
+  position: relative;
+  top: 8px;
+  /* left: -12px; */
+}
+
 page-user-profile .back-button.show-back-button {
   display: none;
-}
-
-page-user-profile .monthview-selected[_ngcontent-c4] {
-  background-color: #e6c926;
-}
-
-page-user-profile .monthview-selected[_ngcontent-c3] {
-  background-color: #e6c926;
-}
-
-page-user-profile .monthview-selected[_ngcontent-c2] {
-  background-color: #e6c926;
-}
-
-page-user-profile .monthview-selected[_ngcontent-c1] {
-  background-color: #e6c926;
 }
 
 page-user-profile .monthview-container {
@@ -32651,8 +33036,11 @@ page-user-profile .inlineblock {
 
 page-user-profile .social {
   position: relative;
-  left: 18px;
-  top: -15px;
+  width: 100%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -32661,6 +33049,7 @@ page-user-profile .social {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+  right: 1vw;
 }
 
 page-user-profile .imagesquare {
@@ -32685,4 +33074,178 @@ page-user-profile .fb {
 
 page-user-profile .insta {
   width: 28px;
+}
+
+@media (max-width: 374px) and (min-width: 320px) {
+  page-user-profile .slides {
+    background-color: #25292c;
+    border-radius: 5px;
+    width: 49vw;
+    padding-bottom: 0px;
+    height: 63px;
+    top: 3vh;
+    margin-left: 15.5vw;
+    position: absolute;
+  }
+  page-user-profile .stars {
+    display: inline-block;
+    position: relative;
+    color: #e6c926;
+    left: 1vw;
+    font-size: 15px;
+  }
+  page-user-profile .moveCover {
+    height: 108px;
+    -webkit-transition: height 0.5s ease-in;
+    transition: height 0.5s ease-in;
+    padding-bottom: 5px;
+  }
+  page-user-profile .swiper-slide {
+    text-align: center;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 95px;
+    font-size: 18px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 411px) and (min-width: 375px) {
+  page-user-profile .slides {
+    background-color: #25292c;
+    border-radius: 5px;
+    width: 52vw;
+    padding-bottom: 0px;
+    height: 60px;
+    top: 1vh;
+    margin-left: 12.5vw;
+    position: absolute;
+  }
+  page-user-profile .table.table-bordered.table-fixed.monthview-datetable {
+    width: 177px;
+    max-width: 100%;
+    position: relative;
+    top: 22px;
+  }
+  page-user-profile .moveCover {
+    height: 108px;
+    -webkit-transition: height 0.5s ease-in;
+    transition: height 0.5s ease-in;
+    padding-bottom: 5px;
+  }
+  page-user-profile .stars {
+    display: inline-block;
+    position: relative;
+    color: #e6c926;
+    left: 1.5vw;
+    font-size: 15px;
+  }
+  page-user-profile .swiper-slide {
+    text-align: center;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 62px;
+    font-size: 18px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  page-user-profile .stylistsect {
+    max-width: 44%;
+  }
+}
+
+@media (min-width: 412px) {
+  page-user-profile .slides {
+    background-color: #25292c;
+    border-radius: 5px;
+    width: 49vw;
+    padding-bottom: 0px;
+    height: 61px;
+    top: 0;
+    margin-left: 15.5vw;
+    position: absolute;
+  }
+  page-user-profile .table.table-bordered.table-fixed.monthview-datetable {
+    width: 177px;
+    max-width: 100%;
+    position: relative;
+    top: 22px;
+  }
+  page-user-profile .moveCover {
+    height: 108px;
+    -webkit-transition: height 0.5s ease-in;
+    transition: height 0.5s ease-in;
+    padding-bottom: 5px;
+  }
+  page-user-profile .stars {
+    display: inline-block;
+    position: relative;
+    color: #e6c926;
+    left: 2.5vw;
+    font-size: 15px;
+  }
+  page-user-profile .swiper-slide {
+    text-align: center;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 62px;
+    font-size: 18px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  page-user-profile .stylistsect {
+    max-width: 44%;
+  }
+  page-user-profile .rateandsocial {
+    width: 23%;
+    position: relative;
+    display: inline-block;
+    top: -8px;
+  }
 }

@@ -1,6 +1,6 @@
 <ion-header (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
   <ion-toolbar>
-    <ion-title>@stylist_profile</ion-title>
+    <ion-title>@{{username}}</ion-title>
 
     <div class="settingscontainer">
     	<ion-icon class="settings" name="settings" (tap)="goToSettings()"></ion-icon>
@@ -15,26 +15,28 @@
 <div (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
 	<ion-item no-padding no-lines>
 		<div class="imageparent">
-      <img class="postprofilepic" src="img/hair5.jpeg">
-    </div>
-    <div class='ratecontain'>
-	    <div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-	    <div class='ratings'>(200 ratings)</div>
-	  </div>
-	  <div class="stylistviewtwo">
-	    <button class="stylistviewbuttontwo" ion-button color="primary">Follow Stylist</button>
-	  </div>
-	  <div class='stylistsect'>
-			<div class="name">Daniel T.</div>
-			<div class="bio">Bio info...</div>
+		  <img class="postprofilepic" src="img/hair5.jpeg">
 		</div>
-		<div class="social">
-			<div class="fb inlineblock">
-				<img src="img/facebook.png">
+	    <div class="rateandsocial">
+		    <div class='ratecontain'>
+			    <div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+			    <div class='ratings'>(200 ratings)</div>
 			</div>
-			<div class="insta inlineblock">
-      	<img src="img/instagram.png">
+		    <div class="social">
+				<div class="fb inlineblock">
+					<img src="img/facebook.png">
+				</div>
+				<div class="insta inlineblock">
+		  			<img src="img/instagram.png">
+				</div>
 			</div>
+		</div>
+	  	<div class="stylistviewtwo">
+	    	<button class="stylistviewbuttontwo" ion-button color="primary">Follow Stylist</button>
+	  	</div>
+	  	<div class='stylistsect'>
+			<div class="name">username</div>
+			<div class="bio">I am a hair stylist. This is my bio, I wrote it. I need to make money so please book me!</div>
 		</div>
 		<calendar (tap)='moveCover()' class='cal' [eventSource]="eventSource"
 	      [calendarMode]="calendar.mode"
@@ -47,7 +49,6 @@
 	      step="30">
 	    </calendar>
 	</ion-item>
-	<div #calendarcover [@moveCover]='moveState' class="calendarcover"></div>
 	<ion-grid>
 	  <ion-row>
 	    <ion-col>

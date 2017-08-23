@@ -1,10 +1,10 @@
-import { AfterViewInit, NgZone, Component, trigger, state, style, transition, animate, keyframes, ViewChild, ElementRef, Renderer, HostListener } from '@angular/core';
+import { NgZone, Component, trigger, state, style, transition, animate, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { LoadingController, Content } from 'ionic-angular';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { FeedStylist } from '../feedstylist/feedstylist';
 
-import { BookingPage } from '../booking/booking';
+import { UserBooking } from '../userbooking/userbooking';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
@@ -13,7 +13,7 @@ import { OnDestroy } from "@angular/core";
 import { ISubscription } from "rxjs/Subscription";
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
-import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+import { NativeGeocoder, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { Diagnostic } from '@ionic-native/diagnostic';
 
 
@@ -129,11 +129,15 @@ export class FeedUser implements OnDestroy {
   }
 
   swipeLeft() {
-    this.toProfile();
+    
   }
 
   swipeRight() {
     this.toBooking();
+  }
+
+  toUserBooking() {
+    
   }
 
   toProfile() {
@@ -141,7 +145,7 @@ export class FeedUser implements OnDestroy {
   }
 
   toBooking() {
-    this.navCtrl.push(BookingPage,{
+    this.navCtrl.push(UserBooking, {
       param1: 'user'
     },{animate:true,animation:'transition',duration:500,direction:'back'});
   }
@@ -225,12 +229,15 @@ export class FeedUser implements OnDestroy {
           this.subscription6 = this.distancelist.subscribe(items => items.forEach(item => {
 
 
-
+            let rr;
             console.log(JSON.stringify(item) + "               *((*&*&*&*&^&*&*&*(&*(&*&*(&(&(&*(");
             this.nativeGeocoder.forwardGeocode(item.address)
               .then((coordinates: NativeGeocoderForwardResult) => {
-                  let rr = this.round(this.distance(coordinates.latitude, coordinates.longitude, resp.coords.latitude, resp.coords.longitude, "M"), 2);
+                  rr = this.round(this.distance(coordinates.latitude, coordinates.longitude, resp.coords.latitude, resp.coords.longitude, "M"), 2);
                   console.log('The coordinates are latitude=' + rr);
+                  if(!item.picURL) {
+                    item.picURL = '../../assets/blankprof.png';
+                  }
                   this.distances.push({'pic':item.picURL, 'salon':item.username, 'distance':rr});
 
                   x++;
@@ -238,6 +245,11 @@ export class FeedUser implements OnDestroy {
                     resolve();
                   }
                 }).catch(e => {
+                  console.log('The coordinates are latitude=' + rr);
+                  if(!item.picURL) {
+                    item.picURL = '../../assets/blankprof.png';
+                  }
+                  this.distances.push({'pic':item.picURL, 'salon':item.username, 'distance':rr});
                   console.log(e.message + " THI SI THE RED ONE!");
                 })
                   
@@ -274,26 +286,25 @@ export class FeedUser implements OnDestroy {
       let x = 0;
       this.subscription7 = this.ratingslist.subscribe(items => items.forEach(item => {
 
-        console.log(typeof item.rating + "this is the rating string");
+        for(let z in item.rating) {
+          console.log(z + "this is the rating string");
+        }
 
+        console.log(JSON.stringify(item) + "stringifyied item &&^^&%^%^%^$$%%$");
         if(item.type == "stylist") {
+          console.log("getting pushed &&%$$##@#@#@#@#@#");
           array.push(item);
         }
 
-        //this.starsArray.push(this.stars);
-
         x++;
         if(items.length - x == 0) {
-          
+
+          console.log("resolved ***&&&^^^%%%$$$$$$$" + array[0]);
           resolve(array);
         }
       }));
     });
   }
-
-  sorter(ascending) {
-    return 
-}
 
   ionViewDidLoad() {
     let ratings;
@@ -308,9 +319,10 @@ export class FeedUser implements OnDestroy {
           return a.distance - b.distance;
         });
       //}, 1000)
-    })
 
-    this.loadRatings().then((array) =>{
+        this.loadRatings().then((array) =>{
+
+          console.log(array + '    ararrya &&*&&*&^^&%^%^');
 
           let r = 0;
           for(let item of array) {
@@ -319,12 +331,13 @@ export class FeedUser implements OnDestroy {
             }
             else {
 
+              console.log("making the stars");
+
               totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
               ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five *5;
               
 
               let i = (ratings / totalPotential) * 100;
-              let reversei = totalPotential / ratings;
               if(Math.round(i) <= 20) {
                 this.stars = '\u2605';
               }
@@ -369,6 +382,9 @@ export class FeedUser implements OnDestroy {
 
           });
         })
+    })
+
+
     
     this.renderer.setElementStyle(this.promos.nativeElement, 'color', '#e6c926');
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
@@ -568,23 +584,34 @@ export class FeedUser implements OnDestroy {
             if(date.getMonth() == today.getMonth() && date.getDate() == today.getDate()) {
               console.log("            inside the if that checks if its today");
               console.log(item.reserved.appointment + "                *************appointment");
+              //let counter = 0;
               item.reserved.appointment.forEach((r, index) => {
                 if(r.selected == true) {
 
-                  let string = "";
                   let storageRef = firebase.storage().ref().child('/settings/' + userName + '/profilepicture.png');
-             
+                   
+                  let obj = {'pic':"", 'salon': userName, 'time': r.time};
+
                   storageRef.getDownloadURL().then(url => {
-                    console.log(url);
-                    let obj = {'pic':url, 'salon': userName, 'time': r.time};
+                    console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+                    obj.pic = url;
+                    this.availabilities.push(obj);
+                  }).catch((e) => {
+                    console.log("in caught url !!!!!!!$$$$$$$!!");
+                    obj.pic = '../../assets/blankprof.png';
                     this.availabilities.push(obj);
                   });
-               
+
+                  console.log(index + "         this is index !@@@@@!!");
+                  console.log(JSON.stringify(this.availabilities));
                   
                   
-                  if(index == 23) {
-                    resolve();
-                  }
+                }
+
+                if(index == 23) {
+                  console.log("IN RESOLVE *(**(*(#*(*(#*(#*(#*(#))))))))");
+                  console.log(JSON.stringify(this.availabilities));
+                  resolve();
                 }
               })
 
@@ -657,6 +684,9 @@ export class FeedUser implements OnDestroy {
 
 
       console.log(JSON.stringify(item));
+      if(!item.picURL) {
+        item.picURL = '../../assets/blankprof.png';
+      }
       this.pricesArray.push(item);
 
 
@@ -713,22 +743,27 @@ export class FeedUser implements OnDestroy {
                   ];
 
     this.loadAvailabilities().then(() => {
-      this.availabilities.sort(function(a,b) {
-          return a.time - b.time;
-      });
+      setTimeout(() => {
+        console.log("in load availabilities ......... ")
+        console.log(JSON.stringify(this.availabilities));
 
-      console.log('*****previous******');
-      console.log(JSON.stringify(this.availabilities));
-      console.log('*****sorted********');
-      
-      for(let i of this.availabilities) {
-        console.log(i.time + "          this is itime");
-        let date = new Date(i.time);
-        console.log(date + "          this is date in idate");
-        let str = date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
-        console.log(str);
-        i.time = str;
-      }
+        this.availabilities.sort(function(a,b) {
+          return Date.parse('01/01/2013 '+a.time) - Date.parse('01/01/2013 '+b.time);
+        });
+
+        console.log('*****previous******');
+        console.log(JSON.stringify(this.availabilities));
+        console.log('*****sorted********');
+        
+        for(let i of this.availabilities) {
+          console.log(i.time + "          this is itime");
+          let date = new Date('01/01/2013 ' + i.time);
+          console.log(date + "          this is date in idate");
+          let str = date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+          console.log(str);
+          i.time = str;
+        }
+      }, 1500);
     });                
 
     loading.dismiss();

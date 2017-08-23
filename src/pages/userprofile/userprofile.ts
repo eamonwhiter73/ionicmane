@@ -1,8 +1,6 @@
-import { OnDestroy, Component, NgModule, trigger, state, style, transition, animate, keyframes, ViewChildren, Renderer, QueryList } from '@angular/core';
+import { OnDestroy, Component, trigger, state, style, transition, animate, ViewChildren, ElementRef, Renderer, QueryList } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
-import { NgCalendarModule  } from 'ionic2-calendar';
 import { FeedUser } from '../feeduser/feeduser';
-import { FeedStylist } from '../feedstylist/feedstylist';
 import { BookingPage } from '../booking/booking';
 import { PostpagePage } from '../postpage/postpage';
 
@@ -10,8 +8,7 @@ import { PostpagePage } from '../postpage/postpage';
 import { CameraService } from '../../services/cameraservice';
 import { Camera } from '@ionic-native/camera';
 import { ActionSheetController } from 'ionic-angular';
-import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
-import { FirebaseApp } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import firebase from 'firebase';
 import { LoadingController } from 'ionic-angular';
 import { ImageViewerController } from 'ionic-img-viewer';
@@ -55,8 +52,19 @@ export class UserProfile implements OnDestroy {
   square = 0;
   picURL = "";
   bio = "";
+  tds;
   profdata;
+  selectedDate;
   item: FirebaseObjectObservable<any>
+  items4: FirebaseListObservable<any>;
+  items3: FirebaseListObservable<any>;
+  items2: FirebaseListObservable<any>;
+  subscription2: ISubscription;
+  subscription3: ISubscription;
+  subscription4: ISubscription;
+  datesToSelect = [];
+  times;
+
   _imageViewerCtrl: ImageViewerController;
   private swipeCoord?: [number, number];
   private swipeTime?: number;
@@ -64,21 +72,89 @@ export class UserProfile implements OnDestroy {
 
   subscription6: ISubscription;
 
-  constructor(public modalCtrl: ModalController, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController, public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
-    /*this.items = af.list('/profile/' + this.username);
-    this.items.subscribe(items => items.forEach(item => {
-      console.log(item.$value);
-      this.picURLS.push(item.$value);
-    }));*/
-    //this._imageViewerCtrl = imageViewerCtrl;
+  constructor(public elRef: ElementRef, public params: NavParams,public modalCtrl: ModalController, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController, public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
+    this.username = this.params.get('username');
   }
 
   ngOnDestroy() {
     this.subscription6.unsubscribe();
+    this.subscription2.unsubscribe();
+    this.subscription3.unsubscribe();
+    this.subscription4.unsubscribe();
   }
 
   ionViewDidLoad() {
-    
+    this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+  
+    console.log(this.viewDate + " view date ");
+      setTimeout(()=>{
+        this.selectedDate = this.viewDate;
+        console.log(this.username + "this.username");
+        this.items2 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+        this.subscription2 = this.items2.subscribe(items => items.forEach(item => {
+
+          console.log(item);
+
+          let da = new Date(item.date.day * 1000);
+          this.datesToSelect.push(da.getDate());
+
+
+          console.log(da + "da");
+          console.log(da.getDate() + "dagetdate");
+          console.log(this.selectedDate.getDate());
+          if(this.selectedDate.getDate() == da.getDate() && this.selectedDate.getMonth() == da.getMonth()) {
+            console.log("selected = item");
+            console.log(JSON.stringify(item.reserved) + "         item resesrved above");
+            //for(let m = 0; m < item.reserved.length; m++) {
+            //for(let r of item.reserved) {
+              //console.log(JSON.stringify(r));
+              this.times = item.reserved.appointment.slice(0);
+              console.log('hit appointment');
+              //count++;
+              /*for(let x of this.times) {
+                if(x.time == r) {
+                  console.log('change selected');
+                  x.selected = true;
+                }
+              }*/
+            //}
+          }
+
+          /*let da = new Date(item.date.day*1000);
+          if(this.viewDate.getDate() == da.getDate() && this.viewDate.getMonth() == da.getMonth()) {
+            console.log("selected = item");
+            let count = 0;
+            console.log(JSON.stringify(item.reserved) + "         item resesrved");
+            for(let r in item.reserved) {
+              this.times[count].selected = r[count].selected;
+              console.log('hit appointment');
+              count++;
+              /*for(let x of this.times) {
+                if(x.time == r) {
+                  console.log('change selected');
+                  x.selected = true;
+                }
+              }*/
+            /*}
+          }*/
+          for(let item of this.tds) {
+            if(!item.classList.contains('text-muted')) {
+              console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
+              if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
+                console.log("Inner text in      " + item.innerText);
+                this.myrenderer.setElementClass(item,"greencircle",true);            
+              }
+              else {
+                //this.myrenderer.setElementClass(item,"monthview-selected",false);
+              }
+            }
+          }
+          
+        }));
+        
+        
+        //loading.dismiss();
+      },1500)
   }
 
   getProfileInfo() {
@@ -223,7 +299,7 @@ export class UserProfile implements OnDestroy {
       this.navCtrl.push(FeedUser);
     }*/
     //else {
-      this.navCtrl.push(FeedStylist,{},{animate:true,animation:'transition',duration:500,direction:'back'})
+      this.navCtrl.push(FeedUser,{},{animate:true,animation:'transition',duration:500,direction:'back'})
       //this.navCtrl.push(FeedStylist);
     //}
   }
@@ -280,7 +356,6 @@ export class UserProfile implements OnDestroy {
     let self = this;
     let promises_array:Array<any> = [];
     let itemArrayTwo = this.profComponents.toArray();
-    let itemArray = this.components.toArray();
 
     for (let z = 1; z < 10; z++) {
       promises_array.push(new Promise(function(resolve,reject) {
@@ -320,8 +395,15 @@ export class UserProfile implements OnDestroy {
 
   
 
-  moveCover() {
+ moveCover() {
     this.moveState = (this.moveState == 'up') ? 'down' : 'up';
+    this.tds = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides');
+    this.myrenderer.setElementClass(this.tds, 'moveCover', true);
+    let thisel  = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides > div > div.swiper-wrapper > ion-slide.swiper-slide.swiper-slide-active > div > table');
+
+    this.myrenderer.setElementClass(thisel, 'marginchange', true);
+
+    console.log('element class list   ' + thisel.classList);
   }
 
   onCurrentDateChanged($event) {}
