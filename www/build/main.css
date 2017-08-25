@@ -30708,10 +30708,20 @@ page-feed-stylist .imageposttwo {
 }
 
 page-feed-stylist .postprofilelink {
-  position: absolute;
-  right: 0;
-  display: inline-block;
-  margin-right: 4px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: 41%;
   font-size: 12px;
 }
 
@@ -30784,6 +30794,15 @@ page-feed-stylist #iontoolbar {
   border-bottom-style: solid;
   border-bottom-color: #e6c926;
   border-bottom-width: 4px;
+}
+
+page-feed-stylist .caption {
+  padding: 5px;
+  font-size: 14px;
+  display: none;
+  border-bottom: 0.5px;
+  border-bottom-color: gray;
+  border-bottom-style: solid;
 }
 
 page-feed-stylist ion-toolbar div.toolbar-background {
@@ -30920,7 +30939,6 @@ page-feed-stylist .all {
 }
 
 page-feed-stylist .book {
-  display: inline-block;
   font-weight: 700;
 }
 
@@ -32456,6 +32474,15 @@ page-user-booking .greencircle {
   background-size: 71%;
   background-color: #25292c;
   color: white;
+}
+
+page-user-booking .noavail {
+  position: absolute;
+  top: 20%;
+  color: gray;
+  font-size: 8vw;
+  width: 100%;
+  text-align: center;
 }
 
 page-user-booking .monthview-current[_ngcontent-c1] {

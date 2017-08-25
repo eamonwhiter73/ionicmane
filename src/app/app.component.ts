@@ -14,16 +14,15 @@ import { UserBooking } from '../pages/userbooking/userbooking';
 import { UserProfile } from '../pages/userprofile/userprofile';
 
 import { SettingsPage } from '../pages/settings/settings';
-import { ImgcacheService } from '../services/imgcacheservice';
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = FeedUser;
+  rootPage:any = UserBooking;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, imgcacheService: ImgcacheService) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -33,9 +32,7 @@ export class MyApp {
       statusBar.overlaysWebView(false);
       statusBar.isVisible;
       splashScreen.hide();
-
-      // initialize imgCache library and set root
-      imgcacheService.initImgCache();
+      
     });
   }
 }

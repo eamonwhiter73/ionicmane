@@ -1,4 +1,4 @@
-import { Component, trigger, state, style, transition, animate, ViewChildren, QueryList, Renderer } from '@angular/core';
+import { Component, trigger, state, style, transition, animate, ViewChild, ViewChildren, QueryList, Renderer, ElementRef } from '@angular/core';
 import { NavController, App } from 'ionic-angular';
 import { LoadingController, ActionSheetController } from 'ionic-angular';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
@@ -10,6 +10,10 @@ import { BookingPage } from '../booking/booking';
 import { CameraServicePost } from '../../services/cameraservicepost';
 import { Camera } from '@ionic-native/camera';
 import { OnDestroy } from "@angular/core";
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { ISubscription } from "rxjs/Subscription";
+import firebase from 'firebase';
+
 
 
 
@@ -65,9 +69,27 @@ export class FeedStylist implements OnDestroy {
   @ViewChildren('flex') flexComponents:QueryList<any>;
   @ViewChildren('feedtop') feedComponents:QueryList<any>;
   @ViewChildren('imagepost') imageComponents:QueryList<any>;
+  @ViewChildren('caption') captionComponents:QueryList<any>;
   @ViewChildren('allF') allFeed:QueryList<any>;
   @ViewChildren('productsFeed') productsF:QueryList<any>;
   @ViewChildren('classesFeed') classesF:QueryList<any>;
+  @ViewChild('contentone') contentOne:ElementRef;
+  @ViewChild('classeslist') classeslist:ElementRef;
+  @ViewChild('productslist') productslist:ElementRef;
+
+  @ViewChildren('feedstyle2') components2:QueryList<any>;
+  @ViewChildren('flex2') flexComponents2:QueryList<any>;
+  @ViewChildren('feedtop2') feedComponents2:QueryList<any>;
+  @ViewChildren('imagepost2') imageComponents2:QueryList<any>;
+  @ViewChildren('caption2') captionComponents2:QueryList<any>;
+
+  @ViewChildren('feedstyle3') components3:QueryList<any>;
+  @ViewChildren('flex3') flexComponents3:QueryList<any>;
+  @ViewChildren('feedtop3') feedComponents3:QueryList<any>;
+  @ViewChildren('imagepost3') imageComponents3:QueryList<any>;
+  @ViewChildren('caption3') captionComponents3:QueryList<any>;
+
+
 
   downState: String = 'notDown';
   moveState: String = 'up';
@@ -78,12 +100,20 @@ export class FeedStylist implements OnDestroy {
   totalCount = 0;
   lastNumRows = 0;
   el;
+  classesListArray = [];
+  productListArray = [];
+
+  list: FirebaseListObservable<any>;
+  subscription4: ISubscription;
+  subscription5: ISubscription;
+
+  
 
   private swipeCoord?: [number, number];
   private swipeTime?: number;
   private nav:NavController;
 
-  constructor(public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(public af: AngularFireDatabase, public element: ElementRef, public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
     this.nav = this.app.getActiveNav();
   }
 
@@ -249,18 +279,31 @@ export class FeedStylist implements OnDestroy {
     this.myrenderer.setElementStyle(this.allFeed.toArray()[0]._elementRef.nativeElement, 'color', '#e6c926');
     this.myrenderer.setElementStyle(this.classesF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
     this.myrenderer.setElementStyle(this.productsF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
+    this.myrenderer.setElementStyle(this.classeslist.nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
+    this.myrenderer.setElementStyle(this.productslist.nativeElement, 'display', 'none');
+
   }
 
   products() {
     this.myrenderer.setElementStyle(this.allFeed.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
-    this.myrenderer.setElementStyle(this.classesF.toArray()[0]._elementRef.nativeElement, 'color', '#e6c926');
-    this.myrenderer.setElementStyle(this.productsF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
+    this.myrenderer.setElementStyle(this.classesF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
+    this.myrenderer.setElementStyle(this.productsF.toArray()[0]._elementRef.nativeElement, 'color', '#e6c926');
+    this.myrenderer.setElementStyle(this.classeslist.nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(this.productslist.nativeElement, 'display', 'block');
+
   }
 
   classes() {
+    console.log("classeslist      " + this.classeslist.nativeElement);
     this.myrenderer.setElementStyle(this.allFeed.toArray()[0]._elementRef.nativeElement, 'color', 'gray');  
-    this.myrenderer.setElementStyle(this.classesF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
-    this.myrenderer.setElementStyle(this.productsF.toArray()[0]._elementRef.nativeElement, 'color', '#e6c926');
+    this.myrenderer.setElementStyle(this.classesF.toArray()[0]._elementRef.nativeElement, 'color', '#e6c926');
+    this.myrenderer.setElementStyle(this.productsF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
+    this.myrenderer.setElementStyle(this.classeslist.nativeElement, 'display', 'block');
+    this.myrenderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(this.productslist.nativeElement, 'display', 'none');
+    
   }
 
   toolClicked(event) {
@@ -285,11 +328,22 @@ export class FeedStylist implements OnDestroy {
   }
 
   ionViewDidLoad() {
-    this.getInitialImages();
 
+    this.listClasses().then(() => {
+      this.listProducts().then(() => {
+        this.listAll();
+      });
+    });
+
+    this.myrenderer.setElementStyle(this.classeslist.nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
+    this.myrenderer.setElementStyle(this.productslist.nativeElement, 'display', 'none');
+    
+    
+    //this.classesHolder = this.element.nativeElement.querySelector('classeslist');
 
     /*this.el = document.getElementById('iontoolbar');
-
+  
     this.el.addEventListener('click', function() {
       this.downState = (this.downState == 'notDown') ? 'down' : 'notDown';
       console.log("this.downState" + this.downState);
@@ -304,76 +358,228 @@ export class FeedStylist implements OnDestroy {
     //this.myrenderer.setElementStyle(this.ionHeader.nativeElement, 'display', 'block');
   }
 
+  contractItem(item) {
+    let flexArray = this.flexComponents.toArray();
+    let feedArray = this.feedComponents.toArray();
+    let itemArray = this.components.toArray();
+    let imageComps = this.imageComponents.toArray();
+    let captionComps = this.captionComponents.toArray();
+
+
+    this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'flex');
+    this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'padding', '4px 4px 0px 4px');
+    this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'none');
+    //flexArray[item].nativeElement.style = 'display: none';
+    //feedArray[item].nativeElement.style = 'display: flex';
+    this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(captionComps[item].nativeElement, 'display', 'none');
+    //imageComps[item].nativeElement.style = 'display: block';
+    this.myrenderer.setElementStyle(itemArray[item]._elementRef.nativeElement, 'padding', '0');
+    //itemArray[item]._elementRef.nativeElement.style = "padding: 0";
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-padding', '');
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-lines', '');
+    //var selectedRow = document.getElementById('item');
+    //console.log(selectedRow);
+  }
+
+  contractItem2(item) {
+    let flexArray = this.flexComponents2.toArray();
+    let feedArray = this.feedComponents2.toArray();
+    let itemArray = this.components2.toArray();
+    let imageComps = this.imageComponents2.toArray();
+    let captionComps = this.captionComponents2.toArray();
+
+
+    this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'flex');
+    this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'padding', '4px 4px 0px 4px');
+    this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'none');
+    //flexArray[item].nativeElement.style = 'display: none';
+    //feedArray[item].nativeElement.style = 'display: flex';
+    this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(captionComps[item].nativeElement, 'display', 'none');
+    //imageComps[item].nativeElement.style = 'display: block';
+    this.myrenderer.setElementStyle(itemArray[item]._elementRef.nativeElement, 'padding', '0');
+    //itemArray[item]._elementRef.nativeElement.style = "padding: 0";
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-padding', '');
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-lines', '');
+    //var selectedRow = document.getElementById('item');
+    //console.log(selectedRow);
+  }
+
+  contractItem3(item) {
+    let flexArray = this.flexComponents3.toArray();
+    let feedArray = this.feedComponents3.toArray();
+    let itemArray = this.components3.toArray();
+    let imageComps = this.imageComponents3.toArray();
+    let captionComps = this.captionComponents3.toArray();
+
+
+    this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'flex');
+    this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'padding', '4px 4px 0px 4px');
+    this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'none');
+    //flexArray[item].nativeElement.style = 'display: none';
+    //feedArray[item].nativeElement.style = 'display: flex';
+    this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(captionComps[item].nativeElement, 'display', 'none');
+    //imageComps[item].nativeElement.style = 'display: block';
+    this.myrenderer.setElementStyle(itemArray[item]._elementRef.nativeElement, 'padding', '0');
+    //itemArray[item]._elementRef.nativeElement.style = "padding: 0";
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-padding', '');
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-lines', '');
+    //var selectedRow = document.getElementById('item');
+    //console.log(selectedRow);
+  }
+
   expandItem(item) {
     let flexArray = this.flexComponents.toArray();
     let feedArray = this.feedComponents.toArray();
     let itemArray = this.components.toArray();
     let imageComps = this.imageComponents.toArray();
+    let captionComps = this.captionComponents.toArray();
+
 
     this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'flex');
     //flexArray[item].nativeElement.style = 'display: none';
     //feedArray[item].nativeElement.style = 'display: flex';
     this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'block');
+    this.myrenderer.setElementStyle(captionComps[item].nativeElement, 'display', 'block');
     //imageComps[item].nativeElement.style = 'display: block';
     this.myrenderer.setElementStyle(itemArray[item]._elementRef.nativeElement, 'padding', '0');
     //itemArray[item]._elementRef.nativeElement.style = "padding: 0";
-    this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-padding', 'null');
-    this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-lines', 'null');
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-padding', 'null');
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-lines', 'null');
     //var selectedRow = document.getElementById('item');
     //console.log(selectedRow);
   }
 
-  getInitialImages() {
+  expandItem2(item) {
+    let flexArray = this.flexComponents2.toArray();
+    let feedArray = this.feedComponents2.toArray();
+    let itemArray = this.components2.toArray();
+    let imageComps = this.imageComponents2.toArray();
+    let captionComps = this.captionComponents2.toArray();
 
-    this.items = /*['../../assets/hair1.jpg', '../../assets/hair2.jpg', '../../assets/hair3.jpeg', '../../assets/hair4.jpeg',
-                  '../../assets/hair5.jpeg', '../../assets/hair6.jpg', '../../assets/hair7.jpg', '../../assets/hair8.jpg', 
-                  '../../assets/hair9.jpeg', '../../assets/hair10.jpg'];*/
-                  [{'pic': 'img/hair5.jpeg', 'description':'This is a description of a deal/post/sale 5', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair6.jpg', 'description':'This is a description of a deal/post/sale 6', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair7.jpg', 'description':'This is a description of a deal/post/sale 7', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair8.jpg', 'description':'This is a description of a deal/post/sale 8', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair9.jpeg', 'description':'This is a description of a deal/post/sale 9', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair10.jpg', 'description':'This is a description of a deal/post/sale 10', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair7.jpg', 'description':'This is a description of a deal/post/sale 1', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair2.jpg', 'description':'This is a description of a deal/post/sale 2', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair3.jpeg', 'description':'This is a description of a deal/post/sale 3', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair4.jpeg', 'description':'This is a description of a deal/post/sale 4', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair5.jpeg', 'description':'This is a description of a deal/post/sale 5', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair6.jpg', 'description':'This is a description of a deal/post/sale 6', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair7.jpg', 'description':'This is a description of a deal/post/sale 7', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair8.jpg', 'description':'This is a description of a deal/post/sale 8', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair9.jpeg', 'description':'This is a description of a deal/post/sale 9', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair10.jpg', 'description':'This is a description of a deal/post/sale 10', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair7.jpg', 'description':'This is a description of a deal/post/sale 1', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair2.jpg', 'description':'This is a description of a deal/post/sale 2', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair3.jpeg', 'description':'This is a description of a deal/post/sale 3', 'link':'@stylist_profile'},
-                  {'pic': 'img/hair4.jpeg', 'description':'This is a description of a deal/post/sale 4', 'link':'@stylist_profile'}];
+    this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'flex');
+    //flexArray[item].nativeElement.style = 'display: none';
+    //feedArray[item].nativeElement.style = 'display: flex';
+    this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'block');
+    this.myrenderer.setElementStyle(captionComps[item].nativeElement, 'display', 'block');
 
-    /*let data = new URLSearchParams();
-    data.append('page', this.totalCount.toString());
-    console.log("constructed");
-     this.http
-      .post('http://192.168.1.131:8888/maneappback/more-items.php', data)
-        .subscribe(res => {
-          for(let i=0; i<res.json().length - 1; i++) {
-            this.totalCount+=1;
-            this.items.push(res.json()[i]);
-            console.log('this.items is pushed.....');
-          };
+    //imageComps[item].nativeElement.style = 'display: block';
+    this.myrenderer.setElementStyle(itemArray[item]._elementRef.nativeElement, 'padding', '0');
+    //itemArray[item]._elementRef.nativeElement.style = "padding: 0";
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-padding', 'null');
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-lines', 'null');
+    //var selectedRow = document.getElementById('item');
+    //console.log(selectedRow);
+  }
 
-          this.lastNumRows = res.json()[res.json().length - 1];
-          console.log(this.lastNumRows)
-          loading.dismiss();
-        }, error => {
-          console.log(JSON.stringify(error));
-        });*/
+  expandItem3(item) {
+    let flexArray = this.flexComponents3.toArray();
+    let feedArray = this.feedComponents3.toArray();
+    let itemArray = this.components3.toArray();
+    let imageComps = this.imageComponents3.toArray();
+    let captionComps = this.captionComponents3.toArray();
+
+    this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'flex');
+    //flexArray[item].nativeElement.style = 'display: none';
+    //feedArray[item].nativeElement.style = 'display: flex';
+    this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'block');
+    this.myrenderer.setElementStyle(captionComps[item].nativeElement, 'display', 'block');
+
+    //imageComps[item].nativeElement.style = 'display: block';
+    this.myrenderer.setElementStyle(itemArray[item]._elementRef.nativeElement, 'padding', '0');
+    //itemArray[item]._elementRef.nativeElement.style = "padding: 0";
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-padding', 'null');
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-lines', 'null');
+    //var selectedRow = document.getElementById('item');
+    //console.log(selectedRow);
+  }
+
+  listClasses(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.list = this.af.list('/classes');
+
+      this.subscription4 = this.list.subscribe(items => { 
+        items.forEach(item => {
+          console.log(JSON.stringify(item.customMetadata) + ":   this is the customdata (((()()()()()");
+
+          let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
+          
+          storageRef.getDownloadURL().then(url => {
+            console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+            item.customMetadata.profilepic = url;
+          }).catch((e) => {
+            console.log("in caught url !!!!!!!$$$$$$$!!");
+            item.customMetadata.profilepic = 'assets/blankprof.png';
+          });
+          //this.startAtKey = item.$key;
+          this.classesListArray.push(item.customMetadata);
+          
+          
+
+        });
+
+        
+        console.log(JSON.stringify(this.classesListArray) + " ***** CLASSESL IST ARRAY");
+        this.classesListArray.reverse(); 
+        resolve();            
+      })
+
+    })
+  }
+
+  listProducts(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.list = this.af.list('/products');
+
+      this.subscription5 = this.list.subscribe(items => { 
+        items.forEach(item => {
+          console.log(JSON.stringify(item.customMetadata) + ":   this is the customdata (((()()()()()");
+
+          let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
+          
+          storageRef.getDownloadURL().then(url => {
+            console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+            item.customMetadata.profilepic = url;
+          }).catch((e) => {
+            console.log("in caught url !!!!!!!$$$$$$$!!");
+            item.customMetadata.profilepic = 'assets/blankprof.png';
+          });
+          //this.startAtKey = item.$key;
+          this.productListArray.push(item.customMetadata);
+          
+          
+
+        });
+
+
+
+        console.log(JSON.stringify(this.classesListArray) + " ***** CLASSESL IST ARRAY");
+        this.productListArray.reverse();   
+        resolve();          
+      })
+
+    });
+  }
+
+  listAll() {
+      this.items.push.apply(this.items, this.productListArray);
+      this.items.push.apply(this.items, this.classesListArray);
+
+      this.items.sort(function(a,b) {
+          return a.postdate - b.postdate;
+      });
   }
 
   ngOnDestroy() {
     //this.subscription.unsubscribe();
     //this.subscription2.unsubscribe();
-    //this.subscription3.unsubscribe();
+    this.subscription4.unsubscribe();
+    this.subscription5.unsubscribe();
   }
 
   doInfinite(): Promise<any> {

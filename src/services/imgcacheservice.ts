@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+/*import { Injectable } from '@angular/core';
 import { Platform }   from 'ionic-angular';
 import ImgCache       from 'imgcache.js';
 /**
  * This service is charged of provide the methods to cache the images
  */
-@Injectable()
+/*@Injectable()
 export class ImgcacheService {
 public imgQueue: string[] = [];
 constructor(platform: Platform) {
@@ -14,7 +14,7 @@ constructor(platform: Platform) {
    * Init imgCache library
    * @return {Promise}
    */
-  public initImgCache(): Promise<any> {
+  /*public initImgCache(): Promise<any> {
     return new Promise((resolve, reject) => {
       if (ImgCache.ready) {
         resolve();
@@ -27,7 +27,7 @@ constructor(platform: Platform) {
    * Cache images
    * @param src {string} - img source
    */
-  public cacheImg(src: string): Promise<any> {
+  /*public cacheImg(src: string): Promise<any> {
     return new Promise((resolve, reject) => {
       ImgCache.isCached(src, (path: string, success: boolean) => {
         // if not, it will be cached
@@ -48,4 +48,4 @@ constructor(platform: Platform) {
       });
     });
   }
-}
+}*/

@@ -143,11 +143,33 @@ export class BookingPage implements OnDestroy {
       let str = new Date(item.date.day * 1000);
       let mon = str.getMonth();
       let dy = str.getDate();
+      let boool = false;
       if(mon == this.selectedDate.getMonth() && dy == this.selectedDate.getDate()) {
         console.log("             inside update");
         foundit=true;
         this.items.update(item.$key, {'reserved':{'appointment':this.times}})
-      }
+        for (let r of this.times) {
+          if (r.selected == true) {
+            boool = true;
+          }
+        }
+        if(!boool) {
+          this.datesToSelect.splice(this.datesToSelect.indexOf(this.selectedDate.getDate()), 1);
+          for(let item of this.tds) {
+            //if(!item.classList.contains('text-muted')) {
+              console.log(item.innerText + "         innertext" + typeof this.datesToSelect[0]);
+              if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
+                this.myrenderer.setElementClass(item,"greencircle",true);            
+              }
+              else {
+                this.myrenderer.setElementClass(item,"greencircle",false); 
+              }
+            }
+          }
+        }
+      
+
+
 
     }));
 
@@ -166,7 +188,9 @@ export class BookingPage implements OnDestroy {
           const key = snap.key;
           console.log(key);
         });
-      } 
+      }
+      else {
+      }
     }
 
     alert("Availability Saved");
@@ -236,14 +260,20 @@ export class BookingPage implements OnDestroy {
     console.log(this.viewDate + " view date ");
     setTimeout(()=>{
       this.selectedDate = this.viewDate;
-      console.log(this.username + "this.username");
       this.items2 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
       this.subscription2 = this.items2.subscribe(items => items.forEach(item => {
 
-        console.log(item);
-
+        let boool = false;
         let da = new Date(item.date.day * 1000);
-        this.datesToSelect.push(da.getDate());
+        for (let r of item.reserved.appointment) {
+          if (r.selected == true) {
+            boool = true;
+          }
+        }
+        if(boool) {
+          this.datesToSelect.push(da.getDate());
+        }
+        
 
 
         console.log(da + "da");
@@ -251,7 +281,6 @@ export class BookingPage implements OnDestroy {
         console.log(this.selectedDate.getDate());
         if(this.selectedDate.getDate() == da.getDate() && this.selectedDate.getMonth() == da.getMonth()) {
           console.log("selected = item");
-          console.log(JSON.stringify(item.reserved) + "         item resesrved above");
           //for(let m = 0; m < item.reserved.length; m++) {
           //for(let r of item.reserved) {
             //console.log(JSON.stringify(r));
@@ -332,7 +361,15 @@ export class BookingPage implements OnDestroy {
         console.log("dafirst    " + item.date.day )
         let da = new Date(item.date.day * 1000);
         this.datesToSelect = [];
-        this.datesToSelect.push(da.getDate());
+        let boool = false;
+        for (let r of item.reserved.appointment) {
+          if (r.selected == true) {
+            boool = true;
+          }
+        }
+        if(boool) {
+          this.datesToSelect.push(da.getDate());
+        }
 
         console.log(da + "da");
         console.log(da.getDate() + "dagetdate");
@@ -391,7 +428,15 @@ export class BookingPage implements OnDestroy {
         console.log("dafirst    " + item.date.day )
         let da = new Date(item.date.day * 1000);
         this.datesToSelect = [];
-        this.datesToSelect.push(da.getDate());
+        let boool = false;
+        for (let r of item.reserved.appointment) {
+          if (r.selected == true) {
+            boool = true;
+          }
+        }
+        if(boool) {
+          this.datesToSelect.push(da.getDate());
+        }
 
         console.log(da + "da");
         console.log(da.getDate() + "dagetdate");

@@ -59,11 +59,13 @@ page-feed-stylist {
 		display: none;
 	}
 	
+
 	.postprofilelink {
-		position: absolute;
-		right: 0;
-		display: inline-block;
-		margin-right: 4px;
+		display: flex;
+		height: 100%;
+		justify-content: center;
+		align-items: center;
+		margin-left: 41%;
 		font-size: 12px;
 	}
 
@@ -145,6 +147,15 @@ page-feed-stylist {
 
 	}
 
+	.caption {
+		padding: 5px;
+		font-size: 14px;
+		display: none;
+		border-bottom: 0.5px;
+		border-bottom-color: gray;
+		border-bottom-style: solid;
+	}
+
 	ion-toolbar {
 		div.toolbar-background {
 			background-image: url('../img/tresemme.png') !important;
@@ -208,7 +219,7 @@ page-feed-stylist {
 
 	.flex {
 		display:flex;
-    align-items: center; /* Vertical center alignment */
+    	align-items: center; /* Vertical center alignment */
 	}
 
 	.descholder {
@@ -278,7 +289,6 @@ page-feed-stylist {
 	}
 
 	.book {
-		display: inline-block;
 		font-weight: 700;
 	}
 }

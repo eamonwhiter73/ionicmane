@@ -18,8 +18,8 @@
     <ion-navbar  color="black" [@toolSlide]="toolbarState" id="iontoolbar"> <!--[@toolSlide]="toolbarState"-->
       <ion-icon class='custom-icon' name="play"></ion-icon>
       <button class="all toolbarstyle" #allF ion-button color="black" (tap)="all()">All</button>
-      <button class="classes toolbarstyle" #classesFeed ion-button color="black" (tap)="products()">Classes</button>
-      <button class="products toolbarstyle" #productsFeed ion-button color="black" (tap)="classes()">Products</button>
+      <button class="classes toolbarstyle" #classesFeed ion-button color="black" (tap)="classes()">Classes</button>
+      <button class="products toolbarstyle" #productsFeed ion-button color="black" (tap)="products()">Products</button>
     </ion-navbar>
   </div>
   </div>
@@ -31,39 +31,121 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>-->
 
-  <div class ='contentone' [@moveList]='moveState'>
+  <div class ='contentone' [@moveList]='moveState' #contentone>
    <ion-list no-padding>
-     <ion-item class="changepadding" *ngFor="let z of items ; let i = index" (tap)='expandItem(i)' id='{{i}}' #feedstyle text-wrap>
+     <ion-item class="changepadding" *ngFor="let j of items ; let i = index" (tap)='expandItem(i)' id='{{i}}' #feedstyle text-wrap>
       <div class="flex" #flex>
         <div class="nonzoomimage">
-          <img class="imagepost" src="{{z.pic}}">
+          <img class="imagepost" src="{{j.url}}">
         </div>
         <div class="descholder">
-          <div class='description'>{{z.description}}</div>
-          <div class='link'>{{z.link}}</div>
+          <div class='description'>{{j.title}}</div>
+          <div class='link'>{{j.date}}</div>
         </div>
       </div>
-      <div class="feedtoptextcontainer" #feedtop>
+      <div class="feedtoptextcontainer" #feedtop (tap)='contractItem(i)'>
         <div class="imageparent">
-          <img class="postprofilepic" src="{{z.pic}}">
+          <img class="postprofilepic" src="{{j.profilepic}}">
         </div>
         <div class="usernamecontainer">
-          <h4 class="postusername">Ed Bundy</h4><br>
+          <h4 class="postusername">@{{j.username}}</h4><br>
           <h4 class="poststudio">Ed's Studio</h4>
         </div>
         <div class="postprofilelink">
-          <div class="book">Book</div> @edbundyhair
+          <div class="book">{{j.title}}</div>
         </div>
       </div>
-      <img class="imageposttwo" #imagepost src="{{z.pic}}">
+      <img class="imageposttwo" #imagepost src="{{j.url}}">
+      <div class='caption' #caption>
+        {{j.caption}}
+      <br>
+      </div>
      </ion-item>
    </ion-list>
-   <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
+   <!--<ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"
       loadingText="Loading more data...">
     </ion-infinite-scroll-content>
-   </ion-infinite-scroll>
+   </ion-infinite-scroll>-->
+  </div>
+
+
+  <div class ='contentone classeslist' [@moveList]='moveState' #classeslist>
+   <ion-list no-padding>
+     <ion-item class="changepadding" *ngFor="let j of classesListArray ; let i = index" (tap)='expandItem2(i)' id='{{i}}' #feedstyle2 text-wrap>
+      <div class="flex" #flex2>
+        <div class="nonzoomimage">
+          <img class="imagepost" src="{{j.url}}">
+        </div>
+        <div class="descholder">
+          <div class='description'>{{j.title}}</div>
+          <div class='link'>{{j.date}}</div>
+        </div>
+      </div>
+      <div class="feedtoptextcontainer" #feedtop2 (tap)='contractItem2(i)'>
+        <div class="imageparent">
+          <img class="postprofilepic" src="{{j.profilepic}}">
+        </div>
+        <div class="usernamecontainer">
+          <h4 class="postusername">@{{j.username}}</h4><br>
+          <h4 class="poststudio">Ed's Studio</h4>
+        </div>
+        <div class="postprofilelink">
+          <div class="book">{{j.title}}</div>
+        </div>
+      </div>
+      <img class="imageposttwo" #imagepost2 src="{{j.url}}">
+      <div class='caption' #caption2>
+        {{j.caption}}
+      <br>
+      </div>
+     </ion-item>
+   </ion-list>
+   <!--<ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+   </ion-infinite-scroll>-->
+  </div>
+
+  <div class ='contentone productslist' [@moveList]='moveState' #productslist>
+   <ion-list no-padding>
+     <ion-item class="changepadding" *ngFor="let j of productListArray ; let i = index" (tap)='expandItem3(i)' id='{{i}}' #feedstyle3 text-wrap>
+      <div class="flex" #flex3>
+        <div class="nonzoomimage">
+          <img class="imagepost" src="{{j.url}}">
+        </div>
+        <div class="descholder">
+          <div class='description'>{{j.title}}</div>
+        </div>
+      </div>
+      <div class="feedtoptextcontainer" #feedtop3 (tap)='contractItem3(i)'>
+        <div class="imageparent">
+          <img class="postprofilepic" src="{{j.profilepic}}">
+        </div>
+        <div class="usernamecontainer">
+          <h4 class="postusername">@{{j.username}}</h4><br>
+          <h4 class="poststudio">Ed's Studio</h4>
+        </div>
+        <div class="postprofilelink">
+          <div class="book">{{j.title}}</div>
+        </div>
+      </div>
+      <img class="imageposttwo" #imagepost3 src="{{j.url}}">
+      <div class='caption' #caption3>
+        {{j.caption}}
+      <br>
+      </div>
+     </ion-item>
+   </ion-list>
+   <!--<ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+   </ion-infinite-scroll>-->
   </div>
 </div>
 

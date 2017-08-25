@@ -113,15 +113,118 @@ export class PostpagePage implements OnDestroy {
                 'date': this.item.date,
                 'typeofselect': this.item.typeofselect,
                 'username': this.username,
-                'url': url
+                'url': url,
+                'postdate': Date.now()
               }
             }
             this.list = this.af.list('/promos');
-            this.list.subscribe(items => {
-                            
-            })
 
             this.list.push(metadata)
+          })
+        
+      }).catch(function(error) {
+        console.log(error.message);
+      });
+  }
+
+  isClass() {
+    if(!this.item.date) {
+      alert("Please select a date for your class");
+    }
+    else {
+      let image       : string  = 'class_' + this.username + '_' + new Date() + '.png',
+        storageRef  : any,
+        parseUpload : any;
+
+      return new Promise((resolve, reject) => {
+        
+        storageRef       = firebase.storage().ref('/classes/' + image);
+        parseUpload      = storageRef.putString(this.imageHolder, 'data_url');
+
+        
+
+        parseUpload.on('state_changed', (_snapshot) => {
+            // We could log the progress here IF necessary
+            console.log('snapshot progess ' + _snapshot);
+          },
+          (_err) => {
+             reject(_err);
+             console.log(_err.messsage);
+          },
+          (success) => {
+             resolve(parseUpload.snapshot); 
+          })
+        }).then(value => {
+
+          storageRef.getDownloadURL()
+            .then(url => {
+              let metadata = {
+                customMetadata: {
+                  'title': this.item.title,
+                  'caption': this.item.caption,
+                  'price': this.item.price,
+                  'date': this.item.date,
+                  'typeofselect': this.item.typeofselect,
+                  'username': this.username,
+                  'url': url,
+                  'postdate': Date.now()
+                }
+              }
+              this.list = this.af.list('/classes');
+              this.list.push(metadata);
+
+              
+            })
+          
+        }).catch(function(error) {
+          console.log(error.message);
+        });
+      }
+  }
+
+  isProduct() {
+    let image       : string  = 'product_' + this.username + '_' + new Date() + '.png',
+      storageRef  : any,
+      parseUpload : any;
+
+    return new Promise((resolve, reject) => {
+      
+      storageRef       = firebase.storage().ref('/products/' + image);
+      parseUpload      = storageRef.putString(this.imageHolder, 'data_url');
+
+      
+
+      parseUpload.on('state_changed', (_snapshot) => {
+          // We could log the progress here IF necessary
+          console.log('snapshot progess ' + _snapshot);
+        },
+        (_err) => {
+           reject(_err);
+           console.log(_err.messsage);
+        },
+        (success) => {
+           resolve(parseUpload.snapshot); 
+        })
+      }).then(value => {
+
+        storageRef.getDownloadURL()
+          .then(url => {
+            let metadata = {
+              customMetadata: {
+                'title': this.item.title,
+                'caption': this.item.caption,
+                'price': this.item.price,
+                'date': this.item.date,
+                'typeofselect': this.item.typeofselect,
+                'username': this.username,
+                'url': url,
+                'postdate': Date.now()
+              }
+            }
+            this.list = this.af.list('/products');
+            this.list.push(metadata);
+
+            
           })
         
       }).catch(function(error) {
@@ -137,12 +240,20 @@ export class PostpagePage implements OnDestroy {
     console.log(this.imageHolder + "                    **************************** src ****************");
     console.log("****&*&&*&*&*&*&*          " + this.item.typeofselect);
 
-    if(this.item.title == '' || this.item.caption == '' || this.item.price == '' || this.item.date == null || this.imageHolder == null) {
+    if(this.item.title == '' || this.item.caption == '' || this.item.price == '' || this.imageHolder == null) {
       alert("You need to fill in all of the information");
     }
 
     if(this.item.typeofselect == 'Promo') {
       this.isPromo();
+    }
+
+    if(this.item.typeofselect == 'Class') {
+      this.isClass();
+    }
+
+    if(this.item.typeofselect == 'Product') {
+      this.isProduct();
     }
 
     this.navCtrl.push(FeedStylist);

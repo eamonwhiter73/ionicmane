@@ -1,4 +1,4 @@
-import { Directive,
+/*import { Directive,
          ElementRef,
          EventEmitter,
          Input,
@@ -8,7 +8,7 @@ import { ImgcacheService } from '../services/imgcacheservice';
 /**
  * This directive is charge of cache the images and emit a loaded event
  */
-@Directive({
+/*@Directive({
   selector: '[lazy-load]'
 })
 export class LazyLoadDirective implements OnInit, OnDestroy {
@@ -51,4 +51,4 @@ ngOnDestroy() {
     this.loadEvent();
     this.errorEvent();
   }
-}
+}*/

@@ -15,7 +15,9 @@ import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { Diagnostic } from '@ionic-native/diagnostic';
+import { BehaviorSubject } from "rxjs/BehaviorSubject"
 
+const limit:BehaviorSubject<number> = new BehaviorSubject<number>(2); // import 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'page-feed-user',
@@ -108,7 +110,10 @@ export class FeedUser implements OnDestroy {
   private subscription5: ISubscription;
   private subscription6: ISubscription;
    private subscription7: ISubscription;
+  private subscription8: ISubscription;
 
+
+  queryable: boolean = true;
 
 
   toolbarClicks = 0;
@@ -123,6 +128,7 @@ export class FeedUser implements OnDestroy {
   lastNumRows = 0;
   el;
   startAtKey;
+  startAtKeyAvail;
 
   constructor(private diagnostic: Diagnostic, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, public zone: NgZone, public modalCtrl: ModalController, public af: AngularFireDatabase, public storage: Storage, private afAuth: AngularFireAuth, public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
      
@@ -160,6 +166,7 @@ export class FeedUser implements OnDestroy {
       this.subscription6.unsubscribe();
     }
     this.subscription7.unsubscribe();
+    this.subscription8.unsubscribe();
   } 
 
   pushPage(){
@@ -236,7 +243,7 @@ export class FeedUser implements OnDestroy {
                   rr = this.round(this.distance(coordinates.latitude, coordinates.longitude, resp.coords.latitude, resp.coords.longitude, "M"), 2);
                   console.log('The coordinates are latitude=' + rr);
                   if(!item.picURL) {
-                    item.picURL = '../../assets/blankprof.png';
+                    item.picURL = 'assets/blankprof.png';
                   }
                   this.distances.push({'pic':item.picURL, 'salon':item.username, 'distance':rr});
 
@@ -247,7 +254,7 @@ export class FeedUser implements OnDestroy {
                 }).catch(e => {
                   console.log('The coordinates are latitude=' + rr);
                   if(!item.picURL) {
-                    item.picURL = '../../assets/blankprof.png';
+                    item.picURL = 'assets/blankprof.png';
                   }
                   this.distances.push({'pic':item.picURL, 'salon':item.username, 'distance':rr});
                   console.log(e.message + " THI SI THE RED ONE!");
@@ -577,6 +584,7 @@ export class FeedUser implements OnDestroy {
           console.log(x + "      month");
           this.appointmentsMonth = this.af.list('/appointments/' + userName + '/' + month);
           this.subscription3 = this.appointmentsMonth.subscribe(items => items.forEach(item => {
+            this.startAtKeyAvail = item.$key;
             //console.log(JSON.stringify(item) + "           item");
             let date = new Date(item.date.day * 1000);
             let today = new Date();
@@ -598,7 +606,7 @@ export class FeedUser implements OnDestroy {
                     this.availabilities.push(obj);
                   }).catch((e) => {
                     console.log("in caught url !!!!!!!$$$$$$$!!");
-                    obj.pic = '../../assets/blankprof.png';
+                    obj.pic = 'assets/blankprof.png';
                     this.availabilities.push(obj);
                   });
 
@@ -662,16 +670,37 @@ export class FeedUser implements OnDestroy {
 
     this.list = this.af.list('/promos', {
     query: {
-      limitToFirst: 15
+      limitToLast: 1
     }});
 
     this.subscription4 = this.list.subscribe(items => { 
-      items.forEach(item => {
-        console.log(JSON.stringify(item.customMetadata));
-        this.startAtKey = item.$key;
-        this.items.push(item.customMetadata);
 
-      });               
+      if (items.length > 0) {
+          this.startAtKey = items.$key;
+      } else {
+          this.startAtKey = '';
+      }
+          
+    })
+
+    this.list = this.af.list('/promos', {
+    query: {
+      limitToLast: 2
+    }});
+
+    this.subscription8 = this.list.subscribe(items => { 
+
+      items.forEach(item => {
+        console.log(JSON.stringify(item.customMetadata) + "      item custommetadata$%$%$%#$#$#$%#$%");
+                   
+        this.items.push(item.customMetadata);
+        
+
+       
+      });
+
+      this.items.reverse();
+          
     })
 
 
@@ -685,7 +714,7 @@ export class FeedUser implements OnDestroy {
 
       console.log(JSON.stringify(item));
       if(!item.picURL) {
-        item.picURL = '../../assets/blankprof.png';
+        item.picURL = 'assets/blankprof.png';
       }
       this.pricesArray.push(item);
 
@@ -779,29 +808,39 @@ export class FeedUser implements OnDestroy {
       this.show = true;
     }
 
+
     //return new Promise((resolve, reject) => {
     setTimeout(() => {
+
+      limit.next( limit.getValue() + 2);
+
+      console.log(this.startAtKey + "     before %%^&^&^% start at");
       this.list = this.af.list('/promos', {
       query: {
-        orderByKey: true,
-        startAt: this.startAtKey,
+        limitToLast: limit
       }});
 
       this.list.subscribe(items => { 
-        items.forEach(item => {
-          console.log(JSON.stringify(item.customMetadata));
-          console.log(this.startAtKey + "            " + item.$key);
-          if(this.startAtKey == item.$key) {
-            //
-          }
-          else {
-            this.startAtKey = item.$key;
-            this.items.push(item.customMetadata);
-          }
 
-        });
+        if (items.length > 0) {
+            if (items[items.length - 1].$key === this.startAtKey) {
+                this.queryable = false;
+            } else {
+                this.queryable = true;
+            }
+        }
+        
+        if(this.queryable) {
+          this.items = [];
+          items.forEach(item => {
+            console.log(JSON.stringify(item.customMetadata) + "     new doinfinite !@!@@!!@@!!@");
+              this.items.push(item.customMetadata);
 
-                     
+          });
+
+          this.items.reverse();
+          
+        }  
       })
 
       infiniteScroll.complete(); 
@@ -810,17 +849,4 @@ export class FeedUser implements OnDestroy {
 
   }
 
-  doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
-
-    
-
-    setTimeout(() => {
-
-      console.log('Async operation has ended');
-      refresher.complete();
-
-     
-    }, 700);
-  }
 }

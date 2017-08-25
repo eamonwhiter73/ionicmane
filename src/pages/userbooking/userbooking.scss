@@ -160,6 +160,15 @@ page-user-booking {
 	    color: white;
 	}
 
+	.noavail {
+		position: absolute;
+		top: 20%;
+		color: gray;
+		font-size: 8vw;
+		width: 100%;
+		text-align: center;
+	}
+
 	.monthview-current[_ngcontent-c1] {
     background-color: #25292c;
 	}
@@ -220,6 +229,8 @@ page-user-booking {
 	    position: relative;
 	    bottom: -2%;
 	    height: 100%;
+	
+
 	}
 
 	.scrolling {

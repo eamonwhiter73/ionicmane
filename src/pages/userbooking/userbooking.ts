@@ -42,6 +42,7 @@ export class UserBooking implements OnDestroy {
   datesToSelect = [];
   tds;
   timesOpen = [];
+  show = false;
 
   private swipeCoord?: [number, number];
   private swipeTime?: number;
@@ -233,8 +234,10 @@ export class UserBooking implements OnDestroy {
   
     console.log(this.viewDate + " view date ");
     setTimeout(()=>{
+      this.timesOpen = [];
       this.selectedDate = this.viewDate;
       console.log(this.username + "this.username");
+      let bool = false;
       this.items2 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
       this.subscription2 = this.items2.subscribe(items => items.forEach(item => {
 
@@ -253,13 +256,15 @@ export class UserBooking implements OnDestroy {
           //for(let m = 0; m < item.reserved.length; m++) {
           //for(let r of item.reserved) {
             //console.log(JSON.stringify(r));
-            this.timesOpen = [];
             for (let r of item.reserved.appointment) {
               if(r.selected == true) {
                 this.timesOpen.push(r);
                 console.log('hit appointment');
+                bool = true;
               }
             }
+
+
             
             //count++;
             /*for(let x of this.times) {
@@ -302,6 +307,13 @@ export class UserBooking implements OnDestroy {
         }
         
       }));
+
+      if(!bool) {
+        this.show = true;
+      }
+      else {
+        this.show = false;
+      }
       
       
       //loading.dismiss();
@@ -321,6 +333,7 @@ export class UserBooking implements OnDestroy {
         x.selected = false;
       }
 
+      let bool = false;
       console.log(typeof $event + "event event event *******");
 
       this.selectedDate = new Date($event);
@@ -328,11 +341,12 @@ export class UserBooking implements OnDestroy {
 
       this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
       //console.log($event);
-
+      this.timesOpen = [];
       this.items4 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
       this.subscription4 = this.items4.subscribe(items => items.forEach(item => {
         //console.log(JSON.stringify(item));
-        //console.log(item.date.day);
+        //console.log(item.date.day);\
+
         console.log("dafirst    " + item.date.day )
         let da = new Date(item.date.day * 1000);
         this.datesToSelect = [];
@@ -346,11 +360,12 @@ export class UserBooking implements OnDestroy {
           console.log(JSON.stringify(item.reserved) + "         item resesrved");
           //for(let r of item.reserved.appointment) {
             //console.log(JSON.stringify(r));
-            this.timesOpen = [];
+            
             for (let r of item.reserved.appointment) {
               if(r.selected == true) {
                 this.timesOpen.push(r);
                 console.log('hit appointment');
+                bool = true;
               }
             }
             
@@ -363,6 +378,13 @@ export class UserBooking implements OnDestroy {
           //}
         }
       }));
+
+      if(!bool) {
+        this.show = true;
+      }
+      else {
+        this.show = false;
+      }
   }
 
   ngOnDestroy() {
@@ -386,13 +408,15 @@ export class UserBooking implements OnDestroy {
   }
 
   onTimeSelected($event) {
-    console.log(JSON.stringify($event) + "      THI SIIS EVENT @(@(@(@(@(");
+
+    /*console.log(JSON.stringify($event) + "      THI SIIS EVENT @(@(@(@(@(");
     this.selectedDate = new Date($event.selectedTime);
     console.log(this.selectedDate + " thi si the selected date ((())))))");
 
     this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
     if($event.dontRunCode) {
     //console.log($event);
+      let bool = false;
       this.items3 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
       this.subscription3 = this.items3.subscribe(items => items.forEach(item => {
         //console.log(JSON.stringify(item));
@@ -416,9 +440,9 @@ export class UserBooking implements OnDestroy {
                 bool = true;
               }
             }*/
-            this.times = item.reserved.appointment.slice(0);
+            /*this.times = item.reserved.appointment.slice(0);
             console.log('hit appointment');
-            console.log(JSON.stringify(this.times));
+            console.log(JSON.stringify(this.times));*/
             
             /*for(let x of this.times) {
               if(x.time == r) {
@@ -427,10 +451,10 @@ export class UserBooking implements OnDestroy {
               }
             }*/
           //}
-        }
+        //}
         //console.log($event.runCode + "     dont run code!!!!!!");
         //if($event.runCode == true) {
-          for(let item of this.tds) {
+          /*for(let item of this.tds) {
             if(!item.classList.contains('text-muted')) {
               console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
               if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
@@ -441,11 +465,11 @@ export class UserBooking implements OnDestroy {
                 //this.myrenderer.setElementClass(item,"monthview-selected",false);
               }
             }
-          }
+          }*/
         //}
 
         
-      }));
-    }
+      //}));
+    //}
   }
 }
