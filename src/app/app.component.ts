@@ -20,7 +20,7 @@ import { SettingsPage } from '../pages/settings/settings';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = UserBooking;
+  rootPage:any = FeedUser;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
 
@@ -32,7 +32,7 @@ export class MyApp {
       statusBar.overlaysWebView(false);
       statusBar.isVisible;
       splashScreen.hide();
-      
+
     });
   }
 }

@@ -3,6 +3,8 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { FeedUser } from '../feeduser/feeduser';
 import { BookingPage } from '../booking/booking';
 import { PostpagePage } from '../postpage/postpage';
+import { UserBooking } from '../userbooking/userbooking';
+
 
 
 import { CameraService } from '../../services/cameraservice';
@@ -64,6 +66,8 @@ export class UserProfile implements OnDestroy {
   subscription4: ISubscription;
   datesToSelect = [];
   times;
+  timesOpen = [];
+  set = false;
 
   _imageViewerCtrl: ImageViewerController;
   private swipeCoord?: [number, number];
@@ -86,71 +90,83 @@ export class UserProfile implements OnDestroy {
   ionViewDidLoad() {
     this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
   
+    this.username = this.navParams.get('username');
+  
     console.log(this.viewDate + " view date ");
-      setTimeout(()=>{
-        this.selectedDate = this.viewDate;
-        console.log(this.username + "this.username");
-        this.items2 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
-        this.subscription2 = this.items2.subscribe(items => items.forEach(item => {
+    setTimeout(()=>{
+      this.timesOpen = [];
+      this.selectedDate = this.viewDate;
+      console.log(this.username + "this.username");
+      let bool = false;
+      this.items2 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+      this.subscription2 = this.items2.subscribe(items => items.forEach(item => {
 
-          console.log(item);
+        console.log(item);
 
-          let da = new Date(item.date.day * 1000);
-          this.datesToSelect.push(da.getDate());
+        let da = new Date(item.date.day * 1000);
+        this.datesToSelect.push(da.getDate());
 
 
-          console.log(da + "da");
-          console.log(da.getDate() + "dagetdate");
-          console.log(this.selectedDate.getDate());
-          if(this.selectedDate.getDate() == da.getDate() && this.selectedDate.getMonth() == da.getMonth()) {
-            console.log("selected = item");
-            console.log(JSON.stringify(item.reserved) + "         item resesrved above");
-            //for(let m = 0; m < item.reserved.length; m++) {
-            //for(let r of item.reserved) {
-              //console.log(JSON.stringify(r));
-              this.times = item.reserved.appointment.slice(0);
-              console.log('hit appointment');
-              //count++;
-              /*for(let x of this.times) {
-                if(x.time == r) {
-                  console.log('change selected');
-                  x.selected = true;
-                }
-              }*/
-            //}
-          }
-
-          /*let da = new Date(item.date.day*1000);
-          if(this.viewDate.getDate() == da.getDate() && this.viewDate.getMonth() == da.getMonth()) {
-            console.log("selected = item");
-            let count = 0;
-            console.log(JSON.stringify(item.reserved) + "         item resesrved");
-            for(let r in item.reserved) {
-              this.times[count].selected = r[count].selected;
-              console.log('hit appointment');
-              count++;
-              /*for(let x of this.times) {
-                if(x.time == r) {
-                  console.log('change selected');
-                  x.selected = true;
-                }
-              }*/
-            /*}
-          }*/
-          for(let item of this.tds) {
-            if(!item.classList.contains('text-muted')) {
-              console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
-              if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
-                console.log("Inner text in      " + item.innerText);
-                this.myrenderer.setElementClass(item,"greencircle",true);            
-              }
-              else {
-                //this.myrenderer.setElementClass(item,"monthview-selected",false);
+        console.log(da + "da");
+        console.log(da.getDate() + "dagetdate");
+        console.log(this.selectedDate.getDate());
+        if(this.selectedDate.getDate() == da.getDate() && this.selectedDate.getMonth() == da.getMonth()) {
+          console.log("selected = item");
+          console.log(JSON.stringify(item.reserved) + "         item resesrved above");
+          //for(let m = 0; m < item.reserved.length; m++) {
+          //for(let r of item.reserved) {
+            //console.log(JSON.stringify(r));
+            for (let r of item.reserved.appointment) {
+              if(r.selected == true) {
+                this.timesOpen.push(r);
+                console.log('hit appointment');
+                bool = true;
               }
             }
+
+
+            
+            //count++;
+            /*for(let x of this.times) {
+              if(x.time == r) {
+                console.log('change selected');
+                x.selected = true;
+              }
+            }*/
+          //}
+        }
+
+        /*let da = new Date(item.date.day*1000);
+        if(this.viewDate.getDate() == da.getDate() && this.viewDate.getMonth() == da.getMonth()) {
+          console.log("selected = item");
+          let count = 0;
+          console.log(JSON.stringify(item.reserved) + "         item resesrved");
+          for(let r in item.reserved) {
+            this.times[count].selected = r[count].selected;
+            console.log('hit appointment');
+            count++;
+            /*for(let x of this.times) {
+              if(x.time == r) {
+                console.log('change selected');
+                x.selected = true;
+              }
+            }*/
+          /*}
+        }*/
+        for(let item of this.tds) {
+          if(!item.classList.contains('text-muted')) {
+            console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
+            if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
+              console.log("Inner text in      " + item.innerText);
+              this.myrenderer.setElementClass(item,"greencircle",true);            
+            }
+            else {
+              //this.myrenderer.setElementClass(item,"monthview-selected",false);
+            }
           }
-          
-        }));
+        }
+        
+      }));
         
         
         //loading.dismiss();
@@ -396,15 +412,23 @@ export class UserProfile implements OnDestroy {
   
 
  moveCover() {
-    this.moveState = (this.moveState == 'up') ? 'down' : 'up';
-    this.tds = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides');
-    this.myrenderer.setElementClass(this.tds, 'moveCover', true);
-    let thisel  = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides > div > div.swiper-wrapper > ion-slide.swiper-slide.swiper-slide-active > div > table');
 
-    this.myrenderer.setElementClass(thisel, 'marginchange', true);
+   if(this.set == false) {
+     this.moveState = 'down';
+     this.tds = this.elRef.nativeElement.querySelector('body > ion-app > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides');
+     this.myrenderer.setElementClass(this.tds, 'moveCover', true);
+     let thisel  = this.elRef.nativeElement.querySelector('body > ion-app > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides > div > div.swiper-wrapper > ion-slide.swiper-slide.swiper-slide-active > div > table');
 
-    console.log('element class list   ' + thisel.classList);
-  }
+     this.myrenderer.setElementClass(thisel, 'marginchange', true);
+
+     console.log('element class list   ' + thisel.classList);
+     
+     this.set = true;
+   }
+   else {
+     this.navCtrl.push(UserBooking, {username: this.username});
+   }   
+ }
 
   onCurrentDateChanged($event) {}
 

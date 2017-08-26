@@ -76,7 +76,7 @@ export class UserBooking implements OnDestroy {
   }
 
   ionViewDidLoad() {
-
+    
   }
 
   emergency(i) {
@@ -229,9 +229,7 @@ export class UserBooking implements OnDestroy {
 
     this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
 
-    this.storage.get('username').then((val) => {
-      this.getData(val);
-    });
+    this.username = this.navParams.get('username');
   
     console.log(this.viewDate + " view date ");
     setTimeout(()=>{
