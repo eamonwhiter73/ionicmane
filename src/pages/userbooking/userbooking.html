@@ -37,7 +37,7 @@
 	     	<!--<ion-checkbox name="time" [(ngModel)]="times[z].selected" [checked]="times[z].selected" (ionChange)="checkboxCheck(z)"></ion-checkbox>-->
 	     </ion-item>
 	  </ion-list>
-	  <div class="noavail" *ngIf="show">NO AVAILABILITIES</div>
+	  <div class="noavail" #noavail>NO AVAILABILITIES</div>
 	</div>
 	<div id="savebutton">
 	  	<div class="save" (tap)='logForm()'>SAVE</div>

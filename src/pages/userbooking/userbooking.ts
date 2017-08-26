@@ -1,4 +1,4 @@
-import { Component, Renderer, QueryList, ElementRef, ViewChildren } from '@angular/core';
+import { Component, Renderer, QueryList, ViewChild, ElementRef, ViewChildren } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FeedUser } from '../../pages/feeduser/feeduser';
 
@@ -24,6 +24,7 @@ import { ISubscription } from "rxjs/Subscription";
 })
 export class UserBooking implements OnDestroy {
   @ViewChildren('slot') slots:QueryList<any>;
+  @ViewChild('noavail') noavail:ElementRef
   viewDate = new Date();
   events = [];
   viewTitle: string;
@@ -309,10 +310,10 @@ export class UserBooking implements OnDestroy {
       }));
 
       if(!bool) {
-        this.show = true;
+        this.myrenderer.setElementStyle(this.noavail.nativeElement, 'display', 'block');
       }
       else {
-        this.show = false;
+        this.myrenderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
       }
       
       
@@ -380,10 +381,10 @@ export class UserBooking implements OnDestroy {
       }));
 
       if(!bool) {
-        this.show = true;
+        this.myrenderer.setElementStyle(this.noavail.nativeElement, 'display', 'block');
       }
       else {
-        this.show = false;
+        this.myrenderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
       }
   }
 
@@ -408,15 +409,17 @@ export class UserBooking implements OnDestroy {
   }
 
   onTimeSelected($event) {
-
-    /*console.log(JSON.stringify($event) + "      THI SIIS EVENT @(@(@(@(@(");
+    console.log(JSON.stringify($event) + "      THI SIIS EVENT @(@(@(@(@(");
     this.selectedDate = new Date($event.selectedTime);
     console.log(this.selectedDate + " thi si the selected date ((())))))");
 
+    let bool = false;
+
     this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+
     if($event.dontRunCode) {
+      this.timesOpen = [];
     //console.log($event);
-      let bool = false;
       this.items3 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
       this.subscription3 = this.items3.subscribe(items => items.forEach(item => {
         //console.log(JSON.stringify(item));
@@ -440,9 +443,13 @@ export class UserBooking implements OnDestroy {
                 bool = true;
               }
             }*/
-            /*this.times = item.reserved.appointment.slice(0);
-            console.log('hit appointment');
-            console.log(JSON.stringify(this.times));*/
+            for (let r of item.reserved.appointment) {
+              if(r.selected == true) {
+                this.timesOpen.push(r);
+                console.log('hit appointment');
+                bool = true;
+              }
+            }
             
             /*for(let x of this.times) {
               if(x.time == r) {
@@ -451,12 +458,13 @@ export class UserBooking implements OnDestroy {
               }
             }*/
           //}
-        //}
+        }
         //console.log($event.runCode + "     dont run code!!!!!!");
         //if($event.runCode == true) {
-          /*for(let item of this.tds) {
+          for(let item of this.tds) {
             if(!item.classList.contains('text-muted')) {
               console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
+              let count = 0;
               if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
                 console.log("Inner text in      " + item.innerText);
                 this.myrenderer.setElementClass(item,"greencircle",true);
@@ -465,11 +473,18 @@ export class UserBooking implements OnDestroy {
                 //this.myrenderer.setElementClass(item,"monthview-selected",false);
               }
             }
-          }*/
+          }
         //}
 
         
-      //}));
-    //}
+      }));
+
+      if(!bool) {
+        this.myrenderer.setElementStyle(this.noavail.nativeElement, 'display', 'block');
+      }
+      else {
+        this.myrenderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
+      }
+    }
   }
 }
