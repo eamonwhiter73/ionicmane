@@ -129,6 +129,7 @@ export class FeedUser implements OnDestroy {
   el;
   startAtKey;
   startAtKeyAvail;
+  lastKey;
 
   constructor(private diagnostic: Diagnostic, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, public zone: NgZone, public modalCtrl: ModalController, public af: AngularFireDatabase, public storage: Storage, private afAuth: AngularFireAuth, public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
      
@@ -241,7 +242,6 @@ export class FeedUser implements OnDestroy {
             this.nativeGeocoder.forwardGeocode(item.address)
               .then((coordinates: NativeGeocoderForwardResult) => {
                   rr = this.round(this.distance(coordinates.latitude, coordinates.longitude, resp.coords.latitude, resp.coords.longitude, "M"), 2);
-                  console.log('The coordinates are latitude=' + rr);
                   if(!item.picURL) {
                     item.picURL = 'assets/blankprof.png';
                   }
@@ -252,12 +252,10 @@ export class FeedUser implements OnDestroy {
                     resolve();
                   }
                 }).catch(e => {
-                  console.log('The coordinates are latitude=' + rr);
                   if(!item.picURL) {
                     item.picURL = 'assets/blankprof.png';
                   }
                   this.distances.push({'pic':item.picURL, 'salon':item.username, 'distance':rr});
-                  console.log(e.message + " THI SI THE RED ONE!");
                 })
                   
 
@@ -327,7 +325,10 @@ export class FeedUser implements OnDestroy {
         });
       //}, 1000)
 
-        this.loadRatings().then((array) =>{
+        
+    })
+
+    this.loadRatings().then((array) =>{
 
           console.log(array + '    ararrya &&*&&*&^^&%^%^');
 
@@ -389,7 +390,6 @@ export class FeedUser implements OnDestroy {
 
           });
         })
-    })
 
 
     
@@ -670,39 +670,24 @@ export class FeedUser implements OnDestroy {
 
     this.list = this.af.list('/promos', {
     query: {
-      limitToLast: 1
+      limitToLast: 10
     }});
 
+    let x = 0;
     this.subscription4 = this.list.subscribe(items => { 
-
-      if (items.length > 0) {
-          this.startAtKey = items.$key;
-      } else {
-          this.startAtKey = '';
-      }
-          
-    })
-
-    this.list = this.af.list('/promos', {
-    query: {
-      limitToLast: 2
-    }});
-
-    this.subscription8 = this.list.subscribe(items => { 
-
       items.forEach(item => {
-        console.log(JSON.stringify(item.customMetadata) + "      item custommetadata$%$%$%#$#$#$%#$%");
-                   
         this.items.push(item.customMetadata);
-        
 
-       
-      });
+        if(x == 0) {
+          this.startAtKey = item.$key;
+          this.lastKey = this.startAtKey;
+        }
+        x++;
+      })
 
-      this.items.reverse();
-          
+      
+      this.items.reverse();          
     })
-
 
     this.prices = this.af.list('/profiles', {
       query: {
@@ -812,35 +797,32 @@ export class FeedUser implements OnDestroy {
     //return new Promise((resolve, reject) => {
     setTimeout(() => {
 
-      limit.next( limit.getValue() + 2);
 
       console.log(this.startAtKey + "     before %%^&^&^% start at");
       this.list = this.af.list('/promos', {
       query: {
-        limitToLast: limit
+        orderByKey: true,
+        endAt: this.startAtKey,
+        limitToLast: 11
       }});
 
       this.list.subscribe(items => { 
-
-        if (items.length > 0) {
-            if (items[items.length - 1].$key === this.startAtKey) {
-                this.queryable = false;
-            } else {
-                this.queryable = true;
-            }
-        }
-        
-        if(this.queryable) {
-          this.items = [];
+          let x = 0;
+          this.lastKey = this.startAtKey;
           items.forEach(item => {
-            console.log(JSON.stringify(item.customMetadata) + "     new doinfinite !@!@@!!@@!!@");
+            
+            if(this.startAtKey !== item.$key && this.lastKey !== item.$key) {
+              console.log(this.startAtKey + "   :startatkey before 4444444        item key:     " + item.$key);
               this.items.push(item.customMetadata);
+            }
 
-          });
+            if(x == 0) {
+              this.startAtKey = item.$key;
+            }
 
-          this.items.reverse();
+            x++;
+          });          
           
-        }  
       })
 
       infiniteScroll.complete(); 
