@@ -130,7 +130,7 @@ export class UserProfile implements OnDestroy {
             /*for(let x of this.times) {
               if(x.time == r) {
                 console.log('change selected');
-                x.selected = true;
+                x.selected = true;/////
               }
             }*/
           //}
