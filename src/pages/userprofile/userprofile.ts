@@ -1,4 +1,4 @@
-import { OnDestroy, Component, trigger, state, style, transition, animate, ViewChildren, ElementRef, Renderer, QueryList } from '@angular/core';
+import { OnDestroy, Component, trigger, state, style, transition, animate, ViewChildren, ViewChild, ElementRef, Renderer, QueryList } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { FeedUser } from '../feeduser/feeduser';
 import { BookingPage } from '../booking/booking';
@@ -11,6 +11,7 @@ import { CameraService } from '../../services/cameraservice';
 import { Camera } from '@ionic-native/camera';
 import { ActionSheetController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
 import { LoadingController } from 'ionic-angular';
 import { ImageViewerController } from 'ionic-img-viewer';
@@ -42,6 +43,7 @@ import { Storage } from '@ionic/storage';
 export class UserProfile implements OnDestroy {
   @ViewChildren('pluscontain') components:QueryList<any>;
   @ViewChildren('profsquare') profComponents:QueryList<any>;
+  @ViewChild('followsty') followsty;
   viewDate = new Date();
   events = [];
   viewTitle: string;
@@ -57,17 +59,23 @@ export class UserProfile implements OnDestroy {
   tds;
   profdata;
   selectedDate;
-  item: FirebaseObjectObservable<any>
+  item: FirebaseObjectObservable<any>;
+  item2: FirebaseObjectObservable<any>;
   items4: FirebaseListObservable<any>;
   items3: FirebaseListObservable<any>;
   items2: FirebaseListObservable<any>;
   subscription2: ISubscription;
   subscription3: ISubscription;
   subscription4: ISubscription;
+  subscription: ISubscription;
+  subscription7: ISubscription;
   datesToSelect = [];
   times;
   timesOpen = [];
   set = false;
+  uuid;
+  userusername;
+
 
   _imageViewerCtrl: ImageViewerController;
   private swipeCoord?: [number, number];
@@ -76,7 +84,7 @@ export class UserProfile implements OnDestroy {
 
   subscription6: ISubscription;
 
-  constructor(public elRef: ElementRef, public params: NavParams,public modalCtrl: ModalController, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController, public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
+  constructor(public afAuth: AngularFireAuth, public elRef: ElementRef, public params: NavParams,public modalCtrl: ModalController, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController, public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
     this.username = this.params.get('username');
   }
 
@@ -85,9 +93,65 @@ export class UserProfile implements OnDestroy {
     this.subscription2.unsubscribe();
     this.subscription3.unsubscribe();
     this.subscription4.unsubscribe();
+    this.subscription.unsubscribe();
+    this.subscription7.unsubscribe();
+  }
+
+  followStylist() {
+      this.item = this.af.object('/profiles/' + this.username + '/followers');
+      this.subscription = this.item.subscribe(item => {
+        if(item.$value == null) {
+          let array = [];
+          array.push({[this.userusername]:this.uuid});
+          this.followsty._elementRef.nativeElement.innerHTML = "FOLLOWING";
+          this.item.update(array);
+        }
+        else {
+          if(item.indexOf(this.userusername) == -1) {
+            item.push({[this.userusername]:this.uuid})
+            this.item.update(item);
+          }
+          else {
+            this.followsty._elementRef.nativeElement.innerHTML = "FOLLOWING";
+          }
+        }
+      })
   }
 
   ionViewDidLoad() {
+    this.subscription7 = this.afAuth.authState.subscribe(data => {
+      if(data.email && data.uid) {
+        console.log("logged in");
+        this.uuid = data.uid;
+      }
+    })
+
+    this.storage.get('username').then((val) => {
+      this.userusername = val;
+    })
+    console.log(this.username + "         this is item @@#2332dfdffdfd23");
+    this.item2 = this.af.object('/profiles/' + this.username + '/followers');
+    this.item2.subscribe(item => {
+
+      let bool = false;
+      if(Object.keys(item)[0] == '$value') {
+        bool = true;
+      }
+
+        if(!bool) {
+          console.log(typeof item + " type of type of type of");
+          const index = item.findIndex(item => item[this.userusername] === this.uuid);
+          console.log(index + "         this.userusername   8888888*&&&*&*&*&*");
+          if(index !== -1) {
+            this.followsty._elementRef.nativeElement.innerHTML = "FOLLOWING";
+          }
+        }
+      
+      
+    }).unsubscribe();
+
+    
+
     this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
   
     this.username = this.navParams.get('username');

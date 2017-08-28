@@ -32,7 +32,7 @@
 			</div>
 		</div>
 	  	<div class="stylistviewtwo">
-	    	<button class="stylistviewbuttontwo" ion-button color="primary">Follow Stylist</button>
+	    	<button class="stylistviewbuttontwo" ion-button (tap)="followStylist()" #followsty color="primary">Follow Stylist</button>
 	  	</div>
 	  	<div class='stylistsect'>
 			<div class="name">@{{username}}</div>
