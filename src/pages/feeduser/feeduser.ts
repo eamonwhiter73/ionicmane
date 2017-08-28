@@ -291,6 +291,10 @@ export class FeedUser implements OnDestroy {
       let x = 0;
       this.subscription7 = this.ratingslist.subscribe(items => items.forEach(item => {
 
+        if(!item.picURL) {
+          item.picURL = 'assets/blankprof.png';
+        }
+
         for(let z in item.rating) {
           console.log(z + "this is the rating string");
         }
@@ -791,10 +795,12 @@ export class FeedUser implements OnDestroy {
           console.log(str);
           i.time = str;
         }
+
+        loading.dismiss();
       }, 1500);
     });                
 
-    loading.dismiss();
+    
   }
 
   doInfinite(infiniteScroll) {

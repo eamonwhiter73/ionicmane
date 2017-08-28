@@ -11,7 +11,7 @@ import { ISubscription } from "rxjs/Subscription";
 import { CameraService } from '../../services/cameraservice';
 import { Camera } from '@ionic-native/camera';
 import { ActionSheetController } from 'ionic-angular';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import firebase from 'firebase';
 import { LoadingController } from 'ionic-angular';
 import { ImageViewerController } from 'ionic-img-viewer';
@@ -45,6 +45,7 @@ export class StylistProfile implements OnDestroy {
   viewTitle: string;
   calendar = {'mode': 'month', 'currentDate': this.viewDate}
   moveState: String = 'up';
+  item2: FirebaseObjectObservable<any>;
   items: FirebaseListObservable<any>;
   items4: FirebaseListObservable<any>;
   items3: FirebaseListObservable<any>;
@@ -52,6 +53,7 @@ export class StylistProfile implements OnDestroy {
   subscription2: ISubscription;
   subscription3: ISubscription;
   subscription4: ISubscription;
+  subscription5: ISubscription;
   username;
   picURLS = [];
   square = 0;
@@ -64,6 +66,7 @@ export class StylistProfile implements OnDestroy {
   titleYear;
   times;
   datesToSelect = [];
+  followers;
 
   constructor(public elRef: ElementRef, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, public cameraService: CameraService) {
     this.times = [{'time':'8:00 AM', 'selected': false}, {'time':'12:00 PM', 'selected': false}, {'time':'4:00 PM', 'selected': false},
@@ -102,17 +105,36 @@ export class StylistProfile implements OnDestroy {
   ionViewDidEnter() {
     //let loading = this.loadingController.create({content : "Loading..."});
     //loading.present();
+  }
+
+  getFollowers() {
+    
   } 
 
   ionViewDidLoad() {
+    
     this.storage.get('username').then((val) => {
       this.username = val;
       console.log(val);
 
       this.downloadImages().then(() => {
-        //this.loadings.dismiss();
+        
       })
+
+      this.item2 = this.af.object('/profiles/' + this.username + '/followers');
+      this.subscription5 = this.item2.subscribe(item => {
+        console.log(JSON.stringify(item) + "      followers number 98989899889");
+        if(Object.keys(item)[0] == '$value') {
+          this.followers = 0;
+        }
+        else {
+          this.followers = item.length;
+        }
+      })
+
     });
+
+    
 
     //this.isSomething = true;
 
@@ -193,6 +215,7 @@ export class StylistProfile implements OnDestroy {
     this.subscription2.unsubscribe();
     this.subscription3.unsubscribe();
     this.subscription4.unsubscribe();
+    this.subscription5.unsubscribe();
   }
 
   openCamera(squarez) {
@@ -402,8 +425,6 @@ export class StylistProfile implements OnDestroy {
 
     console.log('element class list   ' + thisel.classList);
   }
-
-  onNgDes
 
   onCurrentDateChanged($event) {
     //console.log(typeof $event);
