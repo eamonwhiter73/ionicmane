@@ -676,7 +676,21 @@ export class FeedUser implements OnDestroy {
     let x = 0;
     this.subscription4 = this.list.subscribe(items => { 
       items.forEach(item => {
+
+
+        let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
+                   
+        storageRef.getDownloadURL().then(url => {
+          console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+          item.customMetadata.picURL = url;
+        }).catch((e) => {
+          console.log("in caught url !!!!!!!$$$$$$$!!");
+          item.customMetadata.picURL = 'assets/blankprof.png';
+        });
+
         this.items.push(item.customMetadata);
+
+
 
         if(x == 0) {
           this.startAtKey = item.$key;
@@ -810,6 +824,17 @@ export class FeedUser implements OnDestroy {
           let x = 0;
           this.lastKey = this.startAtKey;
           items.forEach(item => {
+
+
+            let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
+                       
+            storageRef.getDownloadURL().then(url => {
+              console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+              item.customMetadata.picURL = url;
+            }).catch((e) => {
+              console.log("in caught url !!!!!!!$$$$$$$!!");
+              item.customMetadata.picURL = 'assets/blankprof.png';
+            });
             
             if(this.startAtKey !== item.$key && this.lastKey !== item.$key) {
               console.log(this.startAtKey + "   :startatkey before 4444444        item key:     " + item.$key);
