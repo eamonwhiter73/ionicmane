@@ -61,6 +61,7 @@ export class UserProfile implements OnDestroy {
   selectedDate;
   item: FirebaseObjectObservable<any>;
   item2: FirebaseObjectObservable<any>;
+  item9: FirebaseObjectObservable<any>;
   items4: FirebaseListObservable<any>;
   items3: FirebaseListObservable<any>;
   items2: FirebaseListObservable<any>;
@@ -69,12 +70,16 @@ export class UserProfile implements OnDestroy {
   subscription4: ISubscription;
   subscription: ISubscription;
   subscription7: ISubscription;
+  subscription6: ISubscription;
+  subscription9: ISubscription;
   datesToSelect = [];
   times;
   timesOpen = [];
   set = false;
   uuid;
   userusername;
+  profilePic;
+  totalRatings;
 
 
   _imageViewerCtrl: ImageViewerController;
@@ -82,7 +87,7 @@ export class UserProfile implements OnDestroy {
   private swipeTime?: number;
   loadings;
 
-  subscription6: ISubscription;
+  
 
   constructor(public afAuth: AngularFireAuth, public elRef: ElementRef, public params: NavParams,public modalCtrl: ModalController, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController, public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
     this.username = this.params.get('username');
@@ -95,6 +100,7 @@ export class UserProfile implements OnDestroy {
     this.subscription4.unsubscribe();
     this.subscription.unsubscribe();
     this.subscription7.unsubscribe();
+    this.subscription9.unsubscribe();
   }
 
   followStylist() {
@@ -149,6 +155,27 @@ export class UserProfile implements OnDestroy {
       
       
     }).unsubscribe();
+
+    let storageRef = firebase.storage().ref().child('/settings/' + this.username + '/profilepicture.png');               
+
+    storageRef.getDownloadURL().then(url => {
+      console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+      this.profilePic = url;
+    }).catch((e) => {
+      console.log("in caught url !!!!!!!$$$$$$$!!");
+      this.profilePic = 'assets/blankprof.png';
+    });
+
+    this.item9 = this.af.object('/profiles/' + this.username);
+    this.subscription9 = this.item9.subscribe(item => {
+      console.log(JSON.stringify(item) + "      rating number 989898222229889");
+      let total = 0;
+      for(let u in item.rating) {
+        total += item.rating[u];
+      }
+      this.totalRatings = total;
+      
+    });
 
     
 

@@ -125,16 +125,6 @@
             "APP_NAME": "ManeEmergency"
         }
     },
-    "cordova-plugin-googleplus": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-googleplus@^5.1.1"
-        },
-        "is_top_level": true,
-        "variables": {
-            "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1059751557247-aro48ncpaq2ffiae4cpsnjp941e09hao"
-        }
-    },
     "cordova-plugin-datepicker": {
         "source": {
             "type": "registry",
@@ -171,6 +161,24 @@
         "source": {
             "type": "registry",
             "id": "cordova.plugins.diagnostic"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-googleplus": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-googleplus"
+        },
+        "is_top_level": true,
+        "variables": {
+            "REVERSED_CLIENT_ID": "com.googleusercontent.apps.446057524325-0ql2qp1ucson98thqaoqmj97puerjhen"
+        }
+    },
+    "cordova-plugin-request-location-accuracy": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-request-location-accuracy"
         },
         "is_top_level": true,
         "variables": {}

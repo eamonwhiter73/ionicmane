@@ -111,6 +111,20 @@ page-stylist-profile {
     /* margin-bottom: 8px; */
 }
 
+  .xclass {
+    color: map-get($colors, primary);
+    font-size: 36px;
+    font-weight: 700;
+    z-index: 15;
+    width: 44px;
+    height: 44px;
+    top: -4px;
+    right: 4px;
+    text-align: right;
+    position:absolute;
+    display:none;
+  }
+
   .stars {
     display: inline-block;
     position: relative;
@@ -321,6 +335,7 @@ page-stylist-profile {
 
     .col {
       padding: 0.5px 0.5px 0.5px 0.5px;
+      position: relative;
     }
   }
 

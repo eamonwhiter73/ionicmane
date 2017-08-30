@@ -13,6 +13,8 @@ import { Storage } from '@ionic/storage';
 import { Facebook } from '@ionic-native/facebook';
 import firebase from 'firebase';
 import { ISubscription } from "rxjs/Subscription";
+import { GooglePlus } from '@ionic-native/google-plus';
+
 
 
 
@@ -28,7 +30,7 @@ export class SignUpPage implements OnDestroy {
   user = {} as User;
   subscription: ISubscription;
 
-  constructor(public facebook: Facebook, public storage: Storage, private afAuth: AngularFireAuth, public navCtrl: NavController, public keyboard: Keyboard, public af: AngularFireDatabase) {
+  constructor(private googlePlus: GooglePlus, public facebook: Facebook, public storage: Storage, private afAuth: AngularFireAuth, public navCtrl: NavController, public keyboard: Keyboard, public af: AngularFireDatabase) {
     /*this.items = af.list('/test');
     this.items.subscribe(items => items.forEach(item => { 
       console.log(item.$value);
@@ -59,6 +61,7 @@ export class SignUpPage implements OnDestroy {
   }
 
   setUserStylist(usery) {
+    console.log(usery + "           in setuserstylist");
 
     let profile = {'username': usery.username, 'password': usery.password,
                     'email': usery.email, 'bio':"", 'address':"", 'type':"", 'rating':{'one':'0','two':'0','three':'0','four':'0','five':'0'}};
@@ -80,7 +83,7 @@ export class SignUpPage implements OnDestroy {
 
     this.items = this.af.list('/profiles/' + usery.username + '/');
     this.subscription = this.items.subscribe(items => {
-      console.log(JSON.stringify(items.$value));
+      console.log(JSON.stringify(items.$value) + "        this is the null");
       if(items.$value != null) {
         
         
@@ -97,6 +100,61 @@ export class SignUpPage implements OnDestroy {
       this.navCtrl.setRoot(FeedUser);
     }
     else if(this.stylist) {
+      console.log("in this.stylist choice")
+      profile.type = 'stylist';
+      this.items.update('/', profile);
+      //this.navCtrl.setRoot(FeedStylist)
+      this.navCtrl.push(SettingsPage);
+    }
+    else {
+      alert("You need to select User or Stylist.");
+    }
+    // push another page on to the navigation stack
+    // causing the nav controller to transition to the new page
+    // optional data can also be passed to the pushed page.
+  }
+
+  setUserStylistG(usery, email) {
+    console.log(email + "           in setuserstylist email");
+
+    let profile = {'username': usery.username, 'password': usery.password,
+                    'email': email, 'bio':"", 'address':"", 'type':"", 'rating':{'one':'0','two':'0','three':'0','four':'0','five':'0'}};
+
+    if(this.users) {
+      this.storage.set('type', 'user');
+      profile.type = "user";
+    }
+    else {
+      this.storage.set('type', 'stylist');
+      profile.type = "stylist";
+    }
+
+    this.storage.set('username', usery.username);
+    this.storage.set('password', usery.password);
+    this.storage.set('email', email);
+
+    
+
+    this.items = this.af.list('/profiles/' + usery.username + '/');
+    this.subscription = this.items.subscribe(items => {
+      console.log(JSON.stringify(items.$value) + "        this is the null");
+      if(items.$value != null) {
+        
+        
+        alert("This username is taken");
+      }
+      else {
+        
+      }
+    });
+
+    if(this.users) {
+      profile.type = 'user'
+      this.items.update('/', profile);
+      this.navCtrl.setRoot(FeedUser);
+    }
+    else if(this.stylist) {
+      console.log("in this.stylist choice")
       profile.type = 'stylist';
       this.items.update('/', profile);
       //this.navCtrl.setRoot(FeedStylist)
@@ -111,24 +169,58 @@ export class SignUpPage implements OnDestroy {
   }
 
   fbLogin(userx: User): Promise<any> {
-    if(this.users || this.stylist) {
-      return this.facebook.login(["email"])
-        .then( response => {
-          const facebookCredential = firebase.auth.FacebookAuthProvider
-            .credential(response.authResponse.accessToken);
-
-            firebase.auth().signInWithCredential(facebookCredential)
-              .then( success => { 
-                console.log("Firebase success: " + JSON.stringify(success));
-
-                this.setUserStylist(userx);
-              });
-
-        }).catch((error) => { console.log(error) });
+    if(userx.username == null || userx.password == null) {
+      alert("Please enter a username and password");
     }
     else {
-      alert("You need to select user or stylist")
+      if(this.users || this.stylist) {
+        return this.facebook.login(["email"])
+          .then( response => {
+            const facebookCredential = firebase.auth.FacebookAuthProvider
+              .credential(response.authResponse.accessToken);
+
+              firebase.auth().signInWithCredential(facebookCredential)
+                .then( success => { 
+                  console.log("Firebase success: " + JSON.stringify(success));
+
+                  this.setUserStylistG(userx, success.email);
+                }).catch((error) => {
+                  alert(error.message);
+                });
+
+          }).catch((error) => { console.log(error) });
+      }
+      else {
+        alert("You need to select user or stylist")
+      }
     }
+  }
+
+  gLogin(userx: User) {
+    let bool = false;
+    let email;
+    if(userx.username == null || userx.password == null) {
+      alert("Please enter a username and password");
+    }
+    else {
+      this.googlePlus.login({})
+        .then(res => {
+          firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
+            .then( success => {
+
+              console.log("Firebase success: " + JSON.stringify(success));
+              bool = true;
+              email = success.email;
+
+            }).catch( error => console.log("Firebase failure: " + JSON.stringify(error)));
+          }).catch(err => alert(err.message));
+
+        setTimeout(() => {
+          if(bool) {
+            this.setUserStylistG(userx, email);
+          }
+        }, 3000);
+      }
   }
 
   ionViewDidLoad() {

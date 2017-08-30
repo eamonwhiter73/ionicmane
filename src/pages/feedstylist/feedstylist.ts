@@ -359,6 +359,7 @@ export class FeedStylist implements OnDestroy {
   }
 
   contractItem(item) {
+    console.log("in contract item 8*****");
     let flexArray = this.flexComponents.toArray();
     let feedArray = this.feedComponents.toArray();
     let itemArray = this.components.toArray();
@@ -571,7 +572,7 @@ export class FeedStylist implements OnDestroy {
       this.items.push.apply(this.items, this.classesListArray);
 
       this.items.sort(function(a,b) {
-          return a.postdate - b.postdate;
+          return b.postdate - a.postdate;
       });
   }
 

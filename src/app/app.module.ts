@@ -41,6 +41,8 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { ImageViewerController } from 'ionic-img-viewer';
 import { IonicStorageModule } from '@ionic/storage';
 import { Facebook } from '@ionic-native/facebook'
+import { GooglePlus } from '@ionic-native/google-plus'
+
 import { PopUp } from '../modals/popup/popup';
 import { Rate } from '../modals/rate/rate'
 import { IonicImageLoader } from 'ionic-image-loader';
@@ -48,6 +50,8 @@ import { DatePicker } from '@ionic-native/date-picker';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Diagnostic } from '@ionic-native/diagnostic';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
+
 
 
 
@@ -136,10 +140,12 @@ firebase.initializeApp(firebaseConfig);
     File,
     ImageViewerController,
     Facebook,
+    GooglePlus,
     DatePicker,
     NativeGeocoder,
     Geolocation,
     Diagnostic,
+    LocationAccuracy
   ]
 })
 export class AppModule {}

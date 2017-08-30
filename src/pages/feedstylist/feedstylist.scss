@@ -89,7 +89,8 @@ page-feed-stylist {
   	height: 44px;
   	width: 100%;
   	display: none;
-		align-items: center; /* align vertical */
+	align-items: center; /* align vertical */
+	z-index: 7;
   }
 
   .allfeed {

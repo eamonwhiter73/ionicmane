@@ -40,12 +40,14 @@ import { Storage } from '@ionic/storage';
 export class StylistProfile implements OnDestroy {
   @ViewChildren('pluscontain') components:QueryList<any>;
   @ViewChildren('profsquare') profComponents:QueryList<any>;
+  @ViewChildren('xclass') xclass:QueryList<any>;
   viewDate = new Date();
   events = [];
   viewTitle: string;
   calendar = {'mode': 'month', 'currentDate': this.viewDate}
   moveState: String = 'up';
   item2: FirebaseObjectObservable<any>;
+  item9: FirebaseObjectObservable<any>;
   items: FirebaseListObservable<any>;
   items4: FirebaseListObservable<any>;
   items3: FirebaseListObservable<any>;
@@ -54,6 +56,7 @@ export class StylistProfile implements OnDestroy {
   subscription3: ISubscription;
   subscription4: ISubscription;
   subscription5: ISubscription;
+  subscription9: ISubscription;
   username;
   picURLS = [];
   square = 0;
@@ -67,6 +70,10 @@ export class StylistProfile implements OnDestroy {
   times;
   datesToSelect = [];
   followers;
+  totalRatings;
+  profilePic;
+  stars;
+  bio;
 
   constructor(public elRef: ElementRef, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, public cameraService: CameraService) {
     this.times = [{'time':'8:00 AM', 'selected': false}, {'time':'12:00 PM', 'selected': false}, {'time':'4:00 PM', 'selected': false},
@@ -112,6 +119,10 @@ export class StylistProfile implements OnDestroy {
   } 
 
   ionViewDidLoad() {
+
+    this.storage.get('bio').then((val)=> {
+      this.bio = val;
+    })
     
     this.storage.get('username').then((val) => {
       this.username = val;
@@ -119,7 +130,7 @@ export class StylistProfile implements OnDestroy {
 
       this.downloadImages().then(() => {
         
-      })
+      });
 
       this.item2 = this.af.object('/profiles/' + this.username + '/followers');
       this.subscription5 = this.item2.subscribe(item => {
@@ -130,11 +141,54 @@ export class StylistProfile implements OnDestroy {
         else {
           this.followers = item.length;
         }
-      })
+      });
+
+      this.item9 = this.af.object('/profiles/' + this.username);
+      this.subscription9 = this.item9.subscribe(item => {
+        console.log(JSON.stringify(item) + "      rating number 989898222229889");
+        let total = 0;
+        for(let u in item.rating) {
+          total += item.rating[u];
+        }
+        this.totalRatings = total;
+
+        let totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
+        let ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five *5;
+        
+        console.log(ratings + "   ratings          total potential:    " + totalPotential);
+
+        if(ratings == 0 && totalPotential == 0) {
+          this.stars = '\u2606\u2606\u2606\u2606\u2606';
+        }
+
+        let i = (ratings / totalPotential) * 100;
+        if(Math.round(i) <= 20) {
+          this.stars = '\u2605\u2606\u2606\u2606\u2606';
+        }
+        if(Math.round(i) > 20 && Math.round(i) <= 40) {
+          this.stars = '\u2605\u2605\u2606\u2606\u2606';
+        }
+        if(Math.round(i) > 40 && Math.round(i) <= 60) {
+          this.stars = '\u2605\u2605\u2605\u2606\u2606';
+        }
+        if(Math.round(i) > 60 && Math.round(i) <= 80) {
+          this.stars = '\u2605\u2605\u2605\u2605\u2606';
+        }
+        if(Math.round(i) > 80) {
+          this.stars = '\u2605\u2605\u2605\u2605\u2605';
+        }
+        
+      });
 
     });
 
-    
+    this.storage.get('picURL').then((val) => {
+      this.profilePic = val;
+
+      if(this.profilePic == null) {
+        this.profilePic = 'assets/blankprof.png';
+      }
+    });    
 
     //this.isSomething = true;
 
@@ -213,15 +267,36 @@ export class StylistProfile implements OnDestroy {
 
   ngOnDestroy() {
     this.subscription2.unsubscribe();
-    this.subscription3.unsubscribe();
+    if(this.subscription3 != null) {
+      this.subscription3.unsubscribe();
+    }
     this.subscription4.unsubscribe();
     this.subscription5.unsubscribe();
+    this.subscription9.unsubscribe();
   }
 
   openCamera(squarez) {
     this.presentActionSheet();
     this.square = squarez;
   }
+
+  removePic(squarez) {
+    console.log("in remove pic 333333333          " + squarez);
+
+    let itemArray = this.components.toArray();
+    let itemArrayTwo = this.profComponents.toArray();
+    let itemArraythree = this.xclass.toArray();
+
+    console.log(JSON.stringify(itemArray) + " item array");
+    this.myrenderer.setElementStyle(itemArray[squarez - 1].nativeElement, 'display', 'block');
+    this.myrenderer.setElementStyle(itemArrayTwo[squarez - 1].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(itemArraythree[squarez - 1].nativeElement, 'display', 'none');
+
+    this.storage.set("profile"+squarez, null);
+  }
+    
+
+
 
   presentImage(squarez) {
     this.square = squarez;
@@ -234,8 +309,10 @@ export class StylistProfile implements OnDestroy {
   showSquare() {
     let itemArray = this.components.toArray();
     let itemArrayTwo = this.profComponents.toArray();
+    let itemArraythree = this.xclass.toArray();
     this.myrenderer.setElementStyle(itemArray[this.square - 1].nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(itemArrayTwo[this.square - 1].nativeElement, 'display', 'block');
+    this.myrenderer.setElementStyle(itemArraythree[this.square - 1].nativeElement, 'display', 'block');
   }
 
   presentActionSheet() {
@@ -388,6 +465,7 @@ export class StylistProfile implements OnDestroy {
     let promises_array:Array<any> = [];
     let itemArrayTwo = this.profComponents.toArray();
     let itemArray = this.components.toArray();
+    let itemArraythree = this.xclass.toArray();
 
     for (let z = 1; z < 10; z++) {
       //promises_array.push(new Promise(function(resolve,reject) {
@@ -398,6 +476,8 @@ export class StylistProfile implements OnDestroy {
               self.myrenderer.setElementAttribute(itemArrayTwo[z - 1].nativeElement, 'src', val);
               self.myrenderer.setElementStyle(itemArrayTwo[z - 1].nativeElement, 'display', 'block');
               self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
+              self.myrenderer.setElementStyle(itemArraythree[z - 1].nativeElement, 'display', 'block');
+
               console.log(z);
               
             }

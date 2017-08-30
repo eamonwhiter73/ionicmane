@@ -84,6 +84,7 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
     <engine name="android" spec="^6.2.3" />
+    <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-calendar" spec="^4.6.0">
         <variable name="CALENDAR_USAGE_DESCRIPTION" value=" " />
     </plugin>
@@ -105,10 +106,11 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value=" " />
     </plugin>
     <plugin name="cordova-plugin-googleplus" spec="^5.1.1">
-        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.1059751557247-aro48ncpaq2ffiae4cpsnjp941e09hao" />
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.446057524325-0ql2qp1ucson98thqaoqmj97puerjhen" />
     </plugin>
     <plugin name="cordova-plugin-nativegeocoder" spec="^2.0.2" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.2.2" />
+    <plugin name="cordova-plugin-request-location-accuracy" spec="^2.2.2" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="2.2.2" />
     <plugin name="cordova-plugin-whitelist" spec="1.3.1" />

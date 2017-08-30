@@ -2,18 +2,18 @@
   "_args": [
     [
       {
-        "raw": "cordova-plugin-googleplus@^5.1.1",
+        "raw": "cordova-plugin-googleplus",
         "scope": null,
         "escapedName": "cordova-plugin-googleplus",
         "name": "cordova-plugin-googleplus",
-        "rawSpec": "^5.1.1",
-        "spec": ">=5.1.1 <6.0.0",
-        "type": "range"
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
       },
       "/Users/eamonwhite/ionicmane/myApp/node_modules"
     ]
   ],
-  "_from": "cordova-plugin-googleplus@>=5.1.1 <6.0.0",
+  "_from": "cordova-plugin-googleplus@latest",
   "_id": "cordova-plugin-googleplus@5.1.1",
   "_inCache": true,
   "_location": "/cordova-plugin-googleplus",
@@ -29,13 +29,13 @@
   "_npmVersion": "2.14.7",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "cordova-plugin-googleplus@^5.1.1",
+    "raw": "cordova-plugin-googleplus",
     "scope": null,
     "escapedName": "cordova-plugin-googleplus",
     "name": "cordova-plugin-googleplus",
-    "rawSpec": "^5.1.1",
-    "spec": ">=5.1.1 <6.0.0",
-    "type": "range"
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
   },
   "_requiredBy": [
     "#USER",
@@ -44,7 +44,7 @@
   "_resolved": "https://registry.npmjs.org/cordova-plugin-googleplus/-/cordova-plugin-googleplus-5.1.1.tgz",
   "_shasum": "d6c2accef48619ba9d5abcc9783cf31a6af14a1d",
   "_shrinkwrap": null,
-  "_spec": "cordova-plugin-googleplus@^5.1.1",
+  "_spec": "cordova-plugin-googleplus",
   "_where": "/Users/eamonwhite/ionicmane/myApp/node_modules",
   "cordova_name": "Google SignIn",
   "dependencies": {},

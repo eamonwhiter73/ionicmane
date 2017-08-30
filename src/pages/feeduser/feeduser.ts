@@ -227,56 +227,61 @@ export class FeedUser implements OnDestroy {
 
   loadDistances(): Promise<any> {
     return new Promise((resolve, reject) => {
+      let rrr;
+      let arr = [];
       this.geolocation.getCurrentPosition().then((resp) => {
-     // resp.coords.latitude
-     // resp.coords.longitude
-         
-          this.distancelist = this.af.list('/profiles');
+          // resp.coords.latitude
+          rrr = resp;
+
+          setTimeout(()=> {
+            this.distancelist = this.af.list('/profiles');
+      
+            let x = 0;
+            this.subscription6 = this.distancelist.subscribe(items => items.forEach(item => {
+
+
+              let rr;
+              console.log(JSON.stringify(item) + "               *((*&*&*&*&^&*&*&*(&*(&*&*(&(&(&*(              :::" + x);
+              if(item.address == "") {
+                if(!item.picURL) {
+                  item.picURL = 'assets/blankprof.png';
+                }
+                arr.push({'pic':item.picURL, 'salon':item.username, 'distance':"No Address"});
+              }
+              else {
+                console.log(item.address + " is the address empty??????");
+                this.nativeGeocoder.forwardGeocode(item.address)
+                  .then((coordinates: NativeGeocoderForwardResult) => {
+                    console.log("I AM IN THE GEOCODING ***&&*&*&*&*");
+                      rr = this.round(this.distance(coordinates.latitude, coordinates.longitude, rrr.coords.latitude, rrr.coords.longitude, "M"), 1);
+                      if(!item.picURL) {
+                        item.picURL = 'assets/blankprof.png';
+                      }
+                      arr.push({'pic':item.picURL, 'salon':item.username, 'distance':rr});
+
+                      x++;
+                      if(items.length - x == 0) {
+                        resolve(arr);
+                      }
+                    }).catch(e => {
+                      console.log(JSON.stringify(e) + "            this is the caught error");
+                      x++;
+                      if(items.length - x == 0) {
+                        resolve(arr);
+                      }
+                    })
+              }
+            }));
+          }, 1500);
+
           
-          let x = 0;
-          this.subscription6 = this.distancelist.subscribe(items => items.forEach(item => {
-
-
-            let rr;
-            console.log(JSON.stringify(item) + "               *((*&*&*&*&^&*&*&*(&*(&*&*(&(&(&*(");
-            this.nativeGeocoder.forwardGeocode(item.address)
-              .then((coordinates: NativeGeocoderForwardResult) => {
-                  rr = this.round(this.distance(coordinates.latitude, coordinates.longitude, resp.coords.latitude, resp.coords.longitude, "M"), 2);
-                  if(!item.picURL) {
-                    item.picURL = 'assets/blankprof.png';
-                  }
-                  this.distances.push({'pic':item.picURL, 'salon':item.username, 'distance':rr});
-
-                  x++;
-                  if(items.length - x == 0) {
-                    resolve();
-                  }
-                }).catch(e => {
-                  if(!item.picURL) {
-                    item.picURL = 'assets/blankprof.png';
-                  }
-                  this.distances.push({'pic':item.picURL, 'salon':item.username, 'distance':rr});
-                })
-                  
-
-
-                
-              console.log(items.length + "        ;l asdjkl;fkl aj;s   afkj;dsj ;kl         " + x);
-
-              //distances.push({'pic':item.picURL, 'salon':item.username, 'distancey':})
-
-              
-
-            
-
-            
-          }));
 
       }).catch((error) => {
         this.diagnostic.switchToLocationSettings();
         console.log('Error getting location', error.message);
         resolve();
       });
+
     });
 
     
@@ -316,84 +321,14 @@ export class FeedUser implements OnDestroy {
   }
 
   ionViewDidLoad() {
-    let ratings;
-    let totalPotential;
+    
+
+    let loading = this.loadingController.create({content : "Loading..."});
+    loading.present();
     
     this.getInitialImages();
 
-    this.loadDistances().then(() => {
-      console.log(JSON.stringify(this.distances) + " :FOSIEJO:SFJ::EFIJSEFIJS:EFJS:IO THIS IODIOSJ:FDSIJ :DIS");
-      //setTimeout(() => {
-        this.distances.sort(function(a,b) {
-          return a.distance - b.distance;
-        });
-      //}, 1000)
 
-        
-    })
-
-    this.loadRatings().then((array) =>{
-
-          console.log(array + '    ararrya &&*&&*&^^&%^%^');
-
-          let r = 0;
-          for(let item of array) {
-            if(item.rating.one == 0 && item.rating.two == 0 && item.rating.three == 0 && item.rating.four == 0 && item.rating.five == 0) {
-              this.stars = "No ratings";
-            }
-            else {
-
-              console.log("making the stars");
-
-              totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
-              ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five *5;
-              
-
-              let i = (ratings / totalPotential) * 100;
-              if(Math.round(i) <= 20) {
-                this.stars = '\u2605';
-              }
-              if(Math.round(i) > 20 && Math.round(i) <= 40) {
-                this.stars = '\u2605\u2605';
-              }
-              if(Math.round(i) > 40 && Math.round(i) <= 60) {
-                this.stars = '\u2605\u2605\u2605';
-              }
-              if(Math.round(i) > 60 && Math.round(i) <= 80) {
-                this.stars = '\u2605\u2605\u2605\u2605';
-              }
-              if(Math.round(i) > 80) {
-                this.stars = '\u2605\u2605\u2605\u2605\u2605';
-              }
-            }
-
-            item.stars = this.stars;
-            this.rating.push(item);
-            r++;
-          }
-
-          console.log("THIS IS THE SORTED ARRAY TO BE SORRRED        " + JSON.stringify(this.rating));
-
-          this.rating.sort(function(a,b){ 
-            if(a.stars !== "No ratings" && b.stars !== "No ratings") {
-              if(a.stars === b.stars){
-                return 0;
-              }
-              else {
-                return a.stars.length < b.stars.length ? 1 : -1;
-              }
-            }
-            else {
-              if(a.stars === "No ratings"){
-                return 1;
-              }
-              else if(b.stars === "No ratings"){
-                return -1;
-              }
-            }
-
-          });
-        })
 
 
     
@@ -402,7 +337,7 @@ export class FeedUser implements OnDestroy {
     this.renderer.setElementStyle(this.price.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.distancey.nativeElement, 'display', 'none');
 
-    
+    loading.dismiss();
 
 
   }
@@ -669,8 +604,6 @@ export class FeedUser implements OnDestroy {
   }
 
   getInitialImages() {
-    let loading = this.loadingController.create({content : "Loading..."});
-    loading.present();
 
     this.list = this.af.list('/promos', {
     query: {
@@ -796,11 +729,91 @@ export class FeedUser implements OnDestroy {
           i.time = str;
         }
 
-        loading.dismiss();
+        
       }, 1500);
     });                
 
+    let ratings;
+    let totalPotential;
     
+    
+    this.loadRatings().then((array) =>{
+
+          console.log(array + '    ararrya &&*&&*&^^&%^%^');
+
+          let r = 0;
+          for(let item of array) {
+            if(item.rating.one == 0 && item.rating.two == 0 && item.rating.three == 0 && item.rating.four == 0 && item.rating.five == 0) {
+              this.stars = "No ratings";
+            }
+            else {
+
+              console.log("making the stars");
+
+              totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
+              ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five *5;
+              
+
+              let i = (ratings / totalPotential) * 100;
+              if(Math.round(i) <= 20) {
+                this.stars = '\u2605';
+              }
+              if(Math.round(i) > 20 && Math.round(i) <= 40) {
+                this.stars = '\u2605\u2605';
+              }
+              if(Math.round(i) > 40 && Math.round(i) <= 60) {
+                this.stars = '\u2605\u2605\u2605';
+              }
+              if(Math.round(i) > 60 && Math.round(i) <= 80) {
+                this.stars = '\u2605\u2605\u2605\u2605';
+              }
+              if(Math.round(i) > 80) {
+                this.stars = '\u2605\u2605\u2605\u2605\u2605';
+              }
+            }
+
+            item.stars = this.stars;
+            this.rating.push(item);
+            r++;
+          }
+
+          console.log("THIS IS THE SORTED ARRAY TO BE SORRRED        " + JSON.stringify(this.rating));
+
+          this.rating.sort(function(a,b){ 
+            if(a.stars !== "No ratings" && b.stars !== "No ratings") {
+              if(a.stars === b.stars){
+                return 0;
+              }
+              else {
+                return a.stars.length < b.stars.length ? 1 : -1;
+              }
+            }
+            else {
+              if(a.stars === "No ratings"){
+                return 1;
+              }
+              else if(b.stars === "No ratings"){
+                return -1;
+              }
+            }
+
+          });
+        })
+
+      this.loadDistances().then(array => {
+        setTimeout(() => {
+          console.log(JSON.stringify(array) + " :FOSIEJO:SFJ::EFIJSEFIJS:EFJS:IO THIS IODIOSJ:FDSIJ :DIS");
+          //
+            
+          //}, 1000)
+          array.sort(function(a,b) {
+            return a.distance - b.distance;
+          });
+
+          this.distances = array.slice();
+        }, 1500);
+          
+      })
   }
 
   doInfinite(infiniteScroll) {

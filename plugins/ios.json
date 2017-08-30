@@ -7,46 +7,25 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
         "cordova-plugin-calendar": {
             "CALENDAR_USAGE_DESCRIPTION": " ",
-            "PACKAGE_NAME": "io.ionic.starter"
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
         "cordova-plugin-camera": {
             "CAMERA_USAGE_DESCRIPTION": " ",
             "PHOTOLIBRARY_USAGE_DESCRIPTION": " ",
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
         "cordova-plugin-crop": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
-        "cordova-plugin-file": {
+        "cordova-plugin-datepicker": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
-        "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "com.ionicframework.maneApp"
-        },
-        "cordova-sqlite-storage": {
-            "PACKAGE_NAME": "com.ionicframework.maneApp"
-        },
-        "cordova-plugin-nativestorage": {
+        "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
         "cordova-plugin-facebook4": {
@@ -54,11 +33,10 @@
             "APP_NAME": "ManeEmergency",
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
-        "cordova-plugin-googleplus": {
-            "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1059751557247-aro48ncpaq2ffiae4cpsnjp941e09hao",
+        "cordova-plugin-file": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
-        "cordova-plugin-datepicker": {
+        "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
         "cordova-plugin-geolocation": {
@@ -68,15 +46,40 @@
         "cordova-plugin-nativegeocoder": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
+        "cordova-plugin-nativestorage": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
         "cordova.plugins.diagnostic": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-googleplus": {
+            "REVERSED_CLIENT_ID": "com.googleusercontent.apps.446057524325-0ql2qp1ucson98thqaoqmj97puerjhen",
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-request-location-accuracy": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     },
     "dependent_plugins": {
-        "cordova-plugin-compat": {
+        "cordova-plugin-add-swift-support": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
-        "cordova-plugin-add-swift-support": {
+        "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     }

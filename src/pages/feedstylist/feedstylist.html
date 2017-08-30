@@ -33,8 +33,8 @@
 
   <div class ='contentone' [@moveList]='moveState' #contentone>
    <ion-list no-padding>
-     <ion-item class="changepadding" *ngFor="let j of items ; let i = index" (tap)='expandItem(i)' id='{{i}}' #feedstyle text-wrap>
-      <div class="flex" #flex>
+     <ion-item class="changepadding" *ngFor="let j of items ; let i = index" id='{{i}}' #feedstyle text-wrap>
+      <div class="flex" (tap)='expandItem(i)' #flex>
         <div class="nonzoomimage">
           <img class="imagepost" src="{{j.url}}">
         </div>
@@ -73,8 +73,8 @@
 
   <div class ='contentone classeslist' [@moveList]='moveState' #classeslist>
    <ion-list no-padding>
-     <ion-item class="changepadding" *ngFor="let j of classesListArray ; let i = index" (tap)='expandItem2(i)' id='{{i}}' #feedstyle2 text-wrap>
-      <div class="flex" #flex2>
+     <ion-item class="changepadding" *ngFor="let j of classesListArray ; let i = index" id='{{i}}' #feedstyle2 text-wrap>
+      <div class="flex" (tap)='expandItem2(i)' #flex2>
         <div class="nonzoomimage">
           <img class="imagepost" src="{{j.url}}">
         </div>
@@ -93,6 +93,7 @@
         </div>
         <div class="postprofilelink">
           <div class="book">{{j.title}}</div>
+          <div class="book">{{j.date}}</div>
         </div>
       </div>
       <img class="imageposttwo" #imagepost2 src="{{j.url}}">
@@ -112,8 +113,8 @@
 
   <div class ='contentone productslist' [@moveList]='moveState' #productslist>
    <ion-list no-padding>
-     <ion-item class="changepadding" *ngFor="let j of productListArray ; let i = index" (tap)='expandItem3(i)' id='{{i}}' #feedstyle3 text-wrap>
-      <div class="flex" #flex3>
+     <ion-item class="changepadding" *ngFor="let j of productListArray ; let i = index" id='{{i}}' #feedstyle3 text-wrap>
+      <div class="flex" (tap)='expandItem3(i)' #flex3>
         <div class="nonzoomimage">
           <img class="imagepost" src="{{j.url}}">
         </div>

@@ -30750,6 +30750,7 @@ page-feed-stylist .feedtoptextcontainer {
   -ms-flex-align: center;
   align-items: center;
   /* align vertical */
+  z-index: 7;
 }
 
 page-feed-stylist .allfeed {
@@ -31843,6 +31844,20 @@ page-stylist-profile .stylistviewbuttontwo {
   /* margin-bottom: 8px; */
 }
 
+page-stylist-profile .xclass {
+  color: #e6c926;
+  font-size: 36px;
+  font-weight: 700;
+  z-index: 15;
+  width: 44px;
+  height: 44px;
+  top: -4px;
+  right: 4px;
+  text-align: right;
+  position: absolute;
+  display: none;
+}
+
 page-stylist-profile .stars {
   display: inline-block;
   position: relative;
@@ -32046,6 +32061,7 @@ page-stylist-profile ion-grid {
 
 page-stylist-profile ion-grid .col {
   padding: 0.5px 0.5px 0.5px 0.5px;
+  position: relative;
 }
 
 page-stylist-profile .label {

@@ -27,7 +27,7 @@ export class PostpagePage implements OnDestroy {
 	@ViewChild('imagey') image:ElementRef;
   @ViewChild('sharer') share;
  	imageHolder;
-  item = {'date': new Date(), 'title':'asdfasdf', 'price':'44', 'caption':'asdfasdfasdfasdf', 'typeofselect':'Promo'};
+  item = {'date': null, 'title':'asdfasdf', 'price':'44', 'caption':'asdfasdfasdfasdf', 'typeofselect':'Promo'};
   selectVal;
   username;
   list: FirebaseListObservable<any>
@@ -73,9 +73,21 @@ export class PostpagePage implements OnDestroy {
       mode: 'date',
       androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
     }).then(
-      date => this.item.date = date,
+      date => { console.log(date + " this is the date &&&&&&&"); this.item.date = date},
       err => console.log('Error occurred while getting date: ', err)
     );
+  }
+
+  formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [day, month, year].join('-');
   }
 
   isPromo() {
@@ -163,7 +175,7 @@ export class PostpagePage implements OnDestroy {
                   'title': this.item.title,
                   'caption': this.item.caption,
                   'price': this.item.price,
-                  'date': this.item.date,
+                  'date': this.formatDate(this.item.date),
                   'typeofselect': this.item.typeofselect,
                   'username': this.username,
                   'url': url,

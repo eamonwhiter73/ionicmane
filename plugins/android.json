@@ -39,9 +39,6 @@
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
-        "cordova-plugin-googleplus": {
-            "PACKAGE_NAME": "com.ionicframework.maneApp"
-        },
         "cordova-plugin-nativegeocoder": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
@@ -64,6 +61,12 @@
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
         "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-googleplus": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-request-location-accuracy": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     },
