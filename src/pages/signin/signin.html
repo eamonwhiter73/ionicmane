@@ -1,7 +1,7 @@
 <ion-content padding>
   <h1 class="logo">Mane Emergency</h1>
   <form (ngSubmit)="logForm()">
-  	<ion-input [(ngModel)]="user.email" class="inputone" (keypress)="goButton($event.keyCode)" type="text" name="username" placeholder="Username/Email"></ion-input> <!--[(ngModel)]="user.username"-->
+  	<ion-input [(ngModel)]="user.email" class="inputone" (keypress)="goButton($event.keyCode)" type="text" name="username" placeholder="Email"></ion-input> <!--[(ngModel)]="user.username"-->
   	<ion-input type="text" [(ngModel)]="user.password" (keypress)="goButton($event.keyCode)" name="password" placeholder="Password"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
   	<!--<div class='circle circone'></div>
   	<div class='circle circtwo'></div>-->

@@ -28,6 +28,12 @@ export class SignUpPage implements OnDestroy {
   items: FirebaseListObservable<any>;
   user1 = {} as User1;
   subscription: ISubscription;
+  type;
+  isLoggedIn = false;
+  email;
+  password;
+  username;
+  bool = false;
 
   constructor(private googlePlus: GooglePlus, public facebook: Facebook, public storage: Storage, private afAuth: AngularFireAuth, public navCtrl: NavController, public keyboard: Keyboard, public af: AngularFireDatabase) {
     /*this.items = af.list('/test');
@@ -38,21 +44,52 @@ export class SignUpPage implements OnDestroy {
   }
 
   async register(userx: User1){
-    try {
-    if(userx.email && userx.password && userx.username && (this.stylist || this.users)) {
+    
+    
 
-      const result = await this.afAuth.auth.createUserWithEmailAndPassword(userx.email, userx.password);
-      //console.log(result);
+    if(this.bool) {
+      try {
+        if(userx.email && userx.password && userx.username && (this.stylist || this.users)) {
 
-      this.setUserStylist(userx);
+          const result = await this.afAuth.auth.createUserWithEmailAndPassword(userx.email, userx.password);
+          //console.log(result);
+
+          this.setUserStylist(userx);
+        }
+        else {
+          alert("You need to fill in all the information booltrue");
+        }
+      }
+      catch(e) {
+        alert(e.message);
+      }
     }
     else {
-      alert("You need to fill in all the information");
+      try {
+        if(this.email && this.password && (this.stylist || this.users)) {
+
+          if(!this.isLoggedIn) {
+            const result = await this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password);
+          }
+          //console.log(result);
+          if(userx.username == null) {
+            userx.username = this.username;      
+          }
+
+          userx.email = this.email;
+          userx.password = this.password;
+
+          this.setUserStylist(userx);
+        }
+        else {
+          alert("You need to fill in all the information");
+        }
+      }
+      catch(e) {
+        alert(e.message);
+      }
     }
-    }
-    catch(e) {
-      alert(e.message);
-    }
+    
   }
 
   ngOnDestroy() {
@@ -64,56 +101,77 @@ export class SignUpPage implements OnDestroy {
 
     let profile = {'username': usery.username, 'password': usery.password,
                     'email': usery.email, 'bio':"", 'address':"", 'type':"", 'rating':{'one':'0','two':'0','three':'0','four':'0','five':'0'}};
-
-    if(this.users) {
-      this.storage.set('type', 'user');
-      profile.type = "user";
-
-      this.storage.set('usernameUSER', usery.username);
-      this.storage.set('passwordUSER', usery.password);
-      this.storage.set('emailUSER', usery.email);
-    }
-    else {
-      this.storage.set('type', 'stylist');
-      profile.type = "stylist";
-      console.log(JSON.stringify(usery) + "     : usery 55555555");
-      this.storage.set('username', usery.username);
-      this.storage.set('password', usery.password);
-      this.storage.set('email', usery.email);
-    }
-
     
-
-    
-
-    this.items = this.af.list('/profiles/stylists/' + usery.username + '/');
-    this.subscription = this.items.subscribe(items => {
-      console.log(JSON.stringify(items.$value) + "        this is the null");
-      if(items.$value != null) {
-        
-        
-        alert("This username is taken");
+    this.storage.get('type').then((val) => {
+      if(val == 'user' && this.users) {
+        alert("You already have a user account");
+      }
+      else if(val == 'stylist' && this.stylist) {
+        alert("You already have a stylist account");
       }
       else {
-        
+        if(this.users) {
+          this.storage.set('type', 'user');
+          profile.type = "user";
+
+          this.storage.set('usernameUSER', usery.username);
+          this.storage.set('password', usery.password);
+          this.storage.set('email', usery.email);
+
+          this.items = this.af.list('/profiles/users/' + usery.username + '/');
+          this.subscription = this.items.subscribe(items => {
+            console.log(JSON.stringify(items.$value) + "        this is the null");
+            if(items.$value != null) {
+              
+              
+              alert("This username is taken");
+            }
+            else {
+              
+            }
+          });
+        }
+        else {
+          this.storage.set('type', 'stylist');
+          profile.type = "stylist";
+          console.log(JSON.stringify(usery) + "     : usery 55555555");
+          this.storage.set('username', usery.username);
+          this.storage.set('password', usery.password);
+          this.storage.set('email', usery.email);
+
+          this.items = this.af.list('/profiles/stylists/' + usery.username + '/');
+          this.subscription = this.items.subscribe(items => {
+            console.log(JSON.stringify(items.$value) + "        this is the null");
+            if(items.$value != null) {
+              
+              
+              alert("This username is taken");
+            }
+          });
+        }
+
+        if(this.users) {
+          this.items.update('/', profile);
+          this.navCtrl.setRoot(FeedUser);
+        }
+        else if(this.stylist) {
+          console.log("in this.stylist choice")
+          this.items.update('/', profile);
+          //this.navCtrl.setRoot(FeedStylist)
+          this.navCtrl.push(SettingsPage);
+        }
+        else {
+          alert("You need to select User or Stylist.");
+        }
       }
     });
+    
 
-    if(this.users) {
-      profile.type = 'user'
-      this.items.update('/', profile);
-      this.navCtrl.setRoot(FeedUser);
-    }
-    else if(this.stylist) {
-      console.log("in this.stylist choice")
-      profile.type = 'stylist';
-      this.items.update('/', profile);
-      //this.navCtrl.setRoot(FeedStylist)
-      this.navCtrl.push(SettingsPage);
-    }
-    else {
-      alert("You need to select User or Stylist.");
-    }
+    
+
+    
+
+    
     // push another page on to the navigation stack
     // causing the nav controller to transition to the new page
     // optional data can also be passed to the pushed page.
@@ -130,8 +188,8 @@ export class SignUpPage implements OnDestroy {
       profile.type = "user";
 
       this.storage.set('usernameUSER', usery.username);
-      this.storage.set('passwordUSER', usery.password);
-      this.storage.set('emailUSER', usery.email);
+      //this.storage.set('passwordUSER', usery.password);
+      //this.storage.set('emailUSER', usery.email);
     }
     else {
       this.storage.set('type', 'stylist');
@@ -232,19 +290,39 @@ export class SignUpPage implements OnDestroy {
       }
   }
 
-  instaLogin(userx: User1) {
-    let bool = false;
-    let email;
-    if(userx.username == null || userx.password == null) {
-      alert("Please enter a username and password");
-    }
-    else {
-      
-    }
-  }
 
   ionViewDidLoad() {
-    //this.storage.get('username').then((val) => {console.log(val + "        getting username")});
+   
+    this.subscription = this.afAuth.authState.subscribe(data => {
+      if(data != null) {
+        if(data.email && data.uid) {
+          console.log("logged in");
+
+          this.isLoggedIn = true;
+        }
+      }
+    })
+
+    this.storage.get('type').then((val) => {
+      if(val==null) {
+        this.bool = true;
+      }
+      else {
+        this.type = val;
+      }
+    })
+
+    this.storage.get('email').then((val) => {
+        this.email = val;   
+    })
+
+    this.storage.get('password').then((val) => {
+        this.password = val;
+    })
+
+    this.storage.get('username').then((val) => {
+        this.username = val;
+    })
   }
 
   pushPage(){

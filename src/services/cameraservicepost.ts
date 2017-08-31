@@ -203,7 +203,7 @@ export class CameraServicePost {
           let fileName = newPath.substring(newPath.lastIndexOf("/") + 1, newPath.length);
           let filePath = newPath.substring(0, newPath.lastIndexOf("/"));
           this.file.readAsDataURL(filePath, fileName).then(data => {
-            console.log("readasdataurl");
+            console.log("readasdataurl                " + data);
             resolve(data);
           });
         })

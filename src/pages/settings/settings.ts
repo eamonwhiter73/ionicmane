@@ -12,6 +12,8 @@ import * as firebase from 'firebase/app';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { FeedStylist } from '../feedstylist/feedstylist';
+import { SignInPage } from '../signin/signin';
+
 
 
 
@@ -46,12 +48,14 @@ export class SettingsPage implements OnDestroy {
   price;
   subscription: ISubscription;
   subscription2: ISubscription;
+  subscription3: ISubscription;
   items: FirebaseObjectObservable<any>;
   items2: FirebaseListObservable<any>;
   oldUser: string;
   picURL: string;
   x: number;
   priceRanges = ['$', '$$', '$$$', '$$$$', '$$$$$'];
+  loggedIn = false;
 
 
   constructor(public af: AngularFireDatabase, private afAuth: AngularFireAuth, public storage: Storage, public camera: Camera, public cameraService: CameraServiceProfile, public myrenderer: Renderer, public loadingController: LoadingController, public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public navParams: NavParams, public keyboard:Keyboard) {
@@ -124,12 +128,31 @@ export class SettingsPage implements OnDestroy {
     
   }
 
+  logout() {
+    if(this.loggedIn) {
+      console.log("being logged out ()()()()ER()EW()RWE()()REW()");
+      this.afAuth.auth.signOut();
+    }
+    this.navCtrl.setRoot(SignInPage)
+  }
+
   ngOnDestroy() {
+    this.subscription3.unsubscribe();
   }
 
   ionViewDidLoad() {
 
     this.oldUser = this.username;
+
+    this.subscription3 = this.afAuth.authState.subscribe(data => {
+      if(data != null) {
+        if(data.email && data.uid) {
+          console.log("logged in");
+
+          this.loggedIn = true;
+        }
+      }
+    })
     
     setTimeout(() => {
       console.log('ionViewDidLoad SettingsPage');

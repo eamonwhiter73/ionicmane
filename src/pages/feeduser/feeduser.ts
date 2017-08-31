@@ -666,14 +666,16 @@ export class FeedUser implements OnDestroy {
     });
     this.subscription5 = this.prices.subscribe(items => items.forEach(item => {
 
-
-      console.log(JSON.stringify(item));
-      if(!item.picURL) {
-        item.picURL = 'assets/blankprof.png';
+      if(item.price == null) {
+        //
       }
-      this.pricesArray.push(item);
-
-
+      else {
+        console.log(JSON.stringify(item));
+        if(!item.picURL) {
+          item.picURL = 'assets/blankprof.png';
+        }
+        this.pricesArray.push(item);
+      }
 
     }));
 

@@ -21,7 +21,7 @@ import { ISubscription } from "rxjs/Subscription";
 @IonicPage()
 @Component({
   selector: 'page-postpage',
-  templateUrl: 'postpage.html',
+  templateUrl: 'postpage.html'
 })
 export class PostpagePage implements OnDestroy {
 	@ViewChild('imagey') image:ElementRef;

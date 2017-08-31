@@ -1,5 +1,5 @@
 import { Component, trigger, state, style, transition, animate, ViewChild, ViewChildren, QueryList, Renderer, ElementRef } from '@angular/core';
-import { NavController, App } from 'ionic-angular';
+import { NavController, App, Platform } from 'ionic-angular';
 import { LoadingController, ActionSheetController } from 'ionic-angular';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { PostpagePage } from '../postpage/postpage';
@@ -113,7 +113,7 @@ export class FeedStylist implements OnDestroy {
   private swipeTime?: number;
   private nav:NavController;
 
-  constructor(public af: AngularFireDatabase, public element: ElementRef, public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(public platform: Platform, public af: AngularFireDatabase, public element: ElementRef, public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
     this.nav = this.app.getActiveNav();
   }
 
@@ -219,7 +219,8 @@ export class FeedStylist implements OnDestroy {
           handler: () => {
             //let itemArrayTwo = this.profComponents.toArray();
             this.cameraServicePost.getMedia(this.optionsGetCamera).then((data) => {
-                this.navCtrl.push(PostpagePage, { path: data });
+              if(this.platform.is('ios'))
+                this.navCtrl.push(PostpagePage, { path: data }).then;
                 /*let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');
                 let loading = this.loadingController.create({content : "Loading..."});
                 loading.present();
