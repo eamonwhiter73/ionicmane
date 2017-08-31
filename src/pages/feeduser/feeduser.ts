@@ -158,16 +158,30 @@ export class FeedUser implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
-    this.subscription2.unsubscribe();
-    this.subscription3.unsubscribe();
-    this.subscription4.unsubscribe();
-    this.subscription5.unsubscribe();
+    if(this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
+    if(this.subscription2 != null) {
+      this.subscription2.unsubscribe();
+    }
+    if(this.subscription3 != null) {
+      this.subscription3.unsubscribe();
+    }
+    if(this.subscription4 != null) {
+      this.subscription4.unsubscribe();
+    }
+    if(this.subscription5 != null) {
+      this.subscription5.unsubscribe();
+    }
     if(this.subscription6 != null) {
       this.subscription6.unsubscribe();
     }
-    this.subscription7.unsubscribe();
-    this.subscription8.unsubscribe();
+    if(this.subscription7 != null) {
+      this.subscription7.unsubscribe();
+    }
+    if(this.subscription8 != null) {
+      this.subscription8.unsubscribe();
+    }
   } 
 
   pushPage(){
@@ -232,9 +246,10 @@ export class FeedUser implements OnDestroy {
       this.geolocation.getCurrentPosition().then((resp) => {
           // resp.coords.latitude
           rrr = resp;
+          console.log(rrr + "              rrrrrrrrrrrrrrrrrrrrrrrrrr");
 
-          setTimeout(()=> {
-            this.distancelist = this.af.list('/profiles');
+
+            this.distancelist = this.af.list('/profiles/stylists');
       
             let x = 0;
             this.subscription6 = this.distancelist.subscribe(items => items.forEach(item => {
@@ -243,10 +258,11 @@ export class FeedUser implements OnDestroy {
               let rr;
               console.log(JSON.stringify(item) + "               *((*&*&*&*&^&*&*&*(&*(&*&*(&(&(&*(              :::" + x);
               if(item.address == "") {
-                if(!item.picURL) {
+                /*if(!item.picURL) {
                   item.picURL = 'assets/blankprof.png';
-                }
-                arr.push({'pic':item.picURL, 'salon':item.username, 'distance':"No Address"});
+                }*/
+                //arr.push({'pic':item.picURL, 'salon':item.username, 'distance':"No Address"});
+                x++;
               }
               else {
                 console.log(item.address + " is the address empty??????");
@@ -260,19 +276,21 @@ export class FeedUser implements OnDestroy {
                       arr.push({'pic':item.picURL, 'salon':item.username, 'distance':rr});
 
                       x++;
-                      if(items.length - x == 0) {
+                      console.log(items.length + "         length   /    x:        " + x);
+                      if(items.length - x == 1) {
+                        console.log("getting resolved in geocoder ^&^&^&&^^&^&^&");
                         resolve(arr);
                       }
                     }).catch(e => {
                       console.log(JSON.stringify(e) + "            this is the caught error");
                       x++;
-                      if(items.length - x == 0) {
+                      if(items.length - x == 1) {
                         resolve(arr);
                       }
                     })
               }
             }));
-          }, 1500);
+ 
 
           
 
@@ -290,7 +308,7 @@ export class FeedUser implements OnDestroy {
   loadRatings(): Promise<any> {
     return new Promise((resolve, reject) => {
 
-      this.ratingslist = this.af.list('/profiles');
+      this.ratingslist = this.af.list('/profiles/stylists');
        
       let array = [];
       let x = 0;
@@ -640,7 +658,7 @@ export class FeedUser implements OnDestroy {
       this.items.reverse();          
     })
 
-    this.prices = this.af.list('/profiles', {
+    this.prices = this.af.list('/profiles/stylists', {
       query: {
         orderByChild: 'price'
       }
@@ -811,7 +829,7 @@ export class FeedUser implements OnDestroy {
           });
 
           this.distances = array.slice();
-        }, 1500);
+        }, 2000);
           
       })
   }

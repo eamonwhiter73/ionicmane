@@ -20,7 +20,7 @@ import { SettingsPage } from '../pages/settings/settings';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = StylistProfile;
+  rootPage:any = FeedUser;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
 

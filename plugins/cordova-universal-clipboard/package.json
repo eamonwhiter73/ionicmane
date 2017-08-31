@@ -1,0 +1,115 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "https://github.com/Visigo/CordovaClipboard.git",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "https://github.com/Visigo/CordovaClipboard.git",
+        "spec": "git+https://github.com/Visigo/CordovaClipboard.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:Visigo/CordovaClipboard.git",
+          "sshUrl": "git+ssh://git@github.com/Visigo/CordovaClipboard.git",
+          "httpsUrl": "git+https://github.com/Visigo/CordovaClipboard.git",
+          "gitUrl": "git://github.com/Visigo/CordovaClipboard.git",
+          "shortcut": "github:Visigo/CordovaClipboard",
+          "directUrl": "https://raw.githubusercontent.com/Visigo/CordovaClipboard/master/package.json"
+        }
+      },
+      "/Users/eamonwhite/ionicmane/myApp/node_modules"
+    ]
+  ],
+  "_from": "git+https://github.com/Visigo/CordovaClipboard.git",
+  "_id": "cordova-universal-clipboard@0.1.1",
+  "_inCache": true,
+  "_location": "/cordova-universal-clipboard",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "https://github.com/Visigo/CordovaClipboard.git",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "https://github.com/Visigo/CordovaClipboard.git",
+    "spec": "git+https://github.com/Visigo/CordovaClipboard.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:Visigo/CordovaClipboard.git",
+      "sshUrl": "git+ssh://git@github.com/Visigo/CordovaClipboard.git",
+      "httpsUrl": "git+https://github.com/Visigo/CordovaClipboard.git",
+      "gitUrl": "git://github.com/Visigo/CordovaClipboard.git",
+      "shortcut": "github:Visigo/CordovaClipboard",
+      "directUrl": "https://raw.githubusercontent.com/Visigo/CordovaClipboard/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/Visigo/CordovaClipboard.git#ec247e524aacdfc5f60c942e3b186f4f17a0f272",
+  "_shasum": "d8b8caac4489d7e3327fdf8b0412f00e0ffe1d55",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/Visigo/CordovaClipboard.git",
+  "_where": "/Users/eamonwhite/ionicmane/myApp/node_modules",
+  "author": {
+    "name": "Verso Solutions LLC"
+  },
+  "bugs": {
+    "url": "https://github.com/Visigo/CordovaClipboard/issues"
+  },
+  "contributors": [
+    {
+      "name": "Visigo Software Consulting Inc.",
+      "email": "info@visigo.com",
+      "url": "http://www.visigo.com/"
+    },
+    {
+      "name": "Ranvir Singh",
+      "email": "er.ranvirsingh@gmail.com",
+      "url": "https://in.linkedin.com/in/singhranvir"
+    }
+  ],
+  "cordova": {
+    "id": "cordova-universal-clipboard",
+    "platforms": [
+      "ios",
+      "android",
+      "wp8",
+      "windows"
+    ]
+  },
+  "dependencies": {},
+  "description": "Clipboard management plugin for Cordova/PhoneGap",
+  "devDependencies": {},
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "gitHead": "ec247e524aacdfc5f60c942e3b186f4f17a0f272",
+  "homepage": "https://github.com/Visigo/CordovaClipboard#readme",
+  "keywords": [
+    "cordova",
+    "clipboard",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android",
+    "cordova-wp8",
+    "cordova-windows8",
+    "cordova-windows"
+  ],
+  "license": "MIT",
+  "name": "cordova-universal-clipboard",
+  "optionalDependencies": {},
+  "readme": "Clipboard\n=========\n\nClipboard management plugin for Cordova/PhoneGap that supports iOS, Android, and Windows Phone 8/8.1/10.\n\n## Usage\n\nInstall the plugin using the CLI:\n\n\tcordova plugin add https://github.com/Visigo/CordovaClipboard\n\nThe plugin creates the object `cordova.plugins.clipboard` with the methods `copy(text, onSuccess, onError)` and `paste(onSuccess, onError)`.\n\nExample:\n\n\tvar text = \"Hello World!\";\n\n\tcordova.plugins.clipboard.copy(text);\n\n\tcordova.plugins.clipboard.paste(function (text) { alert(text); });\n\n## Notes\n\n### All platforms\n\n- The plugin only works with text content.\n\n### Windows Phone\n\n- The Windows Phone platform doesn't allow applications to read the content of the clipboard. Using the `paste` method will return an error.\n\n**Windows 10**\n \n- Platform capability for 'windows' added.\n\n### Android\n\n- The minimum supported API Level is 11. Make sure that `minSdkVersion` is larger or equal to 11 in `AndroidManifest.xml`.\n\n\n## License\n\nThe MIT License (MIT)\n\nCopyright (c) 2013-2015 Verso Solutions LLC and contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Visigo/CordovaClipboard.git"
+  },
+  "version": "0.1.1"
+}

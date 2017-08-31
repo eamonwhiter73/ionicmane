@@ -9,20 +9,23 @@
   <form (ngSubmit)="logForm()">
     <br>
     <ion-label stacked>Username</ion-label>
-  	<ion-input type="text" (keypress)="goButton($event.keyCode)" [(ngModel)]="user.username" name="username"></ion-input> <!--[(ngModel)]="user.username"-->
+  	<ion-input type="text" (keypress)="goButton($event.keyCode)" [(ngModel)]="user1.username" name="username"></ion-input> <!--[(ngModel)]="user.username"-->
   	<br>
     <ion-label stacked>Password</ion-label>
-    <ion-input type="text" (keypress)="goButton($event.keyCode)" [(ngModel)]="user.password" name="password"></ion-input>
+    <ion-input type="text" (keypress)="goButton($event.keyCode)" [(ngModel)]="user1.password" name="password"></ion-input>
     <br>
     <ion-label stacked>Email Address</ion-label>
-    <ion-input type="text" (keypress)="goButton($event.keyCode)" [(ngModel)]="user.email" name="email"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
+    <ion-input type="text" (keypress)="goButton($event.keyCode)" [(ngModel)]="user1.email" name="email"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
     <p class="or">or</p>
     <div class="oauth">
       <div class="fbimagecont">
-        <img src="img/facebook.png" (tap)="fbLogin(user)">
+        <img src="assets/facebook.png" (tap)="fbLogin(user)">
       </div>
       <div class="gimagecont">
-        <img src="img/google.png" (tap)="gLogin(user)">
+        <img src="assets/google.png" (tap)="gLogin(user)">
+      </div>
+      <div class="instacont">
+        <img src="assets/instagram.png" (tap)="instaLogin(user)">
       </div>
     </div>
     <div class="flex">
@@ -38,7 +41,7 @@
     <!--<br><br><br><br>-->
   </form>
   <div class="signincontainer" style="text-align: center;">
-    <button class="next" type="submit" ion-button round color="tertiary" (tap)="register(user)">Next</button>
+    <button class="next" type="submit" ion-button round color="tertiary" (tap)="register(user1)">Next</button>
   </div>
   <p>Already have an account? <a (click)="pushPage()">Sign In</a></p>
 </ion-content>

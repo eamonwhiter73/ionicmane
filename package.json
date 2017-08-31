@@ -39,6 +39,7 @@
         "@ionic-native/splash-screen": "3.12.1",
         "@ionic-native/status-bar": "3.12.1",
         "@ionic-native/transfer": "^3.14.0",
+        "@ionic/cloud-angular": "^0.12.0",
         "@ionic/storage": "^2.0.1",
         "ahdin": "^1.0.0",
         "angular-calendar": "^0.18.3",
@@ -46,6 +47,7 @@
         "blueimp-canvas-to-blob": "^3.9.0",
         "canvas-compress": "^1.1.5",
         "cordova-android": "^6.2.3",
+        "cordova-instagram-plugin": "^0.5.5",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-add-swift-support": "^1.7.0",
         "cordova-plugin-calendar": "^4.6.0",
@@ -60,6 +62,7 @@
         "cordova-plugin-file-transfer": "^1.6.3",
         "cordova-plugin-geolocation": "^2.4.3",
         "cordova-plugin-googleplus": "^5.1.1",
+        "cordova-plugin-inappbrowser": "^1.7.1",
         "cordova-plugin-nativegeocoder": "^2.0.2",
         "cordova-plugin-nativestorage": "^2.2.2",
         "cordova-plugin-request-location-accuracy": "^2.2.2",
@@ -67,6 +70,7 @@
         "cordova-plugin-statusbar": "2.2.2",
         "cordova-plugin-whitelist": "1.3.1",
         "cordova-sqlite-storage": "^2.0.4",
+        "cordova-universal-clipboard": "git+https://github.com/Visigo/CordovaClipboard.git",
         "cordova.plugins.diagnostic": "^3.6.6",
         "firebase": "^4.1.3",
         "imgcache.js": "^1.1.1",
@@ -145,7 +149,9 @@
             "cordova-plugin-googleplus": {
                 "REVERSED_CLIENT_ID": "com.googleusercontent.apps.446057524325-0ql2qp1ucson98thqaoqmj97puerjhen"
             },
-            "cordova-plugin-request-location-accuracy": {}
+            "cordova-plugin-request-location-accuracy": {},
+            "cordova-instagram-plugin": {},
+            "cordova-plugin-inappbrowser": {}
         },
         "platforms": [
             "android",

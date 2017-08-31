@@ -8,13 +8,12 @@ import { SettingsPage } from '../settings/settings';
 import { Keyboard } from '@ionic-native/keyboard';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { User } from '../../models/user';
+import { User1 } from '../../models/user';
 import { Storage } from '@ionic/storage';
 import { Facebook } from '@ionic-native/facebook';
 import firebase from 'firebase';
 import { ISubscription } from "rxjs/Subscription";
 import { GooglePlus } from '@ionic-native/google-plus';
-
 
 
 
@@ -27,7 +26,7 @@ export class SignUpPage implements OnDestroy {
   stylist: boolean;
   users: boolean;
   items: FirebaseListObservable<any>;
-  user = {} as User;
+  user1 = {} as User1;
   subscription: ISubscription;
 
   constructor(private googlePlus: GooglePlus, public facebook: Facebook, public storage: Storage, private afAuth: AngularFireAuth, public navCtrl: NavController, public keyboard: Keyboard, public af: AngularFireDatabase) {
@@ -35,12 +34,12 @@ export class SignUpPage implements OnDestroy {
     this.items.subscribe(items => items.forEach(item => { 
       console.log(item.$value);
     }));*/
-    this.storage.get('username').then((val) => {console.log(val + "        getting username")});
+    
   }
 
-  async register(userx: User){
+  async register(userx: User1){
     try {
-    if(userx.email && userx.password && this.user.username && (this.stylist || this.users)) {
+    if(userx.email && userx.password && userx.username && (this.stylist || this.users)) {
 
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(userx.email, userx.password);
       //console.log(result);
@@ -69,19 +68,25 @@ export class SignUpPage implements OnDestroy {
     if(this.users) {
       this.storage.set('type', 'user');
       profile.type = "user";
+
+      this.storage.set('usernameUSER', usery.username);
+      this.storage.set('passwordUSER', usery.password);
+      this.storage.set('emailUSER', usery.email);
     }
     else {
       this.storage.set('type', 'stylist');
       profile.type = "stylist";
+      console.log(JSON.stringify(usery) + "     : usery 55555555");
+      this.storage.set('username', usery.username);
+      this.storage.set('password', usery.password);
+      this.storage.set('email', usery.email);
     }
-
-    this.storage.set('username', usery.username);
-    this.storage.set('password', usery.password);
-    this.storage.set('email', usery.email);
 
     
 
-    this.items = this.af.list('/profiles/' + usery.username + '/');
+    
+
+    this.items = this.af.list('/profiles/stylists/' + usery.username + '/');
     this.subscription = this.items.subscribe(items => {
       console.log(JSON.stringify(items.$value) + "        this is the null");
       if(items.$value != null) {
@@ -123,19 +128,23 @@ export class SignUpPage implements OnDestroy {
     if(this.users) {
       this.storage.set('type', 'user');
       profile.type = "user";
+
+      this.storage.set('usernameUSER', usery.username);
+      this.storage.set('passwordUSER', usery.password);
+      this.storage.set('emailUSER', usery.email);
     }
     else {
       this.storage.set('type', 'stylist');
       profile.type = "stylist";
-    }
 
-    this.storage.set('username', usery.username);
-    this.storage.set('password', usery.password);
-    this.storage.set('email', email);
+      this.storage.set('username', usery.username);
+      this.storage.set('password', usery.password);
+      this.storage.set('email', usery.email);
+    }
 
     
 
-    this.items = this.af.list('/profiles/' + usery.username + '/');
+    this.items = this.af.list('/profiles/stylists/' + usery.username + '/');
     this.subscription = this.items.subscribe(items => {
       console.log(JSON.stringify(items.$value) + "        this is the null");
       if(items.$value != null) {
@@ -168,7 +177,7 @@ export class SignUpPage implements OnDestroy {
     // optional data can also be passed to the pushed page.
   }
 
-  fbLogin(userx: User): Promise<any> {
+  fbLogin(userx: User1): Promise<any> {
     if(userx.username == null || userx.password == null) {
       alert("Please enter a username and password");
     }
@@ -196,7 +205,7 @@ export class SignUpPage implements OnDestroy {
     }
   }
 
-  gLogin(userx: User) {
+  gLogin(userx: User1) {
     let bool = false;
     let email;
     if(userx.username == null || userx.password == null) {
@@ -223,8 +232,19 @@ export class SignUpPage implements OnDestroy {
       }
   }
 
+  instaLogin(userx: User1) {
+    let bool = false;
+    let email;
+    if(userx.username == null || userx.password == null) {
+      alert("Please enter a username and password");
+    }
+    else {
+      
+    }
+  }
+
   ionViewDidLoad() {
-    
+    //this.storage.get('username').then((val) => {console.log(val + "        getting username")});
   }
 
   pushPage(){

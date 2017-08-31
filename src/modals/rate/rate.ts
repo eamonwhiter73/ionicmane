@@ -172,7 +172,7 @@ export class Rate implements OnDestroy{
    let ratingObject;
 
      console.log(this.username + "       :::::IJOSDF:IJ:IJ:J I:IJ :::::           " + this.selected);
-     this.item = this.af.object('/profiles/'+this.username);
+     this.item = this.af.object('/profiles/stylists/'+this.username);
       this.item.subscribe(snapshot => {
         console.log(JSON.stringify(snapshot));
         let object = snapshot;

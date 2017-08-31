@@ -31635,6 +31635,12 @@ page-sign-up ion-content .fbimagecont {
   margin: 0px 10px 0px 10px;
 }
 
+page-sign-up ion-content .instacont {
+  max-width: 32px;
+  display: inline-block;
+  margin: 0px 10px 0px 10px;
+}
+
 page-sign-up ion-content .signup {
   text-align: center;
   color: #eb4359;

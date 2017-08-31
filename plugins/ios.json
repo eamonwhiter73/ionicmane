@@ -73,6 +73,12 @@
         },
         "cordova-plugin-request-location-accuracy": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-instagram-plugin": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     },
     "dependent_plugins": {
@@ -80,6 +86,9 @@
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
         "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-universal-clipboard": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     }

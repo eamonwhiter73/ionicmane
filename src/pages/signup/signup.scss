@@ -25,6 +25,12 @@ page-sign-up {
 			margin: 0px 10px 0px 10px;
 		}
 
+		.instacont {
+			max-width: 32px;
+			display: inline-block;
+			margin: 0px 10px 0px 10px;
+		}
+
 		.signup {
 			text-align: center;
 			color: map-get($colors, tertiary);

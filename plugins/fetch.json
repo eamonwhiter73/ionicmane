@@ -182,5 +182,29 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-instagram-plugin": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-instagram-plugin"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-universal-clipboard": {
+        "source": {
+            "type": "registry",
+            "id": "https://github.com/Visigo/CordovaClipboard.git"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inappbrowser@1.7.1"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

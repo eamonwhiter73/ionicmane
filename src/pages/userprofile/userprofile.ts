@@ -104,7 +104,7 @@ export class UserProfile implements OnDestroy {
   }
 
   followStylist() {
-      this.item = this.af.object('/profiles/' + this.username + '/followers');
+      this.item = this.af.object('/profiles/stylists/' + this.username + '/followers');
       this.subscription = this.item.subscribe(item => {
         if(item.$value == null) {
           let array = [];
@@ -136,7 +136,7 @@ export class UserProfile implements OnDestroy {
       this.userusername = val;
     })
     console.log(this.username + "         this is item @@#2332dfdffdfd23");
-    this.item2 = this.af.object('/profiles/' + this.username + '/followers');
+    this.item2 = this.af.object('/profiles/stylists/' + this.username + '/followers');
     this.item2.subscribe(item => {
 
       let bool = false;
@@ -166,7 +166,7 @@ export class UserProfile implements OnDestroy {
       this.profilePic = 'assets/blankprof.png';
     });
 
-    this.item9 = this.af.object('/profiles/' + this.username);
+    this.item9 = this.af.object('/profiles/stylists/' + this.username);
     this.subscription9 = this.item9.subscribe(item => {
       console.log(JSON.stringify(item) + "      rating number 989898222229889");
       let total = 0;
@@ -265,7 +265,7 @@ export class UserProfile implements OnDestroy {
   }
 
   getProfileInfo() {
-    this.item = this.af.object('https://mane-4152c.firebaseio.com/profiles/' + this.username);
+    this.item = this.af.object('https://mane-4152c.firebaseio.com/profiles/stylists/' + this.username);
     this.subscription6 = this.item.subscribe(item => {this.picURL = item.picURL; this.bio = item.bio;});
     
   }

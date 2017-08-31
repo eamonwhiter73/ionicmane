@@ -132,7 +132,7 @@ export class StylistProfile implements OnDestroy {
         
       });
 
-      this.item2 = this.af.object('/profiles/' + this.username + '/followers');
+      this.item2 = this.af.object('/profiles/stylists/' + this.username + '/followers');
       this.subscription5 = this.item2.subscribe(item => {
         console.log(JSON.stringify(item) + "      followers number 98989899889");
         if(Object.keys(item)[0] == '$value') {
@@ -143,7 +143,7 @@ export class StylistProfile implements OnDestroy {
         }
       });
 
-      this.item9 = this.af.object('/profiles/' + this.username);
+      this.item9 = this.af.object('/profiles/stylists/' + this.username);
       this.subscription9 = this.item9.subscribe(item => {
         console.log(JSON.stringify(item) + "      rating number 989898222229889");
         let total = 0;

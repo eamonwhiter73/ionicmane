@@ -90,6 +90,11 @@ export class SettingsPage implements OnDestroy {
   }
 
   logForm() {
+    
+    console.log("        ADDDDREESSSSS77777777:  " + this.address);  //moved up here!
+
+    this.x = 0;
+
     this.storage.set('username', this.username);
     this.storage.set('password', this.password);
     this.storage.set('email', this.email);
@@ -98,44 +103,23 @@ export class SettingsPage implements OnDestroy {
     this.storage.set('price', this.price);
     this.storage.set('picURL', this.picURL);
 
-    this.x = 0;
-
-    this.items = this.af.object('/profiles');
+    this.items = this.af.object('/profiles/stylists');
     if(this.username == this.oldUser) {
-        console.log(this.username + "      " + this.oldUser);  
-        this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                              'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL}});
-      }
-      else {
-        this.af.object('/profiles/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
-        this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                          'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
-      }
+      this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
+                            'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL}});
+    }
+    else {
+      this.af.object('/profiles/stylists/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
+      this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
+                        'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
+    }
 
-      this.navCtrl.setRoot(FeedStylist);
-    /*this.subscription = this.items.subscribe(items => {
-      console.log(JSON.stringify(items.$value));
-    
-        
-      
-    });*/
+
+
 
     
 
-    /*console.log(this.x);
-
-    setTimeout(() => {
-      if(this.x == 1) {
-        console.log("***** ipdate/remove");
-        this.items2 = this.af.list('/profiles');
-        this.subscription2 = this.items2.subscribe(items => {
-          this.items2.remove(this.oldUser).then(_ => console.log('item deleted!'));
-          this.items2.update(this.username, {'username': this.username, 'password': this.password, 'email': this.email,
-                            'address': this.address, 'bio': this.bio, 'price': this.price});
-        });
-      }
-    }, 1500)*/
-    
+    this.navCtrl.setRoot(FeedStylist);
 
     
   }
@@ -147,16 +131,18 @@ export class SettingsPage implements OnDestroy {
 
     this.oldUser = this.username;
     
-    console.log('ionViewDidLoad SettingsPage');
-    this.storage.get('username').then((val) => {this.username = val; console.log(val + "        getting username")});
-    this.storage.get('password').then((val) => {this.password = val; console.log(val + "        getting username")});
-    this.storage.get('email').then((val) => {this.email = val; console.log(val + "        getting username")});
-    this.storage.get('address').then((val) => {this.address = val; console.log(val + "        getting username")});
-    this.storage.get('bio').then((val) => {this.bio = val; console.log(val + "        getting username")});
-    this.storage.get('price').then((val) => {this.price = val; this.getProfilePic();});
-    this.storage.get('picURL').then((val) => {this.picURL = val; this.getProfilePic();});
-    
-    
+    setTimeout(() => {
+      console.log('ionViewDidLoad SettingsPage');
+      this.storage.get('username').then((val) => {this.username = val; console.log(val + "        getting username1111")});
+      this.storage.get('password').then((val) => {this.password = val; console.log(val + "        getting password222222")});
+      this.storage.get('email').then((val) => {this.email = val; console.log(val + "        getting email33333333")});
+      this.storage.get('address').then((val) => {this.address = val; console.log(val + "        getting addressssssss")});
+      this.storage.get('bio').then((val) => {this.bio = val; console.log(val + "        getting biooooooooo")});
+      this.storage.get('price').then((val) => {this.price = val; });
+      this.storage.get('picURL').then((val) => {this.picURL = val; });
+      this.getProfilePic();
+    }, 1000);
+
   }
 
   getProfilePic() {

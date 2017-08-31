@@ -51,6 +51,8 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { Auth } from '@ionic/cloud-angular';
+
 
 
 
@@ -145,7 +147,7 @@ firebase.initializeApp(firebaseConfig);
     NativeGeocoder,
     Geolocation,
     Diagnostic,
-    LocationAccuracy
+    LocationAccuracy,
   ]
 })
 export class AppModule {}
