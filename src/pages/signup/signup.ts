@@ -109,12 +109,16 @@ export class SignUpPage implements OnDestroy {
       else if(val == 'stylist' && this.stylist) {
         alert("You already have a stylist account");
       }
+      else if(val == 'user/stylist/user' || val == 'user/stylist/stylist') {
+        alert("You already have a user account and a stylist account")
+      }
       else {
         if(this.users) {
-          this.storage.set('type', 'user');
+          
+          
           profile.type = "user";
 
-          this.storage.set('usernameUSER', usery.username);
+          this.storage.set('username', usery.username);
           this.storage.set('password', usery.password);
           this.storage.set('email', usery.email);
 
@@ -130,9 +134,21 @@ export class SignUpPage implements OnDestroy {
               
             }
           });
+
+          this.items.update('/', profile);
+          if(val == 'stylist' || val == 'user/stylist/stylist') {
+            this.storage.set('type', 'user/stylist/user');
+            this.navCtrl.push(SettingsPage, {type: 'user/stylist/user'});
+          }
+          else {
+            this.storage.set('type', 'user');
+            this.navCtrl.push(SettingsPage, {type: 'user'});
+          }
+
+          
         }
-        else {
-          this.storage.set('type', 'stylist');
+        else if(this.stylist) {
+          
           profile.type = "stylist";
           console.log(JSON.stringify(usery) + "     : usery 55555555");
           this.storage.set('username', usery.username);
@@ -143,23 +159,23 @@ export class SignUpPage implements OnDestroy {
           this.subscription = this.items.subscribe(items => {
             console.log(JSON.stringify(items.$value) + "        this is the null");
             if(items.$value != null) {
-              
-              
+          
               alert("This username is taken");
             }
           });
-        }
 
-        if(this.users) {
-          this.items.update('/', profile);
-          this.navCtrl.setRoot(FeedUser);
-        }
-        else if(this.stylist) {
           console.log("in this.stylist choice")
           this.items.update('/', profile);
-          //this.navCtrl.setRoot(FeedStylist)
-          this.navCtrl.push(SettingsPage);
-        }
+
+          if(val == 'user' || val == 'user/stylist/user') {
+            this.storage.set('type', 'user/stylist/stylist');
+            this.navCtrl.push(SettingsPage, { type: 'user/stylist/stylist'});
+          }
+          else {
+            this.storage.set('type', 'stylist');
+            this.navCtrl.push(SettingsPage, { type: 'stylist'});
+          }
+        } 
         else {
           alert("You need to select User or Stylist.");
         }
@@ -292,6 +308,11 @@ export class SignUpPage implements OnDestroy {
 
 
   ionViewDidLoad() {
+
+    //TAKE OUT!!!!!!!!
+    //this.storage.set('email', '');
+    //this.storage.set('type', '');
+    //this.storage.set('password', '');
    
     this.subscription = this.afAuth.authState.subscribe(data => {
       if(data != null) {

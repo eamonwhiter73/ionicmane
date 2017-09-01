@@ -12,7 +12,7 @@
     </div>
   </div>
   <ion-navbar>
-    <ion-icon (tap)="goToProfile()" class='backk' name="arrow-back"></ion-icon>
+    <ion-icon (tap)="goToProfile()" class='backk' name="arrow-back" #arrowback></ion-icon>
   </ion-navbar>
 
 </ion-header>
@@ -31,11 +31,11 @@
   	<ion-label>Email</ion-label>
   	<ion-input type="text" (keypress)="goButton($event.keyCode)" [(ngModel)]="email" name="email"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
   </ion-item>
-  <ion-item no-padding class="sect">
+  <ion-item no-padding class="sect" #addressEl>
   	<ion-label>Salon Address</ion-label>
   	<ion-input type="text" (keypress)="goButton($event.keyCode)" placeholder="ex. 28 Jay St, Winston, NJ" [(ngModel)]="address" name="address"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
   </ion-item>
-  <ion-item no-padding class="sect">
+  <ion-item no-padding class="sect" #priceEl>
 
     <ion-label>Price Range</ion-label>
     <ion-select [(ngModel)]="price">
@@ -50,6 +50,6 @@
 
   <div id="savebutton">
     <button class="save" (tap)='logForm()' ion-button round color="primary">Save</button>
-    <button class="save" (tap)='logout()' ion-button round color="tertiary">Logout</button>
+    <button class="save" (tap)='logout()' ion-button round color="tertiary" #logoutbutton>Logout</button>
   </div>
 </ion-content>

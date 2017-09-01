@@ -12,6 +12,7 @@ import * as firebase from 'firebase/app';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { FeedStylist } from '../feedstylist/feedstylist';
+import { FeedUser } from '../feeduser/feeduser';
 import { SignInPage } from '../signin/signin';
 
 
@@ -39,6 +40,10 @@ import { SignInPage } from '../signin/signin';
 export class SettingsPage implements OnDestroy {
 	user = {};
   @ViewChild('profsquare') profilepic:ElementRef;
+  @ViewChild('addressEl') addressEl;
+  @ViewChild('priceEl') priceEl;
+  @ViewChild('arrowback') arrowBackEl;
+  @ViewChild('logoutbutton') logoutButton;
   username: string;
   password: string;
   email: string;
@@ -56,6 +61,8 @@ export class SettingsPage implements OnDestroy {
   x: number;
   priceRanges = ['$', '$$', '$$$', '$$$$', '$$$$$'];
   loggedIn = false;
+  typeparam;
+  type;
 
 
   constructor(public af: AngularFireDatabase, private afAuth: AngularFireAuth, public storage: Storage, public camera: Camera, public cameraService: CameraServiceProfile, public myrenderer: Renderer, public loadingController: LoadingController, public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public navParams: NavParams, public keyboard:Keyboard) {
@@ -102,28 +109,55 @@ export class SettingsPage implements OnDestroy {
     this.storage.set('username', this.username);
     this.storage.set('password', this.password);
     this.storage.set('email', this.email);
-    this.storage.set('address', this.address);
     this.storage.set('bio', this.bio);
-    this.storage.set('price', this.price);
     this.storage.set('picURL', this.picURL);
 
-    this.items = this.af.object('/profiles/stylists');
-    if(this.username == this.oldUser) {
-      this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                            'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL}});
-    }
-    else {
-      this.af.object('/profiles/stylists/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
-      this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                        'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
-    }
+    //this.storage.get('type').then((val) => {
+      if(this.type == 'stylist' || this.type == 'user/stylist/stylist') {
+        this.storage.set('address', this.address);
+        this.storage.set('price', this.price);
 
+        this.items = this.af.object('/profiles/stylists');
 
+        if(this.username == this.oldUser) {
+          this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
+                                'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL}});
 
+          this.navCtrl.setRoot(FeedStylist);
+        }
+        else {
+          this.af.object('/profiles/stylists/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
+          this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
+                            'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
+        
+          this.navCtrl.setRoot(FeedStylist);
+        }
+
+      }
+      if(this.type == 'user' || this.type == 'user/stylist/user') {
+        this.items = this.af.object('/profiles/users');
+
+        if(this.username == this.oldUser) {
+          this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
+                                'bio': this.bio, 'picURL': this.picURL}});
+
+          this.navCtrl.setRoot(FeedUser);
+        }
+        else {
+          this.af.object('/profiles/users/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
+          this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
+                             'bio': this.bio, 'picURL': this.picURL, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
+
+          this.navCtrl.setRoot(FeedUser);
+        }
+      };
+    //})
+    
+    
 
     
 
-    this.navCtrl.setRoot(FeedStylist);
+    
 
     
   }
@@ -141,31 +175,60 @@ export class SettingsPage implements OnDestroy {
   }
 
   ionViewDidLoad() {
+    this.typeparam = this.navParams.get('type');
 
-    this.oldUser = this.username;
+    this.storage.get('type').then((val) => {
+      this.type = val;
+      console.log(this.typeparam + '       this.typeparam       ');
+      console.log(this.logoutButton + '       this.typeparam       ');
 
-    this.subscription3 = this.afAuth.authState.subscribe(data => {
-      if(data != null) {
-        if(data.email && data.uid) {
-          console.log("logged in");
-
-          this.loggedIn = true;
+        if(this.typeparam == 'user' || this.typeparam == 'user/stylist/user') { 
+          this.myrenderer.setElementStyle(this.addressEl._elementRef.nativeElement, 'display', 'none');
+          this.myrenderer.setElementStyle(this.priceEl._elementRef.nativeElement, 'display', 'none');
+          this.myrenderer.setElementStyle(this.arrowBackEl.nativeElement, 'display', 'none');
+          this.myrenderer.setElementStyle(this.logoutButton._elementRef.nativeElement, 'display', 'none');
         }
-      }
-    })
-    
-    setTimeout(() => {
-      console.log('ionViewDidLoad SettingsPage');
-      this.storage.get('username').then((val) => {this.username = val; console.log(val + "        getting username1111")});
-      this.storage.get('password').then((val) => {this.password = val; console.log(val + "        getting password222222")});
-      this.storage.get('email').then((val) => {this.email = val; console.log(val + "        getting email33333333")});
-      this.storage.get('address').then((val) => {this.address = val; console.log(val + "        getting addressssssss")});
-      this.storage.get('bio').then((val) => {this.bio = val; console.log(val + "        getting biooooooooo")});
-      this.storage.get('price').then((val) => {this.price = val; });
-      this.storage.get('picURL').then((val) => {this.picURL = val; });
-      this.getProfilePic();
-    }, 1000);
+        else if(this.type == 'user/stylist/user') {
+          this.myrenderer.setElementStyle(this.addressEl._elementRef.nativeElement, 'display', 'none');
+          this.myrenderer.setElementStyle(this.priceEl._elementRef.nativeElement, 'display', 'none');
+        }
+        else if(this.typeparam == 'stylist') {
+          this.myrenderer.setElementStyle(this.arrowBackEl.nativeElement, 'display', 'none');
+          this.myrenderer.setElementStyle(this.logoutButton._elementRef.nativeElement, 'display', 'none');
+        }
 
+        this.oldUser = this.username;
+
+        this.subscription3 = this.afAuth.authState.subscribe(data => {
+          if(data != null) {
+            if(data.email && data.uid) {
+              console.log("logged in");
+
+              this.loggedIn = true;
+            }
+          }
+        })
+        
+        setTimeout(() => {
+          console.log('ionViewDidLoad SettingsPage');
+
+          this.storage.get('username').then((val) => {this.username = val; this.getProfilePic(); console.log(val + "        getting username          3333222222")});
+          this.storage.get('password').then((val) => {this.password = val; console.log(val + "        getting password222222")});
+          this.storage.get('email').then((val) => {this.email = val; console.log(val + "        getting email33333333")});
+          this.storage.get('bio').then((val) => {this.bio = val; console.log(val + "        getting biooooooooo")});
+          this.storage.get('picURL').then((val) => {this.picURL = val; });
+          
+          if(this.type == 'stylist' || this.type == 'user/stylist/stylist') {
+            this.storage.get('address').then((val) => {this.address = val; console.log(val + "        getting addressssssss")});
+            this.storage.get('price').then((val) => {this.price = val; });
+          }
+          
+          
+        }, 1000);
+
+    })
+
+    
   }
 
   getProfilePic() {
@@ -201,20 +264,29 @@ export class SettingsPage implements OnDestroy {
         {
           text: 'Camera',
           handler: () => {
-            this.cameraService.getMedia(this.optionsGetCamera, null).then(() => {
+            
+            this.cameraService.getMedia(this.optionsGetCamera, null, this.username).then(() => {
+              let loading = this.loadingController.create({content : "Loading..."});
+              loading.present();
               return new Promise((resolve, reject) => {
-                let storageRef = firebase.storage().ref().child('/settings/' + this.username + '/profilepicture.png');
-                let loading = this.loadingController.create({content : "Loading..."});
-                loading.present();
+                
                 setTimeout(() => {
+                let storageRef = firebase.storage().ref().child('/settings/' + this.username + '/profilepicture.png');
+                
                   storageRef.getDownloadURL().then(url => {
                     console.log(url);
                     this.picURL = url;
                     this.myrenderer.setElementAttribute(this.profilepic.nativeElement, 'src', url);
+                    loading.dismiss();
+                    resolve();
+                  }).catch((e) => {
+                    alert("Something went wrong with the upload, please try again.");
+                    loading.dismiss();
                     resolve();
                   });
+
                   loading.dismiss();
-                }, 3000);
+                }, 3500);
               });
             }); //pass in square choice
             //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
@@ -223,23 +295,29 @@ export class SettingsPage implements OnDestroy {
         },{
           text: 'Photo Library',
           handler: () => {
-
-            this.cameraService.getMedia(this.optionsGetMedia, null).then(() => {
+            
+            this.cameraService.getMedia(this.optionsGetMedia, null, this.username).then(() => {
+              let loading = this.loadingController.create({content : "Loading..."});
+              loading.present();
               return new Promise((resolve, reject) => {
+                
                 setTimeout(() => {
-                  let storageRef = firebase.storage().ref().child('/settings/' + this.username + '/profilepicture.png');
-                  let loading = this.loadingController.create({content : "Loading..."});
-                  loading.present();
-                  
+                let storageRef = firebase.storage().ref().child('/settings/' + this.username + '/profilepicture.png');
+                
                   storageRef.getDownloadURL().then(url => {
                     console.log(url);
                     this.picURL = url;
                     this.myrenderer.setElementAttribute(this.profilepic.nativeElement, 'src', url);
                     loading.dismiss();
                     resolve();
+                  }).catch((e) => {
+                    alert("Something went wrong with the upload, please try again.");
+                    loading.dismiss();
+                    resolve();
                   });
-                  
-                }, 3000);
+
+                  loading.dismiss();
+                }, 3500);
               });
             });
           }

@@ -15,9 +15,10 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class CameraServiceProfile {
   username: string;  
+  dataURL;
   constructor(public storage: Storage, public transfer: Transfer, public http: Http, public platform: Platform, public camera: Camera, public crop: Crop, public file: File) {
     this.http = http;
-    this.storage.get('username').then((val) => {this.username = val; console.log(val + "        getting username")});
+    
     //console.log(JSON.stringify(compress));
   }
 
@@ -182,7 +183,8 @@ export class CameraServiceProfile {
   };
 
   // Return a promise to catch errors while loading image
-  getMedia(options, square): Promise<any> {
+  getMedia(options, square, username): Promise<any> {
+    //this.storage.get('username').then((val) => {this.username = val; console.log(this.username + "        getting usern34433245555555ame")});
 
     // Get Image from ionic-native's built in camera plugin
     return this.camera.getPicture(options)
@@ -204,71 +206,53 @@ export class CameraServiceProfile {
       .then(newPath => {
         console.log(newPath);
         if(newPath) {
-        let fileName = newPath.substring(newPath.lastIndexOf("/") + 1, newPath.length);
-        let filePath = newPath.substring(0, newPath.lastIndexOf("/"));
-        this.file.readAsDataURL(filePath, fileName).then(data =>{
-          //let strImage = data.replace(/^data:image\/[a-z]+;base64,/, "");
-          //this.file.writeFile(this.file.tempDirectory, "image.jpg", strImage);
-          //let blob = dataURItoBlob(data);
+          let fileName = newPath.substring(newPath.lastIndexOf("/") + 1, newPath.length);
+          let filePath = newPath.substring(0, newPath.lastIndexOf("/"));
+          this.file.readAsDataURL(filePath, fileName).then(data => {
+            //let strImage = data.replace(/^data:image\/[a-z]+;base64,/, "");
+            //this.file.writeFile(this.file.tempDirectory, "image.jpg", strImage);
+            //let blob = dataURItoBlob(data);
+            var dataURL = data;
 
-          //let file
+            console.log(username + "    this is passed usernameeeeeeeeee    ==");
 
-          //this.getFileEntryRead(this.file.tempDirectory + '/image.jpg', square);
-          var dataURL = data;
+              let image       : string  = 'profilepicture.png',
+              storageRef  : any,
+              parseUpload : any;
 
-          let image       : string  = 'profilepicture.png',
-            storageRef  : any,
-            parseUpload : any;
+              return new Promise((resolve, reject) => {
+                storageRef       = firebase.storage().ref('/settings/' + username + '/' + image);
+                parseUpload      = storageRef.putString(dataURL, 'data_url');
 
-          return new Promise((resolve, reject) => {
-            storageRef       = firebase.storage().ref('/settings/' + this.username + '/' + image);
-            parseUpload      = storageRef.putString(dataURL, 'data_url');
+                console.log(username + "     username in promise  !!!!!!");
 
-            parseUpload.on('state_changed', (_snapshot) => {
-                // We could log the progress here IF necessary
-                console.log('snapshot progess ' + _snapshot);
-              },
-              (_err) => {
-                 reject(_err);
-                 console.log(_err.messsage);
-              },
-              (success) => {
-                 resolve(parseUpload.snapshot); 
-              })
-            }).then(value => {
-              //this.af.list('/profile/' + self.username).push({ pic: image });
-            }).catch(function(error) {
-              console.log(error.message);
-            });
-
-          
-        })
-        }
-        
-        /*let source_img = new Image(300, 300);
-
-        source_img.src = newPath;
-        //(NOTE: see the examples/js/demo.js file to understand how this object could be a local image 
-        //from your filesystem using the File API)
-
-        //An Integer from 0 to 100
-        let quality =  50,
-        // output file format (jpg || png)
-        output_format = 'jpg', 
-        //This function returns an Image Object 
-        snuffle = new Image(300, 300);
-        console.log(JSON.stringify(jic));*/
-        //snuffle.src = jic.compress(source_img,quality,output_format).src;
-
-        //console.log(snuffle.src);
-
-        //this.getFileEntryRead(newPath, square);
-        //return newPath;
-      });
-
-      
+                console.log("got to storageref after");
+                parseUpload.on('state_changed', (_snapshot) => {
+                    // We could log the progress here IF necessary
+                    console.log('snapshot progess ' + _snapshot);
+                    for(let r in _snapshot) {
+                      console.log(r + '           snapshot 6666665555555');
+                    }
+                  },
+                  (_err) => {
+                     reject(_err);
+                     console.log(_err.messsage);
+                  },
+                  (success) => {
+                    console.log(' was     a      suc    cesssssss');
+                     resolve(parseUpload.snapshot); 
+                  })
+                }).then(value => {
+                  //this.af.list('/profile/' + self.username).push({ pic: image });
+                }).catch(function(error) {
+                  console.log(error.message);
+                });
+            
+            //let file
+           });
+          }
+        });
+ 
   }
 
-  //mAKE ANOTHER FUNCTION that
-  
 }   
