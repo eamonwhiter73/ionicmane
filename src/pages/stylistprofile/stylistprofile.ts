@@ -213,38 +213,13 @@ export class StylistProfile implements OnDestroy {
           if(this.selectedDate.getDate() == da.getDate() && this.selectedDate.getMonth() == da.getMonth()) {
             console.log("selected = item");
             console.log(JSON.stringify(item.reserved) + "         item resesrved above");
-            //for(let m = 0; m < item.reserved.length; m++) {
-            //for(let r of item.reserved) {
-              //console.log(JSON.stringify(r));
+
               this.times = item.reserved.appointment.slice(0);
               console.log('hit appointment');
-              //count++;
-              /*for(let x of this.times) {
-                if(x.time == r) {
-                  console.log('change selected');
-                  x.selected = true;
-                }
-              }*/
-            //}
+
           }
 
-          /*let da = new Date(item.date.day*1000);
-          if(this.viewDate.getDate() == da.getDate() && this.viewDate.getMonth() == da.getMonth()) {
-            console.log("selected = item");
-            let count = 0;
-            console.log(JSON.stringify(item.reserved) + "         item resesrved");
-            for(let r in item.reserved) {
-              this.times[count].selected = r[count].selected;
-              console.log('hit appointment');
-              count++;
-              /*for(let x of this.times) {
-                if(x.time == r) {
-                  console.log('change selected');
-                  x.selected = true;
-                }
-              }*/
-            /*}
-          }*/
+
           for(let item of this.tds) {
             if(!item.classList.contains('text-muted')) {
               console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);

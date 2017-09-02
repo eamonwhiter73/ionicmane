@@ -18,9 +18,9 @@ export class SignInPage {
   users: boolean;
   user = {} as User1;
   stylistemail;
-  useremail;
-  stylistpassword;
-  userpassword;
+  email;
+  password;
+  type;
 
   constructor(public storage: Storage, private afAuth: AngularFireAuth, public keyboard: Keyboard, public navCtrl: NavController) {
 
@@ -28,19 +28,15 @@ export class SignInPage {
 
   ionViewDidLoad() {
     this.storage.get('email').then((val) => {
-      this.stylistemail = val;
+      this.email = val;
     });
 
     this.storage.get('password').then((val) => {
-      this.stylistpassword = val;
+      this.password = val;
     })
 
-    this.storage.get('emailUSER').then((val) => {
-      this.useremail = val;
-    })
-
-    this.storage.get('passwordUSER').then((val) => {
-      this.userpassword = val;
+    this.storage.get('type').then((val) => {
+      this.type = val;
     })
   }
 
@@ -72,24 +68,29 @@ export class SignInPage {
     if(!userx.email || !userx.password) {
       alert("You need to enter an email and password");
     }
-    else if(userx.email === this.stylistemail && userx.password === this.stylistpassword) { //|| ()) {
-      const result = this.afAuth.auth.signInWithEmailAndPassword(userx.email, userx.password).then((data) => {
-        console.log(data);
-        if(data.email && data.uid) {
-            this.navCtrl.push(FeedStylist);
-        }
-      });
+    else if(this.stylist && this.type == 'user') {
+      alert("You do not have a stylist account, you can add one using the signup page");
     }
-    else if(userx.email === this.useremail && userx.password === this.userpassword) {
-      const result = this.afAuth.auth.signInWithEmailAndPassword(userx.email, userx.password).then((data) => {
-        console.log(data);
-        if(data.email && data.uid) {
-            this.navCtrl.push(FeedUser);
-        }
-      });
+    else if(this.users && this.type == 'stylist') {
+      alert("You do not have a user account, you can add one using the signup page");
+    }
+    else if(!this.users && !this.stylist) {
+      alert('You need to select "Hair Stylist" or "User"');
     }
     else {
-      alert("Your username or password is incorrect");
+      const result = this.afAuth.auth.signInWithEmailAndPassword(userx.email, userx.password).then((data) => {
+        console.log(data);
+        if(data.email && data.uid) {
+          if(this.stylist) {
+            this.storage.set('type', 'user/stylist/stylist');
+            this.navCtrl.setRoot(FeedStylist);
+          }
+          else {
+            this.storage.set('type', 'user/stylist/user');
+            this.navCtrl.setRoot(FeedUser);
+          }
+        }
+      }).catch((e) => {"The username or password is incorrect"});
     }
   }
 
