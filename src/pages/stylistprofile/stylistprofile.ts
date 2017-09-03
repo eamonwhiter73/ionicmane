@@ -128,9 +128,7 @@ export class StylistProfile implements OnDestroy {
       this.username = val;
       console.log(val);
 
-      this.downloadImages().then(() => {
-        
-      });
+      this.downloadImages();
 
       this.item2 = this.af.object('/profiles/stylists/' + this.username + '/followers');
       this.subscription5 = this.item2.subscribe(item => {
@@ -435,7 +433,7 @@ export class StylistProfile implements OnDestroy {
     this.backToFeed();
   }
 
-  downloadImages():Promise<any> {
+  downloadImages() {
     let self = this;
     let promises_array:Array<any> = [];
     let itemArrayTwo = this.profComponents.toArray();
@@ -465,7 +463,7 @@ export class StylistProfile implements OnDestroy {
       //}));
     }
 
-    return Promise.all(promises_array);
+    //return Promise.all(promises_array);
   }
 
   //changed this***

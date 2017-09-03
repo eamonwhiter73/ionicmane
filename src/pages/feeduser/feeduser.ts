@@ -239,11 +239,11 @@ export class FeedUser implements OnDestroy {
     return roundedTempNumber / factor;
   };
 
-  loadDistances(): Promise<any> {
-    return new Promise((resolve, reject) => {
+  loadDistances()/*: Promise<any>*/ {
+    //return new Promise((resolve, reject) => {
       let rrr;
       let arr = [];
-      this.geolocation.getCurrentPosition().then((resp) => {
+      this.geolocation.getCurrentPosition().then((resp) => {            
           // resp.coords.latitude
           rrr = resp;
           console.log(rrr + "              rrrrrrrrrrrrrrrrrrrrrrrrrr");
@@ -252,54 +252,72 @@ export class FeedUser implements OnDestroy {
             this.distancelist = this.af.list('/profiles/stylists');
       
             let x = 0;
-            this.subscription6 = this.distancelist.subscribe(items => items.forEach(item => {
+            this.subscription6 = this.distancelist.subscribe(items => {
 
+              let mapped = items.map((item) => {
+                return new Promise(resolve => {
+                  let rr;
+                  //console.log(JSON.stringify(item) + "               *((*&*&*&*&^&*&*&*(&*(&*&*(&(&(&*(              :::" + x);
+                  if(item.address == "") {
+                    /*if(!item.picURL) {
+                      item.picURL = 'assets/blankprof.png';
+                    }*/
+                    //arr.push({'pic':item.picURL, 'salon':item.username, 'distance':"No Address"});
+                    //x++;
+                    resolve();
+                  }
+                  else {
+                    console.log(item.address + " is the address empty??????");
+                    this.nativeGeocoder.forwardGeocode(item.address)
+                      .then((coordinates: NativeGeocoderForwardResult) => {
+                        console.log("I AM IN THE GEOCODING ***&&*&*&*&*");
+                          rr = this.round(this.distance(coordinates.latitude, coordinates.longitude, rrr.coords.latitude, rrr.coords.longitude, "M"), 1);
+                          if(!item.picURL) {
+                            item.picURL = 'assets/blankprof.png';
+                          }
+                          arr.push({'pic':item.picURL, 'salon':item.username, 'distance':rr});
+                          console.log("push to the array of results");
+                          //x++;
+                          /*console.log(items.length + "         length   /    x:        " + x);
+                          if(items.length - x == 1) {
+                            console.log("getting resolved in geocoder ^&^&^&&^^&^&^&");
+                            resolve(arr);
+                          }*/
+                          resolve();
+                        }).catch(e => {
+                          console.log(e.message + " caught this error");
+                          /*x++;
+                          if(items.length - x == 1) {
+                            resolve(arr);
+                          }*/
+                          resolve();
+                        })
+                  }
+              
+                })
+              });
 
-              let rr;
-              console.log(JSON.stringify(item) + "               *((*&*&*&*&^&*&*&*(&*(&*&*(&(&(&*(              :::" + x);
-              if(item.address == "") {
-                /*if(!item.picURL) {
-                  item.picURL = 'assets/blankprof.png';
-                }*/
-                //arr.push({'pic':item.picURL, 'salon':item.username, 'distance':"No Address"});
-                x++;
-              }
-              else {
-                console.log(item.address + " is the address empty??????");
-                this.nativeGeocoder.forwardGeocode(item.address)
-                  .then((coordinates: NativeGeocoderForwardResult) => {
-                    console.log("I AM IN THE GEOCODING ***&&*&*&*&*");
-                      rr = this.round(this.distance(coordinates.latitude, coordinates.longitude, rrr.coords.latitude, rrr.coords.longitude, "M"), 1);
-                      if(!item.picURL) {
-                        item.picURL = 'assets/blankprof.png';
-                      }
-                      arr.push({'pic':item.picURL, 'salon':item.username, 'distance':rr});
+              let results = Promise.all(mapped);
+              results.then(() => {
+                console.log(JSON.stringify(arr) + " :FOSIEJO:SFJ::EFIJSEFIJS:EFJS:IO THIS IODIOSJ:FDSIJ :DIS");
+                arr.sort(function(a,b) {
+                  return a.distance - b.distance;
+                });
 
-                      x++;
-                      console.log(items.length + "         length   /    x:        " + x);
-                      if(items.length - x == 1) {
-                        console.log("getting resolved in geocoder ^&^&^&&^^&^&^&");
-                        resolve(arr);
-                      }
-                    }).catch(e => {
-                      console.log(JSON.stringify(e) + "            this is the caught error");
-                      x++;
-                      if(items.length - x == 1) {
-                        resolve(arr);
-                      }
-                    })
-              }
-            }));
+                this.distances = arr.slice();
+              })
+              
+            });//);
           }, 1500)
  
 
           
 
-      }).catch((error) => {
+      /*}).catch((error) => {
         this.diagnostic.switchToLocationSettings();
         console.log('Error getting location', error.message);
         resolve();
-      });
+      });*/
 
     });
 
@@ -821,20 +839,16 @@ export class FeedUser implements OnDestroy {
           });
         })
 
-      this.loadDistances().then(array => {
+        this.loadDistances();/*.then(array => {
         setTimeout(() => {
           console.log(JSON.stringify(array) + " :FOSIEJO:SFJ::EFIJSEFIJS:EFJS:IO THIS IODIOSJ:FDSIJ :DIS");
           //
             
           //}, 1000)
-          array.sort(function(a,b) {
-            return a.distance - b.distance;
-          });
-
-          this.distances = array.slice();
-        }, 2000);
           
-      })
+        }, 2000);*/
+          
+      //})
   }
 
   doInfinite(infiniteScroll) {
