@@ -395,9 +395,15 @@ export class BookingPage implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
-    this.subscription2.unsubscribe();
-    this.subscription3.unsubscribe();
+    if(this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
+    if(this.subscription2 != null) {
+      this.subscription2.unsubscribe();
+    }
+    if(this.subscription3 != null) {
+      this.subscription3.unsubscribe();
+    }
   } 
 
   reloadSource(startTime, endTime) {

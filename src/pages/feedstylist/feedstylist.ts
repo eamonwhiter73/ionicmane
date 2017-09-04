@@ -219,8 +219,7 @@ export class FeedStylist implements OnDestroy {
           handler: () => {
             //let itemArrayTwo = this.profComponents.toArray();
             this.cameraServicePost.getMedia(this.optionsGetCamera).then((data) => {
-              if(this.platform.is('ios'))
-                this.navCtrl.push(PostpagePage, { path: data }).then;
+                this.navCtrl.push(PostpagePage, { path: data });
                 /*let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');
                 let loading = this.loadingController.create({content : "Loading..."});
                 loading.present();

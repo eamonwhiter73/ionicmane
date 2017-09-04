@@ -24,6 +24,16 @@ page-feed-user {
   	
   }
 
+  .noavail {
+		position: absolute;
+		top: 40%;
+		color: gray;
+		font-size: 8vw;
+		width: 100%;
+		text-align: center;
+		display: block;
+	}
+
   .imageparent {
   	
     
@@ -142,6 +152,7 @@ page-feed-user {
 	.contentone {
 		position: relative;
 		width: 100%;
+		z-index: 2;
 	}
 
 	ion-img {

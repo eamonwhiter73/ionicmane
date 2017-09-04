@@ -248,7 +248,7 @@ export class FeedUser implements OnDestroy {
           rrr = resp;
           console.log(rrr + "              rrrrrrrrrrrrrrrrrrrrrrrrrr");
 
-          setTimeout(() => {
+          //setTimeout(() => {
             this.distancelist = this.af.list('/profiles/stylists');
       
             let x = 0;
@@ -308,7 +308,7 @@ export class FeedUser implements OnDestroy {
               })
               
             });//);
-          }, 1500)
+          //}, 1500)
  
 
           
