@@ -1,0 +1,135 @@
+<ion-header (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
+  <ion-toolbar>
+    <ion-title>@{{username}}</ion-title>
+
+    <div class="settingscontainer">
+    	<ion-icon class="settings" name="settings" (tap)="goToSettings()"></ion-icon>
+    </div>
+  </ion-toolbar>
+    <!--<div class="stylistview">
+	    <button class="stylistviewbutton" ion-button color="secondary">Stylist View</button>
+	  </div>-->
+</ion-header>
+
+<ion-content no-padding>
+<div (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
+	<ion-item no-padding no-lines class="itemforprofile">
+		<div class="imageparent">
+		  <img class="postprofilepic" src="{{profilePic}}">
+		</div>
+	    <div class="rateandsocial">
+		    <!--<div class='ratecontain'>
+			    <div class='stars'>{{stars}}</div>
+			    <div class='ratings'>({{totalRatings}} ratings)</div>
+			</div>-->
+		    <div class="social">
+				<div class="fb inlineblock">
+					<img src="img/facebook.png">
+				</div>
+				<div class="insta inlineblock">
+		  			<img src="img/instagram.png">
+				</div>
+			</div>
+		</div>
+	  	<div class="setlocationbox" >
+	    	<button class="" (tap)="setLocation()" ion-button color="tertiary">Set Location</button>
+	  	</div>
+	  	<div class='location' #locationlisted>School St, Dedham</div> <!--{{thoroughfare}}, {{locality}}-->
+	  	<div class='stylistsect'>
+			<div class="name">{{username}}</div>
+			<div class="bio">{{bio}}</div>
+		</div>
+		<!--<calendar (tap)='moveCover()' class='cal' [eventSource]="eventSource"
+	      [calendarMode]="calendar.mode"
+	      [currentDate]="calendar.currentDate"
+	      (onCurrentDateChanged)="onCurrentDateChanged($event)"
+	      (onRangeChanged)="reloadSource(startTime, endTime)"
+	      (onEventSelected)="onEventSelected($event)"
+	      (onTitleChanged)="onViewTitleChanged($event)"
+	      (onTimeSelected)="onTimeSelected($event)"
+	      step="30">
+	    </calendar>-->
+	</ion-item>
+	<ion-grid>
+	  <ion-row>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(1)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+		    <div class="xclass" #xclass (tap)="removePic(1)">&#10005;</div>
+	      	<img  (tap)="presentImage(1)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(2)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+		    <div class="xclass" #xclass (tap)="removePic(2)">&#10005;</div>
+	      <img  (tap)="presentImage(2)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(3)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+		    <div class="xclass" #xclass (tap)="removePic(3)">&#10005;</div>
+	      <img  (tap)="presentImage(3)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	  </ion-row>
+	  <ion-row>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(4)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+		    <div class="xclass" #xclass (tap)="removePic(4)">&#10005;</div>
+	      <img  (tap)="presentImage(4)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(5)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+		    <div class="xclass" #xclass (tap)="removePic(5)">&#10005;</div>
+	      <img  (tap)="presentImage(5)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(6)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+		    <div class="xclass" #xclass (tap)="removePic(6)">&#10005;</div>
+	      <img  (tap)="presentImage(6)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	  </ion-row>
+	  <ion-row>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(7)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+		    <div class="xclass" #xclass (tap)="removePic(7)">&#10005;</div>
+	      <img  (tap)="presentImage(7)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	    <ion-col>
+	    	<div #pluscontain (tap)="openCamera(8)"class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+		    <div class="xclass" #xclass (tap)="removePic(8)">&#10005;</div>
+	      <img  (tap)="presentImage(8)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	    <ion-col>
+	    	<div #pluscontain  (tap)="openCamera(9)" class='pluscontainer'>
+		      <ion-icon class='plussy' name="add"></ion-icon>
+		    </div>
+		    <div class="xclass" #xclass (tap)="removePic(9)">&#10005;</div>
+	      <img  (tap)="presentImage(9)" class="imagesquare" #profsquare [src]="">
+	    </ion-col>
+	  </ion-row>
+	</ion-grid>
+</div>
+
+<!--<ion-fab bottom center >
+  <button ion-fab></button>
+  <ion-fab-list side="right">
+    <button class="textsizebutton" (tap)='tappedPost()' ion-fab>Post</button>
+  </ion-fab-list>
+  <ion-fab-list side="left">
+    <button class="textsizebutton" (tap)='tappedEmergency()' ion-fab><ion-icon name="alarm"></ion-icon></button>
+  </ion-fab-list>
+</ion-fab>-->
+</ion-content>

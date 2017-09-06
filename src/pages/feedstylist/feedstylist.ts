@@ -4,6 +4,9 @@ import { LoadingController, ActionSheetController } from 'ionic-angular';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { PostpagePage } from '../postpage/postpage';
 import { FeedUser } from '../feeduser/feeduser';
+import { UserProfile } from '../userprofile/userprofile';
+import { Storage } from '@ionic/storage';
+
 
 import { BookingPage } from '../booking/booking';
 
@@ -76,16 +79,20 @@ export class FeedStylist implements OnDestroy {
   @ViewChild('contentone') contentOne:ElementRef;
   @ViewChild('classeslist') classeslist:ElementRef;
   @ViewChild('productslist') productslist:ElementRef;
+  @ViewChildren('feedtoptwo') feedTopTwoComponents:QueryList<any>;
+
 
   @ViewChildren('feedstyle2') components2:QueryList<any>;
   @ViewChildren('flex2') flexComponents2:QueryList<any>;
   @ViewChildren('feedtop2') feedComponents2:QueryList<any>;
+  @ViewChildren('feedtop2two') feedTop22Components:QueryList<any>;
   @ViewChildren('imagepost2') imageComponents2:QueryList<any>;
   @ViewChildren('caption2') captionComponents2:QueryList<any>;
 
   @ViewChildren('feedstyle3') components3:QueryList<any>;
   @ViewChildren('flex3') flexComponents3:QueryList<any>;
   @ViewChildren('feedtop3') feedComponents3:QueryList<any>;
+  @ViewChildren('feedtop3two') feedTop32Components:QueryList<any>;
   @ViewChildren('imagepost3') imageComponents3:QueryList<any>;
   @ViewChildren('caption3') captionComponents3:QueryList<any>;
 
@@ -107,13 +114,14 @@ export class FeedStylist implements OnDestroy {
   subscription4: ISubscription;
   subscription5: ISubscription;
 
+
   
 
   private swipeCoord?: [number, number];
   private swipeTime?: number;
   private nav:NavController;
 
-  constructor(public platform: Platform, public af: AngularFireDatabase, public element: ElementRef, public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(public storage: Storage, public platform: Platform, public af: AngularFireDatabase, public element: ElementRef, public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
     this.nav = this.app.getActiveNav();
   }
 
@@ -144,6 +152,10 @@ export class FeedStylist implements OnDestroy {
     // causing the nav controller to transition to the new page
     // optional data can also be passed to the pushed page.
     //this.navCtrl.push(SignUpPage);
+  }
+
+  goSeeProfile(item) {
+    this.navCtrl.push(UserProfile, {username:item.username});
   }
 
   tappedPost() {
@@ -340,14 +352,9 @@ export class FeedStylist implements OnDestroy {
     this.myrenderer.setElementStyle(this.productslist.nativeElement, 'display', 'none');
     
     
-    //this.classesHolder = this.element.nativeElement.querySelector('classeslist');
-
-    /*this.el = document.getElementById('iontoolbar');
-  
-    this.el.addEventListener('click', function() {
-      this.downState = (this.downState == 'notDown') ? 'down' : 'notDown';
-      console.log("this.downState" + this.downState);
-    })*/
+    this.storage.get('username').then((val) => {
+      //this.username = val;
+    })
   }
 
   ionViewWillLeave() {
@@ -362,6 +369,7 @@ export class FeedStylist implements OnDestroy {
     console.log("in contract item 8*****");
     let flexArray = this.flexComponents.toArray();
     let feedArray = this.feedComponents.toArray();
+    let feedArray2 = this.feedTopTwoComponents.toArray();
     let itemArray = this.components.toArray();
     let imageComps = this.imageComponents.toArray();
     let captionComps = this.captionComponents.toArray();
@@ -370,6 +378,7 @@ export class FeedStylist implements OnDestroy {
     this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'flex');
     this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'padding', '4px 4px 0px 4px');
     this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(feedArray2[item].nativeElement, 'display', 'none');
     //flexArray[item].nativeElement.style = 'display: none';
     //feedArray[item].nativeElement.style = 'display: flex';
     this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'none');
@@ -386,6 +395,7 @@ export class FeedStylist implements OnDestroy {
   contractItem2(item) {
     let flexArray = this.flexComponents2.toArray();
     let feedArray = this.feedComponents2.toArray();
+    let feedArray2 = this.feedTop22Components.toArray();
     let itemArray = this.components2.toArray();
     let imageComps = this.imageComponents2.toArray();
     let captionComps = this.captionComponents2.toArray();
@@ -394,6 +404,8 @@ export class FeedStylist implements OnDestroy {
     this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'flex');
     this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'padding', '4px 4px 0px 4px');
     this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(feedArray2[item].nativeElement, 'display', 'none');
+
     //flexArray[item].nativeElement.style = 'display: none';
     //feedArray[item].nativeElement.style = 'display: flex';
     this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'none');
@@ -410,6 +422,7 @@ export class FeedStylist implements OnDestroy {
   contractItem3(item) {
     let flexArray = this.flexComponents3.toArray();
     let feedArray = this.feedComponents3.toArray();
+    let feedArray2 = this.feedTop32Components.toArray();
     let itemArray = this.components3.toArray();
     let imageComps = this.imageComponents3.toArray();
     let captionComps = this.captionComponents3.toArray();
@@ -418,6 +431,8 @@ export class FeedStylist implements OnDestroy {
     this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'flex');
     this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'padding', '4px 4px 0px 4px');
     this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(feedArray2[item].nativeElement, 'display', 'none');
+
     //flexArray[item].nativeElement.style = 'display: none';
     //feedArray[item].nativeElement.style = 'display: flex';
     this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'none');
@@ -434,6 +449,7 @@ export class FeedStylist implements OnDestroy {
   expandItem(item) {
     let flexArray = this.flexComponents.toArray();
     let feedArray = this.feedComponents.toArray();
+    let feedArray2 = this.feedTopTwoComponents.toArray();
     let itemArray = this.components.toArray();
     let imageComps = this.imageComponents.toArray();
     let captionComps = this.captionComponents.toArray();
@@ -441,6 +457,8 @@ export class FeedStylist implements OnDestroy {
 
     this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'flex');
+    this.myrenderer.setElementStyle(feedArray2[item].nativeElement, 'display', 'flex');
+
     //flexArray[item].nativeElement.style = 'display: none';
     //feedArray[item].nativeElement.style = 'display: flex';
     this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'block');
@@ -457,12 +475,15 @@ export class FeedStylist implements OnDestroy {
   expandItem2(item) {
     let flexArray = this.flexComponents2.toArray();
     let feedArray = this.feedComponents2.toArray();
+    let feedArray2 = this.feedTop22Components.toArray();
     let itemArray = this.components2.toArray();
     let imageComps = this.imageComponents2.toArray();
     let captionComps = this.captionComponents2.toArray();
 
     this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'flex');
+    this.myrenderer.setElementStyle(feedArray2[item].nativeElement, 'display', 'flex');
+
     //flexArray[item].nativeElement.style = 'display: none';
     //feedArray[item].nativeElement.style = 'display: flex';
     this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'block');
@@ -480,12 +501,15 @@ export class FeedStylist implements OnDestroy {
   expandItem3(item) {
     let flexArray = this.flexComponents3.toArray();
     let feedArray = this.feedComponents3.toArray();
+    let feedArray2 = this.feedTop32Components.toArray();
     let itemArray = this.components3.toArray();
     let imageComps = this.imageComponents3.toArray();
     let captionComps = this.captionComponents3.toArray();
 
     this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'flex');
+    this.myrenderer.setElementStyle(feedArray2[item].nativeElement, 'display', 'flex');
+
     //flexArray[item].nativeElement.style = 'display: none';
     //feedArray[item].nativeElement.style = 'display: flex';
     this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'block');

@@ -15,7 +15,8 @@ import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { Diagnostic } from '@ionic-native/diagnostic';
-import { BehaviorSubject } from "rxjs/BehaviorSubject"
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { UserViewProfile } from '../userviewprofile/userviewprofile';
 
 const limit:BehaviorSubject<number> = new BehaviorSubject<number>(2); // import 'rxjs/BehaviorSubject';
 
@@ -81,6 +82,7 @@ export class FeedUser implements OnDestroy {
   @ViewChild('weekly') weeklyyellow: ElementRef;
   @ViewChild('price') price: ElementRef;
   @ViewChild('distance') distancey: ElementRef;
+  @ViewChild('noavail') noavail: ElementRef;
 
   @ViewChild(Content  ) content: Content;
 
@@ -109,7 +111,7 @@ export class FeedUser implements OnDestroy {
   private subscription4: ISubscription;
   private subscription5: ISubscription;
   private subscription6: ISubscription;
-   private subscription7: ISubscription;
+  private subscription7: ISubscription;
   private subscription8: ISubscription;
 
 
@@ -136,11 +138,9 @@ export class FeedUser implements OnDestroy {
   }
 
   swipeLeft() {
-    
-  }
-
-  swipeRight() {
-    this.toBooking();
+    this.navCtrl.push(UserViewProfile, {
+      param1: 'user'
+    },{animate:true,animation:'transition',duration:500,direction:'forward'});
   }
 
   toUserBooking() {
@@ -283,6 +283,8 @@ export class FeedUser implements OnDestroy {
                             console.log("getting resolved in geocoder ^&^&^&&^^&^&^&");
                             resolve(arr);
                           }*/
+                          //this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
+
                           resolve();
                         }).catch(e => {
                           console.log(e.message + " caught this error");
@@ -292,8 +294,12 @@ export class FeedUser implements OnDestroy {
                           }*/
                           resolve();
                         })
+
+                    this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
+
                   }
-              
+
+
                 })
               });
 
@@ -319,6 +325,8 @@ export class FeedUser implements OnDestroy {
         resolve();
       });*/
 
+    }).catch((error) => {
+      console.log('Error getting location', error);
     });
 
     
@@ -571,6 +579,7 @@ export class FeedUser implements OnDestroy {
               //let counter = 0;
               item.reserved.appointment.forEach((r, index) => {
                 if(r.selected == true) {
+                  this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
 
                   let storageRef = firebase.storage().ref().child('/settings/' + userName + '/profilepicture.png');
                    
@@ -693,6 +702,8 @@ export class FeedUser implements OnDestroy {
           item.picURL = 'assets/blankprof.png';
         }
         this.pricesArray.push(item);
+        this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
+
       }
 
     }));
@@ -813,6 +824,7 @@ export class FeedUser implements OnDestroy {
 
             item.stars = this.stars;
             this.rating.push(item);
+            this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
             r++;
           }
 

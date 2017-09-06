@@ -12,6 +12,8 @@ import { PostpagePage } from '../pages/postpage/postpage';
 import { BookingPage } from '../pages/booking/booking';
 import { UserBooking } from '../pages/userbooking/userbooking';
 import { UserProfile } from '../pages/userprofile/userprofile';
+import { UserViewProfile } from '../pages/userviewprofile/userviewprofile';
+
 
 import { SettingsPage } from '../pages/settings/settings';
 
@@ -20,7 +22,7 @@ import { SettingsPage } from '../pages/settings/settings';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = FeedUser;
+  rootPage:any = UserViewProfile;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
 

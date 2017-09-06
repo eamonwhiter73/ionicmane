@@ -42,15 +42,20 @@
           <div class='description'>{{j.title}}</div>
           <div class='link'>{{j.date}}</div>
         </div>
+        <div class="priceholder">
+          <div class='description'>${{j.price}}</div>
+        </div>
       </div>
-      <div class="feedtoptextcontainer" #feedtop (tap)='contractItem(i)'>
+      <div class="feedtoptextcontainer" #feedtop (tap)="goSeeProfile(j)"> <!-- (tap)='contractItem(i)'-->
         <div class="imageparent">
           <img class="postprofilepic" src="{{j.profilepic}}">
         </div>
         <div class="usernamecontainer">
           <h4 class="postusername">@{{j.username}}</h4><br>
-          <h4 class="poststudio">Ed's Studio</h4>
+          <!--<h4 class="poststudio">Ed's Studio</h4>-->
         </div>
+      </div>
+      <div class="feedtoptextcontainertwo" #feedtoptwo (tap)='contractItem(i)'>
         <div class="postprofilelink">
           <div class="book">{{j.title}}</div>
         </div>
@@ -82,18 +87,22 @@
           <div class='description'>{{j.title}}</div>
           <div class='link'>{{j.date}}</div>
         </div>
+        <div class="priceholder">
+          <div class='description'>${{j.price}}</div>
+        </div>
       </div>
-      <div class="feedtoptextcontainer" #feedtop2 (tap)='contractItem2(i)'>
+      <div class="feedtoptextcontainer" #feedtop2 (tap)="goSeeProfile(j)"> <!-- (tap)='contractItem(i)'-->
         <div class="imageparent">
           <img class="postprofilepic" src="{{j.profilepic}}">
         </div>
         <div class="usernamecontainer">
           <h4 class="postusername">@{{j.username}}</h4><br>
-          <h4 class="poststudio">Ed's Studio</h4>
+          <!--<h4 class="poststudio">Ed's Studio</h4>-->
         </div>
+      </div>
+      <div class="feedtoptextcontainertwo" #feedtop2two (tap)='contractItem2(i)'>
         <div class="postprofilelink">
           <div class="book">{{j.title}}</div>
-          <div class="book">{{j.date}}</div>
         </div>
       </div>
       <img class="imageposttwo" #imagepost2 src="{{j.url}}">
@@ -121,15 +130,20 @@
         <div class="descholder">
           <div class='description'>{{j.title}}</div>
         </div>
+        <div class="priceholder">
+          <div class='description'>${{j.price}}</div>
+        </div>
       </div>
-      <div class="feedtoptextcontainer" #feedtop3 (tap)='contractItem3(i)'>
+      <div class="feedtoptextcontainer" #feedtop3 (tap)="goSeeProfile(j)"> <!-- (tap)='contractItem(i)'-->
         <div class="imageparent">
           <img class="postprofilepic" src="{{j.profilepic}}">
         </div>
         <div class="usernamecontainer">
           <h4 class="postusername">@{{j.username}}</h4><br>
-          <h4 class="poststudio">Ed's Studio</h4>
+          <!--<h4 class="poststudio">Ed's Studio</h4>-->
         </div>
+      </div>
+      <div class="feedtoptextcontainertwo" #feedtop3two (tap)='contractItem3(i)'>
         <div class="postprofilelink">
           <div class="book">{{j.title}}</div>
         </div>

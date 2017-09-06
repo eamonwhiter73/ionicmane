@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { SignInPage } from '../signin/signin';
 import { FeedUser } from '../feeduser/feeduser';
 import { FeedStylist } from '../feedstylist/feedstylist';
@@ -39,13 +39,15 @@ export class SignUpPage implements OnDestroy {
   bool = false;
   boool = false;
 
-  constructor(private googlePlus: GooglePlus, public facebook: Facebook, public storage: Storage, private afAuth: AngularFireAuth, public navCtrl: NavController, public keyboard: Keyboard, public af: AngularFireDatabase) {
+  constructor(public loadingController: LoadingController, private googlePlus: GooglePlus, public facebook: Facebook, public storage: Storage, private afAuth: AngularFireAuth, public navCtrl: NavController, public keyboard: Keyboard, public af: AngularFireDatabase) {
 
   }
 
   async register(){
     
     if(this.bool) {
+      let loading = this.loadingController.create({content : "Loading..."});
+      loading.present();
       try {
         //if(this.stylist) {
           this.items = this.af.object('/profiles/stylists/' + this.user1.username);
@@ -82,22 +84,26 @@ export class SignUpPage implements OnDestroy {
               this.afAuth.auth.createUserWithEmailAndPassword(this.user1.email, this.user1.password).then(() => {
                 setTimeout(() => {
                   console.log('createuserwithemail 88888');
+                  loading.dismiss();
                   this.setUserStylist(this.user1);
                 }, 1500)
               }).catch((e) => {
-                console.log(e.message);
+                alert(e.message);
               });
             }
             else {
+              loading.dismiss();
               alert("You need to fill in all the information");
             }
           }
           else {
+            loading.dismiss();
             alert("This username is taken");
           }
         }, 1000)
       }
       catch(e) {
+        loading.dismiss();
         alert(e.message);
       }
     }
@@ -129,8 +135,12 @@ export class SignUpPage implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
-    this.subscription3.unsubscribe();
+    if(this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
+    if(this.subscription3 != null) {
+      this.subscription3.unsubscribe();
+    }
   }
 
   setUserStylist(usery) {

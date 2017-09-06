@@ -505,16 +505,23 @@ export class UserProfile implements OnDestroy {
  moveCover() {
 
    if(this.set == false) {
-     this.moveState = 'down';
-     this.tds = this.elRef.nativeElement.querySelector('body > ion-app > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides');
-     this.myrenderer.setElementClass(this.tds, 'moveCover', true);
-     let thisel  = this.elRef.nativeElement.querySelector('body > ion-app > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides > div > div.swiper-wrapper > ion-slide.swiper-slide.swiper-slide-active > div > table');
+     try {
+       this.set = true;
+       this.moveState = 'down';
+       this.tds = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides');
+       console.log(this.tds + "   >>>>>>> >>>>>>");
+       this.myrenderer.setElementClass(this.tds, 'moveCover', true);
+       let thisel  = this.elRef.nativeElement.querySelector('body > ion-app > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides > div > div.swiper-wrapper > ion-slide.swiper-slide.swiper-slide-active > div > table');
 
-     this.myrenderer.setElementClass(thisel, 'marginchange', true);
+       this.myrenderer.setElementClass(thisel, 'marginchange', true);
 
-     console.log('element class list   ' + thisel.classList);
-     
-     this.set = true;
+       console.log('element class list   ' + thisel.classList);
+       
+       
+     }
+     catch(e) {
+       console.log(e.message);
+     }
    }
    else {
      this.navCtrl.push(UserBooking, {username: this.username});

@@ -1,0 +1,669 @@
+user-view-profile {
+
+  ion-title {
+     text-align: center;
+     position: absolute;
+  }
+
+	.postprofilepic {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+  }
+
+  .settings {
+    font-size: 36px;
+  }
+
+  .settingscontainer {
+    position: relative;
+    z-index: 2;
+    left: 88%;
+    top: 32%;
+  }
+
+  .grid {
+    padding: 1px 1px 1px 1px;
+    bottom: 1px;
+  }
+
+  .imageparent {
+  	width:20vw;
+    height:20vw;
+    border-radius:50%;
+    overflow:hidden;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 2%;
+	}
+
+  .itemforprofile {
+    padding-left: 10%;
+  }
+
+  .setlocationbox {
+    position: relative;
+    top: -13px; 
+    display: inline-block;
+  }
+
+  .location {
+    position: absolute;
+    display: block;
+    left: 55%;
+    top: 45%;
+    font-size: 8pt;
+    color: map-get($colors, tertiary);
+  }
+
+  ion-fab {
+    position: absolute;
+  }
+
+  .greencircle {
+      background: url('../../assets/greencircle.png') no-repeat center;
+      background-size:17px;
+      background-color: #25292c;
+      color: white;
+  }
+
+  .text-muted[_ngcontent-c1] {
+      color: #616160;
+  }
+
+  .text-muted[_ngcontent-c2] {
+      color: #616160;
+  }
+
+  .text-muted[_ngcontent-c3] {
+      color: #616160;
+  }
+
+  .text-muted[_ngcontent-c4] {
+      color: #616160;
+  }
+
+  .text-muted[_ngcontent-c5] {
+      color: #616160;
+  }
+
+  //changed this***
+
+  .moveCover {
+    height: 100%;
+    transition: height 0.75s ease-in;
+    padding-bottom: 5px;
+  }
+
+  //changed this***
+
+  .marginchange {
+    //top: 0px !important;
+  }
+
+  .textsizebutton {
+    font-size: 12px;
+    background-color: black;
+    color: map-get($colors, primary);
+  }
+
+  .stylistview {
+    text-align: right;
+  }
+
+  .stylistviewtwo {
+    position: absolute;
+    top: 1%;
+    right: 1%;
+}
+
+  .stylistviewbutton {
+    width:25%;
+    font-size: 12px;
+  }
+
+  .stylistviewbuttontwo {
+    width: 100%;
+    font-size: 15px;
+    display: inline-block;
+    /* margin-bottom: 8px; */
+}
+
+  .xclass {
+    color: map-get($colors, primary);
+    font-size: 36px;
+    font-weight: 700;
+    z-index: 15;
+    width: 44px;
+    height: 44px;
+    top: -4px;
+    right: 4px;
+    text-align: right;
+    position:absolute;
+    display:none;
+  }
+
+  .stars {
+    display: inline-block;
+    position: relative;
+    color: #e6c926;
+    left: 2.5vw;
+    font-size: 15px;
+}
+
+  .ratings {
+    position: relative;
+    /*top: -70px;
+    left: 113px;*/
+    font-size: 10px;
+    top: -4px;
+    width: 100%;
+    text-align: center;
+    //margin-left: 1.5vw;
+  }
+
+  .stylistsect {
+    max-width: 46%;
+    top: -15px;
+    left: 10px;
+    position: relative;
+  }
+
+  .bio {
+    font-size: 10px;
+    white-space: normal;
+    min-height: 60px;
+    max-height: 60px;
+  }
+
+  .name {
+    font-weight: 700;
+    font-size: 12px;
+    margin-left: 3%;
+    width: 18vw;
+    text-align: center;
+  }
+
+  .ratecontain {
+    width: 100%;
+
+}
+
+.rateandsocial {
+  width: 23%;
+  position: relative;
+  display: inline-block;
+}
+
+  .cal {
+    position: relative;
+    width: 60%;
+    top: -126px;
+    left: 35%;
+  }
+
+  //changed this***
+
+  .calendarcover {
+    width: 80%;
+    height: 160px;
+    background-color: white;
+    z-index: 1;
+    position: relative;
+    top: -182px;
+    left: 33%;
+    display: none;
+  }
+
+  .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4] {
+    padding: 2px 0px 2px 0px;
+    line-height: 10.5px;
+    vertical-align: top;
+    font-size: 11px;
+    border: none;
+  }
+
+  .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > th[_ngcontent-c3], .table[_ngcontent-c3] > thead[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], .table[_ngcontent-c3] > tbody[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3], .table[_ngcontent-c3] > tfoot[_ngcontent-c3] > tr[_ngcontent-c3] > td[_ngcontent-c3] {
+    padding: 2px 0px 2px 0px;
+    line-height: 10.5px;
+    vertical-align: top;
+    font-size: 11px;
+    border: none;
+  }
+
+  .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > th[_ngcontent-c2], .table[_ngcontent-c2] > thead[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], .table[_ngcontent-c2] > tbody[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2], .table[_ngcontent-c2] > tfoot[_ngcontent-c2] > tr[_ngcontent-c2] > td[_ngcontent-c2] {
+    padding: 2px 0px 2px 0px;
+    line-height: 10.5px;
+    vertical-align: top;
+    font-size: 11px;
+    border: none;
+  }
+
+  .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
+    padding: 2px 0px 2px 0px;
+    line-height: 10.5px;
+    vertical-align: top;
+    font-size: 11px;
+    border: none;
+  }
+
+  //changed this***
+
+  .monthview-selected[_ngcontent-c0] {
+    color: white;
+    font-weight: 900; 
+    background-color: #25292c;
+  }
+
+  .monthview-selected[_ngcontent-c1] {
+    color: white;
+    font-weight: 900; 
+    background-color: #25292c;
+  }
+
+  .monthview-selected[_ngcontent-c2] {
+    color: white;
+    font-weight: 900; 
+    background-color: #25292c;
+  }
+
+  .monthview-selected[_ngcontent-c3] {
+    color: white;
+    font-weight: 900; 
+    background-color: #25292c;
+  }
+
+  .monthview-selected[_ngcontent-c4] {
+    color: white;
+    font-weight: 900;
+    background-color: #25292c;
+  }
+
+  .monthview-current[_ngcontent-c1] {
+    background-color: #25292c;
+  }
+
+  .monthview-current[_ngcontent-c2] {
+    background-color: #25292c;
+  }
+
+  .monthview-current[_ngcontent-c3] {
+    background-color: #25292c;
+  }
+
+  .monthview-current[_ngcontent-c4] {
+    background-color: #25292c;
+  }
+
+  .monthview-current[_ngcontent-c5] {
+    background-color: #25292c;
+  }
+
+  .table-bordered[_ngcontent-c0] {
+    border: none;
+    color: #999;
+  }
+
+  .table-bordered[_ngcontent-c1] {
+    border: none;
+    color: #999;
+  }
+
+  .table-bordered[_ngcontent-c2] {
+    border: none;
+    color: #999;
+  }
+
+  .table-bordered[_ngcontent-c3] {
+    border: none;
+    color: #999;
+  }
+
+  .table-bordered[_ngcontent-c4] {
+    border: none;
+    color: #999;
+  }
+
+  //changed this***
+
+  [_nghost-c1] > div[_ngcontent-c1] {
+    margin-top: -10px;
+  }
+
+  [_nghost-c2] > div[_ngcontent-c2] {
+    margin-top: -10px;
+  }
+
+  [_nghost-c3] > div[_ngcontent-c3] {
+    margin-top: -10px;
+  }
+
+  [_nghost-c4] > div[_ngcontent-c4] {
+    margin-top: -10px;
+  }
+
+  .event-detail-container {
+    display: none;
+  }
+
+  ion-grid {
+    z-index: 2;
+    position: absolute;
+    top: 34.7%;
+
+    .col {
+      padding: 0.5px 0.5px 0.5px 0.5px;
+      position: relative;
+    }
+  }
+
+  .label {
+    margin: 2px 0px 2px 0px;
+  }
+
+  .item[no-lines], .item.item[no-lines] .item-inner {
+    border: 0;
+    padding-right: 0px;
+  }
+
+  .slide-zoom {
+    text-align: center;
+    display: block;
+    width: 90%;
+    left: 0px;
+    position: relative;
+}
+
+  //changed this***
+
+  ion-slides {
+    background-color: #25292c;
+    border-radius: 5px;
+    width: 49vw;
+    padding-bottom: 0px;
+    height: 68px;
+    top: 3vh;
+    margin-left: 15.5vw;
+    position: absolute;
+  }
+
+  //changed this***
+
+  .table.table-bordered.table-fixed.monthview-datetable {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    top: 8px;
+  }
+
+  .back-button.show-back-button {
+    display: none;
+  }
+
+  .monthview-container {
+    height: 50%;
+  }
+
+  .inlineblock {
+    display: inline-block;
+    margin-left: 5px;
+  }
+
+
+  .social {
+    position: relative;
+    //top: 23%;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    right: 1vw;
+  }
+
+  .imagesquare {
+    display: none;
+  }
+
+  .pluscontainer {
+    text-align: center;
+  }
+
+  .plussy {
+    font-size: 92px;
+    font-weight: 700;
+    color: black;
+    /*position: relative;*/
+    text-shadow: 2px 2px 6px rgba(0,0,0,1);
+  }
+
+  .fb {
+    width: 31px;
+  }
+
+  .insta {
+    width: 28px
+  }
+
+  @media (max-width:374px) and (min-width:320px) {
+    .slides {
+      background-color: #25292c;
+      border-radius: 5px;
+      width: 49vw;
+      padding-bottom: 0px;
+      height: 65px;
+      top: 3vh;
+      margin-left: 15.5vw;
+      position: absolute;
+    }
+
+    .stars {
+        display: inline-block;
+        position: relative;
+        color: #e6c926;
+        left: 1vw;
+        font-size: 15px;
+    }
+
+    .moveCover {
+      height: 108px;
+      transition: height 0.5s ease-in;
+      padding-bottom: 5px;
+    }
+
+  .swiper-slide {
+    text-align: center;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 95px;
+    font-size: 18px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+  
+    
+
+  }
+
+  @media (max-width:411px) and (min-width:375px) {
+    .setlocationbox {
+      position: relative;
+      top: -15px; 
+      display: inline-block;
+    }
+
+    .location {
+      position: absolute;
+      display: block;
+      left: 55%;
+      top: 48%;
+      font-size: 8pt;
+      color: map-get($colors, tertiary);
+    }
+
+    .stylistsect {
+      max-width: 46%;
+      top: -15px;
+      left: 10px;
+      position: relative;
+    }
+
+    .slides {
+        background-color: #25292c;
+        border-radius: 5px;
+        width: 52vw;
+        padding-bottom: 0px;
+        height: 60px;
+        top: 1vh;
+        margin-left: 12.5vw;
+        position: absolute;
+    }
+
+    .table.table-bordered.table-fixed.monthview-datetable {
+      width: 177px;
+      max-width: 100%;
+      position: relative;
+      top: 22px;
+    }
+
+    .moveCover {
+      height: 108px;
+      transition: height 0.5s ease-in;
+      padding-bottom: 5px;
+    }
+
+    .stars {
+        display: inline-block;
+        position: relative;
+        color: #e6c926;
+        left: 1.5vw;
+        font-size: 15px;
+    }
+
+    .swiper-slide {
+    text-align: center;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 62px;
+    font-size: 18px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    .stylistsect {
+      max-width: 44%;
+    }
+  }
+
+  @media (min-width:412px) {
+    .setlocationbox {
+      position: relative;
+      top: -22px; 
+      display: inline-block;
+    }
+
+    .stylistsect {
+      max-width: 44%;
+      top: -15px;
+      left: 10px;
+      position: relative;
+    }
+
+    .slides {
+      background-color: #25292c;
+      border-radius: 5px;
+      width: 49vw;
+      padding-bottom: 0px;
+      height: 68px;
+      top: 0;
+      margin-left: 15.5vw;
+      position: absolute;
+    }
+
+    .table.table-bordered.table-fixed.monthview-datetable {
+      width: 177px;
+      max-width: 100%;
+      position: relative;
+      top: 22px;
+    }
+
+    .moveCover {
+      height: 108px;
+      transition: height 0.5s ease-in;
+      padding-bottom: 5px;
+    }
+
+    .stars {
+        display: inline-block;
+        position: relative;
+        color: #e6c926;
+        left: 1.5vw;
+        font-size: 15px;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        position: relative;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+        flex-shrink: 0;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        width: 100%;
+        height: 62px;
+        font-size: 18px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .rateandsocial {
+      width: 23%;
+      position: relative;
+      display: inline-block;
+      top: -8px;
+    }
+  }
+
+
+}

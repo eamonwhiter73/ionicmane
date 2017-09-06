@@ -254,11 +254,10 @@ export class BookingPage implements OnDestroy {
     this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
 
     this.storage.get('username').then((val) => {
-      this.getData(val);
-    });
-  
-    console.log(this.viewDate + " view date ");
-    setTimeout(()=>{
+      this.username = val;
+      //this.getData(val);
+      console.log(this.viewDate + " view date ");
+
       this.selectedDate = this.viewDate;
       this.items2 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
       this.subscription2 = this.items2.subscribe(items => items.forEach(item => {
@@ -274,8 +273,6 @@ export class BookingPage implements OnDestroy {
           this.datesToSelect.push(da.getDate());
         }
         
-
-
         console.log(da + "da");
         console.log(da.getDate() + "dagetdate");
         console.log(this.selectedDate.getDate());
@@ -327,10 +324,8 @@ export class BookingPage implements OnDestroy {
         }
         
       }));
-      
-      
-      //loading.dismiss();
-    },1500)
+    });
+  
 
     
     

@@ -232,7 +232,7 @@ export class UserBooking implements OnDestroy {
     this.username = this.navParams.get('username');
   
     console.log(this.viewDate + " view date ");
-    setTimeout(()=>{
+    //setTimeout(()=>{
       this.timesOpen = [];
       this.selectedDate = this.viewDate;
       console.log(this.username + "this.username");
@@ -316,7 +316,7 @@ export class UserBooking implements OnDestroy {
       
       
       //loading.dismiss();
-    },1500)
+    //},1500)
 
     
     

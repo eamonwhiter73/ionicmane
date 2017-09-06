@@ -63,9 +63,11 @@ page-feed-stylist {
 	.postprofilelink {
 		display: flex;
 		height: 100%;
+		width: 100%;
 		justify-content: center;
 		align-items: center;
-		margin-left: 41%;
+		text-align: right;
+		
 		font-size: 12px;
 	}
 
@@ -87,10 +89,33 @@ page-feed-stylist {
 
   .feedtoptextcontainer {
   	height: 44px;
-  	width: 100%;
+  	width: 45%;
   	display: none;
 	align-items: center; /* align vertical */
 	z-index: 7;
+	float:left;
+  }
+
+  .feedtoptextcontainertwo {
+  	height: 44px;
+  	width: 55%;
+  	display: none;
+	align-items: center; /* align vertical */
+	z-index: 7;
+	float:left;
+  }
+
+  .usernamecontainer {
+  	display: flex;
+    height: 100%;
+    top: 0;
+    align-items: center;
+  }
+
+  .priceholder {
+  	position: absolute;
+    color: #008543;
+    right: 10px;
   }
 
   .allfeed {
@@ -290,6 +315,9 @@ page-feed-stylist {
 	}
 
 	.book {
-		font-weight: 700;
+	    font-weight: 700;
+	    /* float: right; */
+	    width: 100%;
+	    margin-right: 5px;
 	}
 }

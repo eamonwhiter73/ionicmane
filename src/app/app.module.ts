@@ -16,6 +16,8 @@ import { BookingPage } from '../pages/booking/booking';
 import { SettingsPage } from '../pages/settings/settings';
 import { UserProfile } from '../pages/userprofile/userprofile';
 import { UserBooking } from '../pages/userbooking/userbooking';
+import { UserViewProfile } from '../pages/userviewprofile/userviewprofile';
+
 
 
 
@@ -95,7 +97,8 @@ firebase.initializeApp(firebaseConfig);
     PopUp,
     SettingsPage,
     UserProfile,
-    Rate
+    Rate,
+    UserViewProfile
   ],
   imports: [
     BrowserModule,
@@ -126,7 +129,8 @@ firebase.initializeApp(firebaseConfig);
     Rate,
     SettingsPage,
     UserProfile,
-    UserBooking
+    UserBooking,
+    UserViewProfile
   ],
   providers: [
     StatusBar,

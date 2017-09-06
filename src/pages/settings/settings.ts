@@ -14,6 +14,8 @@ import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { FeedStylist } from '../feedstylist/feedstylist';
 import { FeedUser } from '../feeduser/feeduser';
 import { SignInPage } from '../signin/signin';
+import { UserViewProfile } from '../userviewprofile/userviewprofile';
+
 
 
 
@@ -63,6 +65,9 @@ export class SettingsPage implements OnDestroy {
   loggedIn = false;
   typeparam;
   type;
+  passwordIfChanged;
+  emailIfChanged;
+  authUser;
 
 
   constructor(public af: AngularFireDatabase, private afAuth: AngularFireAuth, public storage: Storage, public camera: Camera, public cameraService: CameraServiceProfile, public myrenderer: Renderer, public loadingController: LoadingController, public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public navParams: NavParams, public keyboard:Keyboard) {
@@ -97,58 +102,98 @@ export class SettingsPage implements OnDestroy {
   }
 
   goToProfile() {
-    this.navCtrl.push(StylistProfile);
+    if(this.type == 'stylist' || this.type == 'user/stylist/stylist') {
+      this.navCtrl.push(StylistProfile);
+    }
+
+    if(this.type == 'user' || this.type == 'user/stylist/user') {
+      this.navCtrl.push(UserViewProfile);
+    }
   }
 
   logForm() {
     
     console.log("        ADDDDREESSSSS77777777:  " + this.address);  //moved up here!
 
-    this.x = 0;
+    if(this.type == 'user' || this.type == 'user/stylist/user') {
 
+      if(this.username == null || this.password == null || this.email == null || this.bio == null) {
+        alert("You need to fill out all of the information");
+      }
+    }
+
+    console.log(this.authUser + '      authuser       998877');
+    this.x = 0;
+    console.log(this.passwordIfChanged + "  passwordifchanged                  this.password: " + this.password);
+    console.log(this.emailIfChanged + "  passwordifchanged                  this.password: " + this.email);
     this.storage.set('username', this.username);
+    if(this.passwordIfChanged != this.password && this.authUser) {
+      this.authUser.updatePassword(this.password).then(() => {}).catch((e) => {alert("Password update failed.")});
+    }
+    else {
+      this.password = this.passwordIfChanged;
+      alert("You are not logged in yet, you cannot update your password or email.")
+    }
     this.storage.set('password', this.password);
+    if(this.emailIfChanged != this.email && this.authUser) {
+      this.authUser.updateEmail(this.email).then(() => {}).catch((e) => {alert("Email update failed.")});
+    }
+    else {
+      this.email = this.emailIfChanged;
+      alert("You are not logged in yet, you cannot update your password or email.")
+    }
     this.storage.set('email', this.email);
     this.storage.set('bio', this.bio);
     this.storage.set('picURL', this.picURL);
 
+
     //this.storage.get('type').then((val) => {
       if(this.type == 'stylist' || this.type == 'user/stylist/stylist') {
-        this.storage.set('address', this.address);
-        this.storage.set('price', this.price);
-
-        this.items = this.af.object('/profiles/stylists');
-
-        if(this.username == this.oldUser) {
-          this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                                'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL}});
-
-          this.navCtrl.setRoot(FeedStylist);
+        if(this.username == null || this.password == null || this.email == null || this.bio == null || this.address == null || this.price == null) {
+          alert("You need to fill out all of the information");
         }
         else {
-          this.af.object('/profiles/stylists/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
-          this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                            'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
-        
-          this.navCtrl.setRoot(FeedStylist);
+          this.storage.set('address', this.address);
+          this.storage.set('price', this.price);
+
+          this.items = this.af.object('/profiles/stylists');
+
+          if(this.username == this.oldUser) {
+            this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
+                                  'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL}});
+
+            this.navCtrl.setRoot(FeedStylist);
+          }
+          else {
+            this.af.object('/profiles/stylists/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
+            this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
+                              'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
+          
+            this.navCtrl.setRoot(FeedStylist);
+          }
         }
 
       }
       if(this.type == 'user' || this.type == 'user/stylist/user') {
-        this.items = this.af.object('/profiles/users');
-
-        if(this.username == this.oldUser) {
-          this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                                'bio': this.bio, 'picURL': this.picURL}});
-
-          this.navCtrl.setRoot(FeedUser);
+        if(this.username == null || this.password == null || this.email == null || this.bio == null) {
+          alert("You need to fill out all of the information");
         }
         else {
-          this.af.object('/profiles/users/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
-          this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                             'bio': this.bio, 'picURL': this.picURL, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
+          this.items = this.af.object('/profiles/users');
 
-          this.navCtrl.setRoot(FeedUser);
+          if(this.username == this.oldUser) {
+            this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
+                                  'bio': this.bio, 'picURL': this.picURL}});
+
+            this.navCtrl.setRoot(FeedUser);
+          }
+          else {
+            this.af.object('/profiles/users/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
+            this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
+                               'bio': this.bio, 'picURL': this.picURL, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
+
+            this.navCtrl.setRoot(FeedUser);
+          }
         }
       };
     //})
@@ -182,11 +227,17 @@ export class SettingsPage implements OnDestroy {
       console.log(this.typeparam + '       this.typeparam       ');
       console.log(this.logoutButton + '       this.typeparam       ');
 
-        if(this.typeparam == 'user' || this.typeparam == 'user/stylist/user') { 
+        if(this.typeparam == 'user') { 
           this.myrenderer.setElementStyle(this.addressEl._elementRef.nativeElement, 'display', 'none');
           this.myrenderer.setElementStyle(this.priceEl._elementRef.nativeElement, 'display', 'none');
           this.myrenderer.setElementStyle(this.arrowBackEl.nativeElement, 'display', 'none');
           this.myrenderer.setElementStyle(this.logoutButton._elementRef.nativeElement, 'display', 'none');
+        }
+        if(this.typeparam == 'user/stylist/user') { 
+          this.myrenderer.setElementStyle(this.addressEl._elementRef.nativeElement, 'display', 'none');
+          this.myrenderer.setElementStyle(this.priceEl._elementRef.nativeElement, 'display', 'none');
+          this.myrenderer.setElementStyle(this.arrowBackEl.nativeElement, 'display', 'none');
+          //this.myrenderer.setElementStyle(this.logoutButton._elementRef.nativeElement, 'display', 'none');
         }
         else if(this.type == 'user/stylist/user') {
           this.myrenderer.setElementStyle(this.addressEl._elementRef.nativeElement, 'display', 'none');
@@ -203,7 +254,7 @@ export class SettingsPage implements OnDestroy {
           if(data != null) {
             if(data.email && data.uid) {
               console.log("logged in");
-
+              this.authUser = data;
               this.loggedIn = true;
             }
           }
@@ -213,8 +264,10 @@ export class SettingsPage implements OnDestroy {
           console.log('ionViewDidLoad SettingsPage');
 
           this.storage.get('username').then((val) => {this.username = val; this.getProfilePic(); console.log(val + "        getting username          3333222222")});
-          this.storage.get('password').then((val) => {this.password = val; console.log(val + "        getting password222222")});
-          this.storage.get('email').then((val) => {this.email = val; console.log(val + "        getting email33333333")});
+          this.storage.get('password').then((val) => {this.password = val; this.passwordIfChanged = this.password; console.log(val + "        getting password222222")});
+          
+          this.storage.get('email').then((val) => {this.email = val; this.emailIfChanged = this.email;console.log(val + "        getting email33333333")});
+          
           this.storage.get('bio').then((val) => {this.bio = val; console.log(val + "        getting biooooooooo")});
           this.storage.get('picURL').then((val) => {this.picURL = val; });
           
@@ -270,7 +323,7 @@ export class SettingsPage implements OnDestroy {
               loading.present();
               return new Promise((resolve, reject) => {
                 
-                setTimeout(() => {
+                //setTimeout(() => {
                 let storageRef = firebase.storage().ref().child('/settings/' + this.username + '/profilepicture.png');
                 
                   storageRef.getDownloadURL().then(url => {
@@ -286,7 +339,7 @@ export class SettingsPage implements OnDestroy {
                   });
 
                   loading.dismiss();
-                }, 3500);
+                //}, 3500);
               });
             }); //pass in square choice
             //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
@@ -301,7 +354,7 @@ export class SettingsPage implements OnDestroy {
               loading.present();
               return new Promise((resolve, reject) => {
                 
-                setTimeout(() => {
+                //setTimeout(() => {
                 let storageRef = firebase.storage().ref().child('/settings/' + this.username + '/profilepicture.png');
                 
                   storageRef.getDownloadURL().then(url => {
@@ -317,7 +370,7 @@ export class SettingsPage implements OnDestroy {
                   });
 
                   loading.dismiss();
-                }, 3500);
+                //}, 3500);
               });
             });
           }
