@@ -35,6 +35,10 @@
   	<ion-label>Salon Address</ion-label>
   	<ion-input type="text" (keypress)="goButton($event.keyCode)" placeholder="ex. 28 Jay St, Winston, NJ" [(ngModel)]="address" name="address"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
   </ion-item>
+  <ion-item no-padding class="sect" #addressEl>
+    <ion-label>Phone</ion-label>
+    <ion-input type="text" (keypress)="goButton($event.keyCode)" placeholder="ex. 1231231234" [(ngModel)]="phone" name="phone"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
+  </ion-item>
   <ion-item no-padding class="sect" #priceEl>
 
     <ion-label>Price Range</ion-label>
@@ -46,6 +50,14 @@
   <ion-item no-padding class="sect">
   	<ion-label>Bio</ion-label>
   	<ion-textarea style="width: 65%" placeholder="Bio..." [(ngModel)]="bio" name="bio"></ion-textarea>
+  </ion-item>
+  <ion-item no-padding class="sect">
+    <ion-label>Location</ion-label>
+    <ion-toggle [(ngModel)]="locationtoggle" (tap)="tappedToggle()"></ion-toggle>
+  </ion-item>
+  <ion-item no-padding class="sect" #addressEl>
+    <ion-label>Facebook URL</ion-label>
+    <ion-input type="text" (keypress)="goButton($event.keyCode)" placeholder="http://www.facebook.com/example" [(ngModel)]="facebookURL" name="facebook"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
   </ion-item>
 
   <div id="savebutton">

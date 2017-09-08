@@ -68,6 +68,8 @@ export class SettingsPage implements OnDestroy {
   passwordIfChanged;
   emailIfChanged;
   authUser;
+  locationtoggle;
+  phone;
 
 
   constructor(public af: AngularFireDatabase, private afAuth: AngularFireAuth, public storage: Storage, public camera: Camera, public cameraService: CameraServiceProfile, public myrenderer: Renderer, public loadingController: LoadingController, public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public navParams: NavParams, public keyboard:Keyboard) {
@@ -101,6 +103,14 @@ export class SettingsPage implements OnDestroy {
     this.price = shape.value;
   }
 
+  tappedToggle() {
+    console.log(this.locationtoggle + "          3344343 locationtoggle");
+    if(this.locationtoggle == true) {
+      this.af.object('/profiles/users/'+this.username+'/location').remove().then(_ => console.log('item deleted!'));
+    }
+    this.storage.set('location', this.locationtoggle);
+  }
+
   goToProfile() {
     if(this.type == 'stylist' || this.type == 'user/stylist/stylist') {
       this.navCtrl.push(StylistProfile);
@@ -127,29 +137,30 @@ export class SettingsPage implements OnDestroy {
     console.log(this.passwordIfChanged + "  passwordifchanged                  this.password: " + this.password);
     console.log(this.emailIfChanged + "  passwordifchanged                  this.password: " + this.email);
     this.storage.set('username', this.username);
-    if(this.passwordIfChanged != this.password && this.authUser) {
+    if(this.passwordIfChanged != this.password && this.authUser != null) {
       this.authUser.updatePassword(this.password).then(() => {}).catch((e) => {alert("Password update failed.")});
     }
-    else {
+    /*else {
       this.password = this.passwordIfChanged;
       alert("You are not logged in yet, you cannot update your password or email.")
-    }
+    }*/
     this.storage.set('password', this.password);
-    if(this.emailIfChanged != this.email && this.authUser) {
+    if(this.emailIfChanged != this.email && this.authUser != null) {
       this.authUser.updateEmail(this.email).then(() => {}).catch((e) => {alert("Email update failed.")});
     }
-    else {
+    /*else {
       this.email = this.emailIfChanged;
       alert("You are not logged in yet, you cannot update your password or email.")
-    }
+    }*/
     this.storage.set('email', this.email);
     this.storage.set('bio', this.bio);
     this.storage.set('picURL', this.picURL);
+    this.storage.set('phone', this.picURL);
 
 
     //this.storage.get('type').then((val) => {
       if(this.type == 'stylist' || this.type == 'user/stylist/stylist') {
-        if(this.username == null || this.password == null || this.email == null || this.bio == null || this.address == null || this.price == null) {
+        if(this.username == null || this.password == null || this.email == null || this.bio == null || this.address == null || this.price == null || this.phone == null) {
           alert("You need to fill out all of the information");
         }
         else {
@@ -160,14 +171,14 @@ export class SettingsPage implements OnDestroy {
 
           if(this.username == this.oldUser) {
             this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                                  'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL}});
+                                  'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'phone': this.phone}});
 
             this.navCtrl.setRoot(FeedStylist);
           }
           else {
             this.af.object('/profiles/stylists/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
             this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                              'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
+                              'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'phone': this.phone, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
           
             this.navCtrl.setRoot(FeedStylist);
           }
@@ -175,7 +186,7 @@ export class SettingsPage implements OnDestroy {
 
       }
       if(this.type == 'user' || this.type == 'user/stylist/user') {
-        if(this.username == null || this.password == null || this.email == null || this.bio == null) {
+        if(this.username == null || this.password == null || this.email == null || this.bio == null || this.phone == null) {
           alert("You need to fill out all of the information");
         }
         else {
@@ -183,14 +194,14 @@ export class SettingsPage implements OnDestroy {
 
           if(this.username == this.oldUser) {
             this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                                  'bio': this.bio, 'picURL': this.picURL}});
+                                  'bio': this.bio, 'picURL': this.picURL, 'phone': this.phone}});
 
             this.navCtrl.setRoot(FeedUser);
           }
           else {
             this.af.object('/profiles/users/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
             this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                               'bio': this.bio, 'picURL': this.picURL, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
+                               'bio': this.bio, 'picURL': this.picURL, 'phone': this.phone, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
 
             this.navCtrl.setRoot(FeedUser);
           }
@@ -220,6 +231,18 @@ export class SettingsPage implements OnDestroy {
   }
 
   ionViewDidLoad() {
+    this.storage.get('location').then((val) => {
+      this.locationtoggle = val;
+      if(val == true) {
+        this.locationtoggle = false;
+      }
+      else {
+        this.locationtoggle = true;
+      }
+
+      console.log(this.locationtoggle + "     in view did load locationtoggle");
+    })
+
     this.typeparam = this.navParams.get('type');
 
     this.storage.get('type').then((val) => {
@@ -270,6 +293,7 @@ export class SettingsPage implements OnDestroy {
           
           this.storage.get('bio').then((val) => {this.bio = val; console.log(val + "        getting biooooooooo")});
           this.storage.get('picURL').then((val) => {this.picURL = val; });
+          this.storage.get('phone').then((val) => {this.phone = val; });
           
           if(this.type == 'stylist' || this.type == 'user/stylist/stylist') {
             this.storage.get('address').then((val) => {this.address = val; console.log(val + "        getting addressssssss")});

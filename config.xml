@@ -3,7 +3,7 @@
     <name>myApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.131:8100" />
     <access origin="*" />
     <allow-navigation href="*" />
     <allow-navigation href="http://ionic.local/*" />
@@ -119,4 +119,5 @@
     <plugin name="cordova-sqlite-storage" spec="^2.0.4" />
     <plugin name="cordova.plugins.diagnostic" spec="^3.6.6" />
     <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
 </widget>

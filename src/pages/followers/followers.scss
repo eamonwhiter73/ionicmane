@@ -1,0 +1,52 @@
+page-followers {
+	.feedtoptextcontainer {
+	  	height: 44px;
+	  	display: flex;
+		align-items: center; /* align vertical */
+		width: 40%;
+	  }
+
+	.imageparent {
+	    overflow:hidden;
+	    display: inline-block;
+	    margin-top: 4px;
+	    margin-left: 4px;	
+	    width: 44px;
+	}
+
+	.postprofilepic {
+	    border-radius:50%;
+	  }	
+
+	.postusername {
+	  	display: inline-block;
+	  	margin-left: 4px;
+	  	font-weight: 700;
+	  	font-size: 12px;
+	}
+
+	.poststudio {
+		position: relative;
+		font-size: 10px;
+		left: 4px;
+		top: -4px;
+	}
+
+	.distance {
+		position: absolute;
+		right: 5px;
+		top: 22px;
+		display: inline-block;
+		color: map-get($colors, primary);
+		font-weight: 700;
+	}
+
+	.clickforprofile {
+		position: absolute;
+		height: 100%;
+		width: 60%;
+		display: inline-block;
+		right: 0;
+		top: 0
+	}
+}

@@ -13,8 +13,7 @@ import { BookingPage } from '../pages/booking/booking';
 import { UserBooking } from '../pages/userbooking/userbooking';
 import { UserProfile } from '../pages/userprofile/userprofile';
 import { UserViewProfile } from '../pages/userviewprofile/userviewprofile';
-
-
+import { FollowersPage } from '../pages/followers/followers';
 import { SettingsPage } from '../pages/settings/settings';
 
 
@@ -22,7 +21,7 @@ import { SettingsPage } from '../pages/settings/settings';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = UserViewProfile;
+  rootPage:any = FollowersPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
 

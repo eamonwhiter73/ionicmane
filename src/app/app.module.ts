@@ -17,6 +17,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { UserProfile } from '../pages/userprofile/userprofile';
 import { UserBooking } from '../pages/userbooking/userbooking';
 import { UserViewProfile } from '../pages/userviewprofile/userviewprofile';
+import { FollowersPage } from '../pages/followers/followers';
 
 
 
@@ -54,6 +55,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { Auth } from '@ionic/cloud-angular';
+import { CallNumber } from '@ionic-native/call-number';
+
 
 
 
@@ -98,7 +101,8 @@ firebase.initializeApp(firebaseConfig);
     SettingsPage,
     UserProfile,
     Rate,
-    UserViewProfile
+    UserViewProfile,
+    FollowersPage
   ],
   imports: [
     BrowserModule,
@@ -130,7 +134,8 @@ firebase.initializeApp(firebaseConfig);
     SettingsPage,
     UserProfile,
     UserBooking,
-    UserViewProfile
+    UserViewProfile,
+    FollowersPage
   ],
   providers: [
     StatusBar,
@@ -152,6 +157,7 @@ firebase.initializeApp(firebaseConfig);
     Geolocation,
     Diagnostic,
     LocationAccuracy,
+    CallNumber
   ]
 })
 export class AppModule {}

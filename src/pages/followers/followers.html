@@ -1,0 +1,33 @@
+<!--
+  Generated template for the FollowersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Followers</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+   <ion-list no-padding>
+     <ion-item *ngFor="let z of followers" no-padding>
+      <div class="feedtoptextcontainer" (tap)="makePhoneCall(z.phone)">
+        <div class="imageparent">
+          <img class="postprofilepic" src="{{z.picURL}}">
+        </div>
+        <div class="usernamecontainer">
+          <h4 class="postusername">@{{z.username}}</h4><br>
+          <h4 class="poststudio">{{z.phone}}</h4>
+        </div>
+      </div>
+      <div class='clickforprofile' (tap)="goToProfile(z.username)">
+      	<div class='distance'>{{z.distanceFrom}} mi</div>
+      </div>
+     </ion-item>
+   </ion-list>
+</ion-content>

@@ -51,6 +51,7 @@ export class UserViewProfile implements OnDestroy {
   viewTitle: string;
   calendar = {'mode': 'month', 'currentDate': this.viewDate}
   moveState: String = 'up';
+  item1: FirebaseObjectObservable<any>;
   item2: FirebaseObjectObservable<any>;
   item9: FirebaseObjectObservable<any>;
   items: FirebaseListObservable<any>;
@@ -126,6 +127,7 @@ export class UserViewProfile implements OnDestroy {
   }
 
   setLocation() {
+
     this.geolocation.getCurrentPosition().then((resp) => {
       let location = resp;
 
@@ -141,7 +143,14 @@ export class UserViewProfile implements OnDestroy {
             console.log(JSON.stringify(this.locationListed) + "     thisislocaitonlistedste    3223i32ip 3ij223");
             this.myrenderer.setElementStyle(this.locationListed.nativeElement, 'display', 'block');
 
-          console.log(this.thoroughfare + "   " + this.locality + "      locality thoroughfare");
+            this.item1 = this.af.object('/profiles/users/'+this.username);
+
+            this.item1.update({'location': {'latitude' : resp.coords.latitude, 'longitude' : resp.coords.longitude }}).then(() => {
+              alert("Your location has been updated");
+              this.storage.set('location', false);
+            }).catch((e) => {alert("Something went wrong with setting your location, please try again.")});
+
+            
 
           }).catch(e => {
             console.log(e.message + " caught this error");
@@ -154,6 +163,12 @@ export class UserViewProfile implements OnDestroy {
 
     this.storage.get('bio').then((val)=> {
       this.bio = val;
+    })
+
+    this.storage.get('location').then((val)=> {
+      if(val == true) {
+        this.myrenderer.setElementStyle(this.locationListed.nativeElement, 'display', 'none');
+      };
     })
     
     this.storage.get('username').then((val) => {
@@ -271,13 +286,21 @@ export class UserViewProfile implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription2.unsubscribe();
+    if(this.subscription2 != null) {
+      this.subscription2.unsubscribe();
+    }
     if(this.subscription3 != null) {
       this.subscription3.unsubscribe();
     }
-    this.subscription4.unsubscribe();
-    this.subscription5.unsubscribe();
-    this.subscription9.unsubscribe();
+    if(this.subscription4 != null) {
+      this.subscription4.unsubscribe();
+    }
+    if(this.subscription5 != null) {
+      this.subscription5.unsubscribe();
+    }
+    if(this.subscription9 != null) {
+      this.subscription9.unsubscribe();
+    }
   }
 
   openCamera(squarez) {

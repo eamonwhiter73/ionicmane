@@ -31243,6 +31243,64 @@ page-feed-user li:active, page-feed-user li:focus {
   color: #e6c926;
 }
 
+page-followers .feedtoptextcontainer {
+  height: 44px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /* align vertical */
+  width: 40%;
+}
+
+page-followers .imageparent {
+  overflow: hidden;
+  display: inline-block;
+  margin-top: 4px;
+  margin-left: 4px;
+  width: 44px;
+}
+
+page-followers .postprofilepic {
+  border-radius: 50%;
+}
+
+page-followers .postusername {
+  display: inline-block;
+  margin-left: 4px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+page-followers .poststudio {
+  position: relative;
+  font-size: 10px;
+  left: 4px;
+  top: -4px;
+}
+
+page-followers .distance {
+  position: absolute;
+  right: 5px;
+  top: 22px;
+  display: inline-block;
+  color: #e6c926;
+  font-weight: 700;
+}
+
+page-followers .clickforprofile {
+  position: absolute;
+  height: 100%;
+  width: 60%;
+  display: inline-block;
+  right: 0;
+  top: 0;
+}
+
 page-postpage .postimage {
   position: relative;
   margin: 5px;
