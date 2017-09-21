@@ -47,6 +47,8 @@ import { Facebook } from '@ionic-native/facebook'
 import { GooglePlus } from '@ionic-native/google-plus'
 
 import { PopUp } from '../modals/popup/popup';
+import { PopUpOther } from '../modals/popupother/popupother';
+
 import { Rate } from '../modals/rate/rate'
 import { IonicImageLoader } from 'ionic-image-loader';
 import { DatePicker } from '@ionic-native/date-picker';
@@ -56,6 +58,11 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { Auth } from '@ionic/cloud-angular';
 import { CallNumber } from '@ionic-native/call-number';
+import { SMS } from '@ionic-native/sms';
+
+import { MapPage } from '../pages/map/map';
+import { GoogleMaps } from '@ionic-native/google-maps';
+
 
 
 
@@ -98,11 +105,13 @@ firebase.initializeApp(firebaseConfig);
     BookingPage,
     UserBooking,
     PopUp,
+    PopUpOther,
     SettingsPage,
     UserProfile,
     Rate,
     UserViewProfile,
-    FollowersPage
+    FollowersPage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -130,12 +139,14 @@ firebase.initializeApp(firebaseConfig);
     PostpagePage,
     BookingPage,
     PopUp,
+    PopUpOther,
     Rate,
     SettingsPage,
     UserProfile,
     UserBooking,
     UserViewProfile,
-    FollowersPage
+    FollowersPage,
+    MapPage
   ],
   providers: [
     StatusBar,
@@ -157,7 +168,9 @@ firebase.initializeApp(firebaseConfig);
     Geolocation,
     Diagnostic,
     LocationAccuracy,
-    CallNumber
+    CallNumber,
+    SMS,
+    GoogleMaps
   ]
 })
 export class AppModule {}

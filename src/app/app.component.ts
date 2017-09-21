@@ -15,13 +15,15 @@ import { UserProfile } from '../pages/userprofile/userprofile';
 import { UserViewProfile } from '../pages/userviewprofile/userviewprofile';
 import { FollowersPage } from '../pages/followers/followers';
 import { SettingsPage } from '../pages/settings/settings';
+import { MapPage } from '../pages/map/map';
+
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = FollowersPage;
+  rootPage:any = SettingsPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
 

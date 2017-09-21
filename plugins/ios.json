@@ -7,6 +7,9 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-instagram-plugin": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
         "cordova-plugin-calendar": {
             "CALENDAR_USAGE_DESCRIPTION": " ",
             "PACKAGE_NAME": "com.ionicframework.maneApp"
@@ -43,10 +46,26 @@
             "GEOLOCATION_USAGE_DESCRIPTION": " ",
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
+        "cordova-plugin-googlemaps": {
+            "API_KEY_FOR_IOS": "AIzaSyAVO_PUVC_zL_zEXB6pOMw5z8aAp8ema6E",
+            "LOCATION_WHEN_IN_USE_DESCRIPTION": "Show your location on the map",
+            "LOCATION_ALWAYS_USAGE_DESCRIPTION": "Trace your location on the map",
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-googleplus": {
+            "REVERSED_CLIENT_ID": "com.googleusercontent.apps.446057524325-0ql2qp1ucson98thqaoqmj97puerjhen",
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
         "cordova-plugin-nativegeocoder": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
         "cordova-plugin-nativestorage": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-request-location-accuracy": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
         "cordova-plugin-splashscreen": {
@@ -58,6 +77,9 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
+        "cordova-sms-plugin": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
@@ -67,31 +89,21 @@
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
-        "cordova-plugin-googleplus": {
-            "REVERSED_CLIENT_ID": "com.googleusercontent.apps.446057524325-0ql2qp1ucson98thqaoqmj97puerjhen",
-            "PACKAGE_NAME": "com.ionicframework.maneApp"
-        },
-        "cordova-plugin-request-location-accuracy": {
-            "PACKAGE_NAME": "com.ionicframework.maneApp"
-        },
-        "cordova-instagram-plugin": {
-            "PACKAGE_NAME": "com.ionicframework.maneApp"
-        },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.ionicframework.maneApp"
-        },
         "mx.ferreyra.callnumber": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     },
     "dependent_plugins": {
+        "com.googlemaps.ios": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-universal-clipboard": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
         "cordova-plugin-add-swift-support": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
         "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.ionicframework.maneApp"
-        },
-        "cordova-universal-clipboard": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     }

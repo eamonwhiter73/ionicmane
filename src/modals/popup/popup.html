@@ -1,6 +1,6 @@
 <ion-content class="main-view">
 	<div class="overlay" (tap)="dismiss()"></div>
-  <div class="modal_content" (tap)="dismiss()">
+  <div class="modal_content">
     <div class="innerbox">
     	<div class="titletext">
     		<h3>Would you like to reserve this slot at: </h3>
@@ -9,7 +9,16 @@
     		<h3 [(ngModel)]="info.time" class='time' ngDefaultControl>{{info.time}}</h3>
     	</div>
     	<div class="buttoncont">
-    		<button class="reservebutton" ion-button round>Reserve</button>
+            <div class="inlineblock">
+                <div class="icon-container" (tap)="callFromPopup()">
+            		<ion-icon name="call" color="tertiary"></ion-icon>
+                </div>
+            </div>
+            <div class="inlineblock">
+                <div class="icon-container" (tap)="smsFromPopup()">
+                    <ion-icon name="text" color="tertiary"></ion-icon>
+                </div>
+            </div>
     	</div>
         <div class="buttoncont">
             <button class="viewprofile" (tap)="viewProfile()" ion-button>Maybe later, view stylist profile ></button>

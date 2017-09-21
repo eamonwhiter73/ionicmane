@@ -49,6 +49,10 @@ page-user-profile {
       color: white;
   }
 
+  .text-muted[_ngcontent-c0] {
+      color: #616160;
+  }
+
   .text-muted[_ngcontent-c1] {
       color: #616160;
   }
@@ -183,6 +187,14 @@ page-user-profile {
     display: none;
   }
 
+  .table[_ngcontent-c5] > thead[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], .table[_ngcontent-c5] > tbody[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], .table[_ngcontent-c5] > tfoot[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], .table[_ngcontent-c5] > thead[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5], .table[_ngcontent-c5] > tbody[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5], .table[_ngcontent-c5] > tfoot[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5] {
+    padding: 2px 0px 2px 0px;
+    line-height: 10.5px;
+    vertical-align: top;
+    font-size: 11px;
+    border: none;
+  }
+
   .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4] {
     padding: 2px 0px 2px 0px;
     line-height: 10.5px;
@@ -208,6 +220,14 @@ page-user-profile {
   }
 
   .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
+    padding: 2px 0px 2px 0px;
+    line-height: 10.5px;
+    vertical-align: top;
+    font-size: 11px;
+    border: none;
+  }
+
+  .table[_ngcontent-c0] > thead[_ngcontent-c0] > tr[_ngcontent-c0] > th[_ngcontent-c0], .table[_ngcontent-c0] > tbody[_ngcontent-c0] > tr[_ngcontent-c0] > th[_ngcontent-c0], .table[_ngcontent-c0] > tfoot[_ngcontent-c0] > tr[_ngcontent-c0] > th[_ngcontent-c0], .table[_ngcontent-c0] > thead[_ngcontent-c0] > tr[_ngcontent-c0] > td[_ngcontent-c0], .table[_ngcontent-c0] > tbody[_ngcontent-c0] > tr[_ngcontent-c0] > td[_ngcontent-c0], .table[_ngcontent-c0] > tfoot[_ngcontent-c0] > tr[_ngcontent-c0] > td[_ngcontent-c0] {
     padding: 2px 0px 2px 0px;
     line-height: 10.5px;
     vertical-align: top;
@@ -242,6 +262,12 @@ page-user-profile {
   }
 
   .monthview-selected[_ngcontent-c4] {
+    color: white;
+    font-weight: 900;
+    background-color: #25292c;
+  }
+
+  .monthview-selected[_ngcontent-c5] {
     color: white;
     font-weight: 900;
     background-color: #25292c;
@@ -292,6 +318,11 @@ page-user-profile {
     color: #999;
   }
 
+  .table-bordered[_ngcontent-c5] {
+    border: none;
+    color: #999;
+  }
+
   //changed this***
 
   [_nghost-c1] > div[_ngcontent-c1] {
@@ -307,6 +338,10 @@ page-user-profile {
   }
 
   [_nghost-c4] > div[_ngcontent-c4] {
+    margin-top: -10px;
+  }
+
+  [_nghost-c5] > div[_ngcontent-c5] {
     margin-top: -10px;
   }
 

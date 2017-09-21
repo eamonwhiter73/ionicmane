@@ -15,6 +15,8 @@ import { FeedStylist } from '../feedstylist/feedstylist';
 import { FeedUser } from '../feeduser/feeduser';
 import { SignInPage } from '../signin/signin';
 import { UserViewProfile } from '../userviewprofile/userviewprofile';
+import { MapPage } from '../map/map';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 
 
@@ -70,9 +72,13 @@ export class SettingsPage implements OnDestroy {
   authUser;
   locationtoggle;
   phone;
+  facebookURL;
+  instagramURL;
+  facebookProf;
+  linked = "Link Profile";
 
 
-  constructor(public af: AngularFireDatabase, private afAuth: AngularFireAuth, public storage: Storage, public camera: Camera, public cameraService: CameraServiceProfile, public myrenderer: Renderer, public loadingController: LoadingController, public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public navParams: NavParams, public keyboard:Keyboard) {
+  constructor(public facebook: Facebook, public af: AngularFireDatabase, private afAuth: AngularFireAuth, public storage: Storage, public camera: Camera, public cameraService: CameraServiceProfile, public myrenderer: Renderer, public loadingController: LoadingController, public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public navParams: NavParams, public keyboard:Keyboard) {
 
   }
 
@@ -98,6 +104,20 @@ export class SettingsPage implements OnDestroy {
         saveToPhotoAlbum: true
   }
 
+  linkProfile() {
+    if(this.linked == "Link Profile") {
+      this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
+        this.facebook.api('me?fields=id', []).then(profile => {
+          console.log(JSON.stringify(profile));
+          this.facebookURL = "http://www.facebook.com/" + profile['id'];
+          this.storage.set('fblinked', true);
+          this.linked = "Linked";
+          //this.userData = {email: profile['email'], first_name: profile['first_name'], picture: profile['picture_large']['data']['url'], username: profile['name']}
+        });
+      });
+    };
+  }
+
   changeShape(shape){
     console.log(shape.value);
     this.price = shape.value;
@@ -119,6 +139,10 @@ export class SettingsPage implements OnDestroy {
     if(this.type == 'user' || this.type == 'user/stylist/user') {
       this.navCtrl.push(UserViewProfile);
     }
+  }
+
+  map() {
+    this.navCtrl.push(MapPage);
   }
 
   logForm() {
@@ -155,7 +179,8 @@ export class SettingsPage implements OnDestroy {
     this.storage.set('email', this.email);
     this.storage.set('bio', this.bio);
     this.storage.set('picURL', this.picURL);
-    this.storage.set('phone', this.picURL);
+    this.storage.set('phone', this.phone);
+    this.storage.set('instausername', this.instagramURL);
 
 
     //this.storage.get('type').then((val) => {
@@ -171,14 +196,17 @@ export class SettingsPage implements OnDestroy {
 
           if(this.username == this.oldUser) {
             this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                                  'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'phone': this.phone}});
+                                  'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'phone': this.phone,
+                                  'facebookURL': this.facebookURL, 'instagramURL': "http://www.instagram.com/" + this.instagramURL}});
 
             this.navCtrl.setRoot(FeedStylist);
           }
           else {
             this.af.object('/profiles/stylists/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
             this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                              'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'phone': this.phone, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
+                              'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'phone': this.phone,
+                              'facebookURL': this.facebookURL, 'instagramURL': "http://www.instagram.com/" + this.instagramURL,
+                              'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
           
             this.navCtrl.setRoot(FeedStylist);
           }
@@ -194,14 +222,15 @@ export class SettingsPage implements OnDestroy {
 
           if(this.username == this.oldUser) {
             this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                                  'bio': this.bio, 'picURL': this.picURL, 'phone': this.phone}});
+                                  'bio': this.bio, 'picURL': this.picURL, 'phone': this.phone, 'facebookURL': this.facebookURL, 'instagramURL': "http://www.instagram.com/" + this.instagramURL}});
 
             this.navCtrl.setRoot(FeedUser);
           }
           else {
             this.af.object('/profiles/users/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
             this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
-                               'bio': this.bio, 'picURL': this.picURL, 'phone': this.phone, 'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
+                               'bio': this.bio, 'picURL': this.picURL, 'phone': this.phone, 'facebookURL': this.facebookURL, 'instagramURL': "http://www.instagram.com/" + this.instagramURL,
+                               'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
 
             this.navCtrl.setRoot(FeedUser);
           }
@@ -231,6 +260,15 @@ export class SettingsPage implements OnDestroy {
   }
 
   ionViewDidLoad() {
+    this.storage.get('fblinked').then((val)=> {
+      if(val == true) {
+        this.linked = "Linked"
+      }
+      else {
+        this.linked = "Link Profile"
+      }
+    })
+
     this.storage.get('location').then((val) => {
       this.locationtoggle = val;
       if(val == true) {
@@ -294,6 +332,7 @@ export class SettingsPage implements OnDestroy {
           this.storage.get('bio').then((val) => {this.bio = val; console.log(val + "        getting biooooooooo")});
           this.storage.get('picURL').then((val) => {this.picURL = val; });
           this.storage.get('phone').then((val) => {this.phone = val; });
+          this.storage.get('instausername').then((val) => {this.instagramURL = val; });
           
           if(this.type == 'stylist' || this.type == 'user/stylist/stylist') {
             this.storage.get('address').then((val) => {this.address = val; console.log(val + "        getting addressssssss")});

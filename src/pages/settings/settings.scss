@@ -46,21 +46,19 @@ page-settings {
 			text-align: right;
 		}
 
-		.label-md {
-			margin: 0
-		}
-
 		ion-label {
-			width: 33.3%;
+			//width: 40%;
 			display: inline-block;
-	    vertical-align: bottom;
-	    color: gray;
-	    font-size: 14px;
-	    padding-left: 10px;
+	    	vertical-align: bottom;
+	    	color: gray;
+	    	font-size: 14px;
+	    	padding-left: 10px;
 		}
 
 		.label-md {
 		  margin: 11px 8px 11px 0;
+		  display: flex;
+    	  align-items: center;
 		}
 
 		.list-md > .item-block:last-child ion-label, .list-md > .item-block:last-child .item-inner, .list-md > .item-wrapper:last-child ion-label, .list-md > .item-wrapper:last-child .item-inner {
@@ -119,7 +117,23 @@ page-settings {
 		height: 44px;
 	}
 
+	.linkfbprof {
+		display: inline-block;
+		height: 26px;
+		width: 100px;
+		margin-left: 16px;
+	}
 
+	.fblabelcontainer {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		float: left;
+	}
+
+	.inlineblock {
+		display: inline-block;
+	}
 
 	#savebutton {
 		text-align: center;

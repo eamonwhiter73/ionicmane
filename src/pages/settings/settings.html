@@ -56,12 +56,21 @@
     <ion-toggle [(ngModel)]="locationtoggle" (tap)="tappedToggle()"></ion-toggle>
   </ion-item>
   <ion-item no-padding class="sect" #addressEl>
-    <ion-label>Facebook URL</ion-label>
-    <ion-input type="text" (keypress)="goButton($event.keyCode)" placeholder="http://www.facebook.com/example" [(ngModel)]="facebookURL" name="facebook"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
+    <div class="fblabelcontainer">
+      <div class="inlineblock">Facebook</div>
+    
+      <button ion-button round color="tertiary" class="linkfbprof" (tap)="linkProfile()">{{linked}}</button>
+    </div>
+    <!--<ion-input type="text" (keypress)="goButton($event.keyCode)" placeholder="http://www.facebook.com/username" [(ngModel)]="facebookURL" name="facebook"></ion-input>--> <!--[(ngModel)]="user.username" name="password"-->
+  </ion-item>
+  <ion-item no-padding class="sect" #addressEl2>
+    <ion-label>Instagram Username</ion-label>
+    <ion-input type="text" (keypress)="goButton($event.keyCode)" placeholder="ex. username" [(ngModel)]="instagramURL" name="instagram"></ion-input> <!--[(ngModel)]="user.username" name="password"-->
   </ion-item>
 
   <div id="savebutton">
     <button class="save" (tap)='logForm()' ion-button round color="primary">Save</button>
     <button class="save" (tap)='logout()' ion-button round color="tertiary" #logoutbutton>Logout</button>
+    <button class="save" (tap)='map()' ion-button round color="tertiary">Map</button>
   </div>
 </ion-content>

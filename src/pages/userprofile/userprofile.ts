@@ -19,6 +19,7 @@ import { ISubscription } from "rxjs/Subscription";
 import { Rate } from '../../modals/rate/rate';
 
 import { Storage } from '@ionic/storage';
+import { InAppBrowser } from 'ionic-native';
 
 
 
@@ -44,6 +45,8 @@ export class UserProfile implements OnDestroy {
   @ViewChildren('pluscontain') components:QueryList<any>;
   @ViewChildren('profsquare') profComponents:QueryList<any>;
   @ViewChild('followsty') followsty;
+  @ViewChild('instagram') instagram: ElementRef;
+  @ViewChild('facebook') facebook: ElementRef;
   viewDate = new Date();
   events = [];
   viewTitle: string;
@@ -61,6 +64,8 @@ export class UserProfile implements OnDestroy {
   selectedDate;
   item: FirebaseObjectObservable<any>;
   item2: FirebaseObjectObservable<any>;
+  item5: FirebaseObjectObservable<any>;
+  item6: FirebaseObjectObservable<any>;
   item9: FirebaseObjectObservable<any>;
   items4: FirebaseListObservable<any>;
   items3: FirebaseListObservable<any>;
@@ -102,6 +107,33 @@ export class UserProfile implements OnDestroy {
     this.subscription7.unsubscribe();
     this.subscription9.unsubscribe();
   }
+
+  instagramOpen() {
+    let url;
+    this.item5 = this.af.object('/profiles/stylists/' + this.username + '/instagramURL');
+    this.item5.subscribe(item => {
+      if(item["$value"] == null) {
+        //
+      }
+      else {
+        let browser = new InAppBrowser(item['$value'], "_system");
+      }
+    }).unsubscribe();
+    
+  }
+
+  facebookOpen() {
+    this.item6 = this.af.object('/profiles/stylists/' + this.username + '/facebookURL');
+    this.item6.subscribe(item => {
+      if(item["$value"] == null) {
+        //
+      }
+      else {
+        let browser = new InAppBrowser(item['$value'], "_system");
+      }
+    }).unsubscribe();
+  }
+
 
   followStylist() {
       this.item = this.af.object('/profiles/stylists/' + this.username + '/followers');
@@ -173,6 +205,8 @@ export class UserProfile implements OnDestroy {
       for(let u in item.rating) {
         total += item.rating[u];
       }
+      //this.facebook.nativeElement.src = item.facebookURL;
+      //this.instagram.nativeElement.src = item.instagramURL;
       this.totalRatings = total;
       
     });
@@ -215,35 +249,8 @@ export class UserProfile implements OnDestroy {
               }
             }
 
-
-            
-            //count++;
-            /*for(let x of this.times) {
-              if(x.time == r) {
-                console.log('change selected');
-                x.selected = true;
-              }
-            }*/
-          //}
         }
 
-        /*let da = new Date(item.date.day*1000);
-        if(this.viewDate.getDate() == da.getDate() && this.viewDate.getMonth() == da.getMonth()) {
-          console.log("selected = item");
-          let count = 0;
-          console.log(JSON.stringify(item.reserved) + "         item resesrved");
-          for(let r in item.reserved) {
-            this.times[count].selected = r[count].selected;
-            console.log('hit appointment');
-            count++;
-            /*for(let x of this.times) {
-              if(x.time == r) {
-                console.log('change selected');
-                x.selected = true;
-              }
-            }*/
-          /*}
-        }*/
         for(let item of this.tds) {
           if(!item.classList.contains('text-muted')) {
             console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);

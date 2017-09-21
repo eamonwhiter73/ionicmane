@@ -84,7 +84,7 @@
 
   <div class ='availability contentone' #availability [@moveList]='moveState'>
    <ion-list class="marginstatus" no-padding>
-     <ion-item *ngFor="let z of availabilities" no-padding (tap)="presentProfileModal(z.salon, z.time);">
+     <ion-item *ngFor="let z of availabilities" no-padding (tap)="presentProfileModal(z.salon, z.time)">
       <div class="feedtoptextcontainer">
         <div class="imageparent">
           <img class="postprofilepic" src="{{z.pic}}">
@@ -101,7 +101,7 @@
 
   <div class ='distance contentone' #distance [@moveList]='moveState'>
    <ion-list class="marginstatus" no-padding>
-     <ion-item *ngFor="let z of distances" no-padding>
+     <ion-item *ngFor="let z of distances" no-padding (tap)="presentProfileModalDistance(z.salon)">
       <div class="feedtoptextcontainer">
         <div class="imageparent">
           <img class="postprofilepic" src="{{z.pic}}">
@@ -118,7 +118,7 @@
 
   <div class ='ratings contentone' #ratings [@moveList]='moveState'>
    <ion-list class="marginstatus" no-padding>
-     <ion-item *ngFor="let a of rating ; let i = index" no-padding>
+     <ion-item *ngFor="let a of rating ; let i = index" no-padding (tap)="presentProfileModalRatings(a.username)">
       <div class="feedtoptextcontainer">
         <div class="imageparent">
           <img class="postprofilepic" src="{{a.picURL}}">
@@ -135,7 +135,7 @@
 
   <div class ='price contentone' #price [@moveList]='moveState'>
    <ion-list class="marginstatus" no-padding>
-     <ion-item *ngFor="let a of pricesArray" no-padding>
+     <ion-item *ngFor="let a of pricesArray" no-padding (tap)="presentProfileModalPrice(a.username)">
       <div class="feedtoptextcontainer">
         <div class="imageparent">
           <img class="postprofilepic" src="{{a.picURL}}">

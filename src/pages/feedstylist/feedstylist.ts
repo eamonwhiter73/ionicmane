@@ -13,7 +13,7 @@ import { BookingPage } from '../booking/booking';
 import { CameraServicePost } from '../../services/cameraservicepost';
 import { Camera } from '@ionic-native/camera';
 import { OnDestroy } from "@angular/core";
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { ISubscription } from "rxjs/Subscription";
 import firebase from 'firebase';
 
@@ -111,8 +111,10 @@ export class FeedStylist implements OnDestroy {
   productListArray = [];
 
   list: FirebaseListObservable<any>;
+  objj: FirebaseObjectObservable<any>;
   subscription4: ISubscription;
   subscription5: ISubscription;
+  ads = [];
 
 
   
@@ -152,6 +154,24 @@ export class FeedStylist implements OnDestroy {
     // causing the nav controller to transition to the new page
     // optional data can also be passed to the pushed page.
     //this.navCtrl.push(SignUpPage);
+  }
+
+  getAds() {
+    this.objj = this.af.object('/adcounter/count');
+
+    this.subscription4 = this.list.subscribe(item => { 
+
+        for(let x = 1; x < item + 1; x++) {
+          let storageRef = firebase.storage().ref().child('/ads/ad' + x + '.png');
+          storageRef.getDownloadURL().then(url => {
+            console.log(url);
+            this.ads.push(url);
+          });
+        }
+       
+    })
+
+    
   }
 
   goSeeProfile(item) {

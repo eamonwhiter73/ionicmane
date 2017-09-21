@@ -1,0 +1,130 @@
+pop-up-other {
+
+	.inlineblock {
+		display: inline-block;
+		margin: 5px;
+	}
+
+	ion-icon {
+		font-size: 40px;
+	}
+
+	.icon-container {
+		display: flex;
+		align-items: center;
+		border-style: solid;
+		border-width: 2px;
+		border-color: map-get($colors, tertiary);
+		border-radius: 50%;
+		width: 50px;
+		height: 50px;
+		justify-content: center;
+	}
+
+	modal-wrapper {
+	  position: absolute;
+	  width: 100%;
+	  height: 100%;
+	}
+
+	.main-view{
+    background: transparent;
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: .5;
+    background-color: #333;
+  }
+  .modal_content {
+    position: absolute;
+    top: 15%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 85%;
+    padding: 10px;
+    z-index: 100;
+    margin: 0 auto;
+    padding: 10px;
+    color: #333;
+    background: #e8e8e8;
+    background: -moz-linear-gradient(top, #fff 0%, #e8e8e8 100%);
+    background: -webkit-linear-gradient(top, #fff 0%, #e8e8e8 100%);
+    background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
+    border-radius: 5px 5px 0px 0px;
+    box-shadow: 0 2px 3px rgba(51, 51, 51, .35);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 15px;
+    border-color: #f1f1f1;
+    text-align: center;
+  }
+
+	@media not all and (min-height: 600px) and (min-width: 768px) {
+	  ion-modal ion-backdrop {
+	    visibility: hidden;
+	  }
+	}
+
+	@media only screen and (min-height: 0px) and (min-width: 0px) {
+	  .modal-wrapper {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	  }
+	}
+
+	.salon, .time {
+		font-weight: 700;
+		display: inline-block;
+	}
+
+	.salon {
+		margin-right: 1px;
+	}
+	h3 {
+		display: inline-block;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	.innerbox {
+		position: relative;
+		margin: -9px;
+		height: 105%;
+		border-width: 15px;
+		border-color: #2c2c2c;
+		border-style: solid;
+		padding: 40px 15px 15px 15px;
+	}
+
+	.buttoncont {
+		width: 100%;
+		margin-top: 15px;
+	}
+
+	.reservebutton {
+		width: 60%;
+		background-color: #2c2c2c;
+		color: white;
+
+	}
+
+	.viewprofile {
+		width: 85%;
+		background-color: #2c2c2c;
+		color: white;
+		height: 20px;
+		font-size: 12px;
+
+	}
+}

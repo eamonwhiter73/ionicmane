@@ -30127,6 +30127,36 @@ image-viewer.ion-page img {
   background-color: black;
 }
 
+pop-up .inlineblock {
+  display: inline-block;
+  margin: 5px;
+}
+
+pop-up ion-icon {
+  font-size: 40px;
+}
+
+pop-up .icon-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #eb4359;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
 pop-up modal-wrapper {
   position: absolute;
   width: 100%;
@@ -30228,6 +30258,144 @@ pop-up .reservebutton {
 }
 
 pop-up .viewprofile {
+  width: 85%;
+  background-color: #2c2c2c;
+  color: white;
+  height: 20px;
+  font-size: 12px;
+}
+
+pop-up-other .inlineblock {
+  display: inline-block;
+  margin: 5px;
+}
+
+pop-up-other ion-icon {
+  font-size: 40px;
+}
+
+pop-up-other .icon-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #eb4359;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+pop-up-other modal-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+pop-up-other .main-view {
+  background: transparent;
+}
+
+pop-up-other .overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: .5;
+  background-color: #333;
+}
+
+pop-up-other .modal_content {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 85%;
+  padding: 10px;
+  z-index: 100;
+  margin: 0 auto;
+  padding: 10px;
+  color: #333;
+  background: #e8e8e8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e8e8e8));
+  background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
+  border-radius: 5px 5px 0px 0px;
+  -webkit-box-shadow: 0 2px 3px rgba(51, 51, 51, 0.35);
+  box-shadow: 0 2px 3px rgba(51, 51, 51, 0.35);
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  overflow: hidden;
+  border-style: solid;
+  border-width: 15px;
+  border-color: #f1f1f1;
+  text-align: center;
+}
+
+@media not all and (min-height: 600px) and (min-width: 768px) {
+  pop-up-other ion-modal ion-backdrop {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (min-height: 0px) and (min-width: 0px) {
+  pop-up-other .modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+pop-up-other .salon, pop-up-other .time {
+  font-weight: 700;
+  display: inline-block;
+}
+
+pop-up-other .salon {
+  margin-right: 1px;
+}
+
+pop-up-other h3 {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+pop-up-other .innerbox {
+  position: relative;
+  margin: -9px;
+  height: 105%;
+  border-width: 15px;
+  border-color: #2c2c2c;
+  border-style: solid;
+  padding: 40px 15px 15px 15px;
+}
+
+pop-up-other .buttoncont {
+  width: 100%;
+  margin-top: 15px;
+}
+
+pop-up-other .reservebutton {
+  width: 60%;
+  background-color: #2c2c2c;
+  color: white;
+}
+
+pop-up-other .viewprofile {
   width: 85%;
   background-color: #2c2c2c;
   color: white;
@@ -31301,6 +31469,10 @@ page-followers .clickforprofile {
   top: 0;
 }
 
+page-map #map {
+  height: 100%;
+}
+
 page-postpage .postimage {
   position: relative;
   margin: 5px;
@@ -31540,12 +31712,7 @@ page-settings ion-content input {
   text-align: right;
 }
 
-page-settings ion-content .label-md {
-  margin: 0;
-}
-
 page-settings ion-content ion-label {
-  width: 33.3%;
   display: inline-block;
   vertical-align: bottom;
   color: gray;
@@ -31555,6 +31722,14 @@ page-settings ion-content ion-label {
 
 page-settings ion-content .label-md {
   margin: 11px 8px 11px 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 page-settings ion-content .list-md > .item-block:last-child ion-label, page-settings ion-content .list-md > .item-block:last-child .item-inner, page-settings ion-content .list-md > .item-wrapper:last-child ion-label, page-settings ion-content .list-md > .item-wrapper:last-child .item-inner {
@@ -31608,6 +31783,30 @@ page-settings ion-header .toolbar .toolbar-background {
 page-settings .save {
   position: relative;
   height: 44px;
+}
+
+page-settings .linkfbprof {
+  display: inline-block;
+  height: 26px;
+  width: 100px;
+  margin-left: 16px;
+}
+
+page-settings .fblabelcontainer {
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  float: left;
+}
+
+page-settings .inlineblock {
+  display: inline-block;
 }
 
 page-settings #savebutton {
@@ -32888,6 +33087,10 @@ page-user-profile .greencircle {
   color: white;
 }
 
+page-user-profile .text-muted[_ngcontent-c0] {
+  color: #616160;
+}
+
 page-user-profile .text-muted[_ngcontent-c1] {
   color: #616160;
 }
@@ -33011,6 +33214,14 @@ page-user-profile .calendarcover {
   display: none;
 }
 
+page-user-profile .table[_ngcontent-c5] > thead[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], page-user-profile .table[_ngcontent-c5] > tbody[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], page-user-profile .table[_ngcontent-c5] > tfoot[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], page-user-profile .table[_ngcontent-c5] > thead[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5], page-user-profile .table[_ngcontent-c5] > tbody[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5], page-user-profile .table[_ngcontent-c5] > tfoot[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5] {
+  padding: 2px 0px 2px 0px;
+  line-height: 10.5px;
+  vertical-align: top;
+  font-size: 11px;
+  border: none;
+}
+
 page-user-profile .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-user-profile .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-user-profile .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-user-profile .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-user-profile .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-user-profile .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4] {
   padding: 2px 0px 2px 0px;
   line-height: 10.5px;
@@ -33043,6 +33254,14 @@ page-user-profile .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c
   border: none;
 }
 
+page-user-profile .table[_ngcontent-c0] > thead[_ngcontent-c0] > tr[_ngcontent-c0] > th[_ngcontent-c0], page-user-profile .table[_ngcontent-c0] > tbody[_ngcontent-c0] > tr[_ngcontent-c0] > th[_ngcontent-c0], page-user-profile .table[_ngcontent-c0] > tfoot[_ngcontent-c0] > tr[_ngcontent-c0] > th[_ngcontent-c0], page-user-profile .table[_ngcontent-c0] > thead[_ngcontent-c0] > tr[_ngcontent-c0] > td[_ngcontent-c0], page-user-profile .table[_ngcontent-c0] > tbody[_ngcontent-c0] > tr[_ngcontent-c0] > td[_ngcontent-c0], page-user-profile .table[_ngcontent-c0] > tfoot[_ngcontent-c0] > tr[_ngcontent-c0] > td[_ngcontent-c0] {
+  padding: 2px 0px 2px 0px;
+  line-height: 10.5px;
+  vertical-align: top;
+  font-size: 11px;
+  border: none;
+}
+
 page-user-profile .monthview-selected[_ngcontent-c0] {
   color: white;
   font-weight: 900;
@@ -33068,6 +33287,12 @@ page-user-profile .monthview-selected[_ngcontent-c3] {
 }
 
 page-user-profile .monthview-selected[_ngcontent-c4] {
+  color: white;
+  font-weight: 900;
+  background-color: #25292c;
+}
+
+page-user-profile .monthview-selected[_ngcontent-c5] {
   color: white;
   font-weight: 900;
   background-color: #25292c;
@@ -33118,6 +33343,11 @@ page-user-profile .table-bordered[_ngcontent-c4] {
   color: #999;
 }
 
+page-user-profile .table-bordered[_ngcontent-c5] {
+  border: none;
+  color: #999;
+}
+
 page-user-profile [_nghost-c1] > div[_ngcontent-c1] {
   margin-top: -10px;
 }
@@ -33131,6 +33361,10 @@ page-user-profile [_nghost-c3] > div[_ngcontent-c3] {
 }
 
 page-user-profile [_nghost-c4] > div[_ngcontent-c4] {
+  margin-top: -10px;
+}
+
+page-user-profile [_nghost-c5] > div[_ngcontent-c5] {
   margin-top: -10px;
 }
 

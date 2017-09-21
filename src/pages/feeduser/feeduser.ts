@@ -9,6 +9,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 import { PopUp } from '../../modals/popup/popup';
+import { PopUpOther } from '../../modals/popupother/popupother';
 import { OnDestroy } from "@angular/core";
 import { ISubscription } from "rxjs/Subscription";
 import * as firebase from 'firebase';
@@ -389,6 +390,21 @@ export class FeedUser implements OnDestroy {
 
   presentProfileModal(salon, time) {
     let profileModal = this.modalCtrl.create(PopUp, { salon: salon, time: time});
+    profileModal.present();
+  }
+
+  presentProfileModalDistance(salon) {
+    let profileModal = this.modalCtrl.create(PopUpOther, { salon: salon });
+    profileModal.present();
+  }
+
+  presentProfileModalRatings(salon) {
+    let profileModal = this.modalCtrl.create(PopUpOther, { salon: salon });
+    profileModal.present();
+  }
+
+  presentProfileModalPrice(salon) {
+    let profileModal = this.modalCtrl.create(PopUpOther, { salon: salon });
     profileModal.present();
   }
 

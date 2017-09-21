@@ -77,6 +77,13 @@
         },
         "mx.ferreyra.callnumber": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-googlemaps": {
+            "API_KEY_FOR_ANDROID": "AIzaSyDC1Dd23y1K6DASHFcFP0oB1DKqolnPrzs",
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-sms-plugin": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     },
     "dependent_plugins": {

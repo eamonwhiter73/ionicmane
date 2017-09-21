@@ -1,0 +1,83 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk",
+        "spec": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:mapsplugin/cordova-plugin-googlemaps-sdk.git",
+          "sshUrl": "git+ssh://git@github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
+          "httpsUrl": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
+          "gitUrl": "git://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
+          "shortcut": "github:mapsplugin/cordova-plugin-googlemaps-sdk",
+          "directUrl": "https://raw.githubusercontent.com/mapsplugin/cordova-plugin-googlemaps-sdk/master/package.json"
+        }
+      },
+      "/Users/eamonwhite/ionicmane/myApp/node_modules"
+    ]
+  ],
+  "_from": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
+  "_id": "cordova-plugin-googlemaps-sdk@2.4.0",
+  "_inCache": true,
+  "_location": "/cordova-plugin-googlemaps-sdk",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk",
+    "spec": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:mapsplugin/cordova-plugin-googlemaps-sdk.git",
+      "sshUrl": "git+ssh://git@github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
+      "httpsUrl": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
+      "gitUrl": "git://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
+      "shortcut": "github:mapsplugin/cordova-plugin-googlemaps-sdk",
+      "directUrl": "https://raw.githubusercontent.com/mapsplugin/cordova-plugin-googlemaps-sdk/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git#0addb071b77be74cc1813cedea0797a207522628",
+  "_shasum": "19f77a0ec80a17d2271bad85f960c2cbc3909540",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk",
+  "_where": "/Users/eamonwhite/ionicmane/myApp/node_modules",
+  "author": {
+    "name": "Masashi Katsumata, Hirbod Mirjavadi"
+  },
+  "bugs": {
+    "url": "https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-googlemaps-sdk",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "dependencies": {},
+  "description": "Google Maps SDK for iOS for Cordova (files are copied from Google)",
+  "devDependencies": {},
+  "gitHead": "0addb071b77be74cc1813cedea0797a207522628",
+  "homepage": "https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk#readme",
+  "name": "cordova-plugin-googlemaps-sdk",
+  "optionalDependencies": {},
+  "readme": "# Google Maps SDK for iOS for Cordova\n\nThis plugin installs Google Maps SDK for iOS (v2.4.0) into your project **without CocoaPods**.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git"
+  },
+  "version": "2.4.0"
+}

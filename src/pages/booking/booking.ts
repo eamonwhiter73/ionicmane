@@ -49,6 +49,16 @@ export class BookingPage implements OnDestroy {
   private subscription3: ISubscription;
 
   constructor(private elRef:ElementRef, public myrenderer: Renderer, public loadingController: LoadingController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public af: AngularFireDatabase) {
+    
+
+    
+    //this.items = this.af.list('/appointments/' + this.username);
+    //console.log(this.items);
+        
+    
+  }
+
+  ionViewDidLoad() {
     this.times = [{'time':'8:00 AM', 'selected': false}, {'time':'12:00 PM', 'selected': false}, {'time':'4:00 PM', 'selected': false},
                   {'time':'8:30 AM', 'selected': false}, {'time':'12:30 PM', 'selected': false}, {'time':'4:30 PM', 'selected': false},
                   {'time':'9:00 AM', 'selected': false}, {'time':'1:00 PM', 'selected': false}, {'time':'5:00 PM', 'selected': false},
@@ -58,21 +68,6 @@ export class BookingPage implements OnDestroy {
                   {'time':'11:00 AM', 'selected': false}, {'time':'3:00 PM', 'selected': false}, {'time':'7:00 PM', 'selected': false},
                   {'time':'11:30 AM', 'selected': false}, {'time':'3:30 PM', 'selected': false}, {'time': '7:30 PM', 'selected': false}
                 ];
-
-    
-    //this.items = this.af.list('/appointments/' + this.username);
-    //console.log(this.items);
-        
-    
-  }
-
-  ngAfterViewInit() {
-    console.log("IN NGAFTER");
-    //console.log(this.elRef.nativeElement.querySelectorAll('td[tappable]'));
-  }
-
-  ionViewDidLoad() {
-
   }
 
   selectArrowRight() {
