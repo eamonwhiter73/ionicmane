@@ -6,24 +6,37 @@ page-feed-stylist {
 		/*position: relative;*/
 	}
 
-	ion-header {
-		
-	}
-
-	ion-content {
-			
-		
-	}
 
 	ion-fab {
 		position: fixed;
 		top: 85%;
 	}
 
-	.stylistviewbutton {
-    
-    font-size: 12px;
-  }
+	.stylistviewbutton {    
+	    font-size: 12px;
+	}
+
+  	.adcontainer {
+		width: 100%;
+		height: 100%;
+	}
+
+	.adimage {
+		width: auto;
+	}
+
+	ion-slides {
+		height: 100%;
+		padding-top: 5px;
+	}
+
+	.slides2 {
+		display: none;
+	}
+
+	.item {
+		padding-left: 3vw;
+	}
 
 	.textsizebutton {
 		font-size: 12px;
@@ -35,13 +48,13 @@ page-feed-stylist {
 	}
 
 	.stylistview {
-    text-align: right;
-    position: absolute;
-    top: 0px;
-    right: 24%;
-    z-index: 5;
-    width:5%;
-  }
+	    text-align: right;
+	    position: absolute;
+	    top: 0px;
+	    right: 24%;
+	    z-index: 5;
+	    width:5%;
+	}
 
 	.pluscontainer {
 		position: fixed;
@@ -72,19 +85,19 @@ page-feed-stylist {
 	}
 
 	.postprofilepic {
-    display: inline;
-    margin: 0 auto;
-    height: 100%;
-    width: auto;
-  }
+	    display: inline;
+	    margin: 0 auto;
+	    height: 100%;
+	    width: auto;
+	}
 
-  .imageparent {
-  	width:10vw;
-    height:10vw;
-    border-radius:50%;
-    overflow:hidden;
-    display: inline-block;
-    margin-left: 4px;	
+	.imageparent {
+	  	width:10vw;
+	    height:10vw;
+	    border-radius:50%;
+	    overflow:hidden;
+	    display: inline-block;
+	    margin-left: 4px;	
 	}
 
   .feedtoptextcontainer {
@@ -160,17 +173,6 @@ page-feed-stylist {
 		border-bottom-style: solid;
 		border-bottom-color: map-get($colors, primary);
 		border-bottom-width: 4px;
-	}
-
-	ion-list {
-
-	}
-
-	ion-icon {
-	}
-
-	.clickme {
-
 	}
 
 	.caption {

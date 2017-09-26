@@ -18,6 +18,8 @@ import { UserProfile } from '../pages/userprofile/userprofile';
 import { UserBooking } from '../pages/userbooking/userbooking';
 import { UserViewProfile } from '../pages/userviewprofile/userviewprofile';
 import { FollowersPage } from '../pages/followers/followers';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 
 

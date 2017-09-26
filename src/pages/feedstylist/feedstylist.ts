@@ -1,5 +1,5 @@
 import { Component, trigger, state, style, transition, animate, ViewChild, ViewChildren, QueryList, Renderer, ElementRef } from '@angular/core';
-import { NavController, App, Platform } from 'ionic-angular';
+import { NavController, App, Platform, Slides, Slide } from 'ionic-angular';
 import { LoadingController, ActionSheetController } from 'ionic-angular';
 import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { PostpagePage } from '../postpage/postpage';
@@ -79,6 +79,9 @@ export class FeedStylist implements OnDestroy {
   @ViewChild('contentone') contentOne:ElementRef;
   @ViewChild('classeslist') classeslist:ElementRef;
   @ViewChild('productslist') productslist:ElementRef;
+  @ViewChildren('adimage') adImage:QueryList<any>;
+  @ViewChild('slides') slidess:Slides;
+  @ViewChild('slides2') slidess2:Slides;
   @ViewChildren('feedtoptwo') feedTopTwoComponents:QueryList<any>;
 
 
@@ -114,6 +117,7 @@ export class FeedStylist implements OnDestroy {
   objj: FirebaseObjectObservable<any>;
   subscription4: ISubscription;
   subscription5: ISubscription;
+  subscription6: ISubscription;
   ads = [];
 
 
@@ -157,15 +161,20 @@ export class FeedStylist implements OnDestroy {
   }
 
   getAds() {
+    console.log("in get addddssss ******");
     this.objj = this.af.object('/adcounter/count');
 
-    this.subscription4 = this.list.subscribe(item => { 
+    this.subscription6 = this.objj.subscribe(item => { 
+      console.log(JSON.stringify(item) + "in adddd subscribe()()()()()()");
+      console.log(typeof item);
+        for(let x = 1; x < item.$value + 1; x++) {
 
-        for(let x = 1; x < item + 1; x++) {
           let storageRef = firebase.storage().ref().child('/ads/ad' + x + '.png');
           storageRef.getDownloadURL().then(url => {
             console.log(url);
             this.ads.push(url);
+          }).catch(e => {
+            //
           });
         }
        
@@ -338,6 +347,16 @@ export class FeedStylist implements OnDestroy {
     
   }
 
+  whatIsIndex1() {
+    console.log(this.slidess2.realIndex + "    big version");
+    console.log(this.slidess.realIndex + "    small version");
+  }
+
+  whatIsIndex2() {
+    console.log(this.slidess2.realIndex + "    big version");
+    console.log(this.slidess.realIndex + "    small version");
+  }
+
   toolClicked(event) {
     this.toolbarClicks++;
     console.log('tapped');
@@ -350,6 +369,45 @@ export class FeedStylist implements OnDestroy {
           this.downState = (this.downState == 'notDown') ? 'down' : 'notDown';
           this.moveState = (this.moveState == 'up') ? 'down' : 'up';
           this.toolbarState = (this.toolbarState == 'up') ? 'down' : 'up';
+          if(this.toolbarState == 'up') {
+            this.adImage.forEach(item => {
+              this.myrenderer.setElementStyle(item.nativeElement, 'height', '17vh');
+            })
+            
+            this.myrenderer.setElementStyle(this.slidess2._elementRef.nativeElement, 'display', 'none');
+            this.myrenderer.setElementStyle(this.slidess._elementRef.nativeElement, 'display', 'block');
+            
+            let index = this.slidess2.realIndex;
+            console.log(index + "REAL INDEX OF BIG ------");
+            console.log(this.slidess2.getActiveIndex() + "active index big -----");
+            console.log(this.slidess.realIndex + "real index small in conditional -----");
+            while(this.slidess.getActiveIndex() <= index) {
+              console.log("in slide next !!!!!!!!!!! small");
+               this.slidess.slideNext();
+            }
+          }
+          else {
+            this.adImage.forEach(item => {
+              this.myrenderer.setElementStyle(item.nativeElement, 'height', '35vh');
+            })
+            
+            this.myrenderer.setElementStyle(this.slidess2._elementRef.nativeElement, 'display', 'block');
+            this.myrenderer.setElementStyle(this.slidess._elementRef.nativeElement, 'display', 'none');
+
+            let index = this.slidess.getActiveIndex();
+               
+            console.log(index + "ACTIVE INDEX OF small ------");
+            console.log(this.slidess2.getActiveIndex() + "active index big in conditional -----");
+            console.log(this.slidess2.realIndex + "real index big -----");
+            //this.slidess2.slideTo(index, 500);
+            //this.slidess2.update();
+
+            while(this.slidess2.getActiveIndex() <= index) {
+              console.log("in slide next !!!!!!!!!!! big");
+               this.slidess2.slideNext();
+            }
+            
+          }
           this.toolbarClicks = 0;
         }
         else {
@@ -361,9 +419,12 @@ export class FeedStylist implements OnDestroy {
 
   ionViewDidLoad() {
 
+    
+
     this.listClasses().then(() => {
       this.listProducts().then(() => {
         this.listAll();
+        this.getAds();
       });
     });
 
@@ -625,6 +686,7 @@ export class FeedStylist implements OnDestroy {
     //this.subscription2.unsubscribe();
     this.subscription4.unsubscribe();
     this.subscription5.unsubscribe();
+    this.subscription6.unsubscribe();
   }
 
   doInfinite(): Promise<any> {

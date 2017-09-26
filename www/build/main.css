@@ -30841,6 +30841,28 @@ page-feed-stylist .stylistviewbutton {
   font-size: 12px;
 }
 
+page-feed-stylist .adcontainer {
+  width: 100%;
+  height: 100%;
+}
+
+page-feed-stylist .adimage {
+  width: auto;
+}
+
+page-feed-stylist ion-slides {
+  height: 100%;
+  padding-top: 5px;
+}
+
+page-feed-stylist .slides2 {
+  display: none;
+}
+
+page-feed-stylist .item {
+  padding-left: 3vw;
+}
+
 page-feed-stylist .textsizebutton {
   font-size: 12px;
   background-color: black;
