@@ -28,10 +28,10 @@ import { Storage } from '@ionic/storage';
   animations: [
     trigger('moveCover', [
       state('down', style({
-        height: '100%',
+        //height: '100%',
       })),
       state('up', style({
-        height: '75px',
+        //height: '75px',
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),

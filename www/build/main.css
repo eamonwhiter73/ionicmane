@@ -30884,8 +30884,12 @@ page-feed-stylist .stylistview {
 page-feed-stylist .pluscontainer {
   position: fixed;
   z-index: 2;
-  right: 10px;
-  top: 28px;
+  right: 0px;
+  top: 60px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #e6c926;
+  text-align: center;
+  padding: 4px;
 }
 
 page-feed-stylist .imagepost {
@@ -31031,9 +31035,17 @@ page-feed-stylist .caption {
 }
 
 page-feed-stylist ion-toolbar div.toolbar-background {
-  background-image: url("../img/tresemme.png") !important;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #000000;
+}
+
+page-feed-stylist swiper.s-wrapper > .swiper .swiper-wrapper .swiper-slide, page-feed-stylist swiper.s-wrapper > .swiper .swiper-wrapper .swiper-slide-content {
+  overflow: auto;
+  max-height: 100%;
+  max-width: 77%;
+}
+
+page-feed-stylist .swiper-wrapper {
+  height: 300px;
 }
 
 page-feed-stylist .custom-icon {
@@ -31045,9 +31057,7 @@ page-feed-stylist .custom-icon {
 }
 
 page-feed-stylist .ad {
-  background-image: url("../img/tresemme.png") !important;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #000000;
   height: 100%;
   width: 100%;
   z-index: 1;
@@ -31066,9 +31076,7 @@ page-feed-stylist .itemadspace {
 }
 
 page-feed-stylist .background {
-  background-image: url("../img/tresemme.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #000000;
 }
 
 page-feed-stylist .back-button.show-back-button {
@@ -31174,6 +31182,25 @@ page-feed-user {
   /*.marginstatus {
 		margin-top: 20px;
 	}*/
+}
+
+page-feed-user .adcontainer {
+  width: 100%;
+  height: 100%;
+}
+
+page-feed-user .adimage {
+  width: auto;
+}
+
+page-feed-user swiper.s-wrapper > .swiper .swiper-wrapper .swiper-slide, page-feed-user swiper.s-wrapper > .swiper .swiper-wrapper .swiper-slide-content {
+  overflow: auto;
+  max-height: 100%;
+  max-width: 77%;
+}
+
+page-feed-user .swiper-wrapper {
+  height: 300px;
 }
 
 page-feed-user .imagepost {
@@ -31306,9 +31333,7 @@ page-feed-user .itemadspace {
   z-index: 1;
   top: 0;
   left: 0;
-  background-image: url("../img/tresemme.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: black;
   text-align: center;
 }
 
@@ -32417,7 +32442,7 @@ page-stylist-profile .slide-zoom {
   text-align: center;
   display: block;
   width: 90%;
-  left: 0px;
+  left: 0;
   position: relative;
 }
 
@@ -32426,7 +32451,7 @@ page-stylist-profile ion-slides {
   border-radius: 5px;
   width: 49vw;
   padding-bottom: 0px;
-  height: 68px;
+  height: 105px;
   top: 3vh;
   margin-left: 15.5vw;
   position: absolute;
@@ -32434,7 +32459,7 @@ page-stylist-profile ion-slides {
 
 page-stylist-profile .table.table-bordered.table-fixed.monthview-datetable {
   width: 100%;
-  max-width: 100%;
+  max-width: 49vw;
   position: relative;
   top: 8px;
 }
@@ -32494,14 +32519,18 @@ page-stylist-profile .insta {
   width: 28px;
 }
 
+page-stylist-profile .label {
+  height: 50vh;
+}
+
 @media (max-width: 374px) and (min-width: 320px) {
   page-stylist-profile .slides {
     background-color: #25292c;
     border-radius: 5px;
     width: 49vw;
     padding-bottom: 0px;
-    height: 65px;
-    top: 3vh;
+    height: 105px;
+    top: 6vh;
     margin-left: 15.5vw;
     position: absolute;
   }
@@ -32550,8 +32579,8 @@ page-stylist-profile .insta {
     border-radius: 5px;
     width: 52vw;
     padding-bottom: 0px;
-    height: 60px;
-    top: 1vh;
+    height: 105px;
+    top: 4vh;
     margin-left: 12.5vw;
     position: absolute;
   }
@@ -32609,8 +32638,8 @@ page-stylist-profile .insta {
     border-radius: 5px;
     width: 49vw;
     padding-bottom: 0px;
-    height: 68px;
-    top: 0;
+    height: 105px;
+    top: 3vh;
     margin-left: 15.5vw;
     position: absolute;
   }
@@ -33417,7 +33446,7 @@ page-user-profile .slide-zoom {
   text-align: center;
   display: block;
   width: 90%;
-  left: 0px;
+  left: 0;
   position: relative;
 }
 
@@ -33436,7 +33465,7 @@ page-user-profile .table.table-bordered.table-fixed.monthview-datetable {
   /* width: 100%; */
   max-width: 100%;
   position: relative;
-  top: 8px;
+  top: 5px;
   /* left: -12px; */
 }
 
@@ -33501,7 +33530,7 @@ page-user-profile .insta {
     border-radius: 5px;
     width: 49vw;
     padding-bottom: 0px;
-    height: 63px;
+    height: 105px;
     top: 3vh;
     margin-left: 15.5vw;
     position: absolute;
@@ -33551,7 +33580,7 @@ page-user-profile .insta {
     border-radius: 5px;
     width: 52vw;
     padding-bottom: 0px;
-    height: 60px;
+    height: 105px;
     top: 1vh;
     margin-left: 12.5vw;
     position: absolute;
@@ -33610,7 +33639,7 @@ page-user-profile .insta {
     border-radius: 5px;
     width: 49vw;
     padding-bottom: 0px;
-    height: 61px;
+    height: 105px;
     top: 0;
     margin-left: 15.5vw;
     position: absolute;

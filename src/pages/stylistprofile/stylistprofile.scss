@@ -352,7 +352,7 @@ page-stylist-profile {
     text-align: center;
     display: block;
     width: 90%;
-    left: 0px;
+    left: 0;
     position: relative;
 }
 
@@ -363,7 +363,7 @@ page-stylist-profile {
     border-radius: 5px;
     width: 49vw;
     padding-bottom: 0px;
-    height: 68px;
+    height: 105px;
     top: 3vh;
     margin-left: 15.5vw;
     position: absolute;
@@ -373,7 +373,7 @@ page-stylist-profile {
 
   .table.table-bordered.table-fixed.monthview-datetable {
     width: 100%;
-    max-width: 100%;
+    max-width: 49vw;
     position: relative;
     top: 8px;
   }
@@ -426,14 +426,18 @@ page-stylist-profile {
     width: 28px
   }
 
+  .label {
+    height: 50vh;
+  }
+
   @media (max-width:374px) and (min-width:320px) {
     .slides {
       background-color: #25292c;
       border-radius: 5px;
       width: 49vw;
       padding-bottom: 0px;
-      height: 65px;
-      top: 3vh;
+      height: 105px;
+      top: 6vh;
       margin-left: 15.5vw;
       position: absolute;
     }
@@ -488,8 +492,8 @@ page-stylist-profile {
         border-radius: 5px;
         width: 52vw;
         padding-bottom: 0px;
-        height: 60px;
-        top: 1vh;
+      height: 105px;
+        top: 4vh;
         margin-left: 12.5vw;
         position: absolute;
     }
@@ -551,8 +555,8 @@ page-stylist-profile {
       border-radius: 5px;
       width: 49vw;
       padding-bottom: 0px;
-      height: 68px;
-      top: 0;
+      height: 105px;
+      top: 3vh;
       margin-left: 15.5vw;
       position: absolute;
     }

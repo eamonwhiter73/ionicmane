@@ -93,6 +93,12 @@ export const firebaseConfig = {
   messagingSenderId: "446057524325"
 }
 
+const SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: '4',
+  keyboardControl: false
+};
+
 firebase.initializeApp(firebaseConfig);
 
 @NgModule({
@@ -126,7 +132,8 @@ firebase.initializeApp(firebaseConfig);
     AngularFireDatabaseModule,
     IonicImageViewerModule,
     IonicStorageModule.forRoot(),
-    IonicImageLoader
+    IonicImageLoader,
+    SwiperModule.forRoot(SWIPER_CONFIG)
     //Ng2ImgMaxModule
     /*CalendarModule.forRoot()*/
   ],

@@ -6,7 +6,7 @@ import { FeedStylist } from '../feedstylist/feedstylist';
 
 import { UserBooking } from '../userbooking/userbooking';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 import { PopUp } from '../../modals/popup/popup';
 import { PopUpOther } from '../../modals/popupother/popupother';
@@ -18,6 +18,9 @@ import { NativeGeocoder, NativeGeocoderForwardResult } from '@ionic-native/nativ
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { UserViewProfile } from '../userviewprofile/userviewprofile';
+import { UserProfile } from '../userprofile/userprofile';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
 
 const limit:BehaviorSubject<number> = new BehaviorSubject<number>(2); // import 'rxjs/BehaviorSubject';
 
@@ -114,6 +117,7 @@ export class FeedUser implements OnDestroy {
   private subscription6: ISubscription;
   private subscription7: ISubscription;
   private subscription8: ISubscription;
+  private subscription9: ISubscription;
 
 
   queryable: boolean = true;
@@ -122,6 +126,7 @@ export class FeedUser implements OnDestroy {
   toolbarClicks = 0;
 
   list: FirebaseListObservable<any>;
+  objj: FirebaseObjectObservable<any>;
   availabilities = [];
   items = [];
   rating = [];
@@ -134,8 +139,60 @@ export class FeedUser implements OnDestroy {
   startAtKeyAvail;
   lastKey;
 
+  ads = [];
+  swiperIndex;
+  config: SwiperConfigInterface;
+  swiperEvent;
+  totalAdCount;
+  swiperSize = 'begin';
+
   constructor(private diagnostic: Diagnostic, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, public zone: NgZone, public modalCtrl: ModalController, public af: AngularFireDatabase, public storage: Storage, private afAuth: AngularFireAuth, public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
      
+  }
+
+  getAds() {
+    console.log("in get addddssss ******");
+    this.objj = this.af.object('/adcounter/count');
+
+    this.subscription9 = this.objj.subscribe(item => { 
+      console.log(JSON.stringify(item) + "in adddd subscribe()()()()()()");
+      console.log(typeof item);
+      this.totalAdCount = item.$value;
+        for(let x = 1; x < item.$value + 1; x++) {
+
+          let storageRef = firebase.storage().ref().child('/ads/ad' + x + '.png');
+          storageRef.getDownloadURL().then(url => {
+            console.log(url);
+            this.ads.push(url);
+          }).catch(e => {
+            //
+          });
+        }
+       
+    })
+    
+  }
+
+
+
+  indexChange() {
+    console.log(this.swiperIndex);
+    if(this.swiperSize == 'small' || 'begin') {
+      if(this.totalAdCount - 4 == this.swiperIndex) {
+        this.navCtrl.push(UserProfile,{},{animate:true,animation:'transition',duration:500,direction:'forward'});
+      }
+      else if(this.swiperIndex == 0) {
+        //this.navCtrl.push(FollowersPage,{},{animate:true,animation:'transition',duration:500,direction:'back'});
+      }
+    }
+    else {
+      if(this.totalAdCount - 1 == this.swiperIndex) {
+        this.navCtrl.push(UserProfile,{},{animate:true,animation:'transition',duration:500,direction:'forward'});
+      }
+      else if(this.swiperIndex == 0) {
+        //this.navCtrl.push(FollowersPage,{},{animate:true,animation:'transition',duration:500,direction:'back'});
+      }
+    }
   }
 
   swipeLeft() {
@@ -181,6 +238,9 @@ export class FeedUser implements OnDestroy {
       this.subscription7.unsubscribe();
     }
     if(this.subscription8 != null) {
+      this.subscription8.unsubscribe();
+    }
+    if(this.subscription9 != null) {
       this.subscription8.unsubscribe();
     }
   } 
@@ -367,6 +427,8 @@ export class FeedUser implements OnDestroy {
   }
 
   ionViewDidLoad() {
+
+    this.getAds();
     
 
     let loading = this.loadingController.create({content : "Loading..."});
@@ -420,9 +482,26 @@ export class FeedUser implements OnDestroy {
           this.downState = (this.downState == 'notDown') ? 'down' : 'notDown';
           this.moveState = (this.moveState == 'up') ? 'down' : 'up';
           this.toolbarState = (this.toolbarState == 'up') ? 'down' : 'up';
-          if(this.showDropDown == 'down' || this.showDropDownHeight == 'down') {
-            this.showDropDown = (this.showDropDown == 'up') ? 'down' : 'up';
-            this.showDropDownHeight = (this.showDropDownHeight == 'up') ? 'down' : 'up';
+          if(this.toolbarState == 'up') {
+            this.config = {
+              direction: 'horizontal',
+              slidesPerView: '4',
+              keyboardControl: false
+            };
+
+            this.swiperSize = 'small';
+
+          }
+          else {
+            this.config = {
+              direction: 'horizontal',
+              slidesPerView: '1',
+              keyboardControl: false
+            };
+
+            this.swiperSize = 'big';
+
+            
           }
           this.toolbarClicks = 0;
         }

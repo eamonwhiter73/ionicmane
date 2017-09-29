@@ -20,15 +20,15 @@
       </ion-slides>
     </ion-item>-->
 
-    <swiper [config]="config" [(index)]="index">
-      <div>
-        Swiper content
+    <swiper #swiper [config]="config" [(index)]="swiperIndex" (indexChange)="indexChange()">
+      <div *ngFor="let ad of ads; let i = index" class="adcontainer">
+        <img src="{{ad}}" class="adimage" #adimage>
       </div>
     </swiper>
       
     <!--</ion-item>-->
     <div (tap)="presentActionSheet()" class='pluscontainer' [@plusSlide]="downState">
-      <ion-icon class='plussy' name="add"></ion-icon>
+      <p>BUY</p><br><p>AD</p>
     </div>
   </ion-toolbar>
 

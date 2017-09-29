@@ -5,6 +5,7 @@ import { StylistProfile } from '../stylistprofile/stylistprofile';
 import { PostpagePage } from '../postpage/postpage';
 import { FeedUser } from '../feeduser/feeduser';
 import { UserProfile } from '../userprofile/userprofile';
+import { FollowersPage } from '../followers/followers';
 import { Storage } from '@ionic/storage';
 
 
@@ -16,6 +17,8 @@ import { OnDestroy } from "@angular/core";
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { ISubscription } from "rxjs/Subscription";
 import firebase from 'firebase';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
 
 
 
@@ -57,10 +60,10 @@ import firebase from 'firebase';
     ]),
     trigger('plusSlide', [
       state('down', style({
-        top: '185px'
+        top: '205px'
       })),
       state('notDown', style({
-        top: '20px'
+        top: '50px'
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),
@@ -78,6 +81,7 @@ export class FeedStylist implements OnDestroy {
   @ViewChildren('classesFeed') classesF:QueryList<any>;
   @ViewChild('contentone') contentOne:ElementRef;
   @ViewChild('classeslist') classeslist:ElementRef;
+  @ViewChild('swiper') swiperEl;
   @ViewChild('productslist') productslist:ElementRef;
   @ViewChildren('adimage') adImage:QueryList<any>;
   @ViewChild('slides') slidess:Slides;
@@ -119,6 +123,11 @@ export class FeedStylist implements OnDestroy {
   subscription5: ISubscription;
   subscription6: ISubscription;
   ads = [];
+  swiperIndex;
+  config: SwiperConfigInterface;
+  swiperEvent;
+  totalAdCount;
+  swiperSize = 'begin';
 
 
   
@@ -167,6 +176,7 @@ export class FeedStylist implements OnDestroy {
     this.subscription6 = this.objj.subscribe(item => { 
       console.log(JSON.stringify(item) + "in adddd subscribe()()()()()()");
       console.log(typeof item);
+      this.totalAdCount = item.$value;
         for(let x = 1; x < item.$value + 1; x++) {
 
           let storageRef = firebase.storage().ref().child('/ads/ad' + x + '.png');
@@ -221,6 +231,26 @@ export class FeedStylist implements OnDestroy {
             this.toBooking();
           }
       //Do whatever you want with swipe
+      }
+    }
+  }
+
+  indexChange() {
+    console.log(this.swiperIndex);
+    if(this.swiperSize == 'small' || 'begin') {
+      if(this.totalAdCount - 4 == this.swiperIndex) {
+        this.navCtrl.push(StylistProfile,{},{animate:true,animation:'transition',duration:500,direction:'forward'});
+      }
+      else if(this.swiperIndex == 0) {
+        this.navCtrl.push(FollowersPage,{},{animate:true,animation:'transition',duration:500,direction:'back'});
+      }
+    }
+    else {
+      if(this.totalAdCount - 1 == this.swiperIndex) {
+        this.navCtrl.push(StylistProfile,{},{animate:true,animation:'transition',duration:500,direction:'forward'});
+      }
+      else if(this.swiperIndex == 0) {
+        this.navCtrl.push(FollowersPage,{},{animate:true,animation:'transition',duration:500,direction:'back'});
       }
     }
   }
@@ -370,31 +400,49 @@ export class FeedStylist implements OnDestroy {
           this.moveState = (this.moveState == 'up') ? 'down' : 'up';
           this.toolbarState = (this.toolbarState == 'up') ? 'down' : 'up';
           if(this.toolbarState == 'up') {
-            this.adImage.forEach(item => {
+            this.config = {
+              direction: 'horizontal',
+              slidesPerView: '4',
+              keyboardControl: false
+            };
+
+            this.swiperSize = 'small';
+            /*this.adImage.forEach(item => {
               this.myrenderer.setElementStyle(item.nativeElement, 'height', '17vh');
-            })
+            })*/
             
-            this.myrenderer.setElementStyle(this.slidess2._elementRef.nativeElement, 'display', 'none');
-            this.myrenderer.setElementStyle(this.slidess._elementRef.nativeElement, 'display', 'block');
+            //this.myrenderer.setElementStyle(this.slidess2._elementRef.nativeElement, 'display', 'none');
+            //this.myrenderer.setElementStyle(this.slidess._elementRef.nativeElement, 'display', 'block');
             
-            let index = this.slidess2.realIndex;
+            /*let index = this.slidess2.realIndex;
             console.log(index + "REAL INDEX OF BIG ------");
             console.log(this.slidess2.getActiveIndex() + "active index big -----");
             console.log(this.slidess.realIndex + "real index small in conditional -----");
             while(this.slidess.getActiveIndex() <= index) {
               console.log("in slide next !!!!!!!!!!! small");
                this.slidess.slideNext();
-            }
+            }*/
           }
           else {
-            this.adImage.forEach(item => {
-              this.myrenderer.setElementStyle(item.nativeElement, 'height', '35vh');
-            })
-            
-            this.myrenderer.setElementStyle(this.slidess2._elementRef.nativeElement, 'display', 'block');
-            this.myrenderer.setElementStyle(this.slidess._elementRef.nativeElement, 'display', 'none');
+            this.config = {
+              direction: 'horizontal',
+              slidesPerView: '1',
+              keyboardControl: false
+            };
 
-            let index = this.slidess.getActiveIndex();
+
+            //el2.style['min-height'] = '250px';
+            //el2.style['max-width'] = '77%';
+
+            this.swiperSize = 'big';
+            /*this.adImage.forEach(item => {
+              this.myrenderer.setElementStyle(item.nativeElement, 'height', '35vh');
+            })*/
+            
+            //this.myrenderer.setElementStyle(this.slidess2._elementRef.nativeElement, 'display', 'block');
+            //this.myrenderer.setElementStyle(this.slidess._elementRef.nativeElement, 'display', 'none');
+
+            /*let index = this.slidess.getActiveIndex();
                
             console.log(index + "ACTIVE INDEX OF small ------");
             console.log(this.slidess2.getActiveIndex() + "active index big in conditional -----");
@@ -405,7 +453,7 @@ export class FeedStylist implements OnDestroy {
             while(this.slidess2.getActiveIndex() <= index) {
               console.log("in slide next !!!!!!!!!!! big");
                this.slidess2.slideNext();
-            }
+            }*/
             
           }
           this.toolbarClicks = 0;
