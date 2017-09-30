@@ -1,0 +1,296 @@
+page-fullfeed {
+
+	.adcontainer {
+		width: 100%;
+		height: 100%;
+	}
+
+	.adimage {
+		width: auto;
+	}
+
+	swiper.s-wrapper>.swiper .swiper-wrapper .swiper-slide, swiper.s-wrapper>.swiper .swiper-wrapper .swiper-slide-content {
+	    overflow: auto;
+	    max-height: 100%;
+	    max-width: 77%;
+	}
+
+	.swiper-wrapper {
+		height: 300px;
+	}
+
+	.imagepost {
+		width: 100%;
+	}
+
+	ion-item {
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	
+	.postprofilelink {
+		position: relative;
+		width: 100%;
+		display: inline-block;
+		margin-right: 4px;
+		font-size: 12px;
+	}
+
+	.postprofilepic {
+    border-radius:50%;
+  }
+
+  ion-refresher {
+  	
+  }
+
+  .noavail {
+		position: absolute;
+		top: 40%;
+		color: gray;
+		font-size: 8vw;
+		width: 100%;
+		text-align: center;
+		display: block;
+	}
+
+  .imageparent {
+    overflow:hidden;
+    display: inline-block;
+    margin-top: 4px;
+    margin-left: 4px;	
+    width: 44px;
+	}
+
+	.caption {
+		padding: 5px;
+		font-size: 14px;
+	}
+
+	ion-infinite-scroll {
+		position: relative;
+		bottom: 30px;
+		background-color: white;
+	}
+
+  .feedtoptextcontainer {
+  	height: 44px;
+  	display: flex;
+	align-items: center; /* align vertical */
+  }
+
+	.back-button.show-back-button {
+    display: none;
+	}
+
+	.postusername {
+  	display: inline-block;
+  	margin-left: 4px;
+  	font-weight: 700;
+  	font-size: 12px;
+	}
+
+	.poststudio {
+		position: relative;
+		font-size: 10px;
+		left: 4px;
+		top: -4px;
+	}
+
+	.deal {
+		float: right;
+    right: 10px;
+    position: absolute;
+	}
+
+	.input-wrapper {
+		padding: 0;
+		margin: 0;
+	}
+
+	.item-inner {
+		padding: 0px !important;
+	}
+
+	ion-label {
+		margin: 5px 0px 5px 0px !important
+	}
+
+	#iontoolbar {
+		z-index: 1;
+		top: 0;
+		left: 0;
+		background-color: black;
+		color: white;
+		border-bottom-style: solid;
+		border-bottom-color: map-get($colors, primary);
+		border-bottom-width: 4px;
+	}
+
+	ion-list {
+
+	}
+
+	ion-icon {
+	}
+
+	.clickme {
+
+	}
+
+	.custom-icon {
+	  	color : gray;
+	  	font-size: 28px;
+	  	margin-left: 10px;
+	  	vertical-align: middle;
+	}
+
+	.down-icon {
+	  	color : gray;
+	  	font-size: 12px;
+	  	margin-left: 0px;
+	  	vertical-align: middle;
+	  	display: inline-block;
+	}	
+
+	.itemadspace {
+		z-index: 1;
+		top: 0;
+		left: 0;
+		//background-image: url('../img/tresemme.png');
+    	//background-repeat: no-repeat;
+		//background-size:cover;
+		background-color: black;
+		text-align: center;
+	}
+
+	/*.marginstatus {
+		margin-top: 20px;
+	}*/
+
+	.contentone {
+		position: relative;
+		width: 100%;
+		z-index: 2;
+	}
+
+	ion-img {
+		width: 100%;
+		height: 100%;
+	}
+
+	.toolbarstyle {
+		font-size: 12px;
+		padding: 0 0.5em;
+		color: #a0a0a0;
+		display: inline-block;
+		font-weight: 500;
+	}
+
+	.toolbarstyle:focus, .toolbarstyle:active  {
+		color: map-get($colors, primary);
+	}
+
+	.feedtitle {
+		color: white;
+		font-weight: 500;
+		font-size: 18px;
+		position: absolute;
+		top: 6px;
+		left: 0;
+  		right: 0;
+	}
+
+	p {
+		display: inline;
+	}
+
+	button:focus, button:active {
+		color: map-get($colors, primary);
+	}
+
+	button.all.toolbarstyle, button.promos.toolbarstyle, button.weekly.toolbarstyle {
+		position: relative;
+    background-color: black;
+    line-height: 32px;
+	}
+
+	button.all.toolbarstyle:focus, button.promos.toolbarstyle:focus, button.weekly.toolbarstyle:focus {
+		position: relative;
+	    background-color: black;
+	    line-height: 32px;
+	    color: map-get($colors, primary);
+	}
+
+	.all {
+	
+	}
+
+	.availability {
+		display: none;
+	}
+
+	.ratings {
+		display: none;
+	}
+
+	.weeklydeals {
+		display: none;
+	}
+
+	.book {
+		display: inline-block;
+		font-weight: 700;
+		float: right;
+		margin-right: 15px;
+	}
+
+	.dropdown {
+		z-index: 999;
+		display: none;
+		position: absolute;
+		top: 88px;
+		left: 40px;
+		background-color: #404040;
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+
+	.dropdowntwo {
+		z-index: 999;
+		display: none;
+		position: absolute;
+		top: 240px;
+		left: 40px;
+		background-color: #404040;
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+
+	.stylistview {
+	    text-align: right;
+	    position: absolute;
+	    top: 0px;
+	    right: 24%;
+	    z-index: 5;
+	    width:5%;
+	  }
+
+  .stylistviewbutton {
+    
+    font-size: 12px;
+  }
+
+	li {
+		list-style: none;
+		font-weight: 500;
+		font-size: 12px;
+		color: white;
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+
+	li:active, li:focus {
+		color: map-get($colors, primary);
+	}
+}

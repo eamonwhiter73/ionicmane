@@ -15,6 +15,7 @@ import { UserProfile } from '../pages/userprofile/userprofile';
 import { UserViewProfile } from '../pages/userviewprofile/userviewprofile';
 import { FollowersPage } from '../pages/followers/followers';
 import { SettingsPage } from '../pages/settings/settings';
+import { FullfeedPage } from '../pages/fullfeed/fullfeed';
 import { MapPage } from '../pages/map/map';
 
 
@@ -23,7 +24,7 @@ import { MapPage } from '../pages/map/map';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = UserProfile;
+  rootPage:any = FullfeedPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
 

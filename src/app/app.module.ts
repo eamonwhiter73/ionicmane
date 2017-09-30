@@ -20,6 +20,7 @@ import { UserViewProfile } from '../pages/userviewprofile/userviewprofile';
 import { FollowersPage } from '../pages/followers/followers';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { FullfeedPage } from '../pages/fullfeed/fullfeed';
 
 
 
@@ -119,7 +120,8 @@ firebase.initializeApp(firebaseConfig);
     Rate,
     UserViewProfile,
     FollowersPage,
-    MapPage
+    MapPage,
+    FullfeedPage
   ],
   imports: [
     BrowserModule,
@@ -155,7 +157,8 @@ firebase.initializeApp(firebaseConfig);
     UserBooking,
     UserViewProfile,
     FollowersPage,
-    MapPage
+    MapPage,
+    FullfeedPage
   ],
   providers: [
     StatusBar,

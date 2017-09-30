@@ -1,4 +1,4 @@
-<ion-header (swipeLeft)="swipeLeft()"> <!--(swipeRight)="toProfile()">-->
+<ion-header (swipeLeft)="swipeLeft()" (swipeRight)="toFull()"> <!---->
 <div> <!--(swiperight)="swipeRight()" (swipeleft)="swipeLeft()"-->
   <ion-item class="itemadspace" [@slideDown]="downState" no-padding no-lines>
     <div class="stylistview">
@@ -18,8 +18,8 @@
       <ion-icon class='custom-icon' name="play"></ion-icon>
       <button #changeText class="all toolbarstyle" (tap)="dropDown()">Availability</button><ion-icon class='down-icon' name="arrow-down"></ion-icon>
 
-      <button #promos class="promos toolbarstyle" (tap)="closeMenuP()">Promos</button>
-      <button #weekly class="weekly toolbarstyle" (tap)="closeMenu()">Weekly-Deals</button>
+      <!--<button #promos class="promos toolbarstyle" (tap)="closeMenuP()">Promos</button>-->
+      <button #weekly class="weekly toolbarstyle" (tap)="closeMenu()">Promotions</button>
     </ion-toolbar>
   </div>
 
@@ -40,7 +40,8 @@
 </ion-header>
 
 <ion-content no-padding (ionScroll)="scrollHandler($event)">
-<div> <!--(swipeRight)="toProfile()"-->
+<div (swipeLeft)="swipeLeft()" (swipeRight)="toFull()"> <!--(swipeRight)="toProfile()"-->
+  
 
   
   <!--<ion-refresher (ionRefresh)="doRefresh($event)">
@@ -65,7 +66,7 @@
           </div>
           <div class="usernamecontainer">
             <h4 class="postusername">@{{i.username}}</h4><br>
-            <h4 class="poststudio">Ed's Studio</h4>
+            <!--<h4 class="poststudio">Ed's Studio</h4>-->
           </div>
           <div class="postprofilelink">
             <div class="book">{{i.title}}<!--</div><div style="display: inline-block">@edbundyhair--></div>
@@ -170,7 +171,6 @@
      </ion-item>
    </ion-list>
   </div>
-
+  <ion-item class="noavail" #noavail no-padding no-lines>NO RESULTS</ion-item>
 </div>
-<div class="noavail" #noavail>NO RESULTS</div>
 </ion-content>

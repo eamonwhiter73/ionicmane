@@ -31516,6 +31516,286 @@ page-followers .clickforprofile {
   top: 0;
 }
 
+page-fullfeed {
+  /*.marginstatus {
+		margin-top: 20px;
+	}*/
+}
+
+page-fullfeed .adcontainer {
+  width: 100%;
+  height: 100%;
+}
+
+page-fullfeed .adimage {
+  width: auto;
+}
+
+page-fullfeed swiper.s-wrapper > .swiper .swiper-wrapper .swiper-slide, page-fullfeed swiper.s-wrapper > .swiper .swiper-wrapper .swiper-slide-content {
+  overflow: auto;
+  max-height: 100%;
+  max-width: 77%;
+}
+
+page-fullfeed .swiper-wrapper {
+  height: 300px;
+}
+
+page-fullfeed .imagepost {
+  width: 100%;
+}
+
+page-fullfeed ion-item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+page-fullfeed .postprofilelink {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  margin-right: 4px;
+  font-size: 12px;
+}
+
+page-fullfeed .postprofilepic {
+  border-radius: 50%;
+}
+
+page-fullfeed .noavail {
+  position: absolute;
+  top: 40%;
+  color: gray;
+  font-size: 8vw;
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+page-fullfeed .imageparent {
+  overflow: hidden;
+  display: inline-block;
+  margin-top: 4px;
+  margin-left: 4px;
+  width: 44px;
+}
+
+page-fullfeed .caption {
+  padding: 5px;
+  font-size: 14px;
+}
+
+page-fullfeed ion-infinite-scroll {
+  position: relative;
+  bottom: 30px;
+  background-color: white;
+}
+
+page-fullfeed .feedtoptextcontainer {
+  height: 44px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /* align vertical */
+}
+
+page-fullfeed .back-button.show-back-button {
+  display: none;
+}
+
+page-fullfeed .postusername {
+  display: inline-block;
+  margin-left: 4px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+page-fullfeed .poststudio {
+  position: relative;
+  font-size: 10px;
+  left: 4px;
+  top: -4px;
+}
+
+page-fullfeed .deal {
+  float: right;
+  right: 10px;
+  position: absolute;
+}
+
+page-fullfeed .input-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+page-fullfeed .item-inner {
+  padding: 0px !important;
+}
+
+page-fullfeed ion-label {
+  margin: 5px 0px 5px 0px !important;
+}
+
+page-fullfeed #iontoolbar {
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  color: white;
+  border-bottom-style: solid;
+  border-bottom-color: #e6c926;
+  border-bottom-width: 4px;
+}
+
+page-fullfeed .custom-icon {
+  color: gray;
+  font-size: 28px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+page-fullfeed .down-icon {
+  color: gray;
+  font-size: 12px;
+  margin-left: 0px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+page-fullfeed .itemadspace {
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  text-align: center;
+}
+
+page-fullfeed .contentone {
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+page-fullfeed ion-img {
+  width: 100%;
+  height: 100%;
+}
+
+page-fullfeed .toolbarstyle {
+  font-size: 12px;
+  padding: 0 0.5em;
+  color: #a0a0a0;
+  display: inline-block;
+  font-weight: 500;
+}
+
+page-fullfeed .toolbarstyle:focus, page-fullfeed .toolbarstyle:active {
+  color: #e6c926;
+}
+
+page-fullfeed .feedtitle {
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  position: absolute;
+  top: 6px;
+  left: 0;
+  right: 0;
+}
+
+page-fullfeed p {
+  display: inline;
+}
+
+page-fullfeed button:focus, page-fullfeed button:active {
+  color: #e6c926;
+}
+
+page-fullfeed button.all.toolbarstyle, page-fullfeed button.promos.toolbarstyle, page-fullfeed button.weekly.toolbarstyle {
+  position: relative;
+  background-color: black;
+  line-height: 32px;
+}
+
+page-fullfeed button.all.toolbarstyle:focus, page-fullfeed button.promos.toolbarstyle:focus, page-fullfeed button.weekly.toolbarstyle:focus {
+  position: relative;
+  background-color: black;
+  line-height: 32px;
+  color: #e6c926;
+}
+
+page-fullfeed .availability {
+  display: none;
+}
+
+page-fullfeed .ratings {
+  display: none;
+}
+
+page-fullfeed .weeklydeals {
+  display: none;
+}
+
+page-fullfeed .book {
+  display: inline-block;
+  font-weight: 700;
+  float: right;
+  margin-right: 15px;
+}
+
+page-fullfeed .dropdown {
+  z-index: 999;
+  display: none;
+  position: absolute;
+  top: 88px;
+  left: 40px;
+  background-color: #404040;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+page-fullfeed .dropdowntwo {
+  z-index: 999;
+  display: none;
+  position: absolute;
+  top: 240px;
+  left: 40px;
+  background-color: #404040;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+page-fullfeed .stylistview {
+  text-align: right;
+  position: absolute;
+  top: 0px;
+  right: 24%;
+  z-index: 5;
+  width: 5%;
+}
+
+page-fullfeed .stylistviewbutton {
+  font-size: 12px;
+}
+
+page-fullfeed li {
+  list-style: none;
+  font-weight: 500;
+  font-size: 12px;
+  color: white;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+page-fullfeed li:active, page-fullfeed li:focus {
+  color: #e6c926;
+}
+
 page-map #map {
   height: 100%;
 }

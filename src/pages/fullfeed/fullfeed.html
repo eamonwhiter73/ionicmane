@@ -1,0 +1,37 @@
+<!--
+  Generated template for the FullfeedPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content (swipeLeft)="swipeLeft()" no-padding>
+	<ion-list class="marginstatus" no-padding>      
+	   <ion-item *ngFor="let i of items" (tap)="gotoProfile()" no-padding no-lines>
+	    <div class="feedtoptextcontainer">
+	      <div class="imageparent">
+	        <img class="postprofilepic" src="{{i.picURL}}">
+	      </div>
+	      <div class="usernamecontainer">
+	        <h4 class="postusername">@{{i.username}}</h4><br>
+	        <!--<h4 class="poststudio">Ed's Studio</h4>-->
+	      </div>
+	      <div class="postprofilelink">
+	        <div class="book">{{i.title}}<!--</div><div style="display: inline-block">@edbundyhair--></div>
+	      </div>
+	    </div>
+	    <img class="imagepost" src="{{i.url}}">
+	    <div class='caption'>
+	      {{i.caption}}
+	    </div>
+	    <br>
+	   </ion-item> 
+	</ion-list>
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="show">
+	   <ion-infinite-scroll-content 
+	      loadingSpinner="bubbles"
+	      loadingText="Loading more data..."
+	      threshold="1%">
+	   </ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+</ion-content>

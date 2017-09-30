@@ -19,6 +19,8 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { UserViewProfile } from '../userviewprofile/userviewprofile';
 import { UserProfile } from '../userprofile/userprofile';
+import { FullfeedPage } from '../fullfeed/fullfeed';
+
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 
@@ -209,6 +211,10 @@ export class FeedUser implements OnDestroy {
     this.navCtrl.push(StylistProfile,{},{animate:true,animation:'transition',duration:500,direction:'forward'});
   }
 
+  toFull() {
+    this.navCtrl.push(FullfeedPage,{},{animate:true,animation:'transition',duration:500,direction:'back'});
+  }
+
   toBooking() {
     this.navCtrl.push(UserBooking, {
       param1: 'user'
@@ -356,7 +362,8 @@ export class FeedUser implements OnDestroy {
                           resolve();
                         })
 
-                    this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
+                    
+                      //this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
 
                   }
 
@@ -440,7 +447,7 @@ export class FeedUser implements OnDestroy {
 
 
     
-    this.renderer.setElementStyle(this.promos.nativeElement, 'color', '#e6c926');
+    ////this.renderer.setElementStyle(this.promos.nativeElement, 'color', '#e6c926');
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
     this.renderer.setElementStyle(this.price.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.distancey.nativeElement, 'display', 'none');
@@ -526,7 +533,7 @@ export class FeedUser implements OnDestroy {
     }
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', 'gray');
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', '#e6c926');
-    this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+    //this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
 
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
@@ -551,7 +558,7 @@ export class FeedUser implements OnDestroy {
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
-    this.renderer.setElementStyle(this.promos.nativeElement, 'color', '#e6c926');
+    //this.renderer.setElementStyle(this.promos.nativeElement, 'color', '#e6c926');
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
 
     this.renderer.setElementStyle(this.price.nativeElement, 'display', 'none');
@@ -562,7 +569,7 @@ export class FeedUser implements OnDestroy {
 
   dropDown() {
  
-    this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+    //this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
     
     if(this.downState == 'down') {
@@ -576,7 +583,7 @@ export class FeedUser implements OnDestroy {
   dropDownD() {
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
-    this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+    //this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
@@ -602,7 +609,7 @@ export class FeedUser implements OnDestroy {
 
     this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
-    this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+    //this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
 
 
     this.dropDown();
@@ -612,7 +619,7 @@ export class FeedUser implements OnDestroy {
     this.changeText.nativeElement.innerHTML = "Price";
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
-    this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+    //this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
     this.renderer.setElementStyle(this.price.nativeElement, 'display', 'block');
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
@@ -630,7 +637,7 @@ export class FeedUser implements OnDestroy {
     this.changeText.nativeElement.innerHTML = "Rating";
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
-    this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
+    //this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
     
     this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
@@ -674,7 +681,7 @@ export class FeedUser implements OnDestroy {
               //let counter = 0;
               item.reserved.appointment.forEach((r, index) => {
                 if(r.selected == true) {
-                  this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
+                  //this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
 
                   let storageRef = firebase.storage().ref().child('/settings/' + userName + '/profilepicture.png');
                    
@@ -797,7 +804,7 @@ export class FeedUser implements OnDestroy {
           item.picURL = 'assets/blankprof.png';
         }
         this.pricesArray.push(item);
-        this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
+        //this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
 
       }
 
@@ -919,7 +926,7 @@ export class FeedUser implements OnDestroy {
 
             item.stars = this.stars;
             this.rating.push(item);
-            this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
+            //this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
             r++;
           }
 
