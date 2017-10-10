@@ -1,4 +1,4 @@
-<ion-header (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
+<ion-header (swiperight)="swipeRight()"> <!--(swipeleft)="swipeLeft()"-->
   <ion-toolbar>
     <ion-title>@{{username}}</ion-title>
 
@@ -12,7 +12,7 @@
 </ion-header>
 
 <ion-content no-padding>
-<div (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
+<div (swiperight)="swipeRight()"> <!-- (swipeleft)="swipeLeft()"-->
 	<ion-item no-padding no-lines>
 		<div class="imageparent">
 		  <img class="postprofilepic" src="{{profilePic}}">
@@ -38,7 +38,7 @@
 			<div class="name">{{username}}</div>
 			<div class="bio">{{bio}}</div>
 		</div>
-		<calendar class='cal' [eventSource]="eventSource"
+		<calendar (tap)="openCal()" class='cal' [eventSource]="eventSource"
 	      [calendarMode]="calendar.mode"
 	      [currentDate]="calendar.currentDate"
 	      (onCurrentDateChanged)="onCurrentDateChanged($event)"

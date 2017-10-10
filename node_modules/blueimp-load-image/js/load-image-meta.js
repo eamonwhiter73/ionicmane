@@ -26,16 +26,21 @@
     // Browser globals:
     factory(window.loadImage)
   }
-}(function (loadImage) {
+})(function (loadImage) {
   'use strict'
 
-  var hasblobSlice = typeof Blob !== 'undefined' && (Blob.prototype.slice ||
-  Blob.prototype.webkitSlice || Blob.prototype.mozSlice)
+  var hasblobSlice =
+    typeof Blob !== 'undefined' &&
+    (Blob.prototype.slice ||
+      Blob.prototype.webkitSlice ||
+      Blob.prototype.mozSlice)
 
-  loadImage.blobSlice = hasblobSlice && function () {
-    var slice = this.slice || this.webkitSlice || this.mozSlice
-    return slice.apply(this, arguments)
-  }
+  loadImage.blobSlice =
+    hasblobSlice &&
+    function () {
+      var slice = this.slice || this.webkitSlice || this.mozSlice
+      return slice.apply(this, arguments)
+    }
 
   loadImage.metaDataParsers = {
     jpeg: {
@@ -55,9 +60,16 @@
     var that = this
     // 256 KiB should contain all EXIF/ICC/IPTC segments:
     var maxMetaDataSize = options.maxMetaDataSize || 262144
-    var noMetaData = !(typeof DataView !== 'undefined' && file && file.size >= 12 &&
-                      file.type === 'image/jpeg' && loadImage.blobSlice)
-    if (noMetaData || !loadImage.readFile(
+    var noMetaData = !(
+      typeof DataView !== 'undefined' &&
+      file &&
+      file.size >= 12 &&
+      file.type === 'image/jpeg' &&
+      loadImage.blobSlice
+    )
+    if (
+      noMetaData ||
+      !loadImage.readFile(
         loadImage.blobSlice.call(file, 0, maxMetaDataSize),
         function (e) {
           if (e.target.error) {
@@ -86,8 +98,10 @@
               // Search for APPn (0xffeN) and COM (0xfffe) markers,
               // which contain application-specific meta-data like
               // Exif, ICC and IPTC data and text comments:
-              if ((markerBytes >= 0xffe0 && markerBytes <= 0xffef) ||
-                markerBytes === 0xfffe) {
+              if (
+                (markerBytes >= 0xffe0 && markerBytes <= 0xffef) ||
+                markerBytes === 0xfffe
+              ) {
                 // The marker bytes (2) are always followed by
                 // the length bytes (2), indicating the length of the
                 // marker segment, which includes the length bytes,
@@ -126,8 +140,7 @@
               } else {
                 // Workaround for IE10, which does not yet
                 // support ArrayBuffer.slice:
-                data.imageHead = new Uint8Array(buffer)
-                  .subarray(0, headLength)
+                data.imageHead = new Uint8Array(buffer).subarray(0, headLength)
               }
             }
           } else {
@@ -136,7 +149,8 @@
           callback(data)
         },
         'readAsArrayBuffer'
-      )) {
+      )
+    ) {
       callback(data)
     }
   }
@@ -149,11 +163,16 @@
   var originalTransform = loadImage.transform
   loadImage.transform = function (img, options, callback, file, data) {
     if (loadImage.hasMetaOption(options)) {
-      loadImage.parseMetaData(file, function (data) {
-        originalTransform.call(loadImage, img, options, callback, file, data)
-      }, options, data)
+      loadImage.parseMetaData(
+        file,
+        function (data) {
+          originalTransform.call(loadImage, img, options, callback, file, data)
+        },
+        options,
+        data
+      )
     } else {
       originalTransform.apply(loadImage, arguments)
     }
   }
-}))
+})

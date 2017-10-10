@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { FeedStylist } from '../feedstylist/feedstylist';
 import { BookingPage } from '../booking/booking';
 import { PostpagePage } from '../postpage/postpage';
+import { FormulapostPage } from '../formulapost/formulapost';
+
 import { SettingsPage } from '../settings/settings';
 import { ISubscription } from "rxjs/Subscription";
 
@@ -249,7 +251,7 @@ export class StylistProfile implements OnDestroy {
   }
 
   openCamera(squarez) {
-    this.presentActionSheet();
+    this.presentActionSheet2();
     this.square = squarez;
   }
 
@@ -356,6 +358,71 @@ export class StylistProfile implements OnDestroy {
     actionSheet.present();
   }
 
+  presentActionSheet2() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Choose source',
+      buttons: [
+        {
+          text: 'Formula',
+          handler: () => {
+            this.presentActionSheet3();
+          }
+        },{
+          text: 'Picture',
+          handler: () => {
+            this.presentActionSheet();
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
+  ////////////********************************************** SAVING FORMULAS TO SERVER
+
+  presentActionSheet3() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Choose source',
+      buttons: [
+        {
+          text: 'Camera',
+          handler: () => {
+            let itemArrayTwo = this.profComponents.toArray();
+            this.cameraService.getMediaFormulas(this.optionsGetCamera, this.square).then((url) => {
+              this.navCtrl.push(FormulapostPage, { path: url });
+            }); //pass in square choice
+            //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
+            console.log('camera clicked');
+          }
+        },{
+          text: 'Photo Library',
+          handler: () => {
+            let itemArrayTwo = this.profComponents.toArray();
+
+            this.cameraService.getMediaFormulas(this.optionsGetMedia, this.square).then((url) => {
+              this.navCtrl.push(FormulapostPage, { path: url });
+            }); //pass in square choice
+            //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
+            console.log('camera clicked');
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
   pushPage(){
     // push another page on to the navigation stack
     // causing the nav controller to transition to the new page
@@ -426,6 +493,10 @@ export class StylistProfile implements OnDestroy {
   }
 
   swipeLeft() {
+    this.backToCal();
+  }
+
+  openCal() {
     this.backToCal();
   }
 

@@ -246,6 +246,75 @@ export class CameraService {
           
         })
         }
+      });
+
+      
+  }
+
+  // Return a promise to catch errors while loading image
+  getMediaFormulas(options, square): Promise<any> {
+
+    // Get Image from ionic-native's built in camera plugin
+    return this.camera.getPicture(options)
+      .then((fileUri) => {
+        
+        // op Image, on android this returns something like, '/storage/emulated/0/Android/...'
+        // Only giving an android example as ionic-native camera has built in cropping ability
+        if (this.platform.is('ios')) {
+
+          return this.crop.crop(fileUri, { quality: 10 });
+        } else if (this.platform.is('android')) {
+          // Modify fileUri format, may not always be necessary
+          fileUri = 'file://' + fileUri;
+
+          /* Using cordova-plugin-crop starts here */
+          return this.crop.crop(fileUri, { quality: 10 });
+        }
+      })
+      .then(newPath => {
+        console.log(newPath);
+        if(newPath) {
+        let fileName = newPath.substring(newPath.lastIndexOf("/") + 1, newPath.length);
+        let filePath = newPath.substring(0, newPath.lastIndexOf("/"));
+        this.file.readAsDataURL(filePath, fileName).then(data =>{
+          //let strImage = data.replace(/^data:image\/[a-z]+;base64,/, "");
+          //this.file.writeFile(this.file.tempDirectory, "image.jpg", strImage);
+          //let blob = dataURItoBlob(data);
+
+          //let file
+
+          //this.getFileEntryRead(this.file.tempDirectory + '/image.jpg', square);
+          var dataURL = data;
+
+          let image       : string  = 'formula_' + this.username + '_' + new Date() + '.png',
+            storageRef  : any,
+            parseUpload : any;
+
+          return new Promise((resolve, reject) => {
+            storageRef       = firebase.storage().ref('/formulas/' + this.username + '/' + image);
+            parseUpload      = storageRef.putString(dataURL, 'data_url');
+
+            parseUpload.on('state_changed', (_snapshot) => {
+                // We could log the progress here IF necessary
+                console.log('snapshot progess ' + _snapshot);
+              },
+              (_err) => {
+                 reject(_err);
+                 console.log(_err.messsage);
+              },
+              (success) => {
+                storageRef.getDownloadURL().then(url => {
+                  console.log(url);
+                  resolve(url); 
+                });
+              })
+            }).catch(function(error) {
+              console.log(error.message);
+            });
+
+          
+        })
+        }
         
         /*let source_img = new Image(300, 300);
 

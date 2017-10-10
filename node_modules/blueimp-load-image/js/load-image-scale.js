@@ -22,7 +22,7 @@
     // Browser globals:
     factory(window.loadImage)
   }
-}(function (loadImage) {
+})(function (loadImage) {
   'use strict'
 
   var originalTransform = loadImage.transform
@@ -41,9 +41,7 @@
   // Transform image coordinates, allows to override e.g.
   // the canvas orientation based on the orientation option,
   // gets canvas, options passed as arguments:
-  loadImage.transformCoordinates = function () {
-    return
-  }
+  loadImage.transformCoordinates = function () {}
 
   // Returns transformed options, allows to override e.g.
   // maxWidth, maxHeight and crop options based on the aspectRatio.
@@ -89,17 +87,19 @@
     destWidth,
     destHeight
   ) {
-    canvas.getContext('2d').drawImage(
-      img,
-      sourceX,
-      sourceY,
-      sourceWidth,
-      sourceHeight,
-      destX,
-      destY,
-      destWidth,
-      destHeight
-    )
+    canvas
+      .getContext('2d')
+      .drawImage(
+        img,
+        sourceX,
+        sourceY,
+        sourceWidth,
+        sourceHeight,
+        destX,
+        destY,
+        destWidth,
+        destHeight
+      )
     return canvas
   }
 
@@ -116,8 +116,9 @@
   loadImage.scale = function (img, options, data) {
     options = options || {}
     var canvas = document.createElement('canvas')
-    var useCanvas = img.getContext ||
-                    (loadImage.hasCanvasOption(options) && canvas.getContext)
+    var useCanvas =
+      img.getContext ||
+      (loadImage.hasCanvasOption(options) && canvas.getContext)
     var width = img.naturalWidth || img.width
     var height = img.naturalHeight || img.height
     var destWidth = width
@@ -218,8 +219,12 @@
         canvas.getContext('2d').scale(pixelRatio, pixelRatio)
       }
       downsamplingRatio = options.downsamplingRatio
-      if (downsamplingRatio > 0 && downsamplingRatio < 1 &&
-            destWidth < sourceWidth && destHeight < sourceHeight) {
+      if (
+        downsamplingRatio > 0 &&
+        downsamplingRatio < 1 &&
+        destWidth < sourceWidth &&
+        destHeight < sourceHeight
+      ) {
         while (sourceWidth * downsamplingRatio > destWidth) {
           canvas.width = sourceWidth * downsamplingRatio
           canvas.height = sourceHeight * downsamplingRatio
@@ -258,10 +263,7 @@
       }
       canvas.width = destWidth
       canvas.height = destHeight
-      loadImage.transformCoordinates(
-        canvas,
-        options
-      )
+      loadImage.transformCoordinates(canvas, options)
       return loadImage.renderImageToCanvas(
         canvas,
         img,
@@ -279,4 +281,4 @@
     img.height = destHeight
     return img
   }
-}))
+})

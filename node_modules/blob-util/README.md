@@ -3,7 +3,7 @@ blob-util [![Build Status](https://travis-ci.org/nolanlawson/blob-util.svg)](htt
 
 `blob-util` is a [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob?redirectlocale=en-US&redirectslug=DOM%2FBlob) library for busy people.
 
-It offers a tiny (~3.5KB min+gz) set of cross-browser utilities for translating Blobs to and from different formats:
+It offers a small set of cross-browser utilities for translating Blobs to and from different formats:
 
 * `<img/>` tags
 * base 64 strings
@@ -55,7 +55,7 @@ Browser support
 * IE 10+
 * Safari 6+
 * iOS 6+
-* Android 4.4+
+* Android 4+
 * Any browser with either `Blob` or the older `BlobBuilder`; see [caniuse](http://caniuse.com/#search=blob) for details.
 
 Tutorial
@@ -100,7 +100,7 @@ document.body.appendChild(newImg);
 
 So now we have two Kirbys - one with a normal URL, and the other with a blob URL. You can try this out yourself in the [blob-util playground](http://nolanlawson.github.io/blob-util). Super fun!
 
-<img src="./doc/blob-util.gif"/>
+<img src="blob-util.gif"/>
 
 
 API
@@ -108,7 +108,7 @@ API
 
 Warning: this API uses [Promises](https://promisesaplus.com/), because it's not 2009 anymore.
 
-###Overview
+### Overview
 
 * [createBlob(parts, options)](#createBlob)
 * [createObjectURL(blob)](#createObjectURL)
@@ -118,6 +118,7 @@ Warning: this API uses [Promises](https://promisesaplus.com/), because it's not 
 * [binaryStringToBlob(binary, type)](#binaryStringToBlob)
 * [blobToBase64String(blob)](#blobToBase64String)
 * [dataURLToBlob(dataURL)](#dataURLToBlob)
+* [blobToDataURL(blob)](#blobToDataURL)
 * [imgSrcToDataURL(src, type, crossOrigin, quality)](#imgSrcToDataURL)
 * [canvasToBlob(canvas, type, quality)](#canvasToBlob)
 * [imgSrcToBlob(src, type, crossOrigin, quality)](#imgSrcToBlob)
@@ -125,7 +126,7 @@ Warning: this API uses [Promises](https://promisesaplus.com/), because it's not 
 * [blobToArrayBuffer(blob)](#blobToArrayBuffer)
  
 <a name="createBlob"></a>
-###createBlob(parts, options)
+### createBlob(parts, options)
 Shim for
 [new Blob()](https://developer.mozilla.org/en-US/docs/Web/API/Blob.Blob)
 to support
@@ -145,7 +146,7 @@ var myBlob = blobUtil.createBlob(['hello world'], {type: 'text/plain'});
 ```
 
 <a name="createObjectURL"></a>
-###createObjectURL(blob)
+### createObjectURL(blob)
 Shim for
 [URL.createObjectURL()](https://developer.mozilla.org/en-US/docs/Web/API/URL.createObjectURL)
 to support browsers that only have the prefixed
@@ -164,7 +165,7 @@ var myUrl = blobUtil.createObjectURL(blob);
 ```
 
 <a name="revokeObjectURL"></a>
-###revokeObjectURL(url)
+### revokeObjectURL(url)
 Shim for
 [URL.revokeObjectURL()](https://developer.mozilla.org/en-US/docs/Web/API/URL.revokeObjectURL)
 to support browsers that only have the prefixed
@@ -181,7 +182,7 @@ blobUtil.revokeObjectURL(myUrl);
 ```
 
 <a name="blobToBinaryString"></a>
-###blobToBinaryString(blob)
+### blobToBinaryString(blob)
 Convert a <code>Blob</code> to a binary string. Returns a Promise.
 
 **Params**
@@ -201,7 +202,7 @@ blobUtil.blobToBinaryString(blob).then(function (binaryString) {
 ```
  
 <a name="base64StringToBlob"></a>
-###base64StringToBlob(base64, type)
+### base64StringToBlob(base64, type)
 Convert a base64-encoded string to a <code>Blob</code>. Returns a Promise.
 
 **Params**
@@ -222,7 +223,7 @@ blobUtil.base64StringToBlob(base64String).then(function (blob) {
 ```
 
 <a name="binaryStringToBlob"></a>
-###binaryStringToBlob(binary, type)
+### binaryStringToBlob(binary, type)
 Convert a binary string to a <code>Blob</code>. Returns a Promise.
 
 **Params**
@@ -243,7 +244,7 @@ blobUtil.binaryStringToBlob(binaryString).then(function (blob) {
 ```
 
 <a name="blobToBase64String"></a>
-###blobToBase64String(blob)
+### blobToBase64String(blob)
 Convert a <code>Blob</code> to a binary string. Returns a Promise.
 
 **Params**
@@ -264,7 +265,7 @@ blobUtil.blobToBase64String(blob).then(function (base64String) {
 ```
 
 <a name="dataURLToBlob"></a>
-###dataURLToBlob(dataURL)
+### dataURLToBlob(dataURL)
 Convert a data URL string
 (e.g. <code>'data:image/png;base64,iVBORw0KG...'</code>)
 to a <code>Blob</code>. Returns a Promise.
@@ -284,9 +285,29 @@ blobUtil.dataURLToBlob(dataURL).then(function (blob) {
   // error
 });
 ```
+<a name="blobToDataURL"></a>
+###blobToDataURL(blob)
+Convert a <code>Blob</code> to a data URL string
+(e.g. <code>'data:image/png;base64,iVBORw0KG...'</code>).
+Returns a Promise.
 
+**Params**
+
+- blob `Blob`  
+
+**Returns**: `Promise` - Promise that resolves with the data URL string
+
+**Example**:
+
+```js
+blobUtil.blobToDataURL(blob).then(function (dataURL) {
+  // success
+}).catch(function (err) {
+  // error
+});
+```
 <a name="imgSrcToDataURL"></a>
-###imgSrcToDataURL(src, type, crossOrigin, quality)
+### imgSrcToDataURL(src, type, crossOrigin, quality)
 Convert an image's <code>src</code> URL to a data URL by loading the image and painting
 it to a <code>canvas</code>. Returns a Promise.
 
@@ -316,7 +337,7 @@ blobUtil.imgSrcToDataURL('http://mysite.com/img.png').then(function (dataURL) {
 
 ```js
 blobUtil.imgSrcToDataURL('http://some-other-site.com/img.jpg', 'image/jpeg', 
-                         {crossOrigin: 'Anonymous'}).then(function (dataURL) {
+                         'Anonymous', 1.0).then(function (dataURL) {
   // success
 }).catch(function (err) {
   // error
@@ -324,7 +345,7 @@ blobUtil.imgSrcToDataURL('http://some-other-site.com/img.jpg', 'image/jpeg',
 ```
 
 <a name="canvasToBlob"></a>
-###canvasToBlob(canvas, type, quality)
+### canvasToBlob(canvas, type, quality)
 Convert a <code>canvas</code> to a <code>Blob</code>. Returns a Promise.
 
 **Params**
@@ -359,7 +380,7 @@ blobUtil.canvasToBlob(canvas, 'image/webp').then(function (blob) {
 ```
 
 <a name="imgSrcToBlob"></a>
-###imgSrcToBlob(src, type, crossOrigin, quality)
+### imgSrcToBlob(src, type, crossOrigin, quality)
 Convert an image's <code>src</code> URL to a <code>Blob</code> by loading the image and painting
 it to a <code>canvas</code>. Returns a Promise.
 
@@ -389,7 +410,7 @@ blobUtil.imgSrcToBlob('http://mysite.com/img.png').then(function (blob) {
 
 ```js
 blobUtil.imgSrcToBlob('http://some-other-site.com/img.jpg', 'image/jpeg', 
-                         {crossOrigin: 'Anonymous'}).then(function (blob) {
+                         'Anonymous', 1.0).then(function (blob) {
   // success
 }).catch(function (err) {
   // error
@@ -397,7 +418,7 @@ blobUtil.imgSrcToBlob('http://some-other-site.com/img.jpg', 'image/jpeg',
 ```
 
 <a name="arrayBufferToBlob"></a>
-###arrayBufferToBlob(buffer, type)
+### arrayBufferToBlob(buffer, type)
 Convert an <code>ArrayBuffer</code> to a <code>Blob</code>. Returns a Promise.
 
 **Params**
@@ -418,7 +439,7 @@ blobUtil.arrayBufferToBlob(arrayBuff, 'audio/mpeg').then(function (blob) {
 ```
 
 <a name="blobToArrayBuffer"></a>
-###blobToArrayBuffer(blob)
+### blobToArrayBuffer(blob)
 Convert a <code>Blob</code> to an <code>ArrayBuffer</code>. Returns a Promise.
 
 **Params**
@@ -460,10 +481,8 @@ The playground is just `jsdoc` with some extra text containing Kirby and the cod
 
 So unfortunately you will need to do a manual diff to get the docs up to date. You'll need to diff:
 
-* `api.md` to `README.md`
-* `index.html` to `doc/global.html`
-
-Update: I also manually added a bunch of code samples to `README.md` because jsdoc didn't seem to support that. So... yeah, jsdoc might not be so helpful anymore.
+* `README.md` to its previous version (make sure to keep the code samples, which were manually added)
+* `docs` to its previous version
 
 Testing the library
 ----
@@ -477,7 +496,3 @@ Then to test in the browser using Saucelabs:
 Or to test locally in your browser of choice:
 
     npm run test-local
-
-Or to test in PhantomJS:
-
-    npm run test-phantom

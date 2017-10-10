@@ -32,10 +32,10 @@ import { InAppBrowser } from 'ionic-native';
   animations: [
     trigger('moveCover', [
       state('down', style({
-        top: '-109px',
+        //top: '-109px',
       })),
       state('up', style({
-        top: '-188px',
+        //top: '-188px',
       })),
       transition('* => *', animate('400ms ease-in')),
     ]),
@@ -464,6 +464,10 @@ export class UserProfile implements OnDestroy {
 
   swipeRight() {
     this.backToFeed();
+  }
+
+  openCal() {
+    this.navCtrl.push(UserBooking, {username: this.username});
   }
 
   downloadImages():Promise<any> {

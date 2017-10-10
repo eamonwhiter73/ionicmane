@@ -5,6 +5,8 @@ import { Storage } from '@ionic/storage';
 import { ISubscription } from "rxjs/Subscription";
 import { Geolocation } from '@ionic-native/geolocation';
 import { CallNumber } from '@ionic-native/call-number';
+import { UserviewuserprofilePage } from '../userviewuserprofile/userviewuserprofile';
+
 
 
 
@@ -28,6 +30,8 @@ export class FollowersPage implements OnDestroy{
   subscription3: ISubscription;
   followers = [];
   followersList = [];
+  sendBio;
+  userPhone;
 
 
   constructor(private callNumber: CallNumber, public geolocation: Geolocation, public storage: Storage, public af: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
@@ -43,6 +47,8 @@ export class FollowersPage implements OnDestroy{
 	    	this.followlist = this.af.object('/profiles/users/'+Object.keys(item)[0]);
 
 	        this.subscription2 = this.followlist.subscribe(item1 => {
+            this.sendBio = item1.bio;
+
 	        	console.log('inside subscribe   ' + JSON.stringify(item1));
 	        	if(item1.picURL == null) {
 	        		item1.picURL = 'assets/blankprof.png'
@@ -93,9 +99,14 @@ export class FollowersPage implements OnDestroy{
   }
 
   makePhoneCall(userPhone) {
+    this.userPhone = userPhone;
   	this.callNumber.callNumber(userPhone, true)
 	  .then(() => console.log('Launched dialer!'))
 	  .catch(() => console.log('Error launching dialer'));
+  }
+
+  goToProfile(username) {
+  	this.navCtrl.push(UserviewuserprofilePage, {'username':username, 'bio':this.sendBio, 'phone':this.userPhone});
   }
 
 }

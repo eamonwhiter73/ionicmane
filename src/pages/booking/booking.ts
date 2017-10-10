@@ -49,13 +49,7 @@ export class BookingPage implements OnDestroy {
   private subscription3: ISubscription;
 
   constructor(private elRef:ElementRef, public myrenderer: Renderer, public loadingController: LoadingController, public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public af: AngularFireDatabase) {
-    
 
-    
-    //this.items = this.af.list('/appointments/' + this.username);
-    //console.log(this.items);
-        
-    
   }
 
   ionViewDidLoad() {

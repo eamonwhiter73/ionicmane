@@ -18,6 +18,10 @@ import { UserProfile } from '../pages/userprofile/userprofile';
 import { UserBooking } from '../pages/userbooking/userbooking';
 import { UserViewProfile } from '../pages/userviewprofile/userviewprofile';
 import { FollowersPage } from '../pages/followers/followers';
+import { FormulapostPage } from '../pages/formulapost/formulapost';
+
+import { UserviewuserprofilePage } from '../pages/userviewuserprofile/userviewuserprofile';
+
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { FullfeedPage } from '../pages/fullfeed/fullfeed';
@@ -59,7 +63,6 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
-import { Auth } from '@ionic/cloud-angular';
 import { CallNumber } from '@ionic-native/call-number';
 import { SMS } from '@ionic-native/sms';
 
@@ -120,8 +123,10 @@ firebase.initializeApp(firebaseConfig);
     Rate,
     UserViewProfile,
     FollowersPage,
+    UserviewuserprofilePage,
     MapPage,
-    FullfeedPage
+    FullfeedPage,
+    FormulapostPage
   ],
   imports: [
     BrowserModule,
@@ -157,8 +162,10 @@ firebase.initializeApp(firebaseConfig);
     UserBooking,
     UserViewProfile,
     FollowersPage,
+    UserviewuserprofilePage,
     MapPage,
-    FullfeedPage
+    FullfeedPage,
+    FormulapostPage
   ],
   providers: [
     StatusBar,
