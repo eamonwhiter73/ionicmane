@@ -194,13 +194,13 @@ export class CameraService {
         // Only giving an android example as ionic-native camera has built in cropping ability
         if (this.platform.is('ios')) {
 
-          return this.crop.crop(fileUri, { quality: 10 });
+          return this.crop.crop(fileUri, { quality: 2 });
         } else if (this.platform.is('android')) {
           // Modify fileUri format, may not always be necessary
           fileUri = 'file://' + fileUri;
 
           /* Using cordova-plugin-crop starts here */
-          return this.crop.crop(fileUri, { quality: 10 });
+          return this.crop.crop(fileUri, { quality: 2 });
         }
       })
       .then(newPath => {
@@ -262,13 +262,13 @@ export class CameraService {
         // Only giving an android example as ionic-native camera has built in cropping ability
         if (this.platform.is('ios')) {
 
-          return this.crop.crop(fileUri, { quality: 10 });
+          return this.crop.crop(fileUri, { quality: 2 });
         } else if (this.platform.is('android')) {
           // Modify fileUri format, may not always be necessary
           fileUri = 'file://' + fileUri;
 
           /* Using cordova-plugin-crop starts here */
-          return this.crop.crop(fileUri, { quality: 10 });
+          return this.crop.crop(fileUri, { quality: 2 });
         }
       })
       .then(newPath => {
@@ -277,6 +277,7 @@ export class CameraService {
         let fileName = newPath.substring(newPath.lastIndexOf("/") + 1, newPath.length);
         let filePath = newPath.substring(0, newPath.lastIndexOf("/"));
         this.file.readAsDataURL(filePath, fileName).then(data =>{
+          console.log("IN READASDATAURL GETMEDIAFORMULAS");
           //let strImage = data.replace(/^data:image\/[a-z]+;base64,/, "");
           //this.file.writeFile(this.file.tempDirectory, "image.jpg", strImage);
           //let blob = dataURItoBlob(data);
@@ -305,6 +306,7 @@ export class CameraService {
               (success) => {
                 storageRef.getDownloadURL().then(url => {
                   console.log(url);
+                  console.log("IN READASDATAURL GETMEDIAFORMULAS UERLRLRLR");
                   resolve(url); 
                 });
               })

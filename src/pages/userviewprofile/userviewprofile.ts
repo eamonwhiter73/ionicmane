@@ -1,6 +1,6 @@
 import { Component, trigger, state, style, transition, animate, ViewChildren, ViewChild, OnDestroy, Renderer, ElementRef, QueryList } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { FeedStylist } from '../feedstylist/feedstylist';
+import { FeedUser } from '../feeduser/feeduser';
 import { BookingPage } from '../booking/booking';
 import { PostpagePage } from '../postpage/postpage';
 import { SettingsPage } from '../settings/settings';
@@ -435,7 +435,7 @@ export class UserViewProfile implements OnDestroy {
       this.navCtrl.push(FeedUser);
     }*/
     //else {
-      this.navCtrl.push(FeedStylist,{},{animate:true,animation:'transition',duration:500,direction:'back'})
+      this.navCtrl.push(FeedUser,{},{animate:true,animation:'transition',duration:500,direction:'back'})
       //this.navCtrl.push(FeedStylist);
     //}
   }

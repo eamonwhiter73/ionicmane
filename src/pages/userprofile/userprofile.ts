@@ -95,7 +95,7 @@ export class UserProfile implements OnDestroy {
   
 
   constructor(public afAuth: AngularFireAuth, public elRef: ElementRef, public params: NavParams,public modalCtrl: ModalController, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController, public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
-    this.username = this.params.get('username');
+    
   }
 
   ngOnDestroy() {
@@ -157,6 +157,8 @@ export class UserProfile implements OnDestroy {
   }
 
   ionViewDidLoad() {
+    this.username = this.params.get('username');
+
     this.subscription7 = this.afAuth.authState.subscribe(data => {
       if(data.email && data.uid) {
         console.log("logged in");
@@ -272,7 +274,7 @@ export class UserProfile implements OnDestroy {
   }
 
   getProfileInfo() {
-    this.item = this.af.object('https://mane-4152c.firebaseio.com/profiles/stylists/' + this.username);
+    this.item = this.af.object('/profiles/stylists/' + this.username);
     this.subscription6 = this.item.subscribe(item => {this.picURL = item.picURL; this.bio = item.bio;});
     
   }

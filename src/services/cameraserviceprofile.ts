@@ -194,13 +194,13 @@ export class CameraServiceProfile {
         // Only giving an android example as ionic-native camera has built in cropping ability
         if (this.platform.is('ios')) {
 
-          return this.crop.crop(fileUri, { quality: 10 });
+          return this.crop.crop(fileUri, { quality: 2 });
         } else if (this.platform.is('android')) {
           // Modify fileUri format, may not always be necessary
           fileUri = 'file://' + fileUri;
 
           /* Using cordova-plugin-crop starts here */
-          return this.crop.crop(fileUri, { quality: 10 });
+          return this.crop.crop(fileUri, { quality: 2 });
         }
       })
       .then(newPath => {

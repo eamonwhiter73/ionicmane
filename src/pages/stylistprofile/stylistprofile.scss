@@ -69,6 +69,10 @@ page-stylist-profile {
       color: #616160;
   }
 
+  .text-muted[_ngcontent-c6] {
+      color: #616160;
+  }
+
   //changed this***
 
   .moveCover {
@@ -146,9 +150,16 @@ page-stylist-profile {
 
   .stylistsect {
     max-width: 46%;
-    top: 60%;
+    top: 0;
     left: 10px;
     position: relative;
+  }
+
+  .caltitle {
+    position: absolute;
+    right: 14%;
+    top: 10%;
+    color: map-get($colors, primary);
   }
 
   .bio {
@@ -195,6 +206,22 @@ page-stylist-profile {
     top: -182px;
     left: 33%;
     display: none;
+  }
+
+  .table[_ngcontent-c6] > thead[_ngcontent-c6] > tr[_ngcontent-c6] > th[_ngcontent-c6], .table[_ngcontent-c6] > tbody[_ngcontent-c6] > tr[_ngcontent-c6] > th[_ngcontent-c6], .table[_ngcontent-c6] > tfoot[_ngcontent-c6] > tr[_ngcontent-c6] > th[_ngcontent-c6], .table[_ngcontent-c6] > thead[_ngcontent-c6] > tr[_ngcontent-c6] > td[_ngcontent-c6], .table[_ngcontent-c6] > tbody[_ngcontent-c6] > tr[_ngcontent-c6] > td[_ngcontent-c6], .table[_ngcontent-c6] > tfoot[_ngcontent-c6] > tr[_ngcontent-c6] > td[_ngcontent-c6] {
+    padding: 2px 0px 2px 0px;
+    line-height: 10.5px;
+    vertical-align: top;
+    font-size: 11px;
+    border: none;
+  }
+
+  .table[_ngcontent-c5] > thead[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], .table[_ngcontent-c5] > tbody[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], .table[_ngcontent-c5] > tfoot[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], .table[_ngcontent-c5] > thead[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5], .table[_ngcontent-c5] > tbody[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5], .table[_ngcontent-c5] > tfoot[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5] {
+    padding: 2px 0px 2px 0px;
+    line-height: 10.5px;
+    vertical-align: top;
+    font-size: 11px;
+    border: none;
   }
 
   .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4] {
@@ -261,6 +288,18 @@ page-stylist-profile {
     background-color: #25292c;
   }
 
+  .monthview-selected[_ngcontent-c5] {
+    color: white;
+    font-weight: 900;
+    background-color: #25292c;
+  }
+
+  .monthview-selected[_ngcontent-c6] {
+    color: white;
+    font-weight: 900;
+    background-color: #25292c;
+  }
+
   .monthview-current[_ngcontent-c1] {
     background-color: #25292c;
   }
@@ -278,6 +317,10 @@ page-stylist-profile {
   }
 
   .monthview-current[_ngcontent-c5] {
+    background-color: #25292c;
+  }
+
+  .monthview-current[_ngcontent-c6] {
     background-color: #25292c;
   }
 
@@ -306,6 +349,16 @@ page-stylist-profile {
     color: #999;
   }
 
+  .table-bordered[_ngcontent-c5] {
+    border: none;
+    color: #999;
+  }
+
+  .table-bordered[_ngcontent-c6] {
+    border: none;
+    color: #999;
+  }
+
   //changed this***
 
   [_nghost-c1] > div[_ngcontent-c1] {
@@ -321,6 +374,14 @@ page-stylist-profile {
   }
 
   [_nghost-c4] > div[_ngcontent-c4] {
+    margin-top: -10px;
+  }
+
+  [_nghost-c5] > div[_ngcontent-c5] {
+    margin-top: -10px;
+  }
+
+  [_nghost-c6] > div[_ngcontent-c6] {
     margin-top: -10px;
   }
 

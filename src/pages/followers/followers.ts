@@ -6,6 +6,8 @@ import { ISubscription } from "rxjs/Subscription";
 import { Geolocation } from '@ionic-native/geolocation';
 import { CallNumber } from '@ionic-native/call-number';
 import { UserviewuserprofilePage } from '../userviewuserprofile/userviewuserprofile';
+import { FeedStylist } from '../feedstylist/feedstylist';
+
 
 
 
@@ -96,6 +98,10 @@ export class FollowersPage implements OnDestroy{
 	if(this.subscription2 != null) {
 		this.subscription2.unsubscribe();
 	}
+  }
+
+  swipeLeft() {
+    this.navCtrl.push(FeedStylist,{},{animate:true,animation:'transition',duration:500,direction:'forward'});
   }
 
   makePhoneCall(userPhone) {

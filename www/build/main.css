@@ -13987,16 +13987,16 @@ input.text-input:-webkit-autofill {
 
 .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
 .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
-  border-bottom-color: #dedede;
-  -webkit-box-shadow: inset 0 -1px 0 0 #dedede;
-  box-shadow: inset 0 -1px 0 0 #dedede;
+  border-bottom-color: #32db64;
+  -webkit-box-shadow: inset 0 -1px 0 0 #32db64;
+  box-shadow: inset 0 -1px 0 0 #32db64;
 }
 
 .list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
 .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child {
-  border-bottom-color: #dedede;
-  -webkit-box-shadow: inset 0 -1px 0 0 #dedede;
-  box-shadow: inset 0 -1px 0 0 #dedede;
+  border-bottom-color: #32db64;
+  -webkit-box-shadow: inset 0 -1px 0 0 #32db64;
+  box-shadow: inset 0 -1px 0 0 #32db64;
 }
 
 .list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child .item-inner,
@@ -14072,7 +14072,7 @@ input.text-input:-webkit-autofill {
 
 .item-wp.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .text-input,
 .item-wp.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .text-input {
-  border-color: #dedede;
+  border-color: #32db64;
 }
 
 .item-wp.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .text-input {
@@ -32649,6 +32649,10 @@ page-stylist-profile .text-muted[_ngcontent-c5] {
   color: #616160;
 }
 
+page-stylist-profile .text-muted[_ngcontent-c6] {
+  color: #616160;
+}
+
 page-stylist-profile .moveCover {
   height: 100%;
   -webkit-transition: height 0.75s ease-in;
@@ -32718,9 +32722,16 @@ page-stylist-profile .ratings {
 
 page-stylist-profile .stylistsect {
   max-width: 46%;
-  top: 60%;
+  top: 0;
   left: 10px;
   position: relative;
+}
+
+page-stylist-profile .caltitle {
+  position: absolute;
+  right: 14%;
+  top: 10%;
+  color: #e6c926;
 }
 
 page-stylist-profile .bio {
@@ -32764,6 +32775,22 @@ page-stylist-profile .calendarcover {
   top: -182px;
   left: 33%;
   display: none;
+}
+
+page-stylist-profile .table[_ngcontent-c6] > thead[_ngcontent-c6] > tr[_ngcontent-c6] > th[_ngcontent-c6], page-stylist-profile .table[_ngcontent-c6] > tbody[_ngcontent-c6] > tr[_ngcontent-c6] > th[_ngcontent-c6], page-stylist-profile .table[_ngcontent-c6] > tfoot[_ngcontent-c6] > tr[_ngcontent-c6] > th[_ngcontent-c6], page-stylist-profile .table[_ngcontent-c6] > thead[_ngcontent-c6] > tr[_ngcontent-c6] > td[_ngcontent-c6], page-stylist-profile .table[_ngcontent-c6] > tbody[_ngcontent-c6] > tr[_ngcontent-c6] > td[_ngcontent-c6], page-stylist-profile .table[_ngcontent-c6] > tfoot[_ngcontent-c6] > tr[_ngcontent-c6] > td[_ngcontent-c6] {
+  padding: 2px 0px 2px 0px;
+  line-height: 10.5px;
+  vertical-align: top;
+  font-size: 11px;
+  border: none;
+}
+
+page-stylist-profile .table[_ngcontent-c5] > thead[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], page-stylist-profile .table[_ngcontent-c5] > tbody[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], page-stylist-profile .table[_ngcontent-c5] > tfoot[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], page-stylist-profile .table[_ngcontent-c5] > thead[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5], page-stylist-profile .table[_ngcontent-c5] > tbody[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5], page-stylist-profile .table[_ngcontent-c5] > tfoot[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5] {
+  padding: 2px 0px 2px 0px;
+  line-height: 10.5px;
+  vertical-align: top;
+  font-size: 11px;
+  border: none;
 }
 
 page-stylist-profile .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > th[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > thead[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > tbody[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4], page-stylist-profile .table[_ngcontent-c4] > tfoot[_ngcontent-c4] > tr[_ngcontent-c4] > td[_ngcontent-c4] {
@@ -32828,6 +32855,18 @@ page-stylist-profile .monthview-selected[_ngcontent-c4] {
   background-color: #25292c;
 }
 
+page-stylist-profile .monthview-selected[_ngcontent-c5] {
+  color: white;
+  font-weight: 900;
+  background-color: #25292c;
+}
+
+page-stylist-profile .monthview-selected[_ngcontent-c6] {
+  color: white;
+  font-weight: 900;
+  background-color: #25292c;
+}
+
 page-stylist-profile .monthview-current[_ngcontent-c1] {
   background-color: #25292c;
 }
@@ -32845,6 +32884,10 @@ page-stylist-profile .monthview-current[_ngcontent-c4] {
 }
 
 page-stylist-profile .monthview-current[_ngcontent-c5] {
+  background-color: #25292c;
+}
+
+page-stylist-profile .monthview-current[_ngcontent-c6] {
   background-color: #25292c;
 }
 
@@ -32873,6 +32916,16 @@ page-stylist-profile .table-bordered[_ngcontent-c4] {
   color: #999;
 }
 
+page-stylist-profile .table-bordered[_ngcontent-c5] {
+  border: none;
+  color: #999;
+}
+
+page-stylist-profile .table-bordered[_ngcontent-c6] {
+  border: none;
+  color: #999;
+}
+
 page-stylist-profile [_nghost-c1] > div[_ngcontent-c1] {
   margin-top: -10px;
 }
@@ -32886,6 +32939,14 @@ page-stylist-profile [_nghost-c3] > div[_ngcontent-c3] {
 }
 
 page-stylist-profile [_nghost-c4] > div[_ngcontent-c4] {
+  margin-top: -10px;
+}
+
+page-stylist-profile [_nghost-c5] > div[_ngcontent-c5] {
+  margin-top: -10px;
+}
+
+page-stylist-profile [_nghost-c6] > div[_ngcontent-c6] {
   margin-top: -10px;
 }
 
@@ -33569,6 +33630,13 @@ page-user-profile ion-title {
   position: absolute;
 }
 
+page-user-profile .caltitle {
+  position: absolute;
+  right: 14%;
+  top: 10%;
+  color: #e6c926;
+}
+
 page-user-profile .postprofilepic {
   display: inline;
   margin: 0 auto;
@@ -33634,6 +33702,10 @@ page-user-profile .text-muted[_ngcontent-c4] {
 }
 
 page-user-profile .text-muted[_ngcontent-c5] {
+  color: #616160;
+}
+
+page-user-profile .text-muted[_ngcontent-c6] {
   color: #616160;
 }
 
@@ -33740,6 +33812,14 @@ page-user-profile .calendarcover {
   display: none;
 }
 
+page-user-profile .table[_ngcontent-c6] > thead[_ngcontent-c6] > tr[_ngcontent-c6] > th[_ngcontent-c6], page-user-profile .table[_ngcontent-c6] > tbody[_ngcontent-c6] > tr[_ngcontent-c6] > th[_ngcontent-c6], page-user-profile .table[_ngcontent-c6] > tfoot[_ngcontent-c6] > tr[_ngcontent-c6] > th[_ngcontent-c6], page-user-profile .table[_ngcontent-c6] > thead[_ngcontent-c6] > tr[_ngcontent-c6] > td[_ngcontent-c6], page-user-profile .table[_ngcontent-c6] > tbody[_ngcontent-c6] > tr[_ngcontent-c6] > td[_ngcontent-c6], page-user-profile .table[_ngcontent-c6] > tfoot[_ngcontent-c6] > tr[_ngcontent-c6] > td[_ngcontent-c6] {
+  padding: 2px 0px 2px 0px;
+  line-height: 10.5px;
+  vertical-align: top;
+  font-size: 11px;
+  border: none;
+}
+
 page-user-profile .table[_ngcontent-c5] > thead[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], page-user-profile .table[_ngcontent-c5] > tbody[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], page-user-profile .table[_ngcontent-c5] > tfoot[_ngcontent-c5] > tr[_ngcontent-c5] > th[_ngcontent-c5], page-user-profile .table[_ngcontent-c5] > thead[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5], page-user-profile .table[_ngcontent-c5] > tbody[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5], page-user-profile .table[_ngcontent-c5] > tfoot[_ngcontent-c5] > tr[_ngcontent-c5] > td[_ngcontent-c5] {
   padding: 2px 0px 2px 0px;
   line-height: 10.5px;
@@ -33824,6 +33904,12 @@ page-user-profile .monthview-selected[_ngcontent-c5] {
   background-color: #25292c;
 }
 
+page-user-profile .monthview-selected[_ngcontent-c6] {
+  color: white;
+  font-weight: 900;
+  background-color: #25292c;
+}
+
 page-user-profile .monthview-current[_ngcontent-c1] {
   background-color: #25292c;
 }
@@ -33841,6 +33927,10 @@ page-user-profile .monthview-current[_ngcontent-c4] {
 }
 
 page-user-profile .monthview-current[_ngcontent-c5] {
+  background-color: #25292c;
+}
+
+page-user-profile .monthview-current[_ngcontent-c6] {
   background-color: #25292c;
 }
 
@@ -33874,6 +33964,11 @@ page-user-profile .table-bordered[_ngcontent-c5] {
   color: #999;
 }
 
+page-user-profile .table-bordered[_ngcontent-c6] {
+  border: none;
+  color: #999;
+}
+
 page-user-profile [_nghost-c1] > div[_ngcontent-c1] {
   margin-top: -10px;
 }
@@ -33891,6 +33986,10 @@ page-user-profile [_nghost-c4] > div[_ngcontent-c4] {
 }
 
 page-user-profile [_nghost-c5] > div[_ngcontent-c5] {
+  margin-top: -10px;
+}
+
+page-user-profile [_nghost-c6] > div[_ngcontent-c6] {
   margin-top: -10px;
 }
 

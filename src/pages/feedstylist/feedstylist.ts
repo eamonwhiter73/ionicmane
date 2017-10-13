@@ -205,36 +205,6 @@ export class FeedStylist implements OnDestroy {
     this.navCtrl.push(BookingPage);
   }
 
-  swipe(e: TouchEvent, when: string): void {
-    const coord: [number, number] = [e.changedTouches[0].pageX, e.changedTouches[0].pageY];
-    const time = new Date().getTime();
-
-    if (when === 'start') {
-      this.swipeCoord = coord;
-      this.swipeTime = time;
-    }
-
-    else if (when === 'end') {
-      const direction = [coord[0] - this.swipeCoord[0], coord[1] - this.swipeCoord[1]];
-      const duration = time - this.swipeTime;
-
-      if (duration < 1000 //Short enough
-        && Math.abs(direction[1]) < Math.abs(direction[0]) //Horizontal enough
-        && Math.abs(direction[0]) > 30) {  //Long enough
-          const swipe = direction[0] < 0 ? 'next' : 'previous';
-          console.log(swipe);
-
-          if(swipe == 'next') {
-            this.toProfile();
-          }
-          else {
-            this.toBooking();
-          }
-      //Do whatever you want with swipe
-      }
-    }
-  }
-
   indexChange() {
     console.log(this.swiperIndex);
     if(this.swiperSize == 'small' || 'begin') {
@@ -260,7 +230,7 @@ export class FeedStylist implements OnDestroy {
   }
 
   swipeRight() {
-    this.toBooking();
+    this.toFollowers();
   }
 
   switchView() {
@@ -271,10 +241,8 @@ export class FeedStylist implements OnDestroy {
     this.navCtrl.push(StylistProfile,{},{animate:true,animation:'transition',duration:500,direction:'forward'});
   }
 
-  toBooking() {
-    this.navCtrl.push(BookingPage,{
-      param1: 'user'
-    },{animate:true,animation:'transition',duration:500,direction:'back'});
+  toFollowers() {
+    this.navCtrl.push(FollowersPage,{},{animate:true,animation:'transition',duration:500,direction:'back'});
   }
 
   loadPost() {

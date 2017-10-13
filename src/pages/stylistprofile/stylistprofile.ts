@@ -360,7 +360,7 @@ export class StylistProfile implements OnDestroy {
 
   presentActionSheet2() {
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Choose source',
+      title: 'Choose type',
       buttons: [
         {
           text: 'Formula',
@@ -395,6 +395,7 @@ export class StylistProfile implements OnDestroy {
           handler: () => {
             let itemArrayTwo = this.profComponents.toArray();
             this.cameraService.getMediaFormulas(this.optionsGetCamera, this.square).then((url) => {
+              actionSheet.dismiss();
               this.navCtrl.push(FormulapostPage, { path: url });
             }); //pass in square choice
             //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
@@ -406,6 +407,7 @@ export class StylistProfile implements OnDestroy {
             let itemArrayTwo = this.profComponents.toArray();
 
             this.cameraService.getMediaFormulas(this.optionsGetMedia, this.square).then((url) => {
+              actionSheet.dismiss();
               this.navCtrl.push(FormulapostPage, { path: url });
             }); //pass in square choice
             //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
@@ -634,7 +636,7 @@ export class StylistProfile implements OnDestroy {
           console.log(JSON.stringify(item.reserved) + "         item resesrved");
           //for(let r of item.reserved.appointment) {
             //console.log(JSON.stringify(r));
-            /*let bool = false;
+            /*let bool = lse;
             for(let r in item.reserved.appointment) {
               if(r['selected'] == "true") {
                 bool = true;

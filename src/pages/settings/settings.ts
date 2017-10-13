@@ -63,7 +63,7 @@ export class SettingsPage implements OnDestroy {
   oldUser: string;
   picURL: string;
   x: number;
-  priceRanges = ['$', '$$', '$$$', '$$$$', '$$$$$'];
+  priceRanges = ['<100', '100-149', '150-199', '200-249', '250-300'];
   loggedIn = false;
   typeparam;
   type;
@@ -182,6 +182,10 @@ export class SettingsPage implements OnDestroy {
     this.storage.set('phone', this.phone);
     this.storage.set('instausername', this.instagramURL);
 
+    if(this.facebookURL == null) {
+      this.facebookURL = "";
+    }
+
 
     //this.storage.get('type').then((val) => {
       if(this.type == 'stylist' || this.type == 'user/stylist/stylist') {
@@ -191,6 +195,22 @@ export class SettingsPage implements OnDestroy {
         else {
           this.storage.set('address', this.address);
           this.storage.set('price', this.price);
+
+          if(this.price == "<100") {
+            this.price = "$";
+          }
+          else if(this.price == "100-149") {
+            this.price = "$$";
+          }
+          else if(this.price == "150-199") {
+            this.price = "$$$";
+          }
+          else if(this.price == "200-249") {
+            this.price = "$$$$";
+          }
+          else if(this.price == "250-300") {
+            this.price = "$$$$$";
+          }
 
           this.items = this.af.object('/profiles/stylists');
 
