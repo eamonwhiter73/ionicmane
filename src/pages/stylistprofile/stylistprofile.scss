@@ -1,5 +1,36 @@
 page-stylist-profile {
 
+  .clearcover {
+    width: 50%;
+    top: 18%;
+    height: 28%;
+    position: absolute;
+    right: 1%;
+    z-index: 2;
+  }
+
+  .leftArrow[_ngcontent-c2] {
+      z-index: 20;
+      position: absolute;
+      left: 80px;
+      width: 28px;
+      height: 20px;
+      display: inline-block;
+      top: 17px;
+      background-color: red;
+  }
+
+  .rightArrow[_ngcontent-c2] {
+    z-index: 20;
+    left: 180px;
+    position: absolute;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 17px;
+    background-color: blue;
+  }
+
   ion-title {
      text-align: center;
      position: absolute;
@@ -157,9 +188,10 @@ page-stylist-profile {
 
   .caltitle {
     position: absolute;
-    right: 14%;
-    top: 10%;
-    color: map-get($colors, primary);
+    right: 18%;
+    top: 12%;
+    color: #25292d;
+    font-size: 12px;
   }
 
   .bio {

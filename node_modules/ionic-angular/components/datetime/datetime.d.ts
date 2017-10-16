@@ -116,6 +116,8 @@ import { DateTimeData, LocaleData } from '../../util/datetime-util';
  * to serialize and pass within JSON objects, and sending databases a standardized
  * format which it can be easily parsed if need be.
  *
+ * To create an ISO datetime string for the current date and time, e.g. use `const currentDate = (new Date()).toISOString();`.
+ *
  * An ISO format can be used as a simple year, or just the hour and minute, or get more
  * detailed down to the millisecond and timezone. Any of the ISO formats below can be used,
  * and after a user selects a new value, Ionic will continue to use the same ISO format
@@ -148,7 +150,7 @@ import { DateTimeData, LocaleData } from '../../util/datetime-util';
  * ## Min and Max Datetimes
  *
  * Dates are infinite in either direction, so for a user's selection there should be at
- * least some form of restricting the dates that can be selected. Be default, the maximum
+ * least some form of restricting the dates that can be selected. By default, the maximum
  * date is to the end of the current year, and the minimum date is from the beginning
  * of the year that was 100 years ago.
  *

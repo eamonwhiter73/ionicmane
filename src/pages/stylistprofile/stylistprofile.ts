@@ -607,7 +607,7 @@ export class StylistProfile implements OnDestroy {
   onViewTitleChanged(title) {
     let array = title.split(" ");
     //array[1];
-    this.viewTitle = array[0];
+    this.viewTitle = array[0].substring(0, 3);
     this.titleYear = array[1];
   }
 
