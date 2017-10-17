@@ -38,7 +38,13 @@
 			<div class="name">@{{username}}</div>
 			<div class="bio">I am a hair stylist. This is my bio, I wrote it. I need to make money so please book me!</div>
 		</div>
+		<div class='arrowleftholder'>
+	    	<ion-icon class='forward' name="arrow-back"></ion-icon>
+	    </div>
 		<div class="caltitle">{{viewTitle}} {{titleYear}}</div>
+		<div class='arrowrightholder'>
+	    	<ion-icon class='forward' name="arrow-forward"></ion-icon>
+	    </div>
 		<calendar (tap)="openCal" class='cal' [eventSource]="eventSource"
 	      [calendarMode]="calendar.mode"
 	      [currentDate]="calendar.currentDate"

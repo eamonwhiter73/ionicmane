@@ -34067,11 +34067,48 @@ page-user-profile ion-title {
   position: absolute;
 }
 
+page-user-profile .rightArrow[_ngcontent-c2] {
+  z-index: 20;
+  left: 42%;
+  position: relative;
+  width: 28px;
+  height: 20px;
+  display: inline-block;
+  top: 15px;
+}
+
+page-user-profile .leftArrow[_ngcontent-c2] {
+  z-index: 20;
+  position: relative;
+  left: 22%;
+  width: 28px;
+  height: 20px;
+  display: inline-block;
+  top: 15px;
+}
+
+page-user-profile .arrowrightholder {
+  display: inline-block;
+  position: absolute;
+  top: 17%;
+  left: 88%;
+  z-index: 5;
+}
+
+page-user-profile .arrowleftholder {
+  display: inline-block;
+  position: absolute;
+  top: 17%;
+  left: 57%;
+  z-index: 5;
+}
+
 page-user-profile .caltitle {
   position: absolute;
-  right: 14%;
-  top: 10%;
-  color: #e6c926;
+  right: 18.5%;
+  top: 19%;
+  color: #25292d;
+  font-size: 12px;
 }
 
 page-user-profile .postprofilepic {
@@ -34542,7 +34579,7 @@ page-user-profile .insta {
     width: 49vw;
     padding-bottom: 0px;
     height: 105px;
-    top: 3vh;
+    top: 5vh;
     margin-left: 15.5vw;
     position: absolute;
   }
@@ -34592,9 +34629,48 @@ page-user-profile .insta {
     width: 52vw;
     padding-bottom: 0px;
     height: 105px;
-    top: 1vh;
+    top: 4vh;
     margin-left: 12.5vw;
     position: absolute;
+  }
+  page-user-profile .rightArrow[_ngcontent-c2] {
+    z-index: 20;
+    left: 42%;
+    position: relative;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 4px;
+  }
+  page-user-profile .leftArrow[_ngcontent-c2] {
+    z-index: 20;
+    position: relative;
+    left: 22%;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 4px;
+  }
+  page-user-profile .arrowrightholder {
+    display: inline-block;
+    position: absolute;
+    top: 20%;
+    left: 88%;
+    z-index: 5;
+  }
+  page-user-profile .arrowleftholder {
+    display: inline-block;
+    position: absolute;
+    top: 20%;
+    left: 57%;
+    z-index: 5;
+  }
+  page-user-profile .caltitle {
+    position: absolute;
+    right: 18.5%;
+    top: 22%;
+    color: #25292d;
+    font-size: 12px;
   }
   page-user-profile .table.table-bordered.table-fixed.monthview-datetable {
     width: 177px;
@@ -34651,7 +34727,7 @@ page-user-profile .insta {
     width: 49vw;
     padding-bottom: 0px;
     height: 105px;
-    top: 0;
+    top: 3vh;
     margin-left: 15.5vw;
     position: absolute;
   }
@@ -34706,6 +34782,45 @@ page-user-profile .insta {
     position: relative;
     display: inline-block;
     top: -8px;
+  }
+  page-user-profile .rightArrow[_ngcontent-c2] {
+    z-index: 20;
+    left: 42%;
+    position: relative;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 4px;
+  }
+  page-user-profile .leftArrow[_ngcontent-c2] {
+    z-index: 20;
+    position: relative;
+    left: 22%;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 4px;
+  }
+  page-user-profile .arrowrightholder {
+    display: inline-block;
+    position: absolute;
+    top: 20%;
+    left: 88%;
+    z-index: 5;
+  }
+  page-user-profile .arrowleftholder {
+    display: inline-block;
+    position: absolute;
+    top: 20%;
+    left: 57%;
+    z-index: 5;
+  }
+  page-user-profile .caltitle {
+    position: absolute;
+    right: 18.5%;
+    top: 22%;
+    color: #25292d;
+    font-size: 12px;
   }
 }
 

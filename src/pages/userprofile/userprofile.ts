@@ -85,6 +85,7 @@ export class UserProfile implements OnDestroy {
   userusername;
   profilePic;
   totalRatings;
+  titleYear;
 
 
   _imageViewerCtrl: ImageViewerController;
@@ -95,7 +96,15 @@ export class UserProfile implements OnDestroy {
   
 
   constructor(public afAuth: AngularFireAuth, public elRef: ElementRef, public params: NavParams,public modalCtrl: ModalController, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController, public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, private navParams: NavParams, public cameraService: CameraService) {
-    
+    this.times = [{'time':'8:00 AM', 'selected': false}, {'time':'12:00 PM', 'selected': false}, {'time':'4:00 PM', 'selected': false},
+                  {'time':'8:30 AM', 'selected': false}, {'time':'12:30 PM', 'selected': false}, {'time':'4:30 PM', 'selected': false},
+                  {'time':'9:00 AM', 'selected': false}, {'time':'1:00 PM', 'selected': false}, {'time':'5:00 PM', 'selected': false},
+                  {'time':'9:30 AM', 'selected': false}, {'time':'1:30 PM', 'selected': false}, {'time':'5:30 PM', 'selected': false},
+                  {'time':'10:00 AM', 'selected': false}, {'time':'2:00 PM', 'selected': false}, {'time':'6:00 PM', 'selected': false},
+                  {'time':'10:30 AM', 'selected': false}, {'time':'2:30 PM', 'selected': false}, {'time':'6:30 PM', 'selected': false},
+                  {'time':'11:00 AM', 'selected': false}, {'time':'3:00 PM', 'selected': false}, {'time':'7:00 PM', 'selected': false},
+                  {'time':'11:30 AM', 'selected': false}, {'time':'3:30 PM', 'selected': false}, {'time': '7:30 PM', 'selected': false}
+                ];
   }
 
   ngOnDestroy() {
@@ -541,15 +550,126 @@ export class UserProfile implements OnDestroy {
    }   
  }
 
-  onCurrentDateChanged($event) {}
+  onCurrentDateChanged($event) {
+    //console.log(typeof $event);
+      for(let x of this.times) {
+        x.selected = false;
+      }
 
-  reloadSource(startTime, endTime) {}
+      console.log(typeof $event + "event event event *******");
+
+      this.selectedDate = new Date($event);
+      console.log(this.selectedDate + " thi si the selected date ((())))))");
+
+      this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+      //console.log($event);
+
+      this.items4 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+      this.subscription4 = this.items4.subscribe(items => items.forEach(item => {
+        //console.log(JSON.stringify(item));
+        //console.log(item.date.day);
+        console.log("dafirst    " + item.date.day )
+        let da = new Date(item.date.day * 1000);
+        this.datesToSelect = [];
+        this.datesToSelect.push(da.getDate());
+
+        console.log(da + "da");
+        console.log(da.getDate() + "dagetdate");
+        console.log(this.selectedDate.getDate());
+        if(this.selectedDate.getDate() == da.getDate() && this.selectedDate.getMonth() == da.getMonth()) {
+          console.log("selected = item");
+          console.log(JSON.stringify(item.reserved) + "         item resesrved");
+          //for(let r of item.reserved.appointment) {
+            //console.log(JSON.stringify(r));
+            this.times = item.reserved.appointment.slice(0);
+            console.log('hit appointment');
+            console.log(JSON.stringify(this.times));
+            
+            /*for(let x of this.times) {
+              if(x.time == r) {
+                console.log('change selected');
+                x.selected = true;
+              }
+            }*/
+          //}
+        }
+      }));
+  }
+
+  reloadSource(startTime, endTime) {
+    console.log(startTime + " : starttime           endtime: " + endTime);
+  }
 
   onEventSelected($event) {}
 
   onViewTitleChanged(title) {
-    this.viewTitle = title;
+    let array = title.split(" ");
+    //array[1];
+    this.viewTitle = array[0].substring(0, 3);
+    this.titleYear = array[1];
   }
 
-  onTimeSelected($event) {}
+  onTimeSelected($event) {
+    console.log(JSON.stringify($event) + "      THI SIIS EVENT @(@(@(@(@(");
+    this.selectedDate = new Date($event.selectedTime);
+    console.log(this.selectedDate + " thi si the selected date ((())))))");
+
+    this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+    if($event.dontRunCode) {
+    //console.log($event);
+      this.items3 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+      this.subscription3 = this.items3.subscribe(items => items.forEach(item => {
+        //console.log(JSON.stringify(item));
+        //console.log(item.date.day);
+        console.log("dafirst    " + item.date.day )
+        let da = new Date(item.date.day * 1000);
+        this.datesToSelect = [];
+        this.datesToSelect.push(da.getDate());
+
+        console.log(da + "da");
+        console.log(da.getDate() + "dagetdate");
+        console.log(this.selectedDate.getDate());
+        if(this.selectedDate.getDate() == da.getDate() && this.selectedDate.getMonth() == da.getMonth()) {
+          console.log("selected = item");
+          console.log(JSON.stringify(item.reserved) + "         item resesrved");
+          //for(let r of item.reserved.appointment) {
+            //console.log(JSON.stringify(r));
+            /*let bool = lse;
+            for(let r in item.reserved.appointment) {
+              if(r['selected'] == "true") {
+                bool = true;
+              }
+            }*/
+            this.times = item.reserved.appointment.slice(0);
+            console.log('hit appointment');
+            console.log(JSON.stringify(this.times));
+            
+            /*for(let x of this.times) {
+              if(x.time == r) {
+                console.log('change selected');
+                x.selected = true;
+              }
+            }*/
+          //}
+        }
+        //console.log($event.runCode + "     dont run code!!!!!!");
+        //if($event.runCode == true) {
+          for(let item of this.tds) {
+            if(!item.classList.contains('text-muted')) {
+              console.log(typeof item.innerText + "         innertext" + typeof this.datesToSelect[0]);
+              if(this.datesToSelect.indexOf(parseInt(item.innerText)) != -1) {
+                console.log("Inner text in      " + item.innerText);
+                this.myrenderer.setElementClass(item,"greencircle",true);
+              }
+              else {
+                //this.myrenderer.setElementClass(item,"monthview-selected",false);
+              }
+            }
+          }
+        //}
+
+        
+      }));
+    }
+  }
 }

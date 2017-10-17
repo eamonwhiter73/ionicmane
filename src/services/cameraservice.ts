@@ -276,7 +276,7 @@ export class CameraService {
         if(newPath) {
         let fileName = newPath.substring(newPath.lastIndexOf("/") + 1, newPath.length);
         let filePath = newPath.substring(0, newPath.lastIndexOf("/"));
-        this.file.readAsDataURL(filePath, fileName).then(data =>{
+        return this.file.readAsDataURL(filePath, fileName).then(data =>{
           console.log("IN READASDATAURL GETMEDIAFORMULAS");
           //let strImage = data.replace(/^data:image\/[a-z]+;base64,/, "");
           //this.file.writeFile(this.file.tempDirectory, "image.jpg", strImage);
@@ -289,7 +289,8 @@ export class CameraService {
 
           let image       : string  = 'formula_' + this.username + '_' + new Date() + '.png',
             storageRef  : any,
-            parseUpload : any;
+            parseUpload : any,
+            thisUrl: any;
 
           return new Promise((resolve, reject) => {
             storageRef       = firebase.storage().ref('/formulas/' + this.username + '/' + image);
@@ -306,9 +307,12 @@ export class CameraService {
               (success) => {
                 storageRef.getDownloadURL().then(url => {
                   console.log(url);
+                  thisUrl = url;
                   console.log("IN READASDATAURL GETMEDIAFORMULAS UERLRLRLR");
-                  resolve(url); 
+                  resolve(thisUrl); 
                 });
+
+                
               })
             }).catch(function(error) {
               console.log(error.message);

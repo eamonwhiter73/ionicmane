@@ -29,7 +29,7 @@ export class FormulapostPage implements OnDestroy {
   @ViewChild('imagey') image:ElementRef;
   @ViewChild('sharer') share;
  	imageHolder;
-  item = {'date': null, 'title':'asdfasdf', 'price':'44', 'caption':'asdfasdfasdfasdf', 'typeofselect':'Promo'};
+  item = {'date': null, 'title':'', 'price':'', 'caption':'', 'typeofselect':'formula'};
   selectVal;
   username;
   list: FirebaseListObservable<any>

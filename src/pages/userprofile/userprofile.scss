@@ -5,11 +5,48 @@ page-user-profile {
      position: absolute;
   }
 
+  .rightArrow[_ngcontent-c2] {
+    z-index: 20;
+    left: 42%;
+    position: relative;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 15px;
+}
+
+  .leftArrow[_ngcontent-c2] {
+    z-index: 20;
+    position: relative;
+    left: 22%;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 15px;
+}
+
+  .arrowrightholder {
+    display: inline-block;
+    position: absolute;
+    top: 17%;
+    left: 88%;
+    z-index: 5;
+  }
+
+  .arrowleftholder {
+      display: inline-block;
+      position: absolute;
+      top: 17%;
+      left: 57%;
+      z-index: 5;
+  }
+
   .caltitle {
     position: absolute;
-    right: 14%;
-    top: 10%;
-    color: map-get($colors, primary);
+    right: 18.5%;
+    top: 19%;
+    color: #25292d;
+    font-size: 12px;
   }
 
   .postprofilepic {
@@ -492,7 +529,7 @@ page-user-profile {
       width: 49vw;
       padding-bottom: 0px;
       height: 105px;
-      top: 3vh;
+      top: 5vh;
       margin-left: 15.5vw;
       position: absolute;
   }
@@ -548,10 +585,54 @@ page-user-profile {
         width: 52vw;
         padding-bottom: 0px;
         height: 105px;
-        top: 1vh;
+        top: 4vh;
         margin-left: 12.5vw;
         position: absolute;
     }
+
+    .rightArrow[_ngcontent-c2] {
+        z-index: 20;
+        left: 42%;
+        position: relative;
+        width: 28px;
+        height: 20px;
+        display: inline-block;
+        top: 4px;
+    }
+
+      .leftArrow[_ngcontent-c2] {
+        z-index: 20;
+        position: relative;
+        left: 22%;
+        width: 28px;
+        height: 20px;
+        display: inline-block;
+        top: 4px;
+    }
+
+  .arrowrightholder {
+    display: inline-block;
+    position: absolute;
+    top: 20%;
+    left: 88%;
+    z-index: 5;
+  }
+
+  .arrowleftholder {
+      display: inline-block;
+      position: absolute;
+      top: 20%;
+      left: 57%;
+      z-index: 5;
+  }
+
+  .caltitle {
+    position: absolute;
+    right: 18.5%;
+    top: 22%;
+    color: #25292d;
+    font-size: 12px;
+  }
 
     .table.table-bordered.table-fixed.monthview-datetable {
       width: 177px;
@@ -602,6 +683,8 @@ page-user-profile {
     .stylistsect {
       max-width: 44%;
     }
+
+
   }
 
   @media (min-width:412px) {
@@ -611,7 +694,7 @@ page-user-profile {
       width: 49vw;
       padding-bottom: 0px;
       height: 105px;
-      top: 0;
+      top: 3vh;
       margin-left: 15.5vw;
       position: absolute;
   }
@@ -678,6 +761,50 @@ page-user-profile {
       display: inline-block;
       top: -8px;
     }
+
+    .rightArrow[_ngcontent-c2] {
+        z-index: 20;
+        left: 42%;
+        position: relative;
+        width: 28px;
+        height: 20px;
+        display: inline-block;
+        top: 4px;
+    }
+
+      .leftArrow[_ngcontent-c2] {
+        z-index: 20;
+        position: relative;
+        left: 22%;
+        width: 28px;
+        height: 20px;
+        display: inline-block;
+        top: 4px;
+    }
+
+  .arrowrightholder {
+    display: inline-block;
+    position: absolute;
+    top: 20%;
+    left: 88%;
+    z-index: 5;
+  }
+
+  .arrowleftholder {
+      display: inline-block;
+      position: absolute;
+      top: 20%;
+      left: 57%;
+      z-index: 5;
+  }
+
+  .caltitle {
+    position: absolute;
+    right: 18.5%;
+    top: 22%;
+    color: #25292d;
+    font-size: 12px;
+  }
   }
 
 

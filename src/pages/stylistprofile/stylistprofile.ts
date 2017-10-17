@@ -77,6 +77,7 @@ export class StylistProfile implements OnDestroy {
   stars;
   bio;
 
+
   constructor(public elRef: ElementRef, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, public cameraService: CameraService) {
     this.times = [{'time':'8:00 AM', 'selected': false}, {'time':'12:00 PM', 'selected': false}, {'time':'4:00 PM', 'selected': false},
                   {'time':'8:30 AM', 'selected': false}, {'time':'12:30 PM', 'selected': false}, {'time':'4:30 PM', 'selected': false},
@@ -400,6 +401,7 @@ export class StylistProfile implements OnDestroy {
             }); //pass in square choice
             //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
             console.log('camera clicked');
+            //actionSheet.dismiss();
           }
         },{
           text: 'Photo Library',
@@ -407,11 +409,14 @@ export class StylistProfile implements OnDestroy {
             let itemArrayTwo = this.profComponents.toArray();
 
             this.cameraService.getMediaFormulas(this.optionsGetMedia, this.square).then((url) => {
-              actionSheet.dismiss();
-              this.navCtrl.push(FormulapostPage, { path: url });
+                console.log(url + " url url url url")
+                actionSheet.dismiss();
+                this.navCtrl.push(FormulapostPage, { path: url });
+              
             }); //pass in square choice
             //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
             console.log('camera clicked');
+            //actionSheet.dismiss();
           }
         },{
           text: 'Cancel',

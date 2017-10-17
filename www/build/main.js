@@ -137,10 +137,10 @@ FollowersPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserBooking; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_feeduser_feeduser__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_feeduser_feeduser__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stylistprofile_stylistprofile__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stylistprofile_stylistprofile__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -577,16 +577,16 @@ UserBooking = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserViewProfile; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__feeduser_feeduser__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__feeduser_feeduser__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__booking_booking__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postpage_postpage__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__settings_settings__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__settings_settings__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_cameraservice__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angularfire2_database__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_firebase__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ionic_img_viewer__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ionic_img_viewer__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_storage__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_native_geocoder__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_geolocation__ = __webpack_require__(82);
@@ -1048,7 +1048,7 @@ UserViewProfile = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup_signup__ = __webpack_require__(407);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__feeduser_feeduser__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__feeduser_feeduser__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__feedstylist_feedstylist__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_keyboard__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__ = __webpack_require__(64);
@@ -1215,7 +1215,7 @@ SignInPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_date_picker__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stylistprofile_stylistprofile__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stylistprofile_stylistprofile__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_database__ = __webpack_require__(16);
@@ -1251,7 +1251,7 @@ var FormulapostPage = (function () {
         this.myrenderer = myrenderer;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.item = { 'date': null, 'title': 'asdfasdf', 'price': '44', 'caption': 'asdfasdfasdfasdf', 'typeofselect': 'Promo' };
+        this.item = { 'date': null, 'title': '', 'price': '', 'caption': '', 'typeofselect': 'formula' };
     }
     FormulapostPage.prototype.ngOnDestroy = function () {
         this.subscription.unsubscribe();
@@ -1347,7 +1347,7 @@ var FormulapostPage = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('imagey'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _a || Object)
 ], FormulapostPage.prototype, "image", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('sharer'),
@@ -1355,11 +1355,12 @@ __decorate([
 ], FormulapostPage.prototype, "share", void 0);
 FormulapostPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-formulapost',template:/*ion-inline-start:"/Users/eamonwhite/ionicmane/myApp/src/pages/formulapost/formulapost.html"*/'<!--\n  Generated template for the PostpagePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>New Formula</ion-title>\n    <ion-icon (tap)="goToProfile()" class=\'backk\' name="arrow-back"></ion-icon>\n    <!--<div class="stylistview">\n	    <button class="stylistviewbutton" ion-button color="secondary">Stylist View</button>\n	  </div>-->\n  </ion-navbar>\n</ion-header>\n\n<ion-content no-padding>\n	<div class="titlecaption">\n		<div class="titlee">\n			<div class=\'detailpic\'>\n				<ion-icon ios="ios-bookmarks" md="md-bookmarks" class="titleicon"></ion-icon>\n			</div>\n			<div class="inputtitle">\n				<ion-input name=\'title\' [(ngModel)]="item.title" class="titleinput" type="text" placeholder="Write a title"></ion-input>\n			</div>\n		</div>\n	</div>\n	<div class="caption">\n		<div class="captione">\n			<div class=\'detailpictwo\'>\n				<h1>Formula</h1>\n			</div>\n			<div class="inputcaption">\n				<ion-input name=\'caption\' [(ngModel)]="item.caption" class="captioninput" type="text" placeholder="Write the formula"></ion-input>\n				<div class="postimagecontain">\n					<img class="postimage" #imagey [src]="">\n				</div>\n			</div>\n		</div>\n	</div>\n	<div class="titlecaption">\n		<div class="titlee">\n			<div class=\'detailpic\'>\n				<ion-icon name="pricetags" class="titleicon"></ion-icon>\n			</div>\n			<div class="inputtitle">\n				<ion-input name=\'price\' [(ngModel)]="item.price" class="titleinput" type="text" placeholder="Enter price"></ion-input>\n			</div>\n		</div>\n	</div>\n	<button #sharer class="share" (tap)="shareItem()" ion-button full color="secondary">CREATE</button>\n</ion-content>\n'/*ion-inline-end:"/Users/eamonwhite/ionicmane/myApp/src/pages/formulapost/formulapost.html"*/
+        selector: 'page-formulapost',template:/*ion-inline-start:"/Users/eamonwhite/ionicmane/myApp/src/pages/formulapost/formulapost.html"*/'<!--\n  Generated template for the PostpagePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>New Formula</ion-title>\n    <ion-icon (tap)="goToProfile()" class=\'backk\' name="arrow-back"></ion-icon>\n    <!--<div class="stylistview">\n	    <button class="stylistviewbutton" ion-button color="secondary">Stylist View</button>\n	  </div>-->\n  </ion-navbar>\n</ion-header>\n\n<ion-content no-padding>\n	<div class="titlecaption">\n		<div class="titlee">\n			<div class=\'detailpic\'>\n				<ion-icon ios="ios-bookmarks" md="md-bookmarks" class="titleicon"></ion-icon>\n			</div>\n			<div class="inputtitle">\n				<ion-input name=\'title\' [(ngModel)]="item.title" class="titleinput" type="text" placeholder="Write a title"></ion-input>\n			</div>\n		</div>\n	</div>\n	<div class="caption">\n		<div class="captione">\n			<div class=\'detailpictwo\'>\n				<h1>...</h1>\n			</div>\n			<div class="inputcaption">\n				<ion-input name=\'caption\' [(ngModel)]="item.caption" class="captioninput" type="text" placeholder="Write the formula"></ion-input>\n				<div class="postimagecontain">\n					<img class="postimage" #imagey [src]="">\n				</div>\n			</div>\n		</div>\n	</div>\n	<div class="titlecaption">\n		<div class="titlee">\n			<div class=\'detailpic\'>\n				<ion-icon name="pricetags" class="titleicon"></ion-icon>\n			</div>\n			<div class="inputtitle">\n				<ion-input name=\'price\' [(ngModel)]="item.price" class="titleinput" type="text" placeholder="Enter price"></ion-input>\n			</div>\n		</div>\n	</div>\n	<button #sharer class="share" (tap)="shareItem()" ion-button full color="secondary">CREATE</button>\n</ion-content>\n'/*ion-inline-end:"/Users/eamonwhite/ionicmane/myApp/src/pages/formulapost/formulapost.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6_angularfire2_database__["a" /* AngularFireDatabase */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["x" /* ViewController */], __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_date_picker__["a" /* DatePicker */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */]])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["x" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["x" /* ViewController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_keyboard__["a" /* Keyboard */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_date_picker__["a" /* DatePicker */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_date_picker__["a" /* DatePicker */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* NavController */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */]) === "function" && _j || Object])
 ], FormulapostPage);
 
+var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 //# sourceMappingURL=formulapost.js.map
 
 /***/ }),
@@ -1371,8 +1372,8 @@ FormulapostPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FullfeedPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stylistprofile_stylistprofile__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__feeduser_feeduser__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stylistprofile_stylistprofile__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__feeduser_feeduser__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
@@ -1601,13 +1602,13 @@ MapPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__booking_booking__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postpage_postpage__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__followers_followers__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__settings_settings__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__settings_settings__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_cameraservice__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angularfire2_database__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_firebase__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ionic_img_viewer__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ionic_img_viewer__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_storage__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_native_geocoder__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_geolocation__ = __webpack_require__(82);
@@ -2355,7 +2356,7 @@ CameraServiceProfile = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PopUp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_userprofile_userprofile__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_userprofile_userprofile__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_call_number__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_sms__ = __webpack_require__(151);
@@ -2714,10 +2715,10 @@ Rate = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FeedStylist; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stylistprofile_stylistprofile__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stylistprofile_stylistprofile__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postpage_postpage__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__feeduser_feeduser__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__userprofile_userprofile__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__feeduser_feeduser__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__userprofile_userprofile__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__followers_followers__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__booking_booking__ = __webpack_require__(56);
@@ -3493,7 +3494,7 @@ FeedStylist = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PopUpOther; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_userprofile_userprofile__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_userprofile_userprofile__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_call_number__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_sms__ = __webpack_require__(151);
@@ -3596,9 +3597,9 @@ PopUpOther = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signin_signin__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__feeduser_feeduser__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__feeduser_feeduser__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__feedstylist_feedstylist__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__settings_settings__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__settings_settings__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_keyboard__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_database__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angularfire2_auth__ = __webpack_require__(64);
@@ -4250,621 +4251,10 @@ CameraServicePost = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StylistProfile; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__feedstylist_feedstylist__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__booking_booking__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postpage_postpage__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__formulapost_formulapost__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__settings_settings__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_cameraservice__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angularfire2_database__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_firebase__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ionic_img_viewer__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_storage__ = __webpack_require__(19);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//import { IonicApp, IonicModule } from 'ionic-angular';
-//import { MyApp } from './app/app.component';
-var StylistProfile = (function () {
-    function StylistProfile(elRef, storage, imageViewerCtrl, loadingController, /*public firebase: FirebaseApp, */ myrenderer, af, actionSheetCtrl, camera, navCtrl, cameraService) {
-        this.elRef = elRef;
-        this.storage = storage;
-        this.imageViewerCtrl = imageViewerCtrl;
-        this.loadingController = loadingController;
-        this.myrenderer = myrenderer;
-        this.af = af;
-        this.actionSheetCtrl = actionSheetCtrl;
-        this.camera = camera;
-        this.navCtrl = navCtrl;
-        this.cameraService = cameraService;
-        this.viewDate = new Date();
-        this.events = [];
-        this.calendar = { 'mode': 'month', 'currentDate': this.viewDate };
-        this.moveState = 'up';
-        this.picURLS = [];
-        this.square = 0;
-        this.datesToSelect = [];
-        this.optionsGetMedia = {
-            allowEdit: false,
-            quality: 10,
-            targetWidth: 600,
-            targetHeight: 600,
-            encodingType: this.camera.EncodingType.PNG,
-            sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-            mediaType: this.camera.MediaType.PICTURE,
-            destinationType: this.camera.DestinationType.FILE_URI
-        };
-        this.optionsGetCamera = {
-            quality: 10,
-            targetWidth: 600,
-            targetHeight: 600,
-            encodingType: this.camera.EncodingType.PNG,
-            sourceType: this.camera.PictureSourceType.CAMERA,
-            mediaType: this.camera.MediaType.PICTURE,
-            destinationType: this.camera.DestinationType.FILE_URI,
-            saveToPhotoAlbum: true
-        };
-        this.times = [{ 'time': '8:00 AM', 'selected': false }, { 'time': '12:00 PM', 'selected': false }, { 'time': '4:00 PM', 'selected': false },
-            { 'time': '8:30 AM', 'selected': false }, { 'time': '12:30 PM', 'selected': false }, { 'time': '4:30 PM', 'selected': false },
-            { 'time': '9:00 AM', 'selected': false }, { 'time': '1:00 PM', 'selected': false }, { 'time': '5:00 PM', 'selected': false },
-            { 'time': '9:30 AM', 'selected': false }, { 'time': '1:30 PM', 'selected': false }, { 'time': '5:30 PM', 'selected': false },
-            { 'time': '10:00 AM', 'selected': false }, { 'time': '2:00 PM', 'selected': false }, { 'time': '6:00 PM', 'selected': false },
-            { 'time': '10:30 AM', 'selected': false }, { 'time': '2:30 PM', 'selected': false }, { 'time': '6:30 PM', 'selected': false },
-            { 'time': '11:00 AM', 'selected': false }, { 'time': '3:00 PM', 'selected': false }, { 'time': '7:00 PM', 'selected': false },
-            { 'time': '11:30 AM', 'selected': false }, { 'time': '3:30 PM', 'selected': false }, { 'time': '7:30 PM', 'selected': false }
-        ];
-    }
-    StylistProfile.prototype.ionViewDidEnter = function () {
-        //let loading = this.loadingController.create({content : "Loading..."});
-        //loading.present();
-    };
-    StylistProfile.prototype.getFollowers = function () {
-    };
-    StylistProfile.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        this.storage.get('bio').then(function (val) {
-            _this.bio = val;
-        });
-        this.storage.get('username').then(function (val) {
-            _this.username = val;
-            console.log(val);
-            _this.downloadImages();
-            _this.item2 = _this.af.object('/profiles/stylists/' + _this.username + '/followers');
-            _this.subscription5 = _this.item2.subscribe(function (item) {
-                console.log(JSON.stringify(item) + "      followers number 98989899889");
-                if (Object.keys(item)[0] == '$value') {
-                    _this.followers = 0;
-                }
-                else {
-                    _this.followers = item.length;
-                }
-            });
-            _this.item9 = _this.af.object('/profiles/stylists/' + _this.username);
-            _this.subscription9 = _this.item9.subscribe(function (item) {
-                console.log(JSON.stringify(item) + "      rating number 989898222229889");
-                var total = 0;
-                for (var u in item.rating) {
-                    total += item.rating[u];
-                }
-                _this.totalRatings = total;
-                var totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
-                var ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five * 5;
-                console.log(ratings + "   ratings          total potential:    " + totalPotential);
-                if (ratings == 0 && totalPotential == 0) {
-                    _this.stars = '\u2606\u2606\u2606\u2606\u2606';
-                }
-                var i = (ratings / totalPotential) * 100;
-                if (Math.round(i) <= 20) {
-                    _this.stars = '\u2605\u2606\u2606\u2606\u2606';
-                }
-                if (Math.round(i) > 20 && Math.round(i) <= 40) {
-                    _this.stars = '\u2605\u2605\u2606\u2606\u2606';
-                }
-                if (Math.round(i) > 40 && Math.round(i) <= 60) {
-                    _this.stars = '\u2605\u2605\u2605\u2606\u2606';
-                }
-                if (Math.round(i) > 60 && Math.round(i) <= 80) {
-                    _this.stars = '\u2605\u2605\u2605\u2605\u2606';
-                }
-                if (Math.round(i) > 80) {
-                    _this.stars = '\u2605\u2605\u2605\u2605\u2605';
-                }
-            });
-        });
-        this.storage.get('picURL').then(function (val) {
-            _this.profilePic = val;
-            if (_this.profilePic == null) {
-                _this.profilePic = 'assets/blankprof.png';
-            }
-        });
-        //this.isSomething = true;
-        this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
-        console.log(this.viewDate + " view date ");
-        setTimeout(function () {
-            _this.selectedDate = _this.viewDate;
-            console.log(_this.username + "this.username");
-            _this.items2 = _this.af.list('appointments/' + _this.username + '/' + _this.selectedDate.getMonth());
-            _this.subscription2 = _this.items2.subscribe(function (items) { return items.forEach(function (item) {
-                console.log(item);
-                var da = new Date(item.date.day * 1000);
-                _this.datesToSelect.push(da.getDate());
-                console.log(da + "da");
-                console.log(da.getDate() + "dagetdate");
-                console.log(_this.selectedDate.getDate());
-                if (_this.selectedDate.getDate() == da.getDate() && _this.selectedDate.getMonth() == da.getMonth()) {
-                    console.log("selected = item");
-                    console.log(JSON.stringify(item.reserved) + "         item resesrved above");
-                    _this.times = item.reserved.appointment.slice(0);
-                    console.log('hit appointment');
-                }
-                for (var _i = 0, _a = _this.tds; _i < _a.length; _i++) {
-                    var item_1 = _a[_i];
-                    if (!item_1.classList.contains('text-muted')) {
-                        console.log(typeof item_1.innerText + "         innertext" + typeof _this.datesToSelect[0]);
-                        if (_this.datesToSelect.indexOf(parseInt(item_1.innerText)) != -1) {
-                            console.log("Inner text in      " + item_1.innerText);
-                            _this.myrenderer.setElementClass(item_1, "greencircle", true);
-                        }
-                        else {
-                            //this.myrenderer.setElementClass(item,"monthview-selected",false);
-                        }
-                    }
-                }
-            }); });
-            //loading.dismiss();
-        }, 1500);
-    };
-    StylistProfile.prototype.ngOnDestroy = function () {
-        this.subscription2.unsubscribe();
-        if (this.subscription3 != null) {
-            this.subscription3.unsubscribe();
-        }
-        this.subscription4.unsubscribe();
-        this.subscription5.unsubscribe();
-        this.subscription9.unsubscribe();
-    };
-    StylistProfile.prototype.openCamera = function (squarez) {
-        this.presentActionSheet2();
-        this.square = squarez;
-    };
-    StylistProfile.prototype.removePic = function (squarez) {
-        console.log("in remove pic 333333333          " + squarez);
-        var itemArray = this.components.toArray();
-        var itemArrayTwo = this.profComponents.toArray();
-        var itemArraythree = this.xclass.toArray();
-        console.log(JSON.stringify(itemArray) + " item array");
-        this.myrenderer.setElementStyle(itemArray[squarez - 1].nativeElement, 'display', 'block');
-        this.myrenderer.setElementStyle(itemArrayTwo[squarez - 1].nativeElement, 'display', 'none');
-        this.myrenderer.setElementStyle(itemArraythree[squarez - 1].nativeElement, 'display', 'none');
-        this.storage.set("profile" + squarez, null);
-    };
-    StylistProfile.prototype.presentImage = function (squarez) {
-        this.square = squarez;
-        var itemArrayTwo = this.profComponents.toArray();
-        console.log(JSON.stringify(itemArrayTwo[this.square - 1]));
-        var imageViewer = this.imageViewerCtrl.create(itemArrayTwo[this.square - 1].nativeElement);
-        imageViewer.present();
-    };
-    StylistProfile.prototype.showSquare = function () {
-        var itemArray = this.components.toArray();
-        var itemArrayTwo = this.profComponents.toArray();
-        var itemArraythree = this.xclass.toArray();
-        this.myrenderer.setElementStyle(itemArray[this.square - 1].nativeElement, 'display', 'none');
-        this.myrenderer.setElementStyle(itemArrayTwo[this.square - 1].nativeElement, 'display', 'block');
-        this.myrenderer.setElementStyle(itemArraythree[this.square - 1].nativeElement, 'display', 'block');
-    };
-    StylistProfile.prototype.presentActionSheet = function () {
-        var _this = this;
-        var actionSheet = this.actionSheetCtrl.create({
-            title: 'Choose source',
-            buttons: [
-                {
-                    text: 'Camera',
-                    handler: function () {
-                        var itemArrayTwo = _this.profComponents.toArray();
-                        _this.cameraService.getMedia(_this.optionsGetCamera, _this.square).then(function () {
-                            return new Promise(function (resolve, reject) {
-                                var storageRef = __WEBPACK_IMPORTED_MODULE_10_firebase___default.a.storage().ref().child('/profile/' + _this.username + '/profile_' + _this.username + '_' + _this.square + '.png');
-                                var loading = _this.loadingController.create({ content: "Loading..." });
-                                loading.present();
-                                setTimeout(function () {
-                                    storageRef.getDownloadURL().then(function (url) {
-                                        console.log(url);
-                                        _this.storage.set("profile" + _this.square, url);
-                                        _this.myrenderer.setElementAttribute(itemArrayTwo[_this.square - 1].nativeElement, 'src', url);
-                                        _this.showSquare();
-                                    });
-                                    loading.dismiss();
-                                }, 3000);
-                            });
-                        }); //pass in square choice
-                        //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
-                        console.log('camera clicked');
-                    }
-                }, {
-                    text: 'Photo Library',
-                    handler: function () {
-                        var itemArrayTwo = _this.profComponents.toArray();
-                        _this.cameraService.getMedia(_this.optionsGetMedia, _this.square).then(function () {
-                            return new Promise(function (resolve, reject) {
-                                var storageRef = __WEBPACK_IMPORTED_MODULE_10_firebase___default.a.storage().ref().child('/profile/' + _this.username + '/profile_' + _this.username + '_' + _this.square + '.png');
-                                var loading = _this.loadingController.create({ content: "Loading..." });
-                                loading.present();
-                                setTimeout(function () {
-                                    storageRef.getDownloadURL().then(function (url) {
-                                        console.log(url);
-                                        _this.storage.set("profile" + _this.square, url);
-                                        _this.myrenderer.setElementAttribute(itemArrayTwo[_this.square - 1].nativeElement, 'src', url);
-                                        _this.showSquare();
-                                        resolve();
-                                    });
-                                    loading.dismiss();
-                                }, 3500);
-                            });
-                            //
-                        }).catch(function (e) {
-                            console.log(e + "       eeeee");
-                        });
-                    }
-                }, {
-                    text: 'Cancel',
-                    role: 'cancel',
-                    handler: function () {
-                        console.log('Cancel clicked');
-                    }
-                }
-            ]
-        });
-        actionSheet.present();
-    };
-    StylistProfile.prototype.presentActionSheet2 = function () {
-        var _this = this;
-        var actionSheet = this.actionSheetCtrl.create({
-            title: 'Choose type',
-            buttons: [
-                {
-                    text: 'Formula',
-                    handler: function () {
-                        _this.presentActionSheet3();
-                    }
-                }, {
-                    text: 'Picture',
-                    handler: function () {
-                        _this.presentActionSheet();
-                    }
-                }, {
-                    text: 'Cancel',
-                    role: 'cancel',
-                    handler: function () {
-                        console.log('Cancel clicked');
-                    }
-                }
-            ]
-        });
-        actionSheet.present();
-    };
-    ////////////********************************************** SAVING FORMULAS TO SERVER
-    StylistProfile.prototype.presentActionSheet3 = function () {
-        var _this = this;
-        var actionSheet = this.actionSheetCtrl.create({
-            title: 'Choose source',
-            buttons: [
-                {
-                    text: 'Camera',
-                    handler: function () {
-                        var itemArrayTwo = _this.profComponents.toArray();
-                        _this.cameraService.getMediaFormulas(_this.optionsGetCamera, _this.square).then(function (url) {
-                            actionSheet.dismiss();
-                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__formulapost_formulapost__["a" /* FormulapostPage */], { path: url });
-                        }); //pass in square choice
-                        //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
-                        console.log('camera clicked');
-                    }
-                }, {
-                    text: 'Photo Library',
-                    handler: function () {
-                        var itemArrayTwo = _this.profComponents.toArray();
-                        _this.cameraService.getMediaFormulas(_this.optionsGetMedia, _this.square).then(function (url) {
-                            actionSheet.dismiss();
-                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__formulapost_formulapost__["a" /* FormulapostPage */], { path: url });
-                        }); //pass in square choice
-                        //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
-                        console.log('camera clicked');
-                    }
-                }, {
-                    text: 'Cancel',
-                    role: 'cancel',
-                    handler: function () {
-                        console.log('Cancel clicked');
-                    }
-                }
-            ]
-        });
-        actionSheet.present();
-    };
-    StylistProfile.prototype.pushPage = function () {
-        // push another page on to the navigation stack
-        // causing the nav controller to transition to the new page
-        // optional data can also be passed to the pushed page.
-        //this.navCtrl.push(SignUpPage);
-    };
-    StylistProfile.prototype.tappedPost = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__postpage_postpage__["a" /* PostpagePage */]);
-    };
-    StylistProfile.prototype.tappedEmergency = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__booking_booking__["a" /* BookingPage */]);
-    };
-    StylistProfile.prototype.goToSettings = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__settings_settings__["a" /* SettingsPage */]);
-    };
-    StylistProfile.prototype.backToFeed = function () {
-        /*if(this.navParams.get('param1') == 'user') {
-          this.navCtrl.push(FeedUser);
-        }*/
-        //else {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__feedstylist_feedstylist__["a" /* FeedStylist */], {}, { animate: true, animation: 'transition', duration: 500, direction: 'back' });
-        //this.navCtrl.push(FeedStylist);
-        //}
-    };
-    StylistProfile.prototype.backToCal = function () {
-        //if(this.navParams.get('param1') == 'user') {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__booking_booking__["a" /* BookingPage */], {}, { animate: true, animation: 'transition', duration: 500, direction: 'forward' });
-        //this.navCtrl.push(BookingPage);
-        //}
-        //else {
-        //this.navCtrl.push(FeedStylist);
-        //}
-    };
-    StylistProfile.prototype.swipe = function (e, when) {
-        var coord = [e.changedTouches[0].pageX, e.changedTouches[0].pageY];
-        var time = new Date().getTime();
-        if (when === 'start') {
-            this.swipeCoord = coord;
-            this.swipeTime = time;
-        }
-        else if (when === 'end') {
-            var direction = [coord[0] - this.swipeCoord[0], coord[1] - this.swipeCoord[1]];
-            var duration = time - this.swipeTime;
-            if (duration < 1000 //Short enough
-                && Math.abs(direction[1]) < Math.abs(direction[0]) //Horizontal enough
-                && Math.abs(direction[0]) > 30) {
-                var swipe = direction[0] < 0 ? 'next' : 'previous';
-                console.log(swipe);
-                if (swipe == 'next') {
-                    this.backToCal();
-                }
-                else {
-                    this.backToFeed();
-                }
-                //Do whatever you want with swipe
-            }
-        }
-    };
-    StylistProfile.prototype.swipeLeft = function () {
-        this.backToCal();
-    };
-    StylistProfile.prototype.openCal = function () {
-        this.backToCal();
-    };
-    StylistProfile.prototype.swipeRight = function () {
-        this.backToFeed();
-    };
-    StylistProfile.prototype.downloadImages = function () {
-        var self = this;
-        var promises_array = [];
-        var itemArrayTwo = this.profComponents.toArray();
-        var itemArray = this.components.toArray();
-        var itemArraythree = this.xclass.toArray();
-        var _loop_1 = function (z) {
-            //promises_array.push(new Promise(function(resolve,reject) {
-            //let storageRef = firebase.storage().ref().child('/profile/'+ self.username + '/profile_' + self.username + '_' + z + '.png');
-            //storageRef.getDownloadURL().then(url => {
-            self.storage.get("profile" + z).then(function (val) {
-                if (val != null) {
-                    self.myrenderer.setElementAttribute(itemArrayTwo[z - 1].nativeElement, 'src', val);
-                    self.myrenderer.setElementStyle(itemArrayTwo[z - 1].nativeElement, 'display', 'block');
-                    self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
-                    self.myrenderer.setElementStyle(itemArraythree[z - 1].nativeElement, 'display', 'block');
-                    console.log(z);
-                }
-                //resolve();
-            });
-            /*}).catch(error => {
-              console.log(error.message);
-              resolve();*/
-            //}));
-        };
-        for (var z = 1; z < 10; z++) {
-            _loop_1(z);
-        }
-        //return Promise.all(promises_array);
-    };
-    //changed this***
-    StylistProfile.prototype.moveCover = function () {
-        this.moveState = (this.moveState == 'up') ? 'down' : 'up';
-        this.tds = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-stylist-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides');
-        this.myrenderer.setElementClass(this.tds, 'moveCover', true);
-        var thisel = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-stylist-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides > div > div.swiper-wrapper > ion-slide.swiper-slide.swiper-slide-active > div > table');
-        this.myrenderer.setElementClass(thisel, 'marginchange', true);
-        console.log('element class list   ' + thisel.classList);
-    };
-    StylistProfile.prototype.onCurrentDateChanged = function ($event) {
-        var _this = this;
-        //console.log(typeof $event);
-        for (var _i = 0, _a = this.times; _i < _a.length; _i++) {
-            var x = _a[_i];
-            x.selected = false;
-        }
-        console.log(typeof $event + "event event event *******");
-        this.selectedDate = new Date($event);
-        console.log(this.selectedDate + " thi si the selected date ((())))))");
-        this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
-        //console.log($event);
-        this.items4 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
-        this.subscription4 = this.items4.subscribe(function (items) { return items.forEach(function (item) {
-            //console.log(JSON.stringify(item));
-            //console.log(item.date.day);
-            console.log("dafirst    " + item.date.day);
-            var da = new Date(item.date.day * 1000);
-            _this.datesToSelect = [];
-            _this.datesToSelect.push(da.getDate());
-            console.log(da + "da");
-            console.log(da.getDate() + "dagetdate");
-            console.log(_this.selectedDate.getDate());
-            if (_this.selectedDate.getDate() == da.getDate() && _this.selectedDate.getMonth() == da.getMonth()) {
-                console.log("selected = item");
-                console.log(JSON.stringify(item.reserved) + "         item resesrved");
-                //for(let r of item.reserved.appointment) {
-                //console.log(JSON.stringify(r));
-                _this.times = item.reserved.appointment.slice(0);
-                console.log('hit appointment');
-                console.log(JSON.stringify(_this.times));
-                /*for(let x of this.times) {
-                  if(x.time == r) {
-                    console.log('change selected');
-                    x.selected = true;
-                  }
-                }*/
-                //}
-            }
-        }); });
-    };
-    StylistProfile.prototype.reloadSource = function (startTime, endTime) {
-        console.log(startTime + " : starttime           endtime: " + endTime);
-    };
-    StylistProfile.prototype.onEventSelected = function ($event) { };
-    StylistProfile.prototype.onViewTitleChanged = function (title) {
-        var array = title.split(" ");
-        //array[1];
-        this.viewTitle = array[0].substring(0, 3);
-        this.titleYear = array[1];
-    };
-    StylistProfile.prototype.onTimeSelected = function ($event) {
-        var _this = this;
-        console.log(JSON.stringify($event) + "      THI SIIS EVENT @(@(@(@(@(");
-        this.selectedDate = new Date($event.selectedTime);
-        console.log(this.selectedDate + " thi si the selected date ((())))))");
-        this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
-        if ($event.dontRunCode) {
-            //console.log($event);
-            this.items3 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
-            this.subscription3 = this.items3.subscribe(function (items) { return items.forEach(function (item) {
-                //console.log(JSON.stringify(item));
-                //console.log(item.date.day);
-                console.log("dafirst    " + item.date.day);
-                var da = new Date(item.date.day * 1000);
-                _this.datesToSelect = [];
-                _this.datesToSelect.push(da.getDate());
-                console.log(da + "da");
-                console.log(da.getDate() + "dagetdate");
-                console.log(_this.selectedDate.getDate());
-                if (_this.selectedDate.getDate() == da.getDate() && _this.selectedDate.getMonth() == da.getMonth()) {
-                    console.log("selected = item");
-                    console.log(JSON.stringify(item.reserved) + "         item resesrved");
-                    //for(let r of item.reserved.appointment) {
-                    //console.log(JSON.stringify(r));
-                    /*let bool = lse;
-                    for(let r in item.reserved.appointment) {
-                      if(r['selected'] == "true") {
-                        bool = true;
-                      }
-                    }*/
-                    _this.times = item.reserved.appointment.slice(0);
-                    console.log('hit appointment');
-                    console.log(JSON.stringify(_this.times));
-                    /*for(let x of this.times) {
-                      if(x.time == r) {
-                        console.log('change selected');
-                        x.selected = true;
-                      }
-                    }*/
-                    //}
-                }
-                //console.log($event.runCode + "     dont run code!!!!!!");
-                //if($event.runCode == true) {
-                for (var _i = 0, _a = _this.tds; _i < _a.length; _i++) {
-                    var item_2 = _a[_i];
-                    if (!item_2.classList.contains('text-muted')) {
-                        console.log(typeof item_2.innerText + "         innertext" + typeof _this.datesToSelect[0]);
-                        if (_this.datesToSelect.indexOf(parseInt(item_2.innerText)) != -1) {
-                            console.log("Inner text in      " + item_2.innerText);
-                            _this.myrenderer.setElementClass(item_2, "greencircle", true);
-                        }
-                        else {
-                            //this.myrenderer.setElementClass(item,"monthview-selected",false);
-                        }
-                    }
-                }
-                //}
-            }); });
-        }
-    };
-    return StylistProfile;
-}());
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChildren"])('pluscontain'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"])
-], StylistProfile.prototype, "components", void 0);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChildren"])('profsquare'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"])
-], StylistProfile.prototype, "profComponents", void 0);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChildren"])('xclass'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"])
-], StylistProfile.prototype, "xclass", void 0);
-StylistProfile = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-stylist-profile',template:/*ion-inline-start:"/Users/eamonwhite/ionicmane/myApp/src/pages/stylistprofile/stylistprofile.html"*/'<ion-header (swiperight)="swipeRight()"> <!--(swipeleft)="swipeLeft()"-->\n  <ion-toolbar>\n    <ion-title>@{{username}}</ion-title>\n\n    <div class="settingscontainer">\n    	<ion-icon class="settings" name="settings" (tap)="goToSettings()"></ion-icon>\n    </div>\n  </ion-toolbar>\n    <!--<div class="stylistview">\n	    <button class="stylistviewbutton" ion-button color="secondary">Stylist View</button>\n	  </div>-->\n</ion-header>\n\n<ion-content no-padding>\n<div (swiperight)="swipeRight()"> <!-- (swipeleft)="swipeLeft()"-->\n	<ion-item no-padding no-lines>\n		<div class="imageparent">\n		  <img class="postprofilepic" src="{{profilePic}}">\n		</div>\n	    <div class="rateandsocial">\n		    <div class=\'ratecontain\'>\n			    <div class=\'stars\'>{{stars}}</div>\n			    <div class=\'ratings\'>({{totalRatings}} ratings)</div>\n			</div>\n		    <div class="social">\n				<div class="fb inlineblock">\n					<img src="img/facebook.png">\n				</div>\n				<div class="insta inlineblock">\n		  			<img src="img/instagram.png">\n				</div>\n			</div>\n		</div>\n	  	<div class="stylistviewtwo">\n	    	<button class="stylistviewbuttontwo" ion-button color="primary">{{followers}} Followers</button>\n	  	</div>\n	  	<div class=\'stylistsect\'>\n			<div class="name">{{username}}</div>\n			<div class="bio">{{bio}}</div>\n		</div>\n		<div class=\'arrowleftholder\'>\n    	<ion-icon class=\'forward\' name="arrow-back"></ion-icon>\n    </div>\n		<div class="caltitle">{{viewTitle}} {{titleYear}}</div>\n		<div class=\'arrowrightholder\' (tap)="selectArrowRight()">\n    	<ion-icon class=\'forward\' name="arrow-forward"></ion-icon>\n    </div>\n		<div class="clearcover" (tap)="openCal()"></div>\n		<calendar class=\'cal\' [eventSource]="eventSource"\n	      [calendarMode]="calendar.mode"\n	      [currentDate]="calendar.currentDate"\n	      (onCurrentDateChanged)="onCurrentDateChanged($event)"\n	      (onRangeChanged)="reloadSource(startTime, endTime)"\n	      (onEventSelected)="onEventSelected($event)"\n	      (onTitleChanged)="onViewTitleChanged($event)"\n	      (onTimeSelected)="onTimeSelected($event)"\n	      step="30">\n	    </calendar>\n	</ion-item>\n	<ion-grid>\n	  <ion-row>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(1)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(1)">&#10005;</div>\n	      	<img  (tap)="presentImage(1)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(2)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(2)">&#10005;</div>\n	      <img  (tap)="presentImage(2)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(3)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(3)">&#10005;</div>\n	      <img  (tap)="presentImage(3)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	  </ion-row>\n	  <ion-row>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(4)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(4)">&#10005;</div>\n	      <img  (tap)="presentImage(4)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(5)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(5)">&#10005;</div>\n	      <img  (tap)="presentImage(5)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(6)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(6)">&#10005;</div>\n	      <img  (tap)="presentImage(6)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	  </ion-row>\n	  <ion-row>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(7)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(7)">&#10005;</div>\n	      <img  (tap)="presentImage(7)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(8)"class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(8)">&#10005;</div>\n	      <img  (tap)="presentImage(8)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n	    	<div #pluscontain  (tap)="openCamera(9)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(9)">&#10005;</div>\n	      <img  (tap)="presentImage(9)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	  </ion-row>\n	</ion-grid>\n</div>\n\n<!--<ion-fab bottom center >\n  <button ion-fab></button>\n  <ion-fab-list side="right">\n    <button class="textsizebutton" (tap)=\'tappedPost()\' ion-fab>Post</button>\n  </ion-fab-list>\n  <ion-fab-list side="left">\n    <button class="textsizebutton" (tap)=\'tappedEmergency()\' ion-fab><ion-icon name="alarm"></ion-icon></button>\n  </ion-fab-list>\n</ion-fab>-->\n</ion-content>'/*ion-inline-end:"/Users/eamonwhite/ionicmane/myApp/src/pages/stylistprofile/stylistprofile.html"*/,
-        animations: [
-            Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('moveCover', [
-                Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('down', Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({})),
-                Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('up', Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({})),
-                Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => *', Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('400ms ease-in')),
-            ]),
-        ]
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], __WEBPACK_IMPORTED_MODULE_12__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_11_ionic_img_viewer__["a" /* ImageViewerController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], __WEBPACK_IMPORTED_MODULE_9_angularfire2_database__["a" /* AngularFireDatabase */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* NavController */], __WEBPACK_IMPORTED_MODULE_7__services_cameraservice__["a" /* CameraService */]])
-], StylistProfile);
-
-//# sourceMappingURL=stylistprofile.js.map
-
-/***/ }),
-
-/***/ 45:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FeedUser; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stylistprofile_stylistprofile__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stylistprofile_stylistprofile__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__feedstylist_feedstylist__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__userbooking_userbooking__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_auth__ = __webpack_require__(64);
@@ -4880,7 +4270,7 @@ StylistProfile = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_BehaviorSubject__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_rxjs_BehaviorSubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__userviewprofile_userviewprofile__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__userprofile_userprofile__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__userprofile_userprofile__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fullfeed_fullfeed__ = __webpack_require__(179);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5779,13 +5169,13 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_signin_signin__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_signup_signup__ = __webpack_require__(407);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_feedstylist_feedstylist__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_feeduser_feeduser__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_feeduser_feeduser__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_postpage_postpage__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser_animations__ = __webpack_require__(798);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_stylistprofile_stylistprofile__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_stylistprofile_stylistprofile__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_booking_booking__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_settings_settings__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_userprofile_userprofile__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_settings_settings__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_userprofile_userprofile__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_userbooking_userbooking__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_userviewprofile_userviewprofile__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_followers_followers__ = __webpack_require__(112);
@@ -5807,7 +5197,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__services_cameraservicepost__ = __webpack_require__(410);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__services_cameraserviceprofile__ = __webpack_require__(245);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__angular_http__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_ionic_img_viewer__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_ionic_img_viewer__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_storage__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__ionic_native_facebook__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__ionic_native_google_plus__ = __webpack_require__(408);
@@ -6013,6 +5403,621 @@ AppModule = __decorate([
 
 /***/ }),
 
+/***/ 51:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StylistProfile; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__feedstylist_feedstylist__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__booking_booking__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postpage_postpage__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__formulapost_formulapost__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__settings_settings__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_cameraservice__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angularfire2_database__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_firebase__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ionic_img_viewer__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_storage__ = __webpack_require__(19);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//import { IonicApp, IonicModule } from 'ionic-angular';
+//import { MyApp } from './app/app.component';
+var StylistProfile = (function () {
+    function StylistProfile(elRef, storage, imageViewerCtrl, loadingController, /*public firebase: FirebaseApp, */ myrenderer, af, actionSheetCtrl, camera, navCtrl, cameraService) {
+        this.elRef = elRef;
+        this.storage = storage;
+        this.imageViewerCtrl = imageViewerCtrl;
+        this.loadingController = loadingController;
+        this.myrenderer = myrenderer;
+        this.af = af;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.camera = camera;
+        this.navCtrl = navCtrl;
+        this.cameraService = cameraService;
+        this.viewDate = new Date();
+        this.events = [];
+        this.calendar = { 'mode': 'month', 'currentDate': this.viewDate };
+        this.moveState = 'up';
+        this.picURLS = [];
+        this.square = 0;
+        this.datesToSelect = [];
+        this.optionsGetMedia = {
+            allowEdit: false,
+            quality: 10,
+            targetWidth: 600,
+            targetHeight: 600,
+            encodingType: this.camera.EncodingType.PNG,
+            sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+            mediaType: this.camera.MediaType.PICTURE,
+            destinationType: this.camera.DestinationType.FILE_URI
+        };
+        this.optionsGetCamera = {
+            quality: 10,
+            targetWidth: 600,
+            targetHeight: 600,
+            encodingType: this.camera.EncodingType.PNG,
+            sourceType: this.camera.PictureSourceType.CAMERA,
+            mediaType: this.camera.MediaType.PICTURE,
+            destinationType: this.camera.DestinationType.FILE_URI,
+            saveToPhotoAlbum: true
+        };
+        this.times = [{ 'time': '8:00 AM', 'selected': false }, { 'time': '12:00 PM', 'selected': false }, { 'time': '4:00 PM', 'selected': false },
+            { 'time': '8:30 AM', 'selected': false }, { 'time': '12:30 PM', 'selected': false }, { 'time': '4:30 PM', 'selected': false },
+            { 'time': '9:00 AM', 'selected': false }, { 'time': '1:00 PM', 'selected': false }, { 'time': '5:00 PM', 'selected': false },
+            { 'time': '9:30 AM', 'selected': false }, { 'time': '1:30 PM', 'selected': false }, { 'time': '5:30 PM', 'selected': false },
+            { 'time': '10:00 AM', 'selected': false }, { 'time': '2:00 PM', 'selected': false }, { 'time': '6:00 PM', 'selected': false },
+            { 'time': '10:30 AM', 'selected': false }, { 'time': '2:30 PM', 'selected': false }, { 'time': '6:30 PM', 'selected': false },
+            { 'time': '11:00 AM', 'selected': false }, { 'time': '3:00 PM', 'selected': false }, { 'time': '7:00 PM', 'selected': false },
+            { 'time': '11:30 AM', 'selected': false }, { 'time': '3:30 PM', 'selected': false }, { 'time': '7:30 PM', 'selected': false }
+        ];
+    }
+    StylistProfile.prototype.ionViewDidEnter = function () {
+        //let loading = this.loadingController.create({content : "Loading..."});
+        //loading.present();
+    };
+    StylistProfile.prototype.getFollowers = function () {
+    };
+    StylistProfile.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.storage.get('bio').then(function (val) {
+            _this.bio = val;
+        });
+        this.storage.get('username').then(function (val) {
+            _this.username = val;
+            console.log(val);
+            _this.downloadImages();
+            _this.item2 = _this.af.object('/profiles/stylists/' + _this.username + '/followers');
+            _this.subscription5 = _this.item2.subscribe(function (item) {
+                console.log(JSON.stringify(item) + "      followers number 98989899889");
+                if (Object.keys(item)[0] == '$value') {
+                    _this.followers = 0;
+                }
+                else {
+                    _this.followers = item.length;
+                }
+            });
+            _this.item9 = _this.af.object('/profiles/stylists/' + _this.username);
+            _this.subscription9 = _this.item9.subscribe(function (item) {
+                console.log(JSON.stringify(item) + "      rating number 989898222229889");
+                var total = 0;
+                for (var u in item.rating) {
+                    total += item.rating[u];
+                }
+                _this.totalRatings = total;
+                var totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
+                var ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five * 5;
+                console.log(ratings + "   ratings          total potential:    " + totalPotential);
+                if (ratings == 0 && totalPotential == 0) {
+                    _this.stars = '\u2606\u2606\u2606\u2606\u2606';
+                }
+                var i = (ratings / totalPotential) * 100;
+                if (Math.round(i) <= 20) {
+                    _this.stars = '\u2605\u2606\u2606\u2606\u2606';
+                }
+                if (Math.round(i) > 20 && Math.round(i) <= 40) {
+                    _this.stars = '\u2605\u2605\u2606\u2606\u2606';
+                }
+                if (Math.round(i) > 40 && Math.round(i) <= 60) {
+                    _this.stars = '\u2605\u2605\u2605\u2606\u2606';
+                }
+                if (Math.round(i) > 60 && Math.round(i) <= 80) {
+                    _this.stars = '\u2605\u2605\u2605\u2605\u2606';
+                }
+                if (Math.round(i) > 80) {
+                    _this.stars = '\u2605\u2605\u2605\u2605\u2605';
+                }
+            });
+        });
+        this.storage.get('picURL').then(function (val) {
+            _this.profilePic = val;
+            if (_this.profilePic == null) {
+                _this.profilePic = 'assets/blankprof.png';
+            }
+        });
+        //this.isSomething = true;
+        this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+        console.log(this.viewDate + " view date ");
+        setTimeout(function () {
+            _this.selectedDate = _this.viewDate;
+            console.log(_this.username + "this.username");
+            _this.items2 = _this.af.list('appointments/' + _this.username + '/' + _this.selectedDate.getMonth());
+            _this.subscription2 = _this.items2.subscribe(function (items) { return items.forEach(function (item) {
+                console.log(item);
+                var da = new Date(item.date.day * 1000);
+                _this.datesToSelect.push(da.getDate());
+                console.log(da + "da");
+                console.log(da.getDate() + "dagetdate");
+                console.log(_this.selectedDate.getDate());
+                if (_this.selectedDate.getDate() == da.getDate() && _this.selectedDate.getMonth() == da.getMonth()) {
+                    console.log("selected = item");
+                    console.log(JSON.stringify(item.reserved) + "         item resesrved above");
+                    _this.times = item.reserved.appointment.slice(0);
+                    console.log('hit appointment');
+                }
+                for (var _i = 0, _a = _this.tds; _i < _a.length; _i++) {
+                    var item_1 = _a[_i];
+                    if (!item_1.classList.contains('text-muted')) {
+                        console.log(typeof item_1.innerText + "         innertext" + typeof _this.datesToSelect[0]);
+                        if (_this.datesToSelect.indexOf(parseInt(item_1.innerText)) != -1) {
+                            console.log("Inner text in      " + item_1.innerText);
+                            _this.myrenderer.setElementClass(item_1, "greencircle", true);
+                        }
+                        else {
+                            //this.myrenderer.setElementClass(item,"monthview-selected",false);
+                        }
+                    }
+                }
+            }); });
+            //loading.dismiss();
+        }, 1500);
+    };
+    StylistProfile.prototype.ngOnDestroy = function () {
+        this.subscription2.unsubscribe();
+        if (this.subscription3 != null) {
+            this.subscription3.unsubscribe();
+        }
+        this.subscription4.unsubscribe();
+        this.subscription5.unsubscribe();
+        this.subscription9.unsubscribe();
+    };
+    StylistProfile.prototype.openCamera = function (squarez) {
+        this.presentActionSheet2();
+        this.square = squarez;
+    };
+    StylistProfile.prototype.removePic = function (squarez) {
+        console.log("in remove pic 333333333          " + squarez);
+        var itemArray = this.components.toArray();
+        var itemArrayTwo = this.profComponents.toArray();
+        var itemArraythree = this.xclass.toArray();
+        console.log(JSON.stringify(itemArray) + " item array");
+        this.myrenderer.setElementStyle(itemArray[squarez - 1].nativeElement, 'display', 'block');
+        this.myrenderer.setElementStyle(itemArrayTwo[squarez - 1].nativeElement, 'display', 'none');
+        this.myrenderer.setElementStyle(itemArraythree[squarez - 1].nativeElement, 'display', 'none');
+        this.storage.set("profile" + squarez, null);
+    };
+    StylistProfile.prototype.presentImage = function (squarez) {
+        this.square = squarez;
+        var itemArrayTwo = this.profComponents.toArray();
+        console.log(JSON.stringify(itemArrayTwo[this.square - 1]));
+        var imageViewer = this.imageViewerCtrl.create(itemArrayTwo[this.square - 1].nativeElement);
+        imageViewer.present();
+    };
+    StylistProfile.prototype.showSquare = function () {
+        var itemArray = this.components.toArray();
+        var itemArrayTwo = this.profComponents.toArray();
+        var itemArraythree = this.xclass.toArray();
+        this.myrenderer.setElementStyle(itemArray[this.square - 1].nativeElement, 'display', 'none');
+        this.myrenderer.setElementStyle(itemArrayTwo[this.square - 1].nativeElement, 'display', 'block');
+        this.myrenderer.setElementStyle(itemArraythree[this.square - 1].nativeElement, 'display', 'block');
+    };
+    StylistProfile.prototype.presentActionSheet = function () {
+        var _this = this;
+        var actionSheet = this.actionSheetCtrl.create({
+            title: 'Choose source',
+            buttons: [
+                {
+                    text: 'Camera',
+                    handler: function () {
+                        var itemArrayTwo = _this.profComponents.toArray();
+                        _this.cameraService.getMedia(_this.optionsGetCamera, _this.square).then(function () {
+                            return new Promise(function (resolve, reject) {
+                                var storageRef = __WEBPACK_IMPORTED_MODULE_10_firebase___default.a.storage().ref().child('/profile/' + _this.username + '/profile_' + _this.username + '_' + _this.square + '.png');
+                                var loading = _this.loadingController.create({ content: "Loading..." });
+                                loading.present();
+                                setTimeout(function () {
+                                    storageRef.getDownloadURL().then(function (url) {
+                                        console.log(url);
+                                        _this.storage.set("profile" + _this.square, url);
+                                        _this.myrenderer.setElementAttribute(itemArrayTwo[_this.square - 1].nativeElement, 'src', url);
+                                        _this.showSquare();
+                                    });
+                                    loading.dismiss();
+                                }, 3000);
+                            });
+                        }); //pass in square choice
+                        //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
+                        console.log('camera clicked');
+                    }
+                }, {
+                    text: 'Photo Library',
+                    handler: function () {
+                        var itemArrayTwo = _this.profComponents.toArray();
+                        _this.cameraService.getMedia(_this.optionsGetMedia, _this.square).then(function () {
+                            return new Promise(function (resolve, reject) {
+                                var storageRef = __WEBPACK_IMPORTED_MODULE_10_firebase___default.a.storage().ref().child('/profile/' + _this.username + '/profile_' + _this.username + '_' + _this.square + '.png');
+                                var loading = _this.loadingController.create({ content: "Loading..." });
+                                loading.present();
+                                setTimeout(function () {
+                                    storageRef.getDownloadURL().then(function (url) {
+                                        console.log(url);
+                                        _this.storage.set("profile" + _this.square, url);
+                                        _this.myrenderer.setElementAttribute(itemArrayTwo[_this.square - 1].nativeElement, 'src', url);
+                                        _this.showSquare();
+                                        resolve();
+                                    });
+                                    loading.dismiss();
+                                }, 3500);
+                            });
+                            //
+                        }).catch(function (e) {
+                            console.log(e + "       eeeee");
+                        });
+                    }
+                }, {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: function () {
+                        console.log('Cancel clicked');
+                    }
+                }
+            ]
+        });
+        actionSheet.present();
+    };
+    StylistProfile.prototype.presentActionSheet2 = function () {
+        var _this = this;
+        var actionSheet = this.actionSheetCtrl.create({
+            title: 'Choose type',
+            buttons: [
+                {
+                    text: 'Formula',
+                    handler: function () {
+                        _this.presentActionSheet3();
+                    }
+                }, {
+                    text: 'Picture',
+                    handler: function () {
+                        _this.presentActionSheet();
+                    }
+                }, {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: function () {
+                        console.log('Cancel clicked');
+                    }
+                }
+            ]
+        });
+        actionSheet.present();
+    };
+    ////////////********************************************** SAVING FORMULAS TO SERVER
+    StylistProfile.prototype.presentActionSheet3 = function () {
+        var _this = this;
+        var actionSheet = this.actionSheetCtrl.create({
+            title: 'Choose source',
+            buttons: [
+                {
+                    text: 'Camera',
+                    handler: function () {
+                        var itemArrayTwo = _this.profComponents.toArray();
+                        _this.cameraService.getMediaFormulas(_this.optionsGetCamera, _this.square).then(function (url) {
+                            actionSheet.dismiss();
+                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__formulapost_formulapost__["a" /* FormulapostPage */], { path: url });
+                        }); //pass in square choice
+                        //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
+                        console.log('camera clicked');
+                        //actionSheet.dismiss();
+                    }
+                }, {
+                    text: 'Photo Library',
+                    handler: function () {
+                        var itemArrayTwo = _this.profComponents.toArray();
+                        _this.cameraService.getMediaFormulas(_this.optionsGetMedia, _this.square).then(function (url) {
+                            console.log(url + " url url url url");
+                            actionSheet.dismiss();
+                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__formulapost_formulapost__["a" /* FormulapostPage */], { path: url });
+                        }); //pass in square choice
+                        //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
+                        console.log('camera clicked');
+                        //actionSheet.dismiss();
+                    }
+                }, {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: function () {
+                        console.log('Cancel clicked');
+                    }
+                }
+            ]
+        });
+        actionSheet.present();
+    };
+    StylistProfile.prototype.pushPage = function () {
+        // push another page on to the navigation stack
+        // causing the nav controller to transition to the new page
+        // optional data can also be passed to the pushed page.
+        //this.navCtrl.push(SignUpPage);
+    };
+    StylistProfile.prototype.tappedPost = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__postpage_postpage__["a" /* PostpagePage */]);
+    };
+    StylistProfile.prototype.tappedEmergency = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__booking_booking__["a" /* BookingPage */]);
+    };
+    StylistProfile.prototype.goToSettings = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__settings_settings__["a" /* SettingsPage */]);
+    };
+    StylistProfile.prototype.backToFeed = function () {
+        /*if(this.navParams.get('param1') == 'user') {
+          this.navCtrl.push(FeedUser);
+        }*/
+        //else {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__feedstylist_feedstylist__["a" /* FeedStylist */], {}, { animate: true, animation: 'transition', duration: 500, direction: 'back' });
+        //this.navCtrl.push(FeedStylist);
+        //}
+    };
+    StylistProfile.prototype.backToCal = function () {
+        //if(this.navParams.get('param1') == 'user') {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__booking_booking__["a" /* BookingPage */], {}, { animate: true, animation: 'transition', duration: 500, direction: 'forward' });
+        //this.navCtrl.push(BookingPage);
+        //}
+        //else {
+        //this.navCtrl.push(FeedStylist);
+        //}
+    };
+    StylistProfile.prototype.swipe = function (e, when) {
+        var coord = [e.changedTouches[0].pageX, e.changedTouches[0].pageY];
+        var time = new Date().getTime();
+        if (when === 'start') {
+            this.swipeCoord = coord;
+            this.swipeTime = time;
+        }
+        else if (when === 'end') {
+            var direction = [coord[0] - this.swipeCoord[0], coord[1] - this.swipeCoord[1]];
+            var duration = time - this.swipeTime;
+            if (duration < 1000 //Short enough
+                && Math.abs(direction[1]) < Math.abs(direction[0]) //Horizontal enough
+                && Math.abs(direction[0]) > 30) {
+                var swipe = direction[0] < 0 ? 'next' : 'previous';
+                console.log(swipe);
+                if (swipe == 'next') {
+                    this.backToCal();
+                }
+                else {
+                    this.backToFeed();
+                }
+                //Do whatever you want with swipe
+            }
+        }
+    };
+    StylistProfile.prototype.swipeLeft = function () {
+        this.backToCal();
+    };
+    StylistProfile.prototype.openCal = function () {
+        this.backToCal();
+    };
+    StylistProfile.prototype.swipeRight = function () {
+        this.backToFeed();
+    };
+    StylistProfile.prototype.downloadImages = function () {
+        var self = this;
+        var promises_array = [];
+        var itemArrayTwo = this.profComponents.toArray();
+        var itemArray = this.components.toArray();
+        var itemArraythree = this.xclass.toArray();
+        var _loop_1 = function (z) {
+            //promises_array.push(new Promise(function(resolve,reject) {
+            //let storageRef = firebase.storage().ref().child('/profile/'+ self.username + '/profile_' + self.username + '_' + z + '.png');
+            //storageRef.getDownloadURL().then(url => {
+            self.storage.get("profile" + z).then(function (val) {
+                if (val != null) {
+                    self.myrenderer.setElementAttribute(itemArrayTwo[z - 1].nativeElement, 'src', val);
+                    self.myrenderer.setElementStyle(itemArrayTwo[z - 1].nativeElement, 'display', 'block');
+                    self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
+                    self.myrenderer.setElementStyle(itemArraythree[z - 1].nativeElement, 'display', 'block');
+                    console.log(z);
+                }
+                //resolve();
+            });
+            /*}).catch(error => {
+              console.log(error.message);
+              resolve();*/
+            //}));
+        };
+        for (var z = 1; z < 10; z++) {
+            _loop_1(z);
+        }
+        //return Promise.all(promises_array);
+    };
+    //changed this***
+    StylistProfile.prototype.moveCover = function () {
+        this.moveState = (this.moveState == 'up') ? 'down' : 'up';
+        this.tds = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-stylist-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides');
+        this.myrenderer.setElementClass(this.tds, 'moveCover', true);
+        var thisel = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-stylist-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides > div > div.swiper-wrapper > ion-slide.swiper-slide.swiper-slide-active > div > table');
+        this.myrenderer.setElementClass(thisel, 'marginchange', true);
+        console.log('element class list   ' + thisel.classList);
+    };
+    StylistProfile.prototype.onCurrentDateChanged = function ($event) {
+        var _this = this;
+        //console.log(typeof $event);
+        for (var _i = 0, _a = this.times; _i < _a.length; _i++) {
+            var x = _a[_i];
+            x.selected = false;
+        }
+        console.log(typeof $event + "event event event *******");
+        this.selectedDate = new Date($event);
+        console.log(this.selectedDate + " thi si the selected date ((())))))");
+        this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+        //console.log($event);
+        this.items4 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+        this.subscription4 = this.items4.subscribe(function (items) { return items.forEach(function (item) {
+            //console.log(JSON.stringify(item));
+            //console.log(item.date.day);
+            console.log("dafirst    " + item.date.day);
+            var da = new Date(item.date.day * 1000);
+            _this.datesToSelect = [];
+            _this.datesToSelect.push(da.getDate());
+            console.log(da + "da");
+            console.log(da.getDate() + "dagetdate");
+            console.log(_this.selectedDate.getDate());
+            if (_this.selectedDate.getDate() == da.getDate() && _this.selectedDate.getMonth() == da.getMonth()) {
+                console.log("selected = item");
+                console.log(JSON.stringify(item.reserved) + "         item resesrved");
+                //for(let r of item.reserved.appointment) {
+                //console.log(JSON.stringify(r));
+                _this.times = item.reserved.appointment.slice(0);
+                console.log('hit appointment');
+                console.log(JSON.stringify(_this.times));
+                /*for(let x of this.times) {
+                  if(x.time == r) {
+                    console.log('change selected');
+                    x.selected = true;
+                  }
+                }*/
+                //}
+            }
+        }); });
+    };
+    StylistProfile.prototype.reloadSource = function (startTime, endTime) {
+        console.log(startTime + " : starttime           endtime: " + endTime);
+    };
+    StylistProfile.prototype.onEventSelected = function ($event) { };
+    StylistProfile.prototype.onViewTitleChanged = function (title) {
+        var array = title.split(" ");
+        //array[1];
+        this.viewTitle = array[0].substring(0, 3);
+        this.titleYear = array[1];
+    };
+    StylistProfile.prototype.onTimeSelected = function ($event) {
+        var _this = this;
+        console.log(JSON.stringify($event) + "      THI SIIS EVENT @(@(@(@(@(");
+        this.selectedDate = new Date($event.selectedTime);
+        console.log(this.selectedDate + " thi si the selected date ((())))))");
+        this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+        if ($event.dontRunCode) {
+            //console.log($event);
+            this.items3 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+            this.subscription3 = this.items3.subscribe(function (items) { return items.forEach(function (item) {
+                //console.log(JSON.stringify(item));
+                //console.log(item.date.day);
+                console.log("dafirst    " + item.date.day);
+                var da = new Date(item.date.day * 1000);
+                _this.datesToSelect = [];
+                _this.datesToSelect.push(da.getDate());
+                console.log(da + "da");
+                console.log(da.getDate() + "dagetdate");
+                console.log(_this.selectedDate.getDate());
+                if (_this.selectedDate.getDate() == da.getDate() && _this.selectedDate.getMonth() == da.getMonth()) {
+                    console.log("selected = item");
+                    console.log(JSON.stringify(item.reserved) + "         item resesrved");
+                    //for(let r of item.reserved.appointment) {
+                    //console.log(JSON.stringify(r));
+                    /*let bool = lse;
+                    for(let r in item.reserved.appointment) {
+                      if(r['selected'] == "true") {
+                        bool = true;
+                      }
+                    }*/
+                    _this.times = item.reserved.appointment.slice(0);
+                    console.log('hit appointment');
+                    console.log(JSON.stringify(_this.times));
+                    /*for(let x of this.times) {
+                      if(x.time == r) {
+                        console.log('change selected');
+                        x.selected = true;
+                      }
+                    }*/
+                    //}
+                }
+                //console.log($event.runCode + "     dont run code!!!!!!");
+                //if($event.runCode == true) {
+                for (var _i = 0, _a = _this.tds; _i < _a.length; _i++) {
+                    var item_2 = _a[_i];
+                    if (!item_2.classList.contains('text-muted')) {
+                        console.log(typeof item_2.innerText + "         innertext" + typeof _this.datesToSelect[0]);
+                        if (_this.datesToSelect.indexOf(parseInt(item_2.innerText)) != -1) {
+                            console.log("Inner text in      " + item_2.innerText);
+                            _this.myrenderer.setElementClass(item_2, "greencircle", true);
+                        }
+                        else {
+                            //this.myrenderer.setElementClass(item,"monthview-selected",false);
+                        }
+                    }
+                }
+                //}
+            }); });
+        }
+    };
+    return StylistProfile;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChildren"])('pluscontain'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"]) === "function" && _a || Object)
+], StylistProfile.prototype, "components", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChildren"])('profsquare'),
+    __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"]) === "function" && _b || Object)
+], StylistProfile.prototype, "profComponents", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChildren"])('xclass'),
+    __metadata("design:type", typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"]) === "function" && _c || Object)
+], StylistProfile.prototype, "xclass", void 0);
+StylistProfile = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'page-stylist-profile',template:/*ion-inline-start:"/Users/eamonwhite/ionicmane/myApp/src/pages/stylistprofile/stylistprofile.html"*/'<ion-header (swiperight)="swipeRight()"> <!--(swipeleft)="swipeLeft()"-->\n  <ion-toolbar>\n    <ion-title>@{{username}}</ion-title>\n\n    <div class="settingscontainer">\n    	<ion-icon class="settings" name="settings" (tap)="goToSettings()"></ion-icon>\n    </div>\n  </ion-toolbar>\n    <!--<div class="stylistview">\n	    <button class="stylistviewbutton" ion-button color="secondary">Stylist View</button>\n	  </div>-->\n</ion-header>\n\n<ion-content no-padding>\n<div (swiperight)="swipeRight()"> <!-- (swipeleft)="swipeLeft()"-->\n	<ion-item no-padding no-lines>\n		<div class="imageparent">\n		  <img class="postprofilepic" src="{{profilePic}}">\n		</div>\n	    <div class="rateandsocial">\n		    <div class=\'ratecontain\'>\n			    <div class=\'stars\'>{{stars}}</div>\n			    <div class=\'ratings\'>({{totalRatings}} ratings)</div>\n			</div>\n		    <div class="social">\n				<div class="fb inlineblock">\n					<img src="img/facebook.png">\n				</div>\n				<div class="insta inlineblock">\n		  			<img src="img/instagram.png">\n				</div>\n			</div>\n		</div>\n	  	<div class="stylistviewtwo">\n	    	<button class="stylistviewbuttontwo" ion-button color="primary">{{followers}} Followers</button>\n	  	</div>\n	  	<div class=\'stylistsect\'>\n			<div class="name">{{username}}</div>\n			<div class="bio">{{bio}}</div>\n		</div>\n		<div class=\'arrowleftholder\'>\n    	<ion-icon class=\'forward\' name="arrow-back"></ion-icon>\n    </div>\n		<div class="caltitle">{{viewTitle}} {{titleYear}}</div>\n		<div class=\'arrowrightholder\'>\n    	<ion-icon class=\'forward\' name="arrow-forward"></ion-icon>\n    </div>\n		<div class="clearcover" (tap)="openCal()"></div>\n		<calendar class=\'cal\' [eventSource]="eventSource"\n	      [calendarMode]="calendar.mode"\n	      [currentDate]="calendar.currentDate"\n	      (onCurrentDateChanged)="onCurrentDateChanged($event)"\n	      (onRangeChanged)="reloadSource(startTime, endTime)"\n	      (onEventSelected)="onEventSelected($event)"\n	      (onTitleChanged)="onViewTitleChanged($event)"\n	      (onTimeSelected)="onTimeSelected($event)"\n	      step="30">\n	    </calendar>\n	</ion-item>\n	<ion-grid>\n	  <ion-row>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(1)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(1)">&#10005;</div>\n	      	<img  (tap)="presentImage(1)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(2)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(2)">&#10005;</div>\n	      <img  (tap)="presentImage(2)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(3)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(3)">&#10005;</div>\n	      <img  (tap)="presentImage(3)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	  </ion-row>\n	  <ion-row>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(4)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(4)">&#10005;</div>\n	      <img  (tap)="presentImage(4)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(5)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(5)">&#10005;</div>\n	      <img  (tap)="presentImage(5)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(6)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(6)">&#10005;</div>\n	      <img  (tap)="presentImage(6)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	  </ion-row>\n	  <ion-row>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(7)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(7)">&#10005;</div>\n	      <img  (tap)="presentImage(7)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n	    	<div #pluscontain (tap)="openCamera(8)"class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(8)">&#10005;</div>\n	      <img  (tap)="presentImage(8)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n	    	<div #pluscontain  (tap)="openCamera(9)" class=\'pluscontainer\'>\n		      <ion-icon class=\'plussy\' name="add"></ion-icon>\n		    </div>\n		    <div class="xclass" #xclass (tap)="removePic(9)">&#10005;</div>\n	      <img  (tap)="presentImage(9)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	  </ion-row>\n	</ion-grid>\n</div>\n\n<!--<ion-fab bottom center >\n  <button ion-fab></button>\n  <ion-fab-list side="right">\n    <button class="textsizebutton" (tap)=\'tappedPost()\' ion-fab>Post</button>\n  </ion-fab-list>\n  <ion-fab-list side="left">\n    <button class="textsizebutton" (tap)=\'tappedEmergency()\' ion-fab><ion-icon name="alarm"></ion-icon></button>\n  </ion-fab-list>\n</ion-fab>-->\n</ion-content>'/*ion-inline-end:"/Users/eamonwhite/ionicmane/myApp/src/pages/stylistprofile/stylistprofile.html"*/,
+        animations: [
+            Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('moveCover', [
+                Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('down', Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({})),
+                Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('up', Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({})),
+                Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => *', Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('400ms ease-in')),
+            ]),
+        ]
+    }),
+    __metadata("design:paramtypes", [typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_12__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_12__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_11_ionic_img_viewer__["a" /* ImageViewerController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_11_ionic_img_viewer__["a" /* ImageViewerController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* LoadingController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_9_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__["a" /* Camera */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__["a" /* Camera */]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* NavController */]) === "function" && _m || Object, typeof (_o = typeof __WEBPACK_IMPORTED_MODULE_7__services_cameraservice__["a" /* CameraService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__services_cameraservice__["a" /* CameraService */]) === "function" && _o || Object])
+], StylistProfile);
+
+var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
+//# sourceMappingURL=stylistprofile.js.map
+
+/***/ }),
+
 /***/ 56:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6023,7 +6028,7 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_feedstylist_feedstylist__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stylistprofile_stylistprofile__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stylistprofile_stylistprofile__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic2_calendar__ = __webpack_require__(411);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -6736,7 +6741,621 @@ PostpagePage = __decorate([
 
 /***/ }),
 
-/***/ 66:
+/***/ 65:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserProfile; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__feeduser_feeduser__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__booking_booking__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postpage_postpage__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__userbooking_userbooking__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_cameraservice__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angularfire2_database__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angularfire2_auth__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_firebase__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ionic_img_viewer__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modals_rate_rate__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_ionic_native__ = __webpack_require__(511);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//import { IonicApp, IonicModule } from 'ionic-angular';
+//import { MyApp } from './app/app.component';
+var UserProfile = (function () {
+    function UserProfile(afAuth, elRef, params, modalCtrl, storage, imageViewerCtrl, loadingController, myrenderer, af, actionSheetCtrl, camera, navCtrl, navParams, cameraService) {
+        this.afAuth = afAuth;
+        this.elRef = elRef;
+        this.params = params;
+        this.modalCtrl = modalCtrl;
+        this.storage = storage;
+        this.imageViewerCtrl = imageViewerCtrl;
+        this.loadingController = loadingController;
+        this.myrenderer = myrenderer;
+        this.af = af;
+        this.actionSheetCtrl = actionSheetCtrl;
+        this.camera = camera;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.cameraService = cameraService;
+        this.viewDate = new Date();
+        this.events = [];
+        this.calendar = { 'mode': 'month', 'currentDate': this.viewDate };
+        this.moveState = 'up';
+        this.picURLS = [];
+        this.square = 0;
+        this.picURL = "";
+        this.bio = "";
+        this.datesToSelect = [];
+        this.timesOpen = [];
+        this.set = false;
+        this.optionsGetMedia = {
+            allowEdit: false,
+            quality: 10,
+            targetWidth: 600,
+            targetHeight: 600,
+            encodingType: this.camera.EncodingType.PNG,
+            sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+            mediaType: this.camera.MediaType.PICTURE,
+            destinationType: this.camera.DestinationType.FILE_URI
+        };
+        this.optionsGetCamera = {
+            quality: 10,
+            targetWidth: 600,
+            targetHeight: 600,
+            encodingType: this.camera.EncodingType.PNG,
+            sourceType: this.camera.PictureSourceType.CAMERA,
+            mediaType: this.camera.MediaType.PICTURE,
+            destinationType: this.camera.DestinationType.FILE_URI,
+            saveToPhotoAlbum: true
+        };
+        this.times = [{ 'time': '8:00 AM', 'selected': false }, { 'time': '12:00 PM', 'selected': false }, { 'time': '4:00 PM', 'selected': false },
+            { 'time': '8:30 AM', 'selected': false }, { 'time': '12:30 PM', 'selected': false }, { 'time': '4:30 PM', 'selected': false },
+            { 'time': '9:00 AM', 'selected': false }, { 'time': '1:00 PM', 'selected': false }, { 'time': '5:00 PM', 'selected': false },
+            { 'time': '9:30 AM', 'selected': false }, { 'time': '1:30 PM', 'selected': false }, { 'time': '5:30 PM', 'selected': false },
+            { 'time': '10:00 AM', 'selected': false }, { 'time': '2:00 PM', 'selected': false }, { 'time': '6:00 PM', 'selected': false },
+            { 'time': '10:30 AM', 'selected': false }, { 'time': '2:30 PM', 'selected': false }, { 'time': '6:30 PM', 'selected': false },
+            { 'time': '11:00 AM', 'selected': false }, { 'time': '3:00 PM', 'selected': false }, { 'time': '7:00 PM', 'selected': false },
+            { 'time': '11:30 AM', 'selected': false }, { 'time': '3:30 PM', 'selected': false }, { 'time': '7:30 PM', 'selected': false }
+        ];
+    }
+    UserProfile.prototype.ngOnDestroy = function () {
+        this.subscription6.unsubscribe();
+        this.subscription2.unsubscribe();
+        this.subscription3.unsubscribe();
+        this.subscription4.unsubscribe();
+        this.subscription.unsubscribe();
+        this.subscription7.unsubscribe();
+        this.subscription9.unsubscribe();
+    };
+    UserProfile.prototype.instagramOpen = function () {
+        var url;
+        this.item5 = this.af.object('/profiles/stylists/' + this.username + '/instagramURL');
+        this.item5.subscribe(function (item) {
+            if (item["$value"] == null) {
+                //
+            }
+            else {
+                var browser = new __WEBPACK_IMPORTED_MODULE_14_ionic_native__["a" /* InAppBrowser */](item['$value'], "_system");
+            }
+        }).unsubscribe();
+    };
+    UserProfile.prototype.facebookOpen = function () {
+        this.item6 = this.af.object('/profiles/stylists/' + this.username + '/facebookURL');
+        this.item6.subscribe(function (item) {
+            if (item["$value"] == null) {
+                //
+            }
+            else {
+                var browser = new __WEBPACK_IMPORTED_MODULE_14_ionic_native__["a" /* InAppBrowser */](item['$value'], "_system");
+            }
+        }).unsubscribe();
+    };
+    UserProfile.prototype.followStylist = function () {
+        var _this = this;
+        this.item = this.af.object('/profiles/stylists/' + this.username + '/followers');
+        this.subscription = this.item.subscribe(function (item) {
+            if (item.$value == null) {
+                var array = [];
+                array.push((_a = {}, _a[_this.userusername] = _this.uuid, _a));
+                _this.followsty._elementRef.nativeElement.innerHTML = "FOLLOWING";
+                _this.item.update(array);
+            }
+            else {
+                if (item.indexOf(_this.userusername) == -1) {
+                    item.push((_b = {}, _b[_this.userusername] = _this.uuid, _b));
+                    _this.item.update(item);
+                }
+                else {
+                    _this.followsty._elementRef.nativeElement.innerHTML = "FOLLOWING";
+                }
+            }
+            var _a, _b;
+        });
+    };
+    UserProfile.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.username = this.params.get('username');
+        this.subscription7 = this.afAuth.authState.subscribe(function (data) {
+            if (data.email && data.uid) {
+                console.log("logged in");
+                _this.uuid = data.uid;
+            }
+        });
+        this.storage.get('username').then(function (val) {
+            _this.userusername = val;
+        });
+        console.log(this.username + "         this is item @@#2332dfdffdfd23");
+        this.item2 = this.af.object('/profiles/stylists/' + this.username + '/followers');
+        this.item2.subscribe(function (item) {
+            var bool = false;
+            if (Object.keys(item)[0] == '$value') {
+                bool = true;
+            }
+            if (!bool) {
+                console.log(typeof item + " type of type of type of");
+                var index = item.findIndex(function (item) { return item[_this.userusername] === _this.uuid; });
+                console.log(index + "         this.userusername   8888888*&&&*&*&*&*");
+                if (index !== -1) {
+                    _this.followsty._elementRef.nativeElement.innerHTML = "FOLLOWING";
+                }
+            }
+        }).unsubscribe();
+        var storageRef = __WEBPACK_IMPORTED_MODULE_10_firebase___default.a.storage().ref().child('/settings/' + this.username + '/profilepicture.png');
+        storageRef.getDownloadURL().then(function (url) {
+            console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+            _this.profilePic = url;
+        }).catch(function (e) {
+            console.log("in caught url !!!!!!!$$$$$$$!!");
+            _this.profilePic = 'assets/blankprof.png';
+        });
+        this.item9 = this.af.object('/profiles/stylists/' + this.username);
+        this.subscription9 = this.item9.subscribe(function (item) {
+            console.log(JSON.stringify(item) + "      rating number 989898222229889");
+            var total = 0;
+            for (var u in item.rating) {
+                total += item.rating[u];
+            }
+            //this.facebook.nativeElement.src = item.facebookURL;
+            //this.instagram.nativeElement.src = item.instagramURL;
+            _this.totalRatings = total;
+        });
+        this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+        this.username = this.navParams.get('username');
+        console.log(this.viewDate + " view date ");
+        setTimeout(function () {
+            _this.timesOpen = [];
+            _this.selectedDate = _this.viewDate;
+            console.log(_this.username + "this.username");
+            var bool = false;
+            _this.items2 = _this.af.list('appointments/' + _this.username + '/' + _this.selectedDate.getMonth());
+            _this.subscription2 = _this.items2.subscribe(function (items) { return items.forEach(function (item) {
+                console.log(item);
+                var da = new Date(item.date.day * 1000);
+                _this.datesToSelect.push(da.getDate());
+                console.log(da + "da");
+                console.log(da.getDate() + "dagetdate");
+                console.log(_this.selectedDate.getDate());
+                if (_this.selectedDate.getDate() == da.getDate() && _this.selectedDate.getMonth() == da.getMonth()) {
+                    console.log("selected = item");
+                    console.log(JSON.stringify(item.reserved) + "         item resesrved above");
+                    //for(let m = 0; m < item.reserved.length; m++) {
+                    //for(let r of item.reserved) {
+                    //console.log(JSON.stringify(r));
+                    for (var _i = 0, _a = item.reserved.appointment; _i < _a.length; _i++) {
+                        var r = _a[_i];
+                        if (r.selected == true) {
+                            _this.timesOpen.push(r);
+                            console.log('hit appointment');
+                            bool = true;
+                        }
+                    }
+                }
+                for (var _b = 0, _c = _this.tds; _b < _c.length; _b++) {
+                    var item_1 = _c[_b];
+                    if (!item_1.classList.contains('text-muted')) {
+                        console.log(typeof item_1.innerText + "         innertext" + typeof _this.datesToSelect[0]);
+                        if (_this.datesToSelect.indexOf(parseInt(item_1.innerText)) != -1) {
+                            console.log("Inner text in      " + item_1.innerText);
+                            _this.myrenderer.setElementClass(item_1, "greencircle", true);
+                        }
+                        else {
+                            //this.myrenderer.setElementClass(item,"monthview-selected",false);
+                        }
+                    }
+                }
+            }); });
+            //loading.dismiss();
+        }, 1500);
+    };
+    UserProfile.prototype.getProfileInfo = function () {
+        var _this = this;
+        this.item = this.af.object('/profiles/stylists/' + this.username);
+        this.subscription6 = this.item.subscribe(function (item) { _this.picURL = item.picURL; _this.bio = item.bio; });
+    };
+    UserProfile.prototype.openCamera = function (squarez) {
+        this.presentActionSheet();
+        this.square = squarez;
+    };
+    UserProfile.prototype.presentImage = function (squarez) {
+        this.square = squarez;
+        var itemArrayTwo = this.profComponents.toArray();
+        console.log(JSON.stringify(itemArrayTwo[this.square - 1]));
+        var imageViewer = this.imageViewerCtrl.create(itemArrayTwo[this.square - 1].nativeElement);
+        imageViewer.present();
+    };
+    UserProfile.prototype.showSquare = function () {
+        var itemArray = this.components.toArray();
+        var itemArrayTwo = this.profComponents.toArray();
+        this.myrenderer.setElementStyle(itemArray[this.square - 1].nativeElement, 'display', 'none');
+        this.myrenderer.setElementStyle(itemArrayTwo[this.square - 1].nativeElement, 'display', 'block');
+    };
+    UserProfile.prototype.presentActionSheet = function () {
+        var _this = this;
+        var actionSheet = this.actionSheetCtrl.create({
+            title: 'Choose source',
+            buttons: [
+                {
+                    text: 'Camera',
+                    handler: function () {
+                        var itemArrayTwo = _this.profComponents.toArray();
+                        _this.cameraService.getMedia(_this.optionsGetCamera, _this.square).then(function () {
+                            return new Promise(function (resolve, reject) {
+                                var storageRef = __WEBPACK_IMPORTED_MODULE_10_firebase___default.a.storage().ref().child('/profile/' + _this.username + '/profile_' + _this.username + '_' + _this.square + '.png');
+                                var loading = _this.loadingController.create({ content: "Loading..." });
+                                loading.present();
+                                setTimeout(function () {
+                                    storageRef.getDownloadURL().then(function (url) {
+                                        console.log(url);
+                                        _this.myrenderer.setElementAttribute(itemArrayTwo[_this.square - 1].nativeElement, 'src', url);
+                                        _this.showSquare();
+                                    });
+                                    loading.dismiss();
+                                }, 3000);
+                            });
+                        }); //pass in square choice
+                        //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
+                        console.log('camera clicked');
+                    }
+                }, {
+                    text: 'Photo Library',
+                    handler: function () {
+                        var itemArrayTwo = _this.profComponents.toArray();
+                        _this.cameraService.getMedia(_this.optionsGetMedia, _this.square).then(function () {
+                            return new Promise(function (resolve, reject) {
+                                var storageRef = __WEBPACK_IMPORTED_MODULE_10_firebase___default.a.storage().ref().child('/profile/' + _this.username + '/profile_' + _this.username + '_' + _this.square + '.png');
+                                var loading = _this.loadingController.create({ content: "Loading..." });
+                                loading.present();
+                                setTimeout(function () {
+                                    storageRef.getDownloadURL().then(function (url) {
+                                        console.log(url);
+                                        _this.myrenderer.setElementAttribute(itemArrayTwo[_this.square - 1].nativeElement, 'src', url);
+                                        _this.showSquare();
+                                        resolve();
+                                    });
+                                    loading.dismiss();
+                                }, 3000);
+                            });
+                            //
+                        }).catch(function (e) {
+                            console.log(e + "       eeeee");
+                        });
+                    }
+                }, {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: function () {
+                        console.log('Cancel clicked');
+                    }
+                }
+            ]
+        });
+        actionSheet.present();
+    };
+    UserProfile.prototype.pushPage = function () {
+        // push another page on to the navigation stack
+        // causing the nav controller to transition to the new page
+        // optional data can also be passed to the pushed page.
+        //this.navCtrl.push(SignUpPage);
+    };
+    UserProfile.prototype.presentProfileModal = function () {
+        var profileModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_12__modals_rate_rate__["a" /* Rate */], { "user": this.username });
+        profileModal.present();
+    };
+    UserProfile.prototype.tappedPost = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__postpage_postpage__["a" /* PostpagePage */]);
+    };
+    UserProfile.prototype.tappedEmergency = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__booking_booking__["a" /* BookingPage */]);
+    };
+    UserProfile.prototype.backToFeed = function () {
+        /*if(this.navParams.get('param1') == 'user') {
+          this.navCtrl.push(FeedUser);
+        }*/
+        //else {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__feeduser_feeduser__["a" /* FeedUser */], {}, { animate: true, animation: 'transition', duration: 500, direction: 'back' });
+        //this.navCtrl.push(FeedStylist);
+        //}
+    };
+    UserProfile.prototype.backToCal = function () {
+        //if(this.navParams.get('param1') == 'user') {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__booking_booking__["a" /* BookingPage */], {}, { animate: true, animation: 'transition', duration: 500, direction: 'forward' });
+        //this.navCtrl.push(BookingPage);
+        //}
+        //else {
+        //this.navCtrl.push(FeedStylist);
+        //}
+    };
+    UserProfile.prototype.swipe = function (e, when) {
+        var coord = [e.changedTouches[0].pageX, e.changedTouches[0].pageY];
+        var time = new Date().getTime();
+        if (when === 'start') {
+            this.swipeCoord = coord;
+            this.swipeTime = time;
+        }
+        else if (when === 'end') {
+            var direction = [coord[0] - this.swipeCoord[0], coord[1] - this.swipeCoord[1]];
+            var duration = time - this.swipeTime;
+            if (duration < 1000 //Short enough
+                && Math.abs(direction[1]) < Math.abs(direction[0]) //Horizontal enough
+                && Math.abs(direction[0]) > 30) {
+                var swipe = direction[0] < 0 ? 'next' : 'previous';
+                console.log(swipe);
+                if (swipe == 'next') {
+                    this.backToCal();
+                }
+                else {
+                    this.backToFeed();
+                }
+                //Do whatever you want with swipe
+            }
+        }
+    };
+    UserProfile.prototype.swipeLeft = function () {
+        this.backToCal();
+    };
+    UserProfile.prototype.swipeRight = function () {
+        this.backToFeed();
+    };
+    UserProfile.prototype.openCal = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__userbooking_userbooking__["a" /* UserBooking */], { username: this.username });
+    };
+    UserProfile.prototype.downloadImages = function () {
+        var self = this;
+        var promises_array = [];
+        var itemArrayTwo = this.profComponents.toArray();
+        var _loop_1 = function (z) {
+            promises_array.push(new Promise(function (resolve, reject) {
+                var storageRef = __WEBPACK_IMPORTED_MODULE_10_firebase___default.a.storage().ref().child('/profile/' + self.username + '/profile_' + self.username + '_' + z + '.png');
+                storageRef.getDownloadURL().then(function (url) {
+                    self.myrenderer.setElementAttribute(itemArrayTwo[z - 1].nativeElement, 'src', url);
+                    self.myrenderer.setElementStyle(itemArrayTwo[z - 1].nativeElement, 'display', 'block');
+                    //self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
+                    console.log(z);
+                    resolve();
+                }).catch(function (error) {
+                    resolve();
+                    console.log(error.message);
+                });
+            }));
+        };
+        for (var z = 1; z < 10; z++) {
+            _loop_1(z);
+        }
+        return Promise.all(promises_array);
+    };
+    UserProfile.prototype.ionViewWillEnter = function () {
+        this.loadings = this.loadingController.create({ content: "Loading..." });
+        this.loadings.present();
+    };
+    UserProfile.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        this.username = this.navParams.get("username");
+        this.downloadImages().then(function () {
+            _this.getProfileInfo();
+            _this.loadings.dismiss();
+        });
+    };
+    UserProfile.prototype.moveCover = function () {
+        if (this.set == false) {
+            try {
+                this.set = true;
+                this.moveState = 'down';
+                this.tds = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides');
+                console.log(this.tds + "   >>>>>>> >>>>>>");
+                this.myrenderer.setElementClass(this.tds, 'moveCover', true);
+                var thisel = this.elRef.nativeElement.querySelector('body > ion-app > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides > div > div.swiper-wrapper > ion-slide.swiper-slide.swiper-slide-active > div > table');
+                this.myrenderer.setElementClass(thisel, 'marginchange', true);
+                console.log('element class list   ' + thisel.classList);
+            }
+            catch (e) {
+                console.log(e.message);
+            }
+        }
+        else {
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__userbooking_userbooking__["a" /* UserBooking */], { username: this.username });
+        }
+    };
+    UserProfile.prototype.onCurrentDateChanged = function ($event) {
+        var _this = this;
+        //console.log(typeof $event);
+        for (var _i = 0, _a = this.times; _i < _a.length; _i++) {
+            var x = _a[_i];
+            x.selected = false;
+        }
+        console.log(typeof $event + "event event event *******");
+        this.selectedDate = new Date($event);
+        console.log(this.selectedDate + " thi si the selected date ((())))))");
+        this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+        //console.log($event);
+        this.items4 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+        this.subscription4 = this.items4.subscribe(function (items) { return items.forEach(function (item) {
+            //console.log(JSON.stringify(item));
+            //console.log(item.date.day);
+            console.log("dafirst    " + item.date.day);
+            var da = new Date(item.date.day * 1000);
+            _this.datesToSelect = [];
+            _this.datesToSelect.push(da.getDate());
+            console.log(da + "da");
+            console.log(da.getDate() + "dagetdate");
+            console.log(_this.selectedDate.getDate());
+            if (_this.selectedDate.getDate() == da.getDate() && _this.selectedDate.getMonth() == da.getMonth()) {
+                console.log("selected = item");
+                console.log(JSON.stringify(item.reserved) + "         item resesrved");
+                //for(let r of item.reserved.appointment) {
+                //console.log(JSON.stringify(r));
+                _this.times = item.reserved.appointment.slice(0);
+                console.log('hit appointment');
+                console.log(JSON.stringify(_this.times));
+                /*for(let x of this.times) {
+                  if(x.time == r) {
+                    console.log('change selected');
+                    x.selected = true;
+                  }
+                }*/
+                //}
+            }
+        }); });
+    };
+    UserProfile.prototype.reloadSource = function (startTime, endTime) {
+        console.log(startTime + " : starttime           endtime: " + endTime);
+    };
+    UserProfile.prototype.onEventSelected = function ($event) { };
+    UserProfile.prototype.onViewTitleChanged = function (title) {
+        var array = title.split(" ");
+        //array[1];
+        this.viewTitle = array[0].substring(0, 3);
+        this.titleYear = array[1];
+    };
+    UserProfile.prototype.onTimeSelected = function ($event) {
+        var _this = this;
+        console.log(JSON.stringify($event) + "      THI SIIS EVENT @(@(@(@(@(");
+        this.selectedDate = new Date($event.selectedTime);
+        console.log(this.selectedDate + " thi si the selected date ((())))))");
+        this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
+        if ($event.dontRunCode) {
+            //console.log($event);
+            this.items3 = this.af.list('appointments/' + this.username + '/' + this.selectedDate.getMonth());
+            this.subscription3 = this.items3.subscribe(function (items) { return items.forEach(function (item) {
+                //console.log(JSON.stringify(item));
+                //console.log(item.date.day);
+                console.log("dafirst    " + item.date.day);
+                var da = new Date(item.date.day * 1000);
+                _this.datesToSelect = [];
+                _this.datesToSelect.push(da.getDate());
+                console.log(da + "da");
+                console.log(da.getDate() + "dagetdate");
+                console.log(_this.selectedDate.getDate());
+                if (_this.selectedDate.getDate() == da.getDate() && _this.selectedDate.getMonth() == da.getMonth()) {
+                    console.log("selected = item");
+                    console.log(JSON.stringify(item.reserved) + "         item resesrved");
+                    //for(let r of item.reserved.appointment) {
+                    //console.log(JSON.stringify(r));
+                    /*let bool = lse;
+                    for(let r in item.reserved.appointment) {
+                      if(r['selected'] == "true") {
+                        bool = true;
+                      }
+                    }*/
+                    _this.times = item.reserved.appointment.slice(0);
+                    console.log('hit appointment');
+                    console.log(JSON.stringify(_this.times));
+                    /*for(let x of this.times) {
+                      if(x.time == r) {
+                        console.log('change selected');
+                        x.selected = true;
+                      }
+                    }*/
+                    //}
+                }
+                //console.log($event.runCode + "     dont run code!!!!!!");
+                //if($event.runCode == true) {
+                for (var _i = 0, _a = _this.tds; _i < _a.length; _i++) {
+                    var item_2 = _a[_i];
+                    if (!item_2.classList.contains('text-muted')) {
+                        console.log(typeof item_2.innerText + "         innertext" + typeof _this.datesToSelect[0]);
+                        if (_this.datesToSelect.indexOf(parseInt(item_2.innerText)) != -1) {
+                            console.log("Inner text in      " + item_2.innerText);
+                            _this.myrenderer.setElementClass(item_2, "greencircle", true);
+                        }
+                        else {
+                            //this.myrenderer.setElementClass(item,"monthview-selected",false);
+                        }
+                    }
+                }
+                //}
+            }); });
+        }
+    };
+    return UserProfile;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChildren"])('pluscontain'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"])
+], UserProfile.prototype, "components", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChildren"])('profsquare'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"])
+], UserProfile.prototype, "profComponents", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('followsty'),
+    __metadata("design:type", Object)
+], UserProfile.prototype, "followsty", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('instagram'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
+], UserProfile.prototype, "instagram", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('facebook'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
+], UserProfile.prototype, "facebook", void 0);
+UserProfile = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'page-user-profile',template:/*ion-inline-start:"/Users/eamonwhite/ionicmane/myApp/src/pages/userprofile/userprofile.html"*/'<ion-header (swipeRight)="swipeRight()">\n  <ion-toolbar>\n    <ion-title>@{{username}}</ion-title>\n\n    <!--<div class="settingscontainer">\n    	<ion-icon class="settings" name="settings" (tap)="goToSettings()"></ion-icon>\n    </div>-->\n  </ion-toolbar>\n    <!--<div class="stylistview">\n	    <button class="stylistviewbutton" ion-button color="secondary">Stylist View</button>\n	  </div>-->\n</ion-header>\n\n<ion-content no-padding>\n<div (swiperight)="swipeRight()">\n	<ion-item no-padding no-lines>\n		<div class="imageparent">\n		  <img class="postprofilepic" src="{{profilePic}}">\n		</div>\n	    <div class="rateandsocial">\n		    <div class=\'ratecontain\'>\n			    <div class=\'stars\'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>\n			    <div class=\'ratings\'>({{totalRatings}} ratings)</div>\n			</div>\n		    <div class="social">\n				<div class="fb inlineblock">\n					<img src="img/facebook.png" (tap)="facebookOpen()" #facebook>\n				</div>\n				<div class="insta inlineblock">\n		  			<img src="img/instagram.png" (tap)="instagramOpen()" #instagram>\n				</div>\n			</div>\n		</div>\n	  	<div class="stylistviewtwo">\n	    	<button class="stylistviewbuttontwo" ion-button (tap)="followStylist()" #followsty color="primary">Follow Stylist</button>\n	  	</div>\n	  	<div class=\'stylistsect\'>\n			<div class="name">@{{username}}</div>\n			<div class="bio">I am a hair stylist. This is my bio, I wrote it. I need to make money so please book me!</div>\n		</div>\n		<div class=\'arrowleftholder\'>\n	    	<ion-icon class=\'forward\' name="arrow-back"></ion-icon>\n	    </div>\n		<div class="caltitle">{{viewTitle}} {{titleYear}}</div>\n		<div class=\'arrowrightholder\'>\n	    	<ion-icon class=\'forward\' name="arrow-forward"></ion-icon>\n	    </div>\n		<calendar (tap)="openCal" class=\'cal\' [eventSource]="eventSource"\n	      [calendarMode]="calendar.mode"\n	      [currentDate]="calendar.currentDate"\n	      (onCurrentDateChanged)="onCurrentDateChanged($event)"\n	      (onRangeChanged)="reloadSource(startTime, endTime)"\n	      (onEventSelected)="onEventSelected($event)"\n	      (onTitleChanged)="onViewTitleChanged($event)"\n	      (onTimeSelected)="onTimeSelected($event)"\n	      step="30">\n	    </calendar>\n	</ion-item>\n	<ion-grid>\n	  <ion-row>\n	    <ion-col>\n\n	      <img (tap)="presentImage(1)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n\n	      <img (tap)="presentImage(2)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n\n	      <img (tap)="presentImage(3)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	  </ion-row>\n	  <ion-row>\n	    <ion-col>\n\n	      <img (tap)="presentImage(4)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n\n	      <img (tap)="presentImage(5)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n\n	      <img (tap)="presentImage(6)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	  </ion-row>\n	  <ion-row>\n	    <ion-col>\n\n	      <img (tap)="presentImage(7)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n\n	      <img (tap)="presentImage(8)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n\n	      <img (tap)="presentImage(9)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	  </ion-row>\n	</ion-grid>\n</div>\n\n<!--<ion-fab bottom center >\n  <button ion-fab></button>\n  <ion-fab-list side="right">\n    <button class="textsizebutton" (tap)=\'tappedPost()\' ion-fab>Post</button>\n  </ion-fab-list>\n  <ion-fab-list side="left">\n    <button class="textsizebutton" (tap)=\'tappedEmergency()\' ion-fab><ion-icon name="alarm"></ion-icon></button>\n  </ion-fab-list>\n</ion-fab>-->\n</ion-content>'/*ion-inline-end:"/Users/eamonwhite/ionicmane/myApp/src/pages/userprofile/userprofile.html"*/,
+        animations: [
+            Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('moveCover', [
+                Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('down', Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({})),
+                Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('up', Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({})),
+                Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => *', Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('400ms ease-in')),
+            ]),
+        ]
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_9_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ModalController */], __WEBPACK_IMPORTED_MODULE_13__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_11_ionic_img_viewer__["a" /* ImageViewerController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], __WEBPACK_IMPORTED_MODULE_8_angularfire2_database__["a" /* AngularFireDatabase */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_6__services_cameraservice__["a" /* CameraService */]])
+], UserProfile);
+
+//# sourceMappingURL=userprofile.js.map
+
+/***/ }),
+
+/***/ 67:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6751,9 +7370,9 @@ PostpagePage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase_app__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_firebase_app__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angularfire2_database__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__stylistprofile_stylistprofile__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__stylistprofile_stylistprofile__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__feedstylist_feedstylist__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__feeduser_feeduser__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__feeduser_feeduser__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__signin_signin__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__userviewprofile_userviewprofile__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__map_map__ = __webpack_require__(180);
@@ -7178,507 +7797,6 @@ SettingsPage = __decorate([
 
 /***/ }),
 
-/***/ 78:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserProfile; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__feeduser_feeduser__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__booking_booking__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postpage_postpage__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__userbooking_userbooking__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_cameraservice__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angularfire2_database__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_angularfire2_auth__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_firebase__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ionic_img_viewer__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modals_rate_rate__ = __webpack_require__(252);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_ionic_native__ = __webpack_require__(511);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//import { IonicApp, IonicModule } from 'ionic-angular';
-//import { MyApp } from './app/app.component';
-var UserProfile = (function () {
-    function UserProfile(afAuth, elRef, params, modalCtrl, storage, imageViewerCtrl, loadingController, myrenderer, af, actionSheetCtrl, camera, navCtrl, navParams, cameraService) {
-        this.afAuth = afAuth;
-        this.elRef = elRef;
-        this.params = params;
-        this.modalCtrl = modalCtrl;
-        this.storage = storage;
-        this.imageViewerCtrl = imageViewerCtrl;
-        this.loadingController = loadingController;
-        this.myrenderer = myrenderer;
-        this.af = af;
-        this.actionSheetCtrl = actionSheetCtrl;
-        this.camera = camera;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.cameraService = cameraService;
-        this.viewDate = new Date();
-        this.events = [];
-        this.calendar = { 'mode': 'month', 'currentDate': this.viewDate };
-        this.moveState = 'up';
-        this.picURLS = [];
-        this.square = 0;
-        this.picURL = "";
-        this.bio = "";
-        this.datesToSelect = [];
-        this.timesOpen = [];
-        this.set = false;
-        this.optionsGetMedia = {
-            allowEdit: false,
-            quality: 10,
-            targetWidth: 600,
-            targetHeight: 600,
-            encodingType: this.camera.EncodingType.PNG,
-            sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-            mediaType: this.camera.MediaType.PICTURE,
-            destinationType: this.camera.DestinationType.FILE_URI
-        };
-        this.optionsGetCamera = {
-            quality: 10,
-            targetWidth: 600,
-            targetHeight: 600,
-            encodingType: this.camera.EncodingType.PNG,
-            sourceType: this.camera.PictureSourceType.CAMERA,
-            mediaType: this.camera.MediaType.PICTURE,
-            destinationType: this.camera.DestinationType.FILE_URI,
-            saveToPhotoAlbum: true
-        };
-    }
-    UserProfile.prototype.ngOnDestroy = function () {
-        this.subscription6.unsubscribe();
-        this.subscription2.unsubscribe();
-        this.subscription3.unsubscribe();
-        this.subscription4.unsubscribe();
-        this.subscription.unsubscribe();
-        this.subscription7.unsubscribe();
-        this.subscription9.unsubscribe();
-    };
-    UserProfile.prototype.instagramOpen = function () {
-        var url;
-        this.item5 = this.af.object('/profiles/stylists/' + this.username + '/instagramURL');
-        this.item5.subscribe(function (item) {
-            if (item["$value"] == null) {
-                //
-            }
-            else {
-                var browser = new __WEBPACK_IMPORTED_MODULE_14_ionic_native__["a" /* InAppBrowser */](item['$value'], "_system");
-            }
-        }).unsubscribe();
-    };
-    UserProfile.prototype.facebookOpen = function () {
-        this.item6 = this.af.object('/profiles/stylists/' + this.username + '/facebookURL');
-        this.item6.subscribe(function (item) {
-            if (item["$value"] == null) {
-                //
-            }
-            else {
-                var browser = new __WEBPACK_IMPORTED_MODULE_14_ionic_native__["a" /* InAppBrowser */](item['$value'], "_system");
-            }
-        }).unsubscribe();
-    };
-    UserProfile.prototype.followStylist = function () {
-        var _this = this;
-        this.item = this.af.object('/profiles/stylists/' + this.username + '/followers');
-        this.subscription = this.item.subscribe(function (item) {
-            if (item.$value == null) {
-                var array = [];
-                array.push((_a = {}, _a[_this.userusername] = _this.uuid, _a));
-                _this.followsty._elementRef.nativeElement.innerHTML = "FOLLOWING";
-                _this.item.update(array);
-            }
-            else {
-                if (item.indexOf(_this.userusername) == -1) {
-                    item.push((_b = {}, _b[_this.userusername] = _this.uuid, _b));
-                    _this.item.update(item);
-                }
-                else {
-                    _this.followsty._elementRef.nativeElement.innerHTML = "FOLLOWING";
-                }
-            }
-            var _a, _b;
-        });
-    };
-    UserProfile.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        this.username = this.params.get('username');
-        this.subscription7 = this.afAuth.authState.subscribe(function (data) {
-            if (data.email && data.uid) {
-                console.log("logged in");
-                _this.uuid = data.uid;
-            }
-        });
-        this.storage.get('username').then(function (val) {
-            _this.userusername = val;
-        });
-        console.log(this.username + "         this is item @@#2332dfdffdfd23");
-        this.item2 = this.af.object('/profiles/stylists/' + this.username + '/followers');
-        this.item2.subscribe(function (item) {
-            var bool = false;
-            if (Object.keys(item)[0] == '$value') {
-                bool = true;
-            }
-            if (!bool) {
-                console.log(typeof item + " type of type of type of");
-                var index = item.findIndex(function (item) { return item[_this.userusername] === _this.uuid; });
-                console.log(index + "         this.userusername   8888888*&&&*&*&*&*");
-                if (index !== -1) {
-                    _this.followsty._elementRef.nativeElement.innerHTML = "FOLLOWING";
-                }
-            }
-        }).unsubscribe();
-        var storageRef = __WEBPACK_IMPORTED_MODULE_10_firebase___default.a.storage().ref().child('/settings/' + this.username + '/profilepicture.png');
-        storageRef.getDownloadURL().then(function (url) {
-            console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
-            _this.profilePic = url;
-        }).catch(function (e) {
-            console.log("in caught url !!!!!!!$$$$$$$!!");
-            _this.profilePic = 'assets/blankprof.png';
-        });
-        this.item9 = this.af.object('/profiles/stylists/' + this.username);
-        this.subscription9 = this.item9.subscribe(function (item) {
-            console.log(JSON.stringify(item) + "      rating number 989898222229889");
-            var total = 0;
-            for (var u in item.rating) {
-                total += item.rating[u];
-            }
-            //this.facebook.nativeElement.src = item.facebookURL;
-            //this.instagram.nativeElement.src = item.instagramURL;
-            _this.totalRatings = total;
-        });
-        this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
-        this.username = this.navParams.get('username');
-        console.log(this.viewDate + " view date ");
-        setTimeout(function () {
-            _this.timesOpen = [];
-            _this.selectedDate = _this.viewDate;
-            console.log(_this.username + "this.username");
-            var bool = false;
-            _this.items2 = _this.af.list('appointments/' + _this.username + '/' + _this.selectedDate.getMonth());
-            _this.subscription2 = _this.items2.subscribe(function (items) { return items.forEach(function (item) {
-                console.log(item);
-                var da = new Date(item.date.day * 1000);
-                _this.datesToSelect.push(da.getDate());
-                console.log(da + "da");
-                console.log(da.getDate() + "dagetdate");
-                console.log(_this.selectedDate.getDate());
-                if (_this.selectedDate.getDate() == da.getDate() && _this.selectedDate.getMonth() == da.getMonth()) {
-                    console.log("selected = item");
-                    console.log(JSON.stringify(item.reserved) + "         item resesrved above");
-                    //for(let m = 0; m < item.reserved.length; m++) {
-                    //for(let r of item.reserved) {
-                    //console.log(JSON.stringify(r));
-                    for (var _i = 0, _a = item.reserved.appointment; _i < _a.length; _i++) {
-                        var r = _a[_i];
-                        if (r.selected == true) {
-                            _this.timesOpen.push(r);
-                            console.log('hit appointment');
-                            bool = true;
-                        }
-                    }
-                }
-                for (var _b = 0, _c = _this.tds; _b < _c.length; _b++) {
-                    var item_1 = _c[_b];
-                    if (!item_1.classList.contains('text-muted')) {
-                        console.log(typeof item_1.innerText + "         innertext" + typeof _this.datesToSelect[0]);
-                        if (_this.datesToSelect.indexOf(parseInt(item_1.innerText)) != -1) {
-                            console.log("Inner text in      " + item_1.innerText);
-                            _this.myrenderer.setElementClass(item_1, "greencircle", true);
-                        }
-                        else {
-                            //this.myrenderer.setElementClass(item,"monthview-selected",false);
-                        }
-                    }
-                }
-            }); });
-            //loading.dismiss();
-        }, 1500);
-    };
-    UserProfile.prototype.getProfileInfo = function () {
-        var _this = this;
-        this.item = this.af.object('/profiles/stylists/' + this.username);
-        this.subscription6 = this.item.subscribe(function (item) { _this.picURL = item.picURL; _this.bio = item.bio; });
-    };
-    UserProfile.prototype.openCamera = function (squarez) {
-        this.presentActionSheet();
-        this.square = squarez;
-    };
-    UserProfile.prototype.presentImage = function (squarez) {
-        this.square = squarez;
-        var itemArrayTwo = this.profComponents.toArray();
-        console.log(JSON.stringify(itemArrayTwo[this.square - 1]));
-        var imageViewer = this.imageViewerCtrl.create(itemArrayTwo[this.square - 1].nativeElement);
-        imageViewer.present();
-    };
-    UserProfile.prototype.showSquare = function () {
-        var itemArray = this.components.toArray();
-        var itemArrayTwo = this.profComponents.toArray();
-        this.myrenderer.setElementStyle(itemArray[this.square - 1].nativeElement, 'display', 'none');
-        this.myrenderer.setElementStyle(itemArrayTwo[this.square - 1].nativeElement, 'display', 'block');
-    };
-    UserProfile.prototype.presentActionSheet = function () {
-        var _this = this;
-        var actionSheet = this.actionSheetCtrl.create({
-            title: 'Choose source',
-            buttons: [
-                {
-                    text: 'Camera',
-                    handler: function () {
-                        var itemArrayTwo = _this.profComponents.toArray();
-                        _this.cameraService.getMedia(_this.optionsGetCamera, _this.square).then(function () {
-                            return new Promise(function (resolve, reject) {
-                                var storageRef = __WEBPACK_IMPORTED_MODULE_10_firebase___default.a.storage().ref().child('/profile/' + _this.username + '/profile_' + _this.username + '_' + _this.square + '.png');
-                                var loading = _this.loadingController.create({ content: "Loading..." });
-                                loading.present();
-                                setTimeout(function () {
-                                    storageRef.getDownloadURL().then(function (url) {
-                                        console.log(url);
-                                        _this.myrenderer.setElementAttribute(itemArrayTwo[_this.square - 1].nativeElement, 'src', url);
-                                        _this.showSquare();
-                                    });
-                                    loading.dismiss();
-                                }, 3000);
-                            });
-                        }); //pass in square choice
-                        //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
-                        console.log('camera clicked');
-                    }
-                }, {
-                    text: 'Photo Library',
-                    handler: function () {
-                        var itemArrayTwo = _this.profComponents.toArray();
-                        _this.cameraService.getMedia(_this.optionsGetMedia, _this.square).then(function () {
-                            return new Promise(function (resolve, reject) {
-                                var storageRef = __WEBPACK_IMPORTED_MODULE_10_firebase___default.a.storage().ref().child('/profile/' + _this.username + '/profile_' + _this.username + '_' + _this.square + '.png');
-                                var loading = _this.loadingController.create({ content: "Loading..." });
-                                loading.present();
-                                setTimeout(function () {
-                                    storageRef.getDownloadURL().then(function (url) {
-                                        console.log(url);
-                                        _this.myrenderer.setElementAttribute(itemArrayTwo[_this.square - 1].nativeElement, 'src', url);
-                                        _this.showSquare();
-                                        resolve();
-                                    });
-                                    loading.dismiss();
-                                }, 3000);
-                            });
-                            //
-                        }).catch(function (e) {
-                            console.log(e + "       eeeee");
-                        });
-                    }
-                }, {
-                    text: 'Cancel',
-                    role: 'cancel',
-                    handler: function () {
-                        console.log('Cancel clicked');
-                    }
-                }
-            ]
-        });
-        actionSheet.present();
-    };
-    UserProfile.prototype.pushPage = function () {
-        // push another page on to the navigation stack
-        // causing the nav controller to transition to the new page
-        // optional data can also be passed to the pushed page.
-        //this.navCtrl.push(SignUpPage);
-    };
-    UserProfile.prototype.presentProfileModal = function () {
-        var profileModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_12__modals_rate_rate__["a" /* Rate */], { "user": this.username });
-        profileModal.present();
-    };
-    UserProfile.prototype.tappedPost = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__postpage_postpage__["a" /* PostpagePage */]);
-    };
-    UserProfile.prototype.tappedEmergency = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__booking_booking__["a" /* BookingPage */]);
-    };
-    UserProfile.prototype.backToFeed = function () {
-        /*if(this.navParams.get('param1') == 'user') {
-          this.navCtrl.push(FeedUser);
-        }*/
-        //else {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__feeduser_feeduser__["a" /* FeedUser */], {}, { animate: true, animation: 'transition', duration: 500, direction: 'back' });
-        //this.navCtrl.push(FeedStylist);
-        //}
-    };
-    UserProfile.prototype.backToCal = function () {
-        //if(this.navParams.get('param1') == 'user') {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__booking_booking__["a" /* BookingPage */], {}, { animate: true, animation: 'transition', duration: 500, direction: 'forward' });
-        //this.navCtrl.push(BookingPage);
-        //}
-        //else {
-        //this.navCtrl.push(FeedStylist);
-        //}
-    };
-    UserProfile.prototype.swipe = function (e, when) {
-        var coord = [e.changedTouches[0].pageX, e.changedTouches[0].pageY];
-        var time = new Date().getTime();
-        if (when === 'start') {
-            this.swipeCoord = coord;
-            this.swipeTime = time;
-        }
-        else if (when === 'end') {
-            var direction = [coord[0] - this.swipeCoord[0], coord[1] - this.swipeCoord[1]];
-            var duration = time - this.swipeTime;
-            if (duration < 1000 //Short enough
-                && Math.abs(direction[1]) < Math.abs(direction[0]) //Horizontal enough
-                && Math.abs(direction[0]) > 30) {
-                var swipe = direction[0] < 0 ? 'next' : 'previous';
-                console.log(swipe);
-                if (swipe == 'next') {
-                    this.backToCal();
-                }
-                else {
-                    this.backToFeed();
-                }
-                //Do whatever you want with swipe
-            }
-        }
-    };
-    UserProfile.prototype.swipeLeft = function () {
-        this.backToCal();
-    };
-    UserProfile.prototype.swipeRight = function () {
-        this.backToFeed();
-    };
-    UserProfile.prototype.openCal = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__userbooking_userbooking__["a" /* UserBooking */], { username: this.username });
-    };
-    UserProfile.prototype.downloadImages = function () {
-        var self = this;
-        var promises_array = [];
-        var itemArrayTwo = this.profComponents.toArray();
-        var _loop_1 = function (z) {
-            promises_array.push(new Promise(function (resolve, reject) {
-                var storageRef = __WEBPACK_IMPORTED_MODULE_10_firebase___default.a.storage().ref().child('/profile/' + self.username + '/profile_' + self.username + '_' + z + '.png');
-                storageRef.getDownloadURL().then(function (url) {
-                    self.myrenderer.setElementAttribute(itemArrayTwo[z - 1].nativeElement, 'src', url);
-                    self.myrenderer.setElementStyle(itemArrayTwo[z - 1].nativeElement, 'display', 'block');
-                    //self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
-                    console.log(z);
-                    resolve();
-                }).catch(function (error) {
-                    resolve();
-                    console.log(error.message);
-                });
-            }));
-        };
-        for (var z = 1; z < 10; z++) {
-            _loop_1(z);
-        }
-        return Promise.all(promises_array);
-    };
-    UserProfile.prototype.ionViewWillEnter = function () {
-        this.loadings = this.loadingController.create({ content: "Loading..." });
-        this.loadings.present();
-    };
-    UserProfile.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        this.username = this.navParams.get("username");
-        this.downloadImages().then(function () {
-            _this.getProfileInfo();
-            _this.loadings.dismiss();
-        });
-    };
-    UserProfile.prototype.moveCover = function () {
-        if (this.set == false) {
-            try {
-                this.set = true;
-                this.moveState = 'down';
-                this.tds = this.elRef.nativeElement.querySelector('body > ion-app > ng-component > ion-nav > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides');
-                console.log(this.tds + "   >>>>>>> >>>>>>");
-                this.myrenderer.setElementClass(this.tds, 'moveCover', true);
-                var thisel = this.elRef.nativeElement.querySelector('body > ion-app > page-user-profile > ion-content > div.scroll-content > div > ion-item > div.item-inner > div > ion-label > calendar > div > monthview > div:nth-child(3) > ion-slides > div > div.swiper-wrapper > ion-slide.swiper-slide.swiper-slide-active > div > table');
-                this.myrenderer.setElementClass(thisel, 'marginchange', true);
-                console.log('element class list   ' + thisel.classList);
-            }
-            catch (e) {
-                console.log(e.message);
-            }
-        }
-        else {
-            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__userbooking_userbooking__["a" /* UserBooking */], { username: this.username });
-        }
-    };
-    UserProfile.prototype.onCurrentDateChanged = function ($event) { };
-    UserProfile.prototype.reloadSource = function (startTime, endTime) { };
-    UserProfile.prototype.onEventSelected = function ($event) { };
-    UserProfile.prototype.onViewTitleChanged = function (title) {
-        this.viewTitle = title;
-    };
-    UserProfile.prototype.onTimeSelected = function ($event) { };
-    return UserProfile;
-}());
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChildren"])('pluscontain'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"])
-], UserProfile.prototype, "components", void 0);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChildren"])('profsquare'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"])
-], UserProfile.prototype, "profComponents", void 0);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('followsty'),
-    __metadata("design:type", Object)
-], UserProfile.prototype, "followsty", void 0);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('instagram'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
-], UserProfile.prototype, "instagram", void 0);
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('facebook'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
-], UserProfile.prototype, "facebook", void 0);
-UserProfile = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-user-profile',template:/*ion-inline-start:"/Users/eamonwhite/ionicmane/myApp/src/pages/userprofile/userprofile.html"*/'<ion-header (swipeRight)="swipeRight()">\n  <ion-toolbar>\n    <ion-title>@{{username}}</ion-title>\n\n    <!--<div class="settingscontainer">\n    	<ion-icon class="settings" name="settings" (tap)="goToSettings()"></ion-icon>\n    </div>-->\n  </ion-toolbar>\n    <!--<div class="stylistview">\n	    <button class="stylistviewbutton" ion-button color="secondary">Stylist View</button>\n	  </div>-->\n</ion-header>\n\n<ion-content no-padding>\n<div (swiperight)="swipeRight()">\n	<ion-item no-padding no-lines>\n		<div class="imageparent">\n		  <img class="postprofilepic" src="{{profilePic}}">\n		</div>\n	    <div class="rateandsocial">\n		    <div class=\'ratecontain\'>\n			    <div class=\'stars\'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>\n			    <div class=\'ratings\'>({{totalRatings}} ratings)</div>\n			</div>\n		    <div class="social">\n				<div class="fb inlineblock">\n					<img src="img/facebook.png" (tap)="facebookOpen()" #facebook>\n				</div>\n				<div class="insta inlineblock">\n		  			<img src="img/instagram.png" (tap)="instagramOpen()" #instagram>\n				</div>\n			</div>\n		</div>\n	  	<div class="stylistviewtwo">\n	    	<button class="stylistviewbuttontwo" ion-button (tap)="followStylist()" #followsty color="primary">Follow Stylist</button>\n	  	</div>\n	  	<div class=\'stylistsect\'>\n			<div class="name">@{{username}}</div>\n			<div class="bio">I am a hair stylist. This is my bio, I wrote it. I need to make money so please book me!</div>\n		</div>\n		<div class="caltitle">{{viewTitle}} {{titleYear}}</div>\n		<calendar (tap)="openCal" class=\'cal\' [eventSource]="eventSource"\n	      [calendarMode]="calendar.mode"\n	      [currentDate]="calendar.currentDate"\n	      (onCurrentDateChanged)="onCurrentDateChanged($event)"\n	      (onRangeChanged)="reloadSource(startTime, endTime)"\n	      (onEventSelected)="onEventSelected($event)"\n	      (onTitleChanged)="onViewTitleChanged($event)"\n	      (onTimeSelected)="onTimeSelected($event)"\n	      step="30">\n	    </calendar>\n	</ion-item>\n	<ion-grid>\n	  <ion-row>\n	    <ion-col>\n\n	      <img (tap)="presentImage(1)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n\n	      <img (tap)="presentImage(2)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n\n	      <img (tap)="presentImage(3)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	  </ion-row>\n	  <ion-row>\n	    <ion-col>\n\n	      <img (tap)="presentImage(4)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n\n	      <img (tap)="presentImage(5)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n\n	      <img (tap)="presentImage(6)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	  </ion-row>\n	  <ion-row>\n	    <ion-col>\n\n	      <img (tap)="presentImage(7)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n\n	      <img (tap)="presentImage(8)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	    <ion-col>\n\n	      <img (tap)="presentImage(9)" class="imagesquare" #profsquare [src]="">\n	    </ion-col>\n	  </ion-row>\n	</ion-grid>\n</div>\n\n<!--<ion-fab bottom center >\n  <button ion-fab></button>\n  <ion-fab-list side="right">\n    <button class="textsizebutton" (tap)=\'tappedPost()\' ion-fab>Post</button>\n  </ion-fab-list>\n  <ion-fab-list side="left">\n    <button class="textsizebutton" (tap)=\'tappedEmergency()\' ion-fab><ion-icon name="alarm"></ion-icon></button>\n  </ion-fab-list>\n</ion-fab>-->\n</ion-content>'/*ion-inline-end:"/Users/eamonwhite/ionicmane/myApp/src/pages/userprofile/userprofile.html"*/,
-        animations: [
-            Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('moveCover', [
-                Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('down', Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({})),
-                Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('up', Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({})),
-                Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => *', Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('400ms ease-in')),
-            ]),
-        ]
-    }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_9_angularfire2_auth__["a" /* AngularFireAuth */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ModalController */], __WEBPACK_IMPORTED_MODULE_13__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_11_ionic_img_viewer__["a" /* ImageViewerController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], __WEBPACK_IMPORTED_MODULE_8_angularfire2_database__["a" /* AngularFireDatabase */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_6__services_cameraservice__["a" /* CameraService */]])
-], UserProfile);
-
-//# sourceMappingURL=userprofile.js.map
-
-/***/ }),
-
 /***/ 79:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -7926,7 +8044,7 @@ var CameraService = (function () {
             if (newPath) {
                 var fileName = newPath.substring(newPath.lastIndexOf("/") + 1, newPath.length);
                 var filePath = newPath.substring(0, newPath.lastIndexOf("/"));
-                _this.file.readAsDataURL(filePath, fileName).then(function (data) {
+                return _this.file.readAsDataURL(filePath, fileName).then(function (data) {
                     console.log("IN READASDATAURL GETMEDIAFORMULAS");
                     //let strImage = data.replace(/^data:image\/[a-z]+;base64,/, "");
                     //this.file.writeFile(this.file.tempDirectory, "image.jpg", strImage);
@@ -7934,7 +8052,7 @@ var CameraService = (function () {
                     //let file
                     //this.getFileEntryRead(this.file.tempDirectory + '/image.jpg', square);
                     var dataURL = data;
-                    var image = 'formula_' + _this.username + '_' + new Date() + '.png', storageRef, parseUpload;
+                    var image = 'formula_' + _this.username + '_' + new Date() + '.png', storageRef, parseUpload, thisUrl;
                     return new Promise(function (resolve, reject) {
                         storageRef = __WEBPACK_IMPORTED_MODULE_7_firebase___default.a.storage().ref('/formulas/' + _this.username + '/' + image);
                         parseUpload = storageRef.putString(dataURL, 'data_url');
@@ -7947,8 +8065,9 @@ var CameraService = (function () {
                         }, function (success) {
                             storageRef.getDownloadURL().then(function (url) {
                                 console.log(url);
+                                thisUrl = url;
                                 console.log("IN READASDATAURL GETMEDIAFORMULAS UERLRLRLR");
-                                resolve(url);
+                                resolve(thisUrl);
                             });
                         });
                     }).catch(function (error) {
@@ -7979,9 +8098,10 @@ var CameraService = (function () {
 }());
 CameraService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_9__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_transfer__["a" /* Transfer */], __WEBPACK_IMPORTED_MODULE_5__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_crop__["a" /* Crop */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_8_angularfire2_database__["b" /* AngularFireDatabaseModule */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_9__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__ionic_storage__["b" /* Storage */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_native_transfer__["a" /* Transfer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_native_transfer__["a" /* Transfer */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_http__["a" /* Http */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* Platform */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_crop__["a" /* Crop */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_crop__["a" /* Crop */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__["a" /* File */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__["a" /* File */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8_angularfire2_database__["b" /* AngularFireDatabaseModule */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8_angularfire2_database__["b" /* AngularFireDatabaseModule */]) === "function" && _h || Object])
 ], CameraService);
 
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=cameraservice.js.map
 
 /***/ }),
@@ -7995,7 +8115,7 @@ CameraService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(452);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(451);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_stylistprofile_stylistprofile__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_stylistprofile_stylistprofile__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8028,9 +8148,10 @@ var MyApp = (function () {
 MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/eamonwhite/ionicmane/myApp/src/app/app.html"*/'<ion-nav [root]="rootPage" swipeBackEnabled="true"></ion-nav>\n'/*ion-inline-end:"/Users/eamonwhite/ionicmane/myApp/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* Platform */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _c || Object])
 ], MyApp);
 
+var _a, _b, _c;
 //# sourceMappingURL=app.component.js.map
 
 /***/ })
