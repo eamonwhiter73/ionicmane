@@ -32902,26 +32902,40 @@ page-stylist-profile .clearcover {
   z-index: 2;
 }
 
-page-stylist-profile .leftArrow[_ngcontent-c2] {
-  z-index: 20;
-  position: absolute;
-  left: 80px;
-  width: 28px;
-  height: 20px;
-  display: inline-block;
-  top: 17px;
-  background-color: red;
-}
-
 page-stylist-profile .rightArrow[_ngcontent-c2] {
   z-index: 20;
-  left: 180px;
-  position: absolute;
+  left: 42%;
+  position: relative;
   width: 28px;
   height: 20px;
   display: inline-block;
-  top: 17px;
-  background-color: blue;
+  top: 19px;
+}
+
+page-stylist-profile .leftArrow[_ngcontent-c2] {
+  z-index: 20;
+  position: relative;
+  left: 22%;
+  width: 28px;
+  height: 20px;
+  display: inline-block;
+  top: 19px;
+}
+
+page-stylist-profile .arrowrightholder {
+  display: inline-block;
+  position: absolute;
+  top: 11%;
+  left: 88%;
+  z-index: 5;
+}
+
+page-stylist-profile .arrowleftholder {
+  display: inline-block;
+  position: absolute;
+  top: 11%;
+  left: 57%;
+  z-index: 5;
 }
 
 page-stylist-profile ion-title {
@@ -33073,7 +33087,7 @@ page-stylist-profile .stylistsect {
 
 page-stylist-profile .caltitle {
   position: absolute;
-  right: 18%;
+  right: 18.5%;
   top: 12%;
   color: #25292d;
   font-size: 12px;
@@ -33511,6 +33525,45 @@ page-stylist-profile .label {
   page-stylist-profile .stylistsect {
     max-width: 44%;
   }
+  page-stylist-profile .leftArrow[_ngcontent-c2] {
+    z-index: 20;
+    position: relative;
+    left: 20%;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 12px;
+  }
+  page-stylist-profile .rightArrow[_ngcontent-c2] {
+    z-index: 20;
+    left: 45%;
+    position: relative;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 12px;
+  }
+  page-stylist-profile .arrowrightholder {
+    display: inline-block;
+    position: absolute;
+    top: 10%;
+    left: 88%;
+    z-index: 5;
+  }
+  page-stylist-profile .arrowleftholder {
+    display: inline-block;
+    position: absolute;
+    top: 10%;
+    left: 57%;
+    z-index: 5;
+  }
+  page-stylist-profile .caltitle {
+    position: absolute;
+    right: 19%;
+    top: 11%;
+    color: #25292d;
+    font-size: 12px;
+  }
 }
 
 @media (min-width: 412px) {
@@ -33575,6 +33628,45 @@ page-stylist-profile .label {
     position: relative;
     display: inline-block;
     top: -8px;
+  }
+  page-stylist-profile .leftArrow[_ngcontent-c2] {
+    z-index: 20;
+    position: relative;
+    left: 21%;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 8px;
+  }
+  page-stylist-profile .rightArrow[_ngcontent-c2] {
+    z-index: 20;
+    left: 45%;
+    position: relative;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 8px;
+  }
+  page-stylist-profile .arrowrightholder {
+    display: inline-block;
+    position: absolute;
+    top: 10%;
+    left: 89.5%;
+    z-index: 5;
+  }
+  page-stylist-profile .arrowleftholder {
+    display: inline-block;
+    position: absolute;
+    top: 10%;
+    left: 57%;
+    z-index: 5;
+  }
+  page-stylist-profile .caltitle {
+    position: absolute;
+    right: 19.5%;
+    top: 11%;
+    color: #25292d;
+    font-size: 12px;
   }
 }
 
