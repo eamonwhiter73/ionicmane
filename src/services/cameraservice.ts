@@ -274,52 +274,52 @@ export class CameraService {
       .then(newPath => {
         console.log(newPath);
         if(newPath) {
-        let fileName = newPath.substring(newPath.lastIndexOf("/") + 1, newPath.length);
-        let filePath = newPath.substring(0, newPath.lastIndexOf("/"));
-        return this.file.readAsDataURL(filePath, fileName).then(data =>{
-          console.log("IN READASDATAURL GETMEDIAFORMULAS");
-          //let strImage = data.replace(/^data:image\/[a-z]+;base64,/, "");
-          //this.file.writeFile(this.file.tempDirectory, "image.jpg", strImage);
-          //let blob = dataURItoBlob(data);
+          let fileName = newPath.substring(newPath.lastIndexOf("/") + 1, newPath.length);
+          let filePath = newPath.substring(0, newPath.lastIndexOf("/"));
+          return this.file.readAsDataURL(filePath, fileName).then(data =>{
+            console.log("IN READASDATAURL GETMEDIAFORMULAS");
+            //let strImage = data.replace(/^data:image\/[a-z]+;base64,/, "");
+            //this.file.writeFile(this.file.tempDirectory, "image.jpg", strImage);
+            //let blob = dataURItoBlob(data);
 
-          //let file
+            //let file
 
-          //this.getFileEntryRead(this.file.tempDirectory + '/image.jpg', square);
-          var dataURL = data;
+            //this.getFileEntryRead(this.file.tempDirectory + '/image.jpg', square);
+            var dataURL = data;
 
-          let image       : string  = 'formula_' + this.username + '_' + new Date() + '.png',
-            storageRef  : any,
-            parseUpload : any,
-            thisUrl: any;
+            let image       : string  = 'formula_' + this.username + '_' + new Date() + '.png',
+              storageRef  : any,
+              parseUpload : any,
+              thisUrl: any;
 
-          return new Promise((resolve, reject) => {
-            storageRef       = firebase.storage().ref('/formulas/' + this.username + '/' + image);
-            parseUpload      = storageRef.putString(dataURL, 'data_url');
+            return new Promise((resolve, reject) => {
+              storageRef       = firebase.storage().ref('/formulas/' + this.username + '/' + image);
+              parseUpload      = storageRef.putString(dataURL, 'data_url');
 
-            parseUpload.on('state_changed', (_snapshot) => {
-                // We could log the progress here IF necessary
-                console.log('snapshot progess ' + _snapshot);
-              },
-              (_err) => {
-                 reject(_err);
-                 console.log(_err.messsage);
-              },
-              (success) => {
-                storageRef.getDownloadURL().then(url => {
-                  console.log(url);
-                  thisUrl = url;
-                  console.log("IN READASDATAURL GETMEDIAFORMULAS UERLRLRLR");
-                  resolve(thisUrl); 
-                });
+              parseUpload.on('state_changed', (_snapshot) => {
+                  // We could log the progress here IF necessary
+                  console.log('snapshot progess ' + _snapshot);
+                },
+                (_err) => {
+                   reject(_err);
+                   console.log(_err.messsage);
+                },
+                (success) => {
+                  storageRef.getDownloadURL().then(url => {
+                    console.log(url);
+                    thisUrl = url;
+                    console.log("IN READASDATAURL GETMEDIAFORMULAS UERLRLRLR");
+                    resolve(thisUrl); 
+                  });
 
-                
-              })
-            }).catch(function(error) {
-              console.log(error.message);
-            });
+                  
+                })
+              }).catch(function(error) {
+                console.log(error.message);
+              });
 
-          
-        })
+            
+          })
         }
         
         /*let source_img = new Image(300, 300);

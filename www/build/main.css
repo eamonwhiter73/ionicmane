@@ -32893,6 +32893,31 @@ page-sign-up ion-content .stylistviewbutton {
   font-size: 12px;
 }
 
+page-stylist-profile .formulabar {
+  width: 100%;
+  height: 20%;
+  position: absolute;
+  background-color: #e6c926;
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #FFF;
+  font-weight: 700;
+  display: none;
+  z-index: 10;
+  bottom: 0;
+}
+
 page-stylist-profile .clearcover {
   width: 50%;
   top: 18%;

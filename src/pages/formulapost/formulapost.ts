@@ -32,6 +32,7 @@ export class FormulapostPage implements OnDestroy {
   item = {'date': null, 'title':'', 'price':'', 'caption':'', 'typeofselect':'formula'};
   selectVal;
   username;
+  square;
   list: FirebaseListObservable<any>
   private subscription: ISubscription;
   private subscription2: ISubscription;
@@ -46,6 +47,7 @@ export class FormulapostPage implements OnDestroy {
   }
 
   ionViewDidLoad() {
+    this.square = this.navParams.get("square");
     
     this.imageHolder = this.navParams.get("path");
     this.myrenderer.setElementAttribute(this.image.nativeElement, 'src', this.imageHolder);
@@ -64,7 +66,7 @@ export class FormulapostPage implements OnDestroy {
   }
 
   goToProfile() {
-    this.navCtrl.push(StylistProfile,{},{animate:true,animation:'transition',duration:500,direction:'back'});
+    this.navCtrl.push(StylistProfile,{ square: this.square },{animate:true,animation:'transition',duration:500,direction:'back'});
   }
 
 

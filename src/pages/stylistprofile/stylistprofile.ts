@@ -1,5 +1,5 @@
-import { Component, trigger, state, style, transition, animate, ViewChildren, OnDestroy, Renderer, ElementRef, QueryList } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, trigger, state, style, transition, animate, ViewChildren, OnDestroy, Renderer, Renderer2, ElementRef, QueryList } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
 import { FeedStylist } from '../feedstylist/feedstylist';
 import { BookingPage } from '../booking/booking';
 import { PostpagePage } from '../postpage/postpage';
@@ -43,6 +43,7 @@ export class StylistProfile implements OnDestroy {
   @ViewChildren('pluscontain') components:QueryList<any>;
   @ViewChildren('profsquare') profComponents:QueryList<any>;
   @ViewChildren('xclass') xclass:QueryList<any>;
+  @ViewChildren('formulabar') formulaBars:QueryList<any>;
   viewDate = new Date();
   events = [];
   viewTitle: string;
@@ -76,9 +77,10 @@ export class StylistProfile implements OnDestroy {
   profilePic;
   stars;
   bio;
+  square2;
 
 
-  constructor(public elRef: ElementRef, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, public cameraService: CameraService) {
+  constructor(public myrenderer2: Renderer2, public navParams: NavParams, public elRef: ElementRef, public storage: Storage, public imageViewerCtrl: ImageViewerController, public loadingController: LoadingController,/*public firebase: FirebaseApp, */public myrenderer: Renderer, public af: AngularFireDatabase, public actionSheetCtrl: ActionSheetController, public camera: Camera, public navCtrl: NavController, public cameraService: CameraService) {
     this.times = [{'time':'8:00 AM', 'selected': false}, {'time':'12:00 PM', 'selected': false}, {'time':'4:00 PM', 'selected': false},
                   {'time':'8:30 AM', 'selected': false}, {'time':'12:30 PM', 'selected': false}, {'time':'4:30 PM', 'selected': false},
                   {'time':'9:00 AM', 'selected': false}, {'time':'1:00 PM', 'selected': false}, {'time':'5:00 PM', 'selected': false},
@@ -119,9 +121,62 @@ export class StylistProfile implements OnDestroy {
 
   getFollowers() {
     
-  } 
+  }
+
+  downloadImages() {
+    let self = this;
+    let promises_array:Array<any> = [];
+    let itemArrayTwo = this.profComponents.toArray();
+    let itemArray = this.components.toArray();
+    let itemArraythree = this.xclass.toArray();
+    let itemArrayfour = this.formulaBars.toArray();
+
+    for (let z = 1; z < 10; z++) {
+      //promises_array.push(new Promise(function(resolve,reject) {
+        //let storageRef = firebase.storage().ref().child('/profile/'+ self.username + '/profile_' + self.username + '_' + z + '.png');
+        //storageRef.getDownloadURL().then(url => {
+          self.storage.get("profile"+z).then((val) =>{
+            if(val!=null) {
+              self.myrenderer.setElementAttribute(itemArrayTwo[z - 1].nativeElement, 'src', val);
+              self.myrenderer.setElementStyle(itemArrayTwo[z - 1].nativeElement, 'display', 'block');
+              self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
+              self.myrenderer.setElementStyle(itemArraythree[z - 1].nativeElement, 'display', 'block');
+
+              console.log(z);
+              
+            }
+            //resolve();
+          })
+
+          self.storage.get("formula"+z).then((val) =>{
+            if(val!=null) {
+              self.myrenderer.setElementAttribute(itemArrayTwo[z - 1].nativeElement, 'src', val);
+              self.myrenderer2.addClass(itemArrayTwo[z - 1].nativeElement, 'formula');
+              self.myrenderer.setElementStyle(itemArrayTwo[z - 1].nativeElement, 'display', 'block');
+              self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
+              self.myrenderer.setElementStyle(itemArraythree[z - 1].nativeElement, 'display', 'block');
+              self.myrenderer.setElementStyle(itemArrayfour[z - 1].nativeElement, 'display', 'flex');
+              console.log(z);
+              
+            }
+            //resolve();
+          })           
+        /*}).catch(error => {
+          console.log(error.message);
+          resolve();*/
+          
+      //}));
+    }
+
+    //return Promise.all(promises_array);
+  }
 
   ionViewDidLoad() {
+    this.square2 = this.navParams.get("square");
+
+    if(this.square2 != null) {
+      this.removePicFormula(this.square2);
+    }
 
     this.storage.get('bio').then((val)=> {
       this.bio = val;
@@ -262,13 +317,32 @@ export class StylistProfile implements OnDestroy {
     let itemArray = this.components.toArray();
     let itemArrayTwo = this.profComponents.toArray();
     let itemArraythree = this.xclass.toArray();
+    let itemArrayfour = this.formulaBars.toArray();
+
+    
+    console.log(JSON.stringify(itemArray) + " item array");
+    this.myrenderer.setElementStyle(itemArray[squarez - 1].nativeElement, 'display', 'block');
+    this.myrenderer.setElementStyle(itemArrayTwo[squarez - 1].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(itemArraythree[squarez - 1].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(itemArrayfour[squarez - 1].nativeElement, 'display', 'none');
+
+    this.storage.set("profile"+squarez, null);
+    this.storage.set("formula"+squarez, null);
+  }
+
+  removePicFormula(squarez) {
+    console.log("in remove pic 333333333          " + squarez);
+
+    let itemArray = this.components.toArray();
+    let itemArrayTwo = this.profComponents.toArray();
+    let itemArraythree = this.xclass.toArray();
 
     console.log(JSON.stringify(itemArray) + " item array");
     this.myrenderer.setElementStyle(itemArray[squarez - 1].nativeElement, 'display', 'block');
     this.myrenderer.setElementStyle(itemArrayTwo[squarez - 1].nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(itemArraythree[squarez - 1].nativeElement, 'display', 'none');
 
-    this.storage.set("profile"+squarez, null);
+    this.storage.set("formula"+squarez, null);
   }
     
 
@@ -278,8 +352,13 @@ export class StylistProfile implements OnDestroy {
     this.square = squarez;
     let itemArrayTwo = this.profComponents.toArray();
     console.log(JSON.stringify(itemArrayTwo[this.square-1]));
-    const imageViewer = this.imageViewerCtrl.create(itemArrayTwo[this.square - 1].nativeElement);
-    imageViewer.present();
+    if(itemArrayTwo[this.square-1].nativeElement.classList.contains('formula')) {
+      //
+    }
+    else {
+      const imageViewer = this.imageViewerCtrl.create(itemArrayTwo[this.square - 1].nativeElement);
+      imageViewer.present();
+    }
   }
 
   showSquare() {
@@ -395,10 +474,19 @@ export class StylistProfile implements OnDestroy {
           text: 'Camera',
           handler: () => {
             let itemArrayTwo = this.profComponents.toArray();
-            this.cameraService.getMediaFormulas(this.optionsGetCamera, this.square).then((url) => {
-              actionSheet.dismiss();
-              this.navCtrl.push(FormulapostPage, { path: url });
-            }); //pass in square choice
+            let itemArrayFour = this.formulaBars.toArray();
+            
+            this.cameraService.getMediaFormulas(this.optionsGetMedia, this.square).then((url) => {
+                console.log(url + " url url url url")
+                actionSheet.dismiss();
+                this.storage.set("formula"+this.square, url);
+                this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
+                this.myrenderer.setElementStyle(itemArrayFour[this.square - 1].nativeElement, 'display', 'flex');
+                this.myrenderer2.addClass(itemArrayTwo[this.square - 1].nativeElement, 'formula');
+                this.showSquare();
+                this.navCtrl.push(FormulapostPage, { path: url, square: this.square });
+              
+            }); 
             //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
             console.log('camera clicked');
             //actionSheet.dismiss();
@@ -407,15 +495,21 @@ export class StylistProfile implements OnDestroy {
           text: 'Photo Library',
           handler: () => {
             let itemArrayTwo = this.profComponents.toArray();
+            let itemArrayFour = this.formulaBars.toArray();
 
             this.cameraService.getMediaFormulas(this.optionsGetMedia, this.square).then((url) => {
                 console.log(url + " url url url url")
                 actionSheet.dismiss();
-                this.navCtrl.push(FormulapostPage, { path: url });
+                this.storage.set("formula"+this.square, url);
+                this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
+                this.myrenderer.setElementStyle(itemArrayFour[this.square - 1].nativeElement, 'display', 'flex');
+                this.myrenderer2.addClass(itemArrayTwo[this.square - 1].nativeElement, 'formula');
+                this.showSquare();
+                this.navCtrl.push(FormulapostPage, { path: url, square: this.square });
               
             }); //pass in square choice
             //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
-            console.log('camera clicked');
+            console.log('photo clicked');
             //actionSheet.dismiss();
           }
         },{
@@ -511,38 +605,7 @@ export class StylistProfile implements OnDestroy {
     this.backToFeed();
   }
 
-  downloadImages() {
-    let self = this;
-    let promises_array:Array<any> = [];
-    let itemArrayTwo = this.profComponents.toArray();
-    let itemArray = this.components.toArray();
-    let itemArraythree = this.xclass.toArray();
-
-    for (let z = 1; z < 10; z++) {
-      //promises_array.push(new Promise(function(resolve,reject) {
-        //let storageRef = firebase.storage().ref().child('/profile/'+ self.username + '/profile_' + self.username + '_' + z + '.png');
-        //storageRef.getDownloadURL().then(url => {
-          self.storage.get("profile"+z).then((val) =>{
-            if(val!=null) {
-              self.myrenderer.setElementAttribute(itemArrayTwo[z - 1].nativeElement, 'src', val);
-              self.myrenderer.setElementStyle(itemArrayTwo[z - 1].nativeElement, 'display', 'block');
-              self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
-              self.myrenderer.setElementStyle(itemArraythree[z - 1].nativeElement, 'display', 'block');
-
-              console.log(z);
-              
-            }
-            //resolve();
-          })         
-        /*}).catch(error => {
-          console.log(error.message);
-          resolve();*/
-          
-      //}));
-    }
-
-    //return Promise.all(promises_array);
-  }
+  
 
   //changed this***
 
