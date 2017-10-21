@@ -10069,6 +10069,7 @@ ion-datetime {
 
 .datetime-text {
   overflow: hidden;
+  display: none;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   -ms-flex: 1;
@@ -10094,7 +10095,7 @@ ion-datetime {
 }
 
 .datetime-ios {
-  padding: 11px 8px 11px 16px;
+  padding: 11px 20% 11px 50%;
 }
 
 .datetime-ios .datetime-placeholder {
@@ -17031,7 +17032,7 @@ ion-picker-cmp {
 .picker-ios .picker-wrapper {
   height: 260px;
   border-top: 1px solid #c8c7cc;
-  background: #fff;
+  background: #000;
 }
 
 .picker-ios .picker-toolbar {
@@ -17041,7 +17042,7 @@ ion-picker-cmp {
   display: flex;
   height: 44px;
   border-bottom: 0.55px solid #c8c7cc;
-  background: #fff;
+  background: #000;
 }
 
 .picker-ios .picker-toolbar-button {
@@ -17075,12 +17076,15 @@ ion-picker-cmp {
   height: 215px;
   -webkit-perspective: 1000px;
   perspective: 1000px;
+  padding-left: 7%;
 }
 
 .picker-ios .picker-col {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   padding: 0 4px;
+  max-width: 18%;
+  margin-left: -7%;
 }
 
 .picker-ios .picker-prefix,
@@ -17089,7 +17093,7 @@ ion-picker-cmp {
   top: 77px;
   font-size: 20px;
   line-height: 42px;
-  color: #000;
+  color: #e6c926;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   pointer-events: none;
@@ -17102,7 +17106,7 @@ ion-picker-cmp {
   height: 4.6rem;
   font-size: 20px;
   line-height: 42px;
-  color: #000;
+  color: #e6c926;
   background: transparent;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -17125,8 +17129,8 @@ ion-picker-cmp {
   width: 100%;
   height: 81px;
   border-bottom: 1px solid #c8c7cc;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, white), to(rgba(255, 255, 255, 0.7)));
-  background: linear-gradient(to bottom, white 20%, rgba(255, 255, 255, 0.7) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, black), to(rgba(0, 0, 0, 0.7)));
+  background: linear-gradient(to bottom, black 20%, rgba(0, 0, 0, 0.7) 100%);
 }
 
 .picker-ios .picker-below-highlight {
@@ -17140,8 +17144,8 @@ ion-picker-cmp {
   width: 100%;
   height: 119px;
   border-top: 1px solid #c8c7cc;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(30%, white), to(rgba(255, 255, 255, 0.7)));
-  background: linear-gradient(to top, white 30%, rgba(255, 255, 255, 0.7) 100%);
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(30%, black), to(rgba(0, 0, 0, 0.7)));
+  background: linear-gradient(to top, black 30%, rgba(0, 0, 0, 0.7) 100%);
 }
 
 .picker-md .picker-wrapper {
@@ -31136,6 +31140,32 @@ page-feed-stylist {
   /*.marginstatus {
 		margin-top: 20px;
 	}*/
+}
+
+page-feed-stylist body > ion-app > ng-component > ion-nav > page-feed-stylist > ion-content > div.fixed-content > ion-fab > ion-fab-list:nth-child(3) > button > span > ion-icon {
+  padding-right: 5%;
+}
+
+page-feed-stylist .savebutton {
+  background-color: green;
+  width: 20%;
+  height: 10%;
+  position: absolute;
+  z-index: 9999 !important;
+  top: 40%;
+  left: 50%;
+}
+
+page-feed-stylist .datetime-ios {
+  padding: 0 0 0 0;
+}
+
+page-feed-stylist .picker-ios .picker-col {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  /* padding: 0px 0px 0px 0px; */
+  margin-left: -4%;
+  max-width: 17%;
 }
 
 page-feed-stylist .plussy {

@@ -7,6 +7,8 @@ import { FeedUser } from '../feeduser/feeduser';
 import { UserProfile } from '../userprofile/userprofile';
 import { FollowersPage } from '../followers/followers';
 import { Storage } from '@ionic/storage';
+import { DatePicker } from '@ionic-native/date-picker';
+
 
 
 import { BookingPage } from '../booking/booking';
@@ -122,12 +124,16 @@ export class FeedStylist implements OnDestroy {
   subscription4: ISubscription;
   subscription5: ISubscription;
   subscription6: ISubscription;
+  subscription7: ISubscription;
   ads = [];
   swiperIndex;
   config: SwiperConfigInterface;
   swiperEvent;
   totalAdCount;
   swiperSize = 'begin';
+  dateofme;
+  saveButton;
+  username;
 
 
   
@@ -136,7 +142,7 @@ export class FeedStylist implements OnDestroy {
   private swipeTime?: number;
   private nav:NavController;
 
-  constructor(public storage: Storage, public platform: Platform, public af: AngularFireDatabase, public element: ElementRef, public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(public datePicker: DatePicker, public storage: Storage, public platform: Platform, public af: AngularFireDatabase, public element: ElementRef, public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
     this.nav = this.app.getActiveNav();
   }
 
@@ -160,6 +166,39 @@ export class FeedStylist implements OnDestroy {
         mediaType: this.camera.MediaType.PICTURE,
         destinationType: this.camera.DestinationType.FILE_URI,
         saveToPhotoAlbum: true
+  }
+
+  modelChanged(newObj) {
+    console.log(typeof newObj + "  nnnnnneeeeeewwww     jo boboobbooooooob");
+    let date = new Date(newObj);
+    console.log(date.getDate() + "     :     " + date.getDay());
+
+    this.list = this.af.list('/products');
+
+    this.subscription7 = this.list.subscribe(items => { 
+      items.forEach(item => {
+        console.log(JSON.stringify(item.customMetadata) + ":   this is the customdata (((()()()()()");
+
+        let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
+        
+        storageRef.getDownloadURL().then(url => {
+          console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+          item.customMetadata.profilepic = url;
+        }).catch((e) => {
+          console.log("in caught url !!!!!!!$$$$$$$!!");
+          item.customMetadata.profilepic = 'assets/blankprof.png';
+        });
+        //this.startAtKey = item.$key;
+        this.productListArray.push(item.customMetadata);
+        
+        
+
+      });
+  }
+
+
+  sendIt() {
+    console.log("sent sent sent setn");
   }
 
   pushPage(){
@@ -202,7 +241,15 @@ export class FeedStylist implements OnDestroy {
   }
 
   tappedEmergency() {
-    this.navCtrl.push(BookingPage);
+    //this.navCtrl.push(BookingPage);
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+    }).then(
+      date => { console.log(date + " this is the date &&&&&&&"); this.dateofme = date},
+      err => console.log('Error occurred while getting date: ', err)
+    );
   }
 
   indexChange() {
@@ -450,7 +497,7 @@ export class FeedStylist implements OnDestroy {
     
     
     this.storage.get('username').then((val) => {
-      //this.username = val;
+      this.username = val;
     })
   }
 

@@ -190,7 +190,11 @@
     <button class="textsizebutton" (tap)='tappedPost()' ion-fab>Post</button>
   </ion-fab-list>
   <ion-fab-list side="left">
-    <button class="textsizebutton" (tap)='tappedEmergency()' ion-fab><ion-icon name="alarm"></ion-icon></button>
+    <button class="textsizebutton" ion-fab>
+      <ion-datetime displayFormat="MMM/DD/YY h:mm:a" [(ngModel)]="dateofme" (ngModelChange)="modelChanged($event)"></ion-datetime>
+      <ion-icon name="alarm"></ion-icon>
+    </button>
   </ion-fab-list>
 </ion-fab>
+
 </ion-content>

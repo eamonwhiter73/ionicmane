@@ -1,4 +1,32 @@
 page-feed-stylist {
+
+	body > ion-app > ng-component > ion-nav > page-feed-stylist > ion-content > div.fixed-content > ion-fab > ion-fab-list:nth-child(3) > button > span > ion-icon {
+		padding-right: 5%;
+	}
+
+	.savebutton {
+		background-color: green;
+		width: 20%;
+		height: 10%;
+		position: absolute;
+		z-index: 9999 !important;
+		top: 40%;
+		left: 50%;
+		
+	}
+
+	.datetime-ios {
+	    padding: 0 0 0 0;
+	}
+
+	.picker-ios .picker-col {
+	    -webkit-transform-style: preserve-3d;
+	    transform-style: preserve-3d;
+	    /* padding: 0px 0px 0px 0px; */
+	    margin-left: -4%;
+	    max-width: 17%;
+	}
+
 	.plussy {
 		font-size: 72px;
 		font-weight: 700;
