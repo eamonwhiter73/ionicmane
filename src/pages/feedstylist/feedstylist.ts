@@ -121,6 +121,7 @@ export class FeedStylist implements OnDestroy {
 
   list: FirebaseListObservable<any>;
   objj: FirebaseObjectObservable<any>;
+  month: FirebaseListObservable<any>;
   subscription4: ISubscription;
   subscription5: ISubscription;
   subscription6: ISubscription;
@@ -173,28 +174,70 @@ export class FeedStylist implements OnDestroy {
     let date = new Date(newObj);
     console.log(date.getDate() + "     :     " + date.getDay());
 
-    this.list = this.af.list('/products');
+    this.month = this.af.list('/appointments/'+this.username+'/'+date.getMonth());
 
-    this.subscription7 = this.list.subscribe(items => { 
-      items.forEach(item => {
-        console.log(JSON.stringify(item.customMetadata) + ":   this is the customdata (((()()()()()");
+    this.subscription7 = this.month.subscribe(items => items.forEach(item =>{
+       console.log(JSON.stringify(item) + "    got the month");
+       let holderDate = new Date(item.date.day * 1000);
+       console.log(date.getMinutes() + "   date : getmin   " + holderDate.getMinutes());
+       console.log(date.getUTCHours() + "   date : gethours    " + holderDate.getUTCHours());
+       console.log(date.getDate() + "   date : getdate    " + holderDate.getDate());
+       console.log(date.getMonth() + "   date : getmonth    " + holderDate.getMonth());
+       console.log(date.getFullYear() + "   date : getyear    " + holderDate.getFullYear());
 
-        let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
-        
-        storageRef.getDownloadURL().then(url => {
-          console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
-          item.customMetadata.profilepic = url;
-        }).catch((e) => {
-          console.log("in caught url !!!!!!!$$$$$$$!!");
-          item.customMetadata.profilepic = 'assets/blankprof.png';
-        });
-        //this.startAtKey = item.$key;
-        this.productListArray.push(item.customMetadata);
-        
-        
+       let boool = false;
+       
+       if(date.getDate() == holderDate.getDate() && date.getMonth() == holderDate.getMonth() &&  date.getFullYear() == holderDate.getFullYear()) {
+         
+         
+         for( let x of item.reserved.appointment) {
 
-      });
+           let forHold;
+           let minUnder = "";
+           let ampm;
+           console.log(<number>date.getUTCHours() + "<number>date.getUTCHours()");
+           if(<number>date.getUTCHours() > 12) {
+             forHold = <number>date.getUTCHours() - 12;
+             ampm = "PM";
+           }
+           else {
+             forHold = <number>date.getUTCHours();
+             ampm = "AM";
+           }
+
+           if(<number>date.getMinutes() < 10) {
+             minUnder = "0" + date.getMinutes();
+           }
+           else {
+             minUnder = date.getMinutes().toString();
+           }
+
+           let time = forHold+":"+minUnder+" "+ampm;
+
+           if(x.time == time) {
+             x.selected = false;
+             boool = true;
+           }
+
+           console.log(x.time + "     x.time");
+           console.log(time + "     time");
+           //console.log(date.getUTCHours()+":"+date.getUTCMinutes())
+
+           //if(x.time == date.getHours +":"+ date.getMinutes 
+         }
+         
+       }
+
+       if(boool == true) {
+         this.month.update(item.$key, {'reserved':{'appointment':item.reserved.appointment}});
+         boool = false;
+       }
+    }));
+
+
   }
+
+
 
 
   sendIt() {
@@ -750,6 +793,7 @@ export class FeedStylist implements OnDestroy {
     this.subscription4.unsubscribe();
     this.subscription5.unsubscribe();
     this.subscription6.unsubscribe();
+    this.subscription7.unsubscribe();
   }
 
   doInfinite(): Promise<any> {

@@ -2798,9 +2798,57 @@ var FeedStylist = (function () {
         this.nav = this.app.getActiveNav();
     }
     FeedStylist.prototype.modelChanged = function (newObj) {
+        var _this = this;
         console.log(typeof newObj + "  nnnnnneeeeeewwww     jo boboobbooooooob");
         var date = new Date(newObj);
         console.log(date.getDate() + "     :     " + date.getDay());
+        this.month = this.af.list('/appointments/' + this.username + '/' + date.getMonth());
+        this.subscription7 = this.month.subscribe(function (items) { return items.forEach(function (item) {
+            console.log(JSON.stringify(item) + "    got the month");
+            var holderDate = new Date(item.date.day * 1000);
+            console.log(date.getMinutes() + "   date : getmin   " + holderDate.getMinutes());
+            console.log(date.getUTCHours() + "   date : gethours    " + holderDate.getUTCHours());
+            console.log(date.getDate() + "   date : getdate    " + holderDate.getDate());
+            console.log(date.getMonth() + "   date : getmonth    " + holderDate.getMonth());
+            console.log(date.getFullYear() + "   date : getyear    " + holderDate.getFullYear());
+            var boool = false;
+            if (date.getDate() == holderDate.getDate() && date.getMonth() == holderDate.getMonth() && date.getFullYear() == holderDate.getFullYear()) {
+                for (var _i = 0, _a = item.reserved.appointment; _i < _a.length; _i++) {
+                    var x = _a[_i];
+                    var forHold = void 0;
+                    var minUnder = "";
+                    var ampm = void 0;
+                    console.log(date.getUTCHours() + "<number>date.getUTCHours()");
+                    if (date.getUTCHours() > 12) {
+                        forHold = date.getUTCHours() - 12;
+                        ampm = "PM";
+                    }
+                    else {
+                        forHold = date.getUTCHours();
+                        ampm = "AM";
+                    }
+                    if (date.getMinutes() < 10) {
+                        minUnder = "0" + date.getMinutes();
+                    }
+                    else {
+                        minUnder = date.getMinutes().toString();
+                    }
+                    var time = forHold + ":" + minUnder + " " + ampm;
+                    if (x.time == time) {
+                        x.selected = false;
+                        boool = true;
+                    }
+                    console.log(x.time + "     x.time");
+                    console.log(time + "     time");
+                    //console.log(date.getUTCHours()+":"+date.getUTCMinutes())
+                    //if(x.time == date.getHours +":"+ date.getMinutes 
+                }
+            }
+            if (boool == true) {
+                _this.month.update(item.$key, { 'reserved': { 'appointment': item.reserved.appointment } });
+                boool = false;
+            }
+        }); });
     };
     FeedStylist.prototype.sendIt = function () {
         console.log("sent sent sent setn");
@@ -3263,6 +3311,7 @@ var FeedStylist = (function () {
         this.subscription4.unsubscribe();
         this.subscription5.unsubscribe();
         this.subscription6.unsubscribe();
+        this.subscription7.unsubscribe();
     };
     FeedStylist.prototype.doInfinite = function () {
         console.log('Begin async operation');
@@ -6420,14 +6469,14 @@ var BookingPage = (function () {
         this.datesToSelect = [];
     }
     BookingPage.prototype.ionViewDidLoad = function () {
-        this.times = [{ 'time': '8:00 AM', 'selected': false }, { 'time': '12:00 PM', 'selected': false }, { 'time': '4:00 PM', 'selected': false },
-            { 'time': '8:30 AM', 'selected': false }, { 'time': '12:30 PM', 'selected': false }, { 'time': '4:30 PM', 'selected': false },
-            { 'time': '9:00 AM', 'selected': false }, { 'time': '1:00 PM', 'selected': false }, { 'time': '5:00 PM', 'selected': false },
-            { 'time': '9:30 AM', 'selected': false }, { 'time': '1:30 PM', 'selected': false }, { 'time': '5:30 PM', 'selected': false },
-            { 'time': '10:00 AM', 'selected': false }, { 'time': '2:00 PM', 'selected': false }, { 'time': '6:00 PM', 'selected': false },
-            { 'time': '10:30 AM', 'selected': false }, { 'time': '2:30 PM', 'selected': false }, { 'time': '6:30 PM', 'selected': false },
-            { 'time': '11:00 AM', 'selected': false }, { 'time': '3:00 PM', 'selected': false }, { 'time': '7:00 PM', 'selected': false },
-            { 'time': '11:30 AM', 'selected': false }, { 'time': '3:30 PM', 'selected': false }, { 'time': '7:30 PM', 'selected': false }
+        this.times = [{ 'time': '8:00 AM', 'selected': false }, { 'time': '8:30 AM', 'selected': false }, { 'time': '9:00 AM', 'selected': false },
+            { 'time': '9:30 AM', 'selected': false }, { 'time': '10:00 AM', 'selected': false }, { 'time': '10:30 AM', 'selected': false },
+            { 'time': '11:00 AM', 'selected': false }, { 'time': '11:30 AM', 'selected': false }, { 'time': '12:00 PM', 'selected': false },
+            { 'time': '12:30 PM', 'selected': false }, { 'time': '1:00 PM', 'selected': false }, { 'time': '1:30 PM', 'selected': false },
+            { 'time': '2:00 PM', 'selected': false }, { 'time': '2:30 PM', 'selected': false }, { 'time': '3:00 PM', 'selected': false },
+            { 'time': '3:30 PM', 'selected': false }, { 'time': '4:00 PM', 'selected': false }, { 'time': '4:30 PM', 'selected': false },
+            { 'time': '5:00 PM', 'selected': false }, { 'time': '5:30 PM', 'selected': false }, { 'time': '6:00 PM', 'selected': false },
+            { 'time': '6:30 PM', 'selected': false }, { 'time': '7:00 PM', 'selected': false }, { 'time': '7:30 PM', 'selected': false }
         ];
     };
     BookingPage.prototype.selectArrowRight = function () {
@@ -6798,15 +6847,16 @@ var BookingPage = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChildren"])('slot'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"])
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"]) === "function" && _a || Object)
 ], BookingPage.prototype, "slots", void 0);
 BookingPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'page-booking',template:/*ion-inline-start:"/Users/eamonwhite/ionicmane/myApp/src/pages/booking/booking.html"*/'<!--\n  Generated template for the BookingPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-content (swiperight)="swipeRight()" no-padding>\n	<div class=\'arrowleftholder\'>\n    	<ion-icon class=\'forward\' name="arrow-back"></ion-icon>\n    </div>\n    <div style="width: 100%; position: absolute; left: 50%; width: 35%; z-index: 1;">\n	    <div style="position: relative; left: -50%; width:100%;">\n	    	<div class="titleholder">\n		      <div class="monthclass">{{viewTitle}}</div><div class="yearclass">{{titleYear}}</div>\n		    </div>\n		  </div>\n	  </div>\n    <div class=\'arrowrightholder\' (tap)="selectArrowRight()">\n    	<ion-icon class=\'forward\' name="arrow-forward"></ion-icon>\n    </div>\n	<calendar class=\'cal\' \n	  [eventSource]="eventSource"\n	  [calendarMode]="calendar.mode"\n	  [currentDate]="calendar.currentDate"\n	  (onCurrentDateChanged)="onCurrentDateChanged($event)"\n	  (onRangeChanged)="reloadSource(startTime, endTime)"\n	  (onEventSelected)="onEventSelected($event)"\n	  (onTitleChanged)="onViewTitleChanged($event)"\n	  (onTimeSelected)="onTimeSelected($event)"\n	  step="30">\n	</calendar>\n	<!--<form>-->\n		<div class="slots">\n	     <div id="slot" *ngFor="let i of times ; let z = index" (press)=\'emergency(z)\' #slot>\n	      	<ion-label>{{i.time}}</ion-label>\n	     		<ion-checkbox name="time" [(ngModel)]="times[z].selected" [checked]="times[z].selected" (ionChange)="checkboxCheck(z)"></ion-checkbox>\n	     </div>\n	  </div>\n	  <div id="savebutton">\n	  	<div class="save" (tap)=\'logForm()\'>SAVE</div>\n	  </div>\n	<!--</form>-->\n</ion-content>\n'/*ion-inline-end:"/Users/eamonwhite/ionicmane/myApp/src/pages/booking/booking.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* NavController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* NavParams */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _h || Object])
 ], BookingPage);
 
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=booking.js.map
 
 /***/ }),
@@ -8217,9 +8267,10 @@ var MyApp = (function () {
 MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/eamonwhite/ionicmane/myApp/src/app/app.html"*/'<ion-nav [root]="rootPage" swipeBackEnabled="true"></ion-nav>\n'/*ion-inline-end:"/Users/eamonwhite/ionicmane/myApp/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* Platform */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _c || Object])
 ], MyApp);
 
+var _a, _b, _c;
 //# sourceMappingURL=app.component.js.map
 
 /***/ })
