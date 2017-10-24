@@ -17,6 +17,7 @@ import { FollowersPage } from '../pages/followers/followers';
 import { SettingsPage } from '../pages/settings/settings';
 import { FullfeedPage } from '../pages/fullfeed/fullfeed';
 import { FormulapostPage } from '../pages/formulapost/formulapost';
+import { CacheService } from "ionic-cache";
 
 import { MapPage } from '../pages/map/map';
 
@@ -28,7 +29,7 @@ import { MapPage } from '../pages/map/map';
 export class MyApp {
   rootPage:any = FeedStylist;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, cache: CacheService) {
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -38,7 +39,7 @@ export class MyApp {
       statusBar.overlaysWebView(false);
       statusBar.isVisible;
       splashScreen.hide();
-
+      
     });
   }
 }

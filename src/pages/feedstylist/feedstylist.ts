@@ -20,6 +20,8 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 import { ISubscription } from "rxjs/Subscription";
 import firebase from 'firebase';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { CacheService } from "ionic-cache";
+
 
 
 
@@ -81,8 +83,10 @@ export class FeedStylist implements OnDestroy {
   @ViewChildren('allF') allFeed:QueryList<any>;
   @ViewChildren('productsFeed') productsF:QueryList<any>;
   @ViewChildren('classesFeed') classesF:QueryList<any>;
+  @ViewChildren('formulasFeed') formulasF:QueryList<any>;
   @ViewChild('contentone') contentOne:ElementRef;
   @ViewChild('classeslist') classeslist:ElementRef;
+  @ViewChild('formulaslist') formulaslist:ElementRef;
   @ViewChild('swiper') swiperEl;
   @ViewChild('productslist') productslist:ElementRef;
   @ViewChildren('adimage') adImage:QueryList<any>;
@@ -105,6 +109,13 @@ export class FeedStylist implements OnDestroy {
   @ViewChildren('imagepost3') imageComponents3:QueryList<any>;
   @ViewChildren('caption3') captionComponents3:QueryList<any>;
 
+  @ViewChildren('feedstyle4') components4:QueryList<any>;
+  @ViewChildren('flex4') flexComponents4:QueryList<any>;
+  @ViewChildren('feedtop4') feedComponents4:QueryList<any>;
+  @ViewChildren('feedtop4two') feedTop42Components:QueryList<any>;
+  @ViewChildren('imagepost4') imageComponents4:QueryList<any>;
+  @ViewChildren('caption4') captionComponents4:QueryList<any>;
+
 
 
   downState: String = 'notDown';
@@ -118,14 +129,17 @@ export class FeedStylist implements OnDestroy {
   el;
   classesListArray = [];
   productListArray = [];
+  formulaListArray = [];
 
   list: FirebaseListObservable<any>;
   objj: FirebaseObjectObservable<any>;
   month: FirebaseListObservable<any>;
+  formulas: FirebaseListObservable<any>;
   subscription4: ISubscription;
   subscription5: ISubscription;
   subscription6: ISubscription;
   subscription7: ISubscription;
+  subscription8: ISubscription;
   ads = [];
   swiperIndex;
   config: SwiperConfigInterface;
@@ -143,13 +157,13 @@ export class FeedStylist implements OnDestroy {
   private swipeTime?: number;
   private nav:NavController;
 
-  constructor(public datePicker: DatePicker, public storage: Storage, public platform: Platform, public af: AngularFireDatabase, public element: ElementRef, public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(private cache: CacheService, public datePicker: DatePicker, public storage: Storage, public platform: Platform, public af: AngularFireDatabase, public element: ElementRef, public camera: Camera, private app:App, public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public myrenderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
     this.nav = this.app.getActiveNav();
   }
 
   public optionsGetMedia: any = {
         allowEdit: false,
-        quality: 10,
+        quality: 2,
         targetWidth: 600,
         targetHeight: 600,
         encodingType: this.camera.EncodingType.PNG,
@@ -159,7 +173,7 @@ export class FeedStylist implements OnDestroy {
   }
 
   public optionsGetCamera: any = {
-        quality: 10,
+        quality: 2,
         targetWidth: 600,
         targetHeight: 600,
         encodingType: this.camera.EncodingType.PNG,
@@ -186,7 +200,7 @@ export class FeedStylist implements OnDestroy {
        console.log(date.getFullYear() + "   date : getyear    " + holderDate.getFullYear());
 
        let boool = false;
-       
+
        if(date.getDate() == holderDate.getDate() && date.getMonth() == holderDate.getMonth() &&  date.getFullYear() == holderDate.getFullYear()) {
          
          
@@ -408,9 +422,11 @@ export class FeedStylist implements OnDestroy {
     this.myrenderer.setElementStyle(this.allFeed.toArray()[0]._elementRef.nativeElement, 'color', '#e6c926');
     this.myrenderer.setElementStyle(this.classesF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
     this.myrenderer.setElementStyle(this.productsF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
+    this.myrenderer.setElementStyle(this.formulasF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
     this.myrenderer.setElementStyle(this.classeslist.nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
     this.myrenderer.setElementStyle(this.productslist.nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(this.formulaslist.nativeElement, 'display', 'none');
 
   }
 
@@ -418,9 +434,11 @@ export class FeedStylist implements OnDestroy {
     this.myrenderer.setElementStyle(this.allFeed.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
     this.myrenderer.setElementStyle(this.classesF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
     this.myrenderer.setElementStyle(this.productsF.toArray()[0]._elementRef.nativeElement, 'color', '#e6c926');
+    this.myrenderer.setElementStyle(this.formulasF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
     this.myrenderer.setElementStyle(this.classeslist.nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(this.productslist.nativeElement, 'display', 'block');
+    this.myrenderer.setElementStyle(this.formulaslist.nativeElement, 'display', 'none');
 
   }
 
@@ -429,9 +447,25 @@ export class FeedStylist implements OnDestroy {
     this.myrenderer.setElementStyle(this.allFeed.toArray()[0]._elementRef.nativeElement, 'color', 'gray');  
     this.myrenderer.setElementStyle(this.classesF.toArray()[0]._elementRef.nativeElement, 'color', '#e6c926');
     this.myrenderer.setElementStyle(this.productsF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
+    this.myrenderer.setElementStyle(this.formulasF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
     this.myrenderer.setElementStyle(this.classeslist.nativeElement, 'display', 'block');
     this.myrenderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(this.productslist.nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(this.formulaslist.nativeElement, 'display', 'none');
+    
+  }
+
+  formulasList() {
+    console.log("classeslist      " + this.classeslist.nativeElement);
+    this.myrenderer.setElementStyle(this.allFeed.toArray()[0]._elementRef.nativeElement, 'color', 'gray');  
+    this.myrenderer.setElementStyle(this.classesF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
+    this.myrenderer.setElementStyle(this.productsF.toArray()[0]._elementRef.nativeElement, 'color', 'gray');
+    this.myrenderer.setElementStyle(this.formulasF.toArray()[0]._elementRef.nativeElement, 'color', '#e6c926');
+    this.myrenderer.setElementStyle(this.classeslist.nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(this.productslist.nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(this.formulaslist.nativeElement, 'display', 'block');
+
     
   }
 
@@ -534,6 +568,23 @@ export class FeedStylist implements OnDestroy {
       });
     });
 
+    this.formulas = this.af.list('/formulas');
+
+    this.subscription8 = this.formulas.subscribe(items => items.forEach(item => {
+      let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
+          
+      storageRef.getDownloadURL().then(url => {
+        console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+        item.customMetadata.profilepic = url;
+      }).catch((e) => {
+        console.log("in caught url !!!!!!!$$$$$$$!!");
+        item.customMetadata.profilepic = 'assets/blankprof.png';
+      });
+
+      console.log("item item ----- " + JSON.stringify(item));
+      this.formulaListArray.push(item.customMetadata);
+    }));
+
     this.myrenderer.setElementStyle(this.classeslist.nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
     this.myrenderer.setElementStyle(this.productslist.nativeElement, 'display', 'none');
@@ -633,6 +684,33 @@ export class FeedStylist implements OnDestroy {
     //console.log(selectedRow);
   }
 
+  contractItem4(item) {
+    let flexArray = this.flexComponents4.toArray();
+    let feedArray = this.feedComponents4.toArray();
+    let feedArray2 = this.feedTop42Components.toArray();
+    let itemArray = this.components4.toArray();
+    let imageComps = this.imageComponents4.toArray();
+    let captionComps = this.captionComponents4.toArray();
+
+
+    this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'flex');
+    this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'padding', '4px 4px 0px 4px');
+    this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(feedArray2[item].nativeElement, 'display', 'none');
+
+    //flexArray[item].nativeElement.style = 'display: none';
+    //feedArray[item].nativeElement.style = 'display: flex';
+    this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(captionComps[item].nativeElement, 'display', 'none');
+    //imageComps[item].nativeElement.style = 'display: block';
+    this.myrenderer.setElementStyle(itemArray[item]._elementRef.nativeElement, 'padding', '0');
+    //itemArray[item]._elementRef.nativeElement.style = "padding: 0";
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-padding', '');
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-lines', '');
+    //var selectedRow = document.getElementById('item');
+    //console.log(selectedRow);
+  }
+
   expandItem(item) {
     let flexArray = this.flexComponents.toArray();
     let feedArray = this.feedComponents.toArray();
@@ -692,6 +770,31 @@ export class FeedStylist implements OnDestroy {
     let itemArray = this.components3.toArray();
     let imageComps = this.imageComponents3.toArray();
     let captionComps = this.captionComponents3.toArray();
+
+    this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'none');
+    this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'flex');
+    this.myrenderer.setElementStyle(feedArray2[item].nativeElement, 'display', 'flex');
+
+    //flexArray[item].nativeElement.style = 'display: none';
+    //feedArray[item].nativeElement.style = 'display: flex';
+    this.myrenderer.setElementStyle(imageComps[item].nativeElement, 'display', 'block');
+    this.myrenderer.setElementStyle(captionComps[item].nativeElement, 'display', 'block');
+
+    //imageComps[item].nativeElement.style = 'display: block';
+    this.myrenderer.setElementStyle(itemArray[item]._elementRef.nativeElement, 'padding', '0');
+    //itemArray[item]._elementRef.nativeElement.style = "padding: 0";
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-padding', 'null');
+    //this.myrenderer.setElementAttribute(itemArray[item]._elementRef.nativeElement, 'no-lines', 'null');
+    //var selectedRow = document.getElementById('item');
+    //console.log(selectedRow);
+  }
+  expandItem4(item) {
+    let flexArray = this.flexComponents4.toArray();
+    let feedArray = this.feedComponents4.toArray();
+    let feedArray2 = this.feedTop42Components.toArray();
+    let itemArray = this.components4.toArray();
+    let imageComps = this.imageComponents4.toArray();
+    let captionComps = this.captionComponents4.toArray();
 
     this.myrenderer.setElementStyle(flexArray[item].nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(feedArray[item].nativeElement, 'display', 'flex');

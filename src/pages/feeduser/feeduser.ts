@@ -106,6 +106,8 @@ export class FeedUser implements OnDestroy {
   prices: FirebaseListObservable<any>;
   ratingslist:FirebaseListObservable<any>
   distancelist: FirebaseListObservable<any>;
+  formulas:FirebaseListObservable<any>
+
   pricesArray = [];
   distances = [];
   stars;
@@ -120,6 +122,7 @@ export class FeedUser implements OnDestroy {
   private subscription7: ISubscription;
   private subscription8: ISubscription;
   private subscription9: ISubscription;
+  private subscription10: ISubscription;
 
 
   queryable: boolean = true;
@@ -247,6 +250,9 @@ export class FeedUser implements OnDestroy {
       this.subscription8.unsubscribe();
     }
     if(this.subscription9 != null) {
+      this.subscription8.unsubscribe();
+    }
+    if(this.subscription10 != null) {
       this.subscription8.unsubscribe();
     }
   } 

@@ -161,11 +161,14 @@
    <ion-list class="marginstatus" no-padding>
      <ion-item *ngFor="let a of weeklydeal" no-padding>
       <div class="feedtoptextcontainer">
-        <div class="usernamecontainer">
-          <h4 class="postusername">{{a.pic}}</h4><br>
-          <h4 class="poststudio">{{a.salon}}</h4>
+        <div class="imageparent">
+          <img class="postprofilepic" src="{{a.url}}">
         </div>
-        <h4 class="deal">{{a.time}}</h4>
+        <div class="usernamecontainer">
+          <h4 class="postusername">{{a.username}}</h4><br>
+        </div>
+        <h3>{{a.title}}</h3>
+        <h4 class="deal">{{a.caption}}</h4>
       </div>
       <!--<img class="imagepost" src="{{i}}">-->
      </ion-item>

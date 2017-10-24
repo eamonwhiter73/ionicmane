@@ -29,7 +29,7 @@ export class FormulapostPage implements OnDestroy {
   @ViewChild('imagey') image:ElementRef;
   @ViewChild('sharer') share;
  	imageHolder;
-  item = {'date': null, 'title':'', 'price':'', 'caption':'', 'typeofselect':'formula'};
+  item = {'date': null, 'title':'', 'price':'', 'caption':'', 'typeofselect':'formula', 'description':''};
   selectVal;
   username;
   square;
@@ -87,10 +87,11 @@ export class FormulapostPage implements OnDestroy {
       customMetadata: {
         'title': this.item.title,
         'formula': this.item.caption,
+        'description': this.item.description,
         'price': this.item.price,
         'username': this.username,
         'url': this.imageHolder,
-        'postdate': Date.now()
+        'postdate': Date.now(),
        }
      }
               
@@ -112,9 +113,10 @@ export class FormulapostPage implements OnDestroy {
     }
     else {
     	this.isFormula();
+      this.navCtrl.pop();
     }
 
-    this.navCtrl.push(StylistProfile);
+    
 
     /*var dataURL = data;
 

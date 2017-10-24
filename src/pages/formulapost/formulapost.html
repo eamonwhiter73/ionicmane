@@ -21,7 +21,7 @@
 				<ion-icon ios="ios-bookmarks" md="md-bookmarks" class="titleicon"></ion-icon>
 			</div>
 			<div class="inputtitle">
-				<ion-input name='title' [(ngModel)]="item.title" class="titleinput" type="text" placeholder="Write a title"></ion-input>
+				<ion-input name='title' [(ngModel)]="item.title" class="titleinput" type="text" placeholder="Formula name"></ion-input>
 			</div>
 		</div>
 	</div>
@@ -31,10 +31,20 @@
 				<h1>...</h1>
 			</div>
 			<div class="inputcaption">
-				<ion-input name='caption' [(ngModel)]="item.caption" class="captioninput" type="text" placeholder="Write the formula"></ion-input>
+				<ion-input name='caption' [(ngModel)]="item.caption" class="captioninput" type="text" placeholder="Write the formula, this will be kept secret unless purchased"></ion-input>
 				<div class="postimagecontain">
 					<img class="postimage" #imagey [src]="">
 				</div>
+			</div>
+		</div>
+	</div>
+	<div class="caption">
+		<div class="captione">
+			<div class='detailpictwo'>
+				<h1>...</h1>
+			</div>
+			<div class="inputcaption">
+				<ion-input name='description' [(ngModel)]="item.description" class="captioninput2" type="text" placeholder="Briefly describe the formula without giving it away"></ion-input>
 			</div>
 		</div>
 	</div>

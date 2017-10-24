@@ -8,6 +8,10 @@ import firebase from 'firebase';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { OnDestroy } from "@angular/core";
 import { ISubscription } from "rxjs/Subscription";
+import { CameraServicePost } from '../../services/cameraservicepost';
+import { Camera } from '@ionic-native/camera';
+import { ActionSheetController } from 'ionic-angular';
+
 
 
 
@@ -34,8 +38,92 @@ export class PostpagePage implements OnDestroy {
   private subscription: ISubscription;
   private subscription2: ISubscription;
 
-  constructor(public af: AngularFireDatabase, public viewCtrl: ViewController, public storage: Storage, public keyboard: Keyboard, private datePicker: DatePicker, public myrenderer: Renderer, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public cameraServicePost: CameraServicePost, public actionSheetCtrl: ActionSheetController, public camera: Camera, public af: AngularFireDatabase, public viewCtrl: ViewController, public storage: Storage, public keyboard: Keyboard, private datePicker: DatePicker, public myrenderer: Renderer, public navCtrl: NavController, public navParams: NavParams) {
 
+  }
+
+  public optionsGetMedia: any = {
+        allowEdit: false,
+        quality: 2,
+        targetWidth: 600,
+        targetHeight: 600,
+        encodingType: this.camera.EncodingType.PNG,
+        sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+        mediaType: this.camera.MediaType.PICTURE,
+        destinationType: this.camera.DestinationType.FILE_URI
+  }
+
+  public optionsGetCamera: any = {
+        quality: 2,
+        targetWidth: 600,
+        targetHeight: 600,
+        encodingType: this.camera.EncodingType.PNG,
+        sourceType: this.camera.PictureSourceType.CAMERA,
+        mediaType: this.camera.MediaType.PICTURE,
+        destinationType: this.camera.DestinationType.FILE_URI,
+        saveToPhotoAlbum: true
+  }
+
+  presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Choose source',
+      buttons: [
+        {
+          text: 'Camera',
+          handler: () => {
+            //let itemArrayTwo = this.profComponents.toArray();
+            this.cameraServicePost.getMedia(this.optionsGetCamera).then((data) => {
+                /*let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');
+                let loading = this.loadingController.create({content : "Loading..."});
+                loading.present();
+                setTimeout(() => {
+                  storageRef.getDownloadURL().then(url => {
+                    console.log(url);
+                    this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
+                    this.showSquare();
+                    loading.dismiss();
+                  });
+                }, 3000);*/
+            }); //pass in square choice
+            //this.myrenderer.setElementAttribute(this.itemArrayTwo[this.square - 1].nativeElement, 'src', 'block');
+            console.log('camera clicked');
+          }
+        },{
+          text: 'Photo Library',
+          handler: () => {
+            //let itemArrayTwo = this.profComponents.toArray();
+
+            this.cameraServicePost.getMedia(this.optionsGetMedia).then((data) => {
+              this.image.nativeElement.src = data;
+                  /*return new Promise((resolve, reject) => {
+                    let storageRef = firebase.storage().ref().child('/profile/' + this.username + '/profile_' + this.username + '_' + this.square + '.png');
+                    let loading = this.loadingController.create({content : "Loading..."});
+                    loading.present();
+                    setTimeout(() => {
+                      storageRef.getDownloadURL().then(url => {
+                        console.log(url);
+                        this.myrenderer.setElementAttribute(itemArrayTwo[this.square - 1].nativeElement, 'src', url);
+                        this.showSquare();
+                        loading.dismiss();
+                        resolve();
+                      });
+                    }, 3000);
+                  });*/
+                //
+                 
+            });
+            
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 
   ngOnDestroy() {
@@ -62,9 +150,7 @@ export class PostpagePage implements OnDestroy {
   }
 
   goToFeed() {
-    this.navCtrl.push(FeedStylist,{
-      param1: 'user'
-    },{animate:true,animation:'transition',duration:500,direction:'back'});
+    this.navCtrl.pop();
   }
 
   showDatePicker() {
@@ -258,17 +344,20 @@ export class PostpagePage implements OnDestroy {
 
     if(this.item.typeofselect == 'Promo') {
       this.isPromo();
+      this.navCtrl.push(FeedStylist);
     }
 
     if(this.item.typeofselect == 'Class') {
       this.isClass();
+      this.navCtrl.push(FeedStylist);
     }
 
     if(this.item.typeofselect == 'Product') {
       this.isProduct();
+      this.navCtrl.push(FeedStylist);
     }
 
-    this.navCtrl.push(FeedStylist);
+    
 
     /*var dataURL = data;
 

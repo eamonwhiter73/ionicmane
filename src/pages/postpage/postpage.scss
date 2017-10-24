@@ -1,5 +1,13 @@
 page-postpage {
 
+	.datetime-ios {
+		padding: 0;
+	}
+
+	.datetime-text {
+		display: block;
+	}
+
 	.postimage {
 		position: relative;
 		margin: 5px;
@@ -114,6 +122,10 @@ page-postpage {
 		border-bottom-width: 0.5px;
 		border-bottom-style: solid;
 		height: 100%;
+		display: flex;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.datepickcont {

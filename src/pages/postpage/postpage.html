@@ -42,7 +42,7 @@
 			</div>
 			<div class="inputcaption">
 				<ion-input name='caption' [(ngModel)]="item.caption" class="captioninput" type="text" placeholder="Write a caption"></ion-input>
-				<div class="postimagecontain">
+				<div class="postimagecontain" (tap)="presentActionSheet()">
 					<img class="postimage" #imagey [src]="">
 				</div>
 			</div>
@@ -60,7 +60,11 @@
 	</div>
 	<div class="datepickcont">
 		<div class="datepickk">
-			<button (tap)="showDatePicker()" ion-button class="pickadate">Pick a date</button>
+			<!--<button  ion-button class="pickadate"> <!--(tap)="showDatePicker()"-->
+			<ion-item>
+				<ion-datetime displayFormat="MMMM/D/YYYY" [(ngModel)]="item.date"></ion-datetime>
+			</ion-item>
+			<!--</button>
 			<!--<div class='detailpic'>
 				<img src="">
 			</div>

@@ -25,7 +25,27 @@ page-stylist-profile {
     z-index: 2;
   }
 
-  .rightArrow[_ngcontent-c2] {
+  .rightArrow[_ngcontent-c4] {
+    z-index: 20;
+    left: 42%;
+    position: relative;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 19px;
+}
+
+  .leftArrow[_ngcontent-c4] {
+    z-index: 20;
+    position: relative;
+    left: 22%;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 19px;
+}
+
+.rightArrow[_ngcontent-c2] {
     z-index: 20;
     left: 42%;
     position: relative;
@@ -693,6 +713,28 @@ page-stylist-profile {
     //background-color: blue;
   }
 
+  .leftArrow[_ngcontent-c4] {
+    z-index: 20;
+    position: relative;
+    left: 20%;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 12px;
+    //background-color: red;
+  }
+
+  .rightArrow[_ngcontent-c4] {
+    z-index: 20;
+    left: 45%;
+    position: relative;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 12px;
+    //background-color: blue;
+  }
+
   .arrowrightholder {
     display: inline-block;
     position: absolute;
@@ -800,6 +842,28 @@ page-stylist-profile {
   }
 
   .rightArrow[_ngcontent-c2] {
+    z-index: 20;
+    left: 45%;
+    position: relative;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 8px;
+    //background-color: blue;
+  }
+
+  .leftArrow[_ngcontent-c4] {
+    z-index: 20;
+    position: relative;
+    left: 21%;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 8px;
+    //background-color: red;
+  }
+
+  .rightArrow[_ngcontent-c4] {
     z-index: 20;
     left: 45%;
     position: relative;

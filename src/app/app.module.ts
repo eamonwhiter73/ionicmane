@@ -68,6 +68,7 @@ import { SMS } from '@ionic-native/sms';
 
 import { MapPage } from '../pages/map/map';
 import { GoogleMaps } from '@ionic-native/google-maps';
+import { CacheModule } from "ionic-cache";
 
 
 
@@ -140,7 +141,8 @@ firebase.initializeApp(firebaseConfig);
     IonicImageViewerModule,
     IonicStorageModule.forRoot(),
     IonicImageLoader,
-    SwiperModule.forRoot(SWIPER_CONFIG)
+    SwiperModule.forRoot(SWIPER_CONFIG),
+    CacheModule.forRoot()
     //Ng2ImgMaxModule
     /*CalendarModule.forRoot()*/
   ],
