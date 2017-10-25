@@ -5,6 +5,7 @@ import { FeedUser } from '../feeduser/feeduser';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { ISubscription } from "rxjs/Subscription";
 import firebase from 'firebase';
+import { CacheService } from 'ionic-cache';
 
 
 
@@ -23,13 +24,14 @@ export class FullfeedPage {
   items = [];
   startAtKey;
   lastKey;
-  show;
+  show = true;
   list: FirebaseListObservable<any>;
   list2: FirebaseListObservable<any>;
   @ViewChild(Content  ) content: Content;
   subscription4: ISubscription;
+  subscription3: ISubscription;
 
-  constructor(public af: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private cache: CacheService, public af: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   swipeLeft() {
@@ -37,40 +39,61 @@ export class FullfeedPage {
   }
 
   ionViewDidLoad() {
+    let cacheKey = 'promos';
+    let promises_array:Array<any> = [];
+    let mapped;
+    this.cache.removeItem(cacheKey);
+
+    this.cache.getItem(cacheKey).catch(() => {
+      let store = [];
     
-    this.list2 = this.af.list('/promos', {
-    query: {
-      limitToLast: 10
-    }});
+      this.list2 = this.af.list('/promos', {
+      query: {
+        limitToLast: 10
+      }});
 
-    let x = 0;
-    this.subscription4 = this.list2.subscribe(items => { 
-      items.forEach(item => {
+      this.subscription4 = this.list2.subscribe(items => {
+        mapped = items.map((item) => {
+          return new Promise((resolve,reject) => {
+            let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
+                       
+            storageRef.getDownloadURL().then(url => {
+              console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+              item.customMetadata.picURL = url;
+              store.push(item.customMetadata);
+              resolve();
+            }).catch((e) => {
+              console.log("in caught url !!!!!!!$$$$$$$!!");
+              item.customMetadata.picURL = 'assets/blankprof.png';
+              store.push(item.customMetadata);
+              resolve();
+            });
 
+            
+          })
+        })
 
-        let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
-                   
-        storageRef.getDownloadURL().then(url => {
-          console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
-          item.customMetadata.picURL = url;
-        }).catch((e) => {
-          console.log("in caught url !!!!!!!$$$$$$$!!");
-          item.customMetadata.picURL = 'assets/blankprof.png';
-        });
+        console.log(JSON.stringify(mapped) + "    mappped things");
 
-        this.items.push(item.customMetadata);
+        
 
+        this.startAtKey = items[0].$key;
+        this.lastKey = this.startAtKey;
 
+        let results = Promise.all(mapped);
+        results.then(() => {
+        //setTimeout(() => {
 
-        if(x == 0) {
-          this.startAtKey = item.$key;
-          this.lastKey = this.startAtKey;
-        }
-        x++;
-      })
-
+          this.items = store.reverse();
+          //this.classesListArray.reverse();   
+          console.log(JSON.stringify(this.items) + " value value vlaue items");
+          return this.cache.saveItem(cacheKey, this.items);
+        //}, 3000);
       
-      this.items.reverse();          
+        })
+      })
+    }).then(data => {
+      this.items = data;
     })
   }
 
@@ -79,19 +102,16 @@ export class FullfeedPage {
   }
 
   doInfinite(infiniteScroll) {
-    console.log('Begin async operation');
-    console.log(this.content.directionY + "        upupupupupupu********");
-    if(this.content.directionY == 'up') {
-      this.show = false
-    }
-    else {
-      this.show = true;
-    }
-
-
     //return new Promise((resolve, reject) => {
     setTimeout(() => {
-
+      console.log('Begin async operation');
+      console.log(this.content.directionY + "        upupupupupupu********");
+      if(this.content.directionY == 'up') {
+        this.show = false
+      }
+      else {
+        this.show = true;
+      }
 
       console.log(this.startAtKey + "     before %%^&^&^% start at");
       this.list = this.af.list('/promos', {
@@ -101,7 +121,7 @@ export class FullfeedPage {
         limitToLast: 11
       }});
 
-      this.list.subscribe(items => { 
+      this.subscription3 = this.list.subscribe(items => { 
           let x = 0;
           this.lastKey = this.startAtKey;
           items.forEach(item => {

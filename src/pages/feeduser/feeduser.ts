@@ -20,6 +20,7 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { UserViewProfile } from '../userviewprofile/userviewprofile';
 import { UserProfile } from '../userprofile/userprofile';
 import { FullfeedPage } from '../fullfeed/fullfeed';
+import { CacheService } from 'ionic-cache';
 
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
@@ -106,8 +107,6 @@ export class FeedUser implements OnDestroy {
   prices: FirebaseListObservable<any>;
   ratingslist:FirebaseListObservable<any>
   distancelist: FirebaseListObservable<any>;
-  formulas:FirebaseListObservable<any>
-
   pricesArray = [];
   distances = [];
   stars;
@@ -122,7 +121,6 @@ export class FeedUser implements OnDestroy {
   private subscription7: ISubscription;
   private subscription8: ISubscription;
   private subscription9: ISubscription;
-  private subscription10: ISubscription;
 
 
   queryable: boolean = true;
@@ -135,7 +133,7 @@ export class FeedUser implements OnDestroy {
   availabilities = [];
   items = [];
   rating = [];
-  weeklydeal = [];
+  promotions = [];
 
   totalCount = 0;
   lastNumRows = 0;
@@ -151,11 +149,11 @@ export class FeedUser implements OnDestroy {
   totalAdCount;
   swiperSize = 'begin';
 
-  constructor(private diagnostic: Diagnostic, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, public zone: NgZone, public modalCtrl: ModalController, public af: AngularFireDatabase, public storage: Storage, private afAuth: AngularFireAuth, public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
+  constructor(private cache: CacheService, private diagnostic: Diagnostic, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, public zone: NgZone, public modalCtrl: ModalController, public af: AngularFireDatabase, public storage: Storage, private afAuth: AngularFireAuth, public renderer: Renderer, public loadingController: LoadingController, public navCtrl: NavController) {
      
   }
 
-  getAds() {
+  /*getAds() {
     console.log("in get addddssss ******");
     this.objj = this.af.object('/adcounter/count');
 
@@ -176,6 +174,59 @@ export class FeedUser implements OnDestroy {
        
     })
     
+  }*/
+
+  getAds() {
+    let promises_array:Array<any> = [];
+    let cacheKey = 'ads';
+
+    
+      this.cache.getItem(cacheKey).catch(() => {
+        let store = [];
+        console.log("in get addddssss ******");
+        this.objj = this.af.object('/adcounter/count')
+
+        this.subscription6 = this.objj.subscribe(item => { 
+          console.log(JSON.stringify(item) + "in adddd subscribe()()()()()()");
+          console.log(typeof item);
+          this.totalAdCount = item.$value;
+          
+            for(let x = 1; x < item.$value + 1; x++) {
+              console.log("in promise gafdfsfads")
+              promises_array.push(new Promise((resolve,reject) => {
+
+                let storageRef = firebase.storage().ref().child('/ads/ad' + x + '.png');
+                storageRef.getDownloadURL().then(url => {
+                  console.log(url);
+                  store.push(url);
+                  console.log("reigh before resolve");
+                  resolve()
+                  
+                }).catch(e => {
+                  resolve();
+                });
+
+              }));
+            }
+
+          let results = Promise.all(promises_array);
+          results.then((value) => {
+            this.ads = store;
+
+            console.log(JSON.stringify(this.ads) + " value value vlaue");
+
+            console.log("in list all");
+            
+            return this.cache.saveItem(cacheKey, this.ads);
+          })
+      })
+
+        
+    }).then((data) => {
+        console.log("Saved data: ", data);
+        this.ads = data;
+    });
+
   }
 
 
@@ -252,9 +303,6 @@ export class FeedUser implements OnDestroy {
     if(this.subscription9 != null) {
       this.subscription8.unsubscribe();
     }
-    if(this.subscription10 != null) {
-      this.subscription8.unsubscribe();
-    }
   } 
 
   pushPage(){
@@ -314,29 +362,32 @@ export class FeedUser implements OnDestroy {
 
   loadDistances()/*: Promise<any>*/ {
     //return new Promise((resolve, reject) => {
+      let cacheKey = "distances"
       let rrr;
       let arr = [];
+      let mapped;
+      //this.cache.removeItem(cacheKey);
+
+      console.log("IN LOADDISTANCES #$$$$$$$$$$$$$$$$$$$$$");
+
       this.geolocation.getCurrentPosition().then((resp) => {            
           // resp.coords.latitude
+          console.log("IN geo get position #$$$$$$$5354554354$$$$$$$");
+
           rrr = resp;
           console.log(rrr + "              rrrrrrrrrrrrrrrrrrrrrrrrrr");
-
+          //this.cache.getItem(cacheKey).catch(() => {
           //setTimeout(() => {
             this.distancelist = this.af.list('/profiles/stylists');
       
             let x = 0;
             this.subscription6 = this.distancelist.subscribe(items => {
 
-              let mapped = items.map((item) => {
+               mapped = items.map((item) => {
                 return new Promise(resolve => {
                   let rr;
                   //console.log(JSON.stringify(item) + "               *((*&*&*&*&^&*&*&*(&*(&*&*(&(&(&*(              :::" + x);
                   if(item.address == "") {
-                    /*if(!item.picURL) {
-                      item.picURL = 'assets/blankprof.png';
-                    }*/
-                    //arr.push({'pic':item.picURL, 'salon':item.username, 'distance':"No Address"});
-                    //x++;
                     resolve();
                   }
                   else {
@@ -375,7 +426,8 @@ export class FeedUser implements OnDestroy {
 
 
                 })
-              });
+              })
+            });
 
               let results = Promise.all(mapped);
               results.then(() => {
@@ -385,9 +437,14 @@ export class FeedUser implements OnDestroy {
                 });
 
                 this.distances = arr.slice();
+                console.log(JSON.stringify(this.distances) + " ^^^^&&&&&&&********88889999000000000");
+
+                return this.cache.saveItem(cacheKey, this.distances);
               })
               
-            });//);
+            /*}).then(data => {
+              this.distances = data
+            })*/
           //}, 1500)
  
 
@@ -406,60 +463,245 @@ export class FeedUser implements OnDestroy {
     
   }
 
+  loadPrices() {
+    let mapped;
+    let cacheKey = "prices";
+    let results;
+    let array = [];
+    this.cache.removeItem(cacheKey);
+
+    this.cache.getItem(cacheKey).catch(() => {
+
+      this.prices = this.af.list('/profiles/stylists', {
+        query: {
+          orderByChild: 'price'
+        }
+      });
+      this.subscription5 = this.prices.subscribe(items => items.forEach(item => {
+        mapped = items.map((item) => {
+          return new Promise(resolve => {
+            if(item.price == null) {
+              //
+            }
+            else {
+              console.log(JSON.stringify(item));
+              if(!item.picURL) {
+                item.picURL = 'assets/blankprof.png';
+              }
+              array.push(item);
+              //this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
+
+            }
+          })  
+        })
+      }));
+
+      
+
+      results = Promise.all(mapped);
+      results.then(() => {  
+        this.pricesArray = array;   
+        return this.cache.saveItem(cacheKey, this.pricesArray);
+      })
+    }).then(data => {
+      this.pricesArray = data;
+    })
+  }
+
   loadRatings(): Promise<any> {
     return new Promise((resolve, reject) => {
+      let mapped;
+      let cacheKey = "ratings";
+      let results;
 
-      this.ratingslist = this.af.list('/profiles/stylists');
-       
-      let array = [];
-      let x = 0;
-      this.subscription7 = this.ratingslist.subscribe(items => items.forEach(item => {
+      this.cache.getItem(cacheKey).catch(() => {
 
-        if(!item.picURL) {
-          item.picURL = 'assets/blankprof.png';
-        }
+        this.ratingslist = this.af.list('/profiles/stylists');
+         
+        let array = [];
+        
+        this.subscription7 = this.ratingslist.subscribe(items => {
+          mapped = items.map((item) => {
+            return new Promise(resolve => {
+              if(!item.picURL) {
+                item.picURL = 'assets/blankprof.png';
+              }
 
-        for(let z in item.rating) {
-          console.log(z + "this is the rating string");
-        }
+              for(let z in item.rating) {
+                console.log(z + "this is the rating string");
+              }
 
-        console.log(JSON.stringify(item) + "stringifyied item &&^^&%^%^%^$$%%$");
-        if(item.type == "stylist") {
-          console.log("getting pushed &&%$$##@#@#@#@#@#");
-          array.push(item);
-        }
+              console.log(JSON.stringify(item) + "stringifyied item &&^^&%^%^%^$$%%$");
+              if(item.type == "stylist") {
+                console.log("getting pushed &&%$$##@#@#@#@#@#");
+                array.push(item);
+              }
 
-        x++;
-        if(items.length - x == 0) {
+              resolve();
+              
+             })
 
-          console.log("resolved ***&&&^^^%%%$$$$$$$" + array[0]);
-          resolve(array);
-        }
-      }));
+           })
+
+            
+          
+        });
+
+        results = Promise.all(mapped);
+        results.then(() => {
+          return this.cache.saveItem(cacheKey, array);
+
+        })
+
+        
+      }).then((data) => {
+
+          console.log("resolved ***&&&^^^%%%$$$$$$$");
+          resolve(data);
+      })
     });
   }
 
   ionViewDidLoad() {
+    
+    let loading = this.loadingController.create({content : "Loading..."});
+    loading.present();
+
+    this.promotions = [
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 5', 'time':'$20 off coloring'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 6', 'time':'50% off ombre'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 7', 'time':'$10 off on first session'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 8', 'time':'$10 off on first session'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 9', 'time':'$10 off on first session'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 10', 'time':'$10 off bleaching'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 1', 'time':'$10 off bleaching'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 2', 'time':'$10 off bleaching'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 3', 'time':'50% off ombre'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 4', 'time':'$10 off on first session'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 5', 'time':'$10 off on first session'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 6', 'time':'$10 off on first session'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 7', 'time':'$10 off bleaching'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 8', 'time':'$10 off bleaching'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 9', 'time':'$10 off bleaching'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 10', 'time':'50% off ombre'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 1', 'time':'50% off ombre'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 2', 'time':'50% off ombre'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 3', 'time':'$20 off coloring'},
+                    {'pic': 'Weekly Deal', 'salon':'@salon_ 4', 'time':'$20 off coloring'}
+                  ];
 
     this.getAds();
     
+    //this.getInitialImages();
+    this.loadAvailabilities().then(() => {
+      setTimeout(() => {
+        console.log("in load availabilities ......... ")
+        console.log(JSON.stringify(this.availabilities));
 
-    let loading = this.loadingController.create({content : "Loading..."});
-    loading.present();
-    
-    this.getInitialImages();
+        this.availabilities.sort(function(a,b) {
+          return Date.parse('01/01/2013 '+a.time) - Date.parse('01/01/2013 '+b.time);
+        });
 
+        console.log('*****previous******');
+        console.log(JSON.stringify(this.availabilities));
+        console.log('*****sorted********');
+        
+        for(let i of this.availabilities) {
+          console.log(i.time + "          this is itime");
+          let date = new Date('01/01/2013 ' + i.time);
+          console.log(date + "          this is date in idate");
+          let str = date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+          console.log(str);
+          i.time = str;
+        }
+
+        
+      }, 1500);
+    }).then(() => {
+      let ratings;
+      let totalPotential;
+      
+      
+      this.loadRatings().then((array) =>{
+
+            console.log(array + '    ararrya &&*&&*&^^&%^%^');
+
+            let r = 0;
+            for(let item of array) {
+              if(item.rating.one == 0 && item.rating.two == 0 && item.rating.three == 0 && item.rating.four == 0 && item.rating.five == 0) {
+                this.stars = "No ratings";
+              }
+              else {
+
+                console.log("making the stars");
+
+                totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
+                ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five *5;
+                
+
+                let i = (ratings / totalPotential) * 100;
+                if(Math.round(i) <= 20) {
+                  this.stars = '\u2605';
+                }
+                if(Math.round(i) > 20 && Math.round(i) <= 40) {
+                  this.stars = '\u2605\u2605';
+                }
+                if(Math.round(i) > 40 && Math.round(i) <= 60) {
+                  this.stars = '\u2605\u2605\u2605';
+                }
+                if(Math.round(i) > 60 && Math.round(i) <= 80) {
+                  this.stars = '\u2605\u2605\u2605\u2605';
+                }
+                if(Math.round(i) > 80) {
+                  this.stars = '\u2605\u2605\u2605\u2605\u2605';
+                }
+              }
+
+              item.stars = this.stars;
+              this.rating.push(item);
+              //this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
+              r++;
+            }
+
+            console.log("THIS IS THE SORTED ARRAY TO BE SORRRED        " + JSON.stringify(this.rating));
+
+            this.rating.sort(function(a,b){ 
+              if(a.stars !== "No ratings" && b.stars !== "No ratings") {
+                if(a.stars === b.stars){
+                  return 0;
+                }
+                else {
+                  return a.stars.length < b.stars.length ? 1 : -1;
+                }
+              }
+              else {
+                if(a.stars === "No ratings"){
+                  return 1;
+                }
+                else if(b.stars === "No ratings"){
+                  return -1;
+                }
+              }
+
+            });
+         }).then(() => {
+           this.loadDistances();
+         })
+    })               
 
 
 
     
     ////this.renderer.setElementStyle(this.promos.nativeElement, 'color', '#e6c926');
-    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
+    this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'block');
     this.renderer.setElementStyle(this.price.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.distancey.nativeElement, 'display', 'none');
 
+    /*setTimeout(() => {
+      this.loadDistances();
+    },1000)*/
+    
     loading.dismiss();
-
 
   }
 
@@ -541,7 +783,7 @@ export class FeedUser implements OnDestroy {
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', '#e6c926');
     //this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
 
-    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
+    //this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'block');
@@ -560,7 +802,7 @@ export class FeedUser implements OnDestroy {
       //
     }
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', 'gray');
-    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
+    //this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
@@ -590,7 +832,7 @@ export class FeedUser implements OnDestroy {
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
     //this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
-    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
+    //this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
@@ -606,7 +848,7 @@ export class FeedUser implements OnDestroy {
   dropDownA() {
     this.changeText.nativeElement.innerHTML = "Availability";
     this.renderer.setElementStyle(this.changeText.nativeElement, 'color', '#e6c926');
-    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
+    //this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'block');
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.price.nativeElement, 'display', 'none');
@@ -627,7 +869,7 @@ export class FeedUser implements OnDestroy {
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
     //this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
     this.renderer.setElementStyle(this.price.nativeElement, 'display', 'block');
-    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
+    //this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'none');
 
@@ -645,7 +887,7 @@ export class FeedUser implements OnDestroy {
     this.renderer.setElementStyle(this.weeklyyellow.nativeElement, 'color', 'gray');
     //this.renderer.setElementStyle(this.promos.nativeElement, 'color', 'gray');
     
-    this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
+    //this.renderer.setElementStyle(this.contentOne.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.availability.nativeElement, 'display', 'none');
     this.renderer.setElementStyle(this.ratingbox.nativeElement, 'display', 'block');
     this.renderer.setElementStyle(this.weekly.nativeElement, 'display', 'none');
@@ -757,209 +999,16 @@ export class FeedUser implements OnDestroy {
     return date;
   }
 
+
+
   getInitialImages() {
 
-    this.list = this.af.list('/promos', {
-    query: {
-      limitToLast: 10
-    }});
 
-    let x = 0;
-    this.subscription4 = this.list.subscribe(items => { 
-      items.forEach(item => {
-
-
-        let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
-                   
-        storageRef.getDownloadURL().then(url => {
-          console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
-          item.customMetadata.picURL = url;
-        }).catch((e) => {
-          console.log("in caught url !!!!!!!$$$$$$$!!");
-          item.customMetadata.picURL = 'assets/blankprof.png';
-        });
-
-        this.items.push(item.customMetadata);
-
-
-
-        if(x == 0) {
-          this.startAtKey = item.$key;
-          this.lastKey = this.startAtKey;
-        }
-        x++;
-      })
-
-      
-      this.items.reverse();          
-    })
-
-    this.prices = this.af.list('/profiles/stylists', {
-      query: {
-        orderByChild: 'price'
-      }
-    });
-    this.subscription5 = this.prices.subscribe(items => items.forEach(item => {
-
-      if(item.price == null) {
-        //
-      }
-      else {
-        console.log(JSON.stringify(item));
-        if(!item.picURL) {
-          item.picURL = 'assets/blankprof.png';
-        }
-        this.pricesArray.push(item);
-        //this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
-
-      }
-
-    }));
+     
 
     
 
-
-    /*this.rating = [
-                    {'pic': 'img/hair5.jpeg', 'salon':'Salon 5', 'time':'\u2605\u2605\u2605'},
-                    {'pic': 'img/hair6.jpg', 'salon':'Salon 6', 'time':'\u2605\u2605'},
-                    {'pic': 'img/hair7.jpg', 'salon':'Salon 7', 'time':'\u2605\u2605\u2605\u2605'},
-                    {'pic': 'img/hair8.jpg', 'salon':'Salon 8', 'time':'\u2605\u2605\u2605\u2605\u2605'},
-                    {'pic': 'img/hair9.jpeg', 'salon':'Salon 9', 'time':'\u2605\u2605'},
-                    {'pic': 'img/hair10.jpg', 'salon':'Salon 10', 'time':'\u2605\u2605\u2605\u2605'},
-                    {'pic': 'img/hair7.jpg', 'salon':'Salon 1', 'time':'\u2605\u2605'},
-                    {'pic': 'img/hair2.jpg', 'salon':'Salon 2', 'time':'\u2605\u2605\u2605'},
-                    {'pic': 'img/hair3.jpeg', 'salon':'Salon 3', 'time':'\u2605\u2605\u2605\u2605'},
-                    {'pic': 'img/hair4.jpeg', 'salon':'Salon 4', 'time':'\u2605\u2605'},
-                    {'pic': 'img/hair5.jpeg', 'salon':'Salon 5', 'time':'\u2605\u2605\u2605\u2605'},
-                    {'pic': 'img/hair6.jpg', 'salon':'Salon 6', 'time':'\u2605\u2605\u2605\u2605\u2605'},
-                    {'pic': 'img/hair7.jpg', 'salon':'Salon 7', 'time':'\u2605\u2605\u2605'},
-                    {'pic': 'img/hair8.jpg', 'salon':'Salon 8', 'time':'\u2605\u2605\u2605'},
-                    {'pic': 'img/hair9.jpeg', 'salon':'Salon 9', 'time':'\u2605\u2605'},
-                    {'pic': 'img/hair10.jpg', 'salon':'Salon 10', 'time':'\u2605\u2605\u2605\u2605'},
-                    {'pic': 'img/hair7.jpg', 'salon':'Salon 1', 'time':'\u2605\u2605\u2605\u2605'},
-                    {'pic': 'img/hair2.jpg', 'salon':'Salon 2', 'time':'\u2605\u2605'},
-                    {'pic': 'img/hair3.jpeg', 'salon':'Salon 3', 'time':'\u2605\u2605\u2605'},
-                    {'pic': 'img/hair4.jpeg', 'salon':'Salon 4', 'time':'\u2605\u2605\u2605\u2605'}
-                  ];*/
-    
-    this.weeklydeal = [
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 5', 'time':'$20 off coloring'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 6', 'time':'50% off ombre'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 7', 'time':'$10 off on first session'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 8', 'time':'$10 off on first session'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 9', 'time':'$10 off on first session'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 10', 'time':'$10 off bleaching'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 1', 'time':'$10 off bleaching'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 2', 'time':'$10 off bleaching'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 3', 'time':'50% off ombre'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 4', 'time':'$10 off on first session'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 5', 'time':'$10 off on first session'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 6', 'time':'$10 off on first session'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 7', 'time':'$10 off bleaching'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 8', 'time':'$10 off bleaching'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 9', 'time':'$10 off bleaching'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 10', 'time':'50% off ombre'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 1', 'time':'50% off ombre'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 2', 'time':'50% off ombre'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 3', 'time':'$20 off coloring'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 4', 'time':'$20 off coloring'}
-                  ];
-
-    this.loadAvailabilities().then(() => {
-      setTimeout(() => {
-        console.log("in load availabilities ......... ")
-        console.log(JSON.stringify(this.availabilities));
-
-        this.availabilities.sort(function(a,b) {
-          return Date.parse('01/01/2013 '+a.time) - Date.parse('01/01/2013 '+b.time);
-        });
-
-        console.log('*****previous******');
-        console.log(JSON.stringify(this.availabilities));
-        console.log('*****sorted********');
-        
-        for(let i of this.availabilities) {
-          console.log(i.time + "          this is itime");
-          let date = new Date('01/01/2013 ' + i.time);
-          console.log(date + "          this is date in idate");
-          let str = date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
-          console.log(str);
-          i.time = str;
-        }
-
-        
-      }, 1500);
-    });                
-
-    let ratings;
-    let totalPotential;
-    
-    
-    this.loadRatings().then((array) =>{
-
-          console.log(array + '    ararrya &&*&&*&^^&%^%^');
-
-          let r = 0;
-          for(let item of array) {
-            if(item.rating.one == 0 && item.rating.two == 0 && item.rating.three == 0 && item.rating.four == 0 && item.rating.five == 0) {
-              this.stars = "No ratings";
-            }
-            else {
-
-              console.log("making the stars");
-
-              totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
-              ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five *5;
-              
-
-              let i = (ratings / totalPotential) * 100;
-              if(Math.round(i) <= 20) {
-                this.stars = '\u2605';
-              }
-              if(Math.round(i) > 20 && Math.round(i) <= 40) {
-                this.stars = '\u2605\u2605';
-              }
-              if(Math.round(i) > 40 && Math.round(i) <= 60) {
-                this.stars = '\u2605\u2605\u2605';
-              }
-              if(Math.round(i) > 60 && Math.round(i) <= 80) {
-                this.stars = '\u2605\u2605\u2605\u2605';
-              }
-              if(Math.round(i) > 80) {
-                this.stars = '\u2605\u2605\u2605\u2605\u2605';
-              }
-            }
-
-            item.stars = this.stars;
-            this.rating.push(item);
-            //this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
-            r++;
-          }
-
-          console.log("THIS IS THE SORTED ARRAY TO BE SORRRED        " + JSON.stringify(this.rating));
-
-          this.rating.sort(function(a,b){ 
-            if(a.stars !== "No ratings" && b.stars !== "No ratings") {
-              if(a.stars === b.stars){
-                return 0;
-              }
-              else {
-                return a.stars.length < b.stars.length ? 1 : -1;
-              }
-            }
-            else {
-              if(a.stars === "No ratings"){
-                return 1;
-              }
-              else if(b.stars === "No ratings"){
-                return -1;
-              }
-            }
-
-          });
-        })
-
-        this.loadDistances();/*.then(array => {
+        /*.then(array => {
         setTimeout(() => {
           console.log(JSON.stringify(array) + " :FOSIEJO:SFJ::EFIJSEFIJS:EFJS:IO THIS IODIOSJ:FDSIJ :DIS");
           //

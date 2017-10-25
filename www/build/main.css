@@ -31538,6 +31538,14 @@ page-feed-user {
 	}*/
 }
 
+page-feed-user .scroll-content {
+  margin-top: -4% !important;
+}
+
+page-feed-user .distance, page-feed-user .ratings, page-feed-user .price, page-feed-user .availability {
+  margin-top: 36%;
+}
+
 page-feed-user .adcontainer {
   width: 100%;
   height: 100%;
@@ -31754,7 +31762,7 @@ page-feed-user .ratings {
 }
 
 page-feed-user .weeklydeals {
-  display: none;
+  display: block;
 }
 
 page-feed-user .book {

@@ -1,5 +1,13 @@
 page-feed-user {
 
+	.scroll-content {
+		margin-top: -4% !important
+	}
+
+	.distance, .ratings, .price, .availability {
+		margin-top: 36%;
+	}
+
 	.adcontainer {
 		width: 100%;
 		height: 100%;
@@ -235,7 +243,7 @@ page-feed-user {
 	}
 
 	.weeklydeals {
-		display: none;
+		display: block;
 	}
 
 	.book {

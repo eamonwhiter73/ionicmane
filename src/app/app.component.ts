@@ -27,7 +27,7 @@ import { MapPage } from '../pages/map/map';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = FeedStylist;
+  rootPage:any = FeedUser;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, cache: CacheService) {
 

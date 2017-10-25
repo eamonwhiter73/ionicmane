@@ -303,7 +303,7 @@ export class FeedStylist implements OnDestroy {
           let results = Promise.all(promises_array);
           results.then((value) => {
             this.ads = store;
-            
+
             console.log(JSON.stringify(this.ads) + " value value vlaue");
 
             console.log("in list all");
@@ -590,7 +590,7 @@ export class FeedStylist implements OnDestroy {
 
   ionViewDidLoad() {
 
-    this.getAds();
+    
 
     this.listProducts().then(() => {
       this.listFormulas().then(() => {
@@ -603,7 +603,7 @@ export class FeedStylist implements OnDestroy {
       });
     });
 
-    
+    this.getAds();
 
     this.myrenderer.setElementStyle(this.classeslist.nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
