@@ -17083,8 +17083,9 @@ ion-picker-cmp {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   padding: 0 4px;
-  max-width: 35%;
-  margin-left: -7%;
+  max-width: 30%;
+  margin-left: -3%;
+  margin-right: 3%;
 }
 
 .picker-ios .picker-prefix,
@@ -31144,6 +31145,10 @@ page-feed-stylist {
 
 page-feed-stylist body > ion-app > ng-component > ion-nav > page-feed-stylist > ion-content > div.fixed-content > ion-fab > ion-fab-list:nth-child(3) > button > span > ion-icon {
   padding-right: 5%;
+}
+
+page-feed-stylist .formulaslist {
+  display: none;
 }
 
 page-feed-stylist .savebutton {

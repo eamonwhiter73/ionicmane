@@ -21,7 +21,8 @@ import { ISubscription } from "rxjs/Subscription";
 import firebase from 'firebase';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { CacheService } from "ionic-cache";
-
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/share';
 
 
 
@@ -132,6 +133,7 @@ export class FeedStylist implements OnDestroy {
   formulaListArray = [];
 
   list: FirebaseListObservable<any>;
+  list1: FirebaseListObservable<any>;
   objj: FirebaseObjectObservable<any>;
   month: FirebaseListObservable<any>;
   formulas: FirebaseListObservable<any>;
@@ -266,27 +268,56 @@ export class FeedStylist implements OnDestroy {
   }
 
   getAds() {
-    console.log("in get addddssss ******");
-    this.objj = this.af.object('/adcounter/count');
-
-    this.subscription6 = this.objj.subscribe(item => { 
-      console.log(JSON.stringify(item) + "in adddd subscribe()()()()()()");
-      console.log(typeof item);
-      this.totalAdCount = item.$value;
-        for(let x = 1; x < item.$value + 1; x++) {
-
-          let storageRef = firebase.storage().ref().child('/ads/ad' + x + '.png');
-          storageRef.getDownloadURL().then(url => {
-            console.log(url);
-            this.ads.push(url);
-          }).catch(e => {
-            //
-          });
-        }
-       
-    })
+    let promises_array:Array<any> = [];
+    let cacheKey = 'ads';
 
     
+      this.cache.getItem(cacheKey).catch(() => {
+        let store = [];
+        console.log("in get addddssss ******");
+        this.objj = this.af.object('/adcounter/count')
+
+        this.subscription6 = this.objj.subscribe(item => { 
+          console.log(JSON.stringify(item) + "in adddd subscribe()()()()()()");
+          console.log(typeof item);
+          this.totalAdCount = item.$value;
+          
+            for(let x = 1; x < item.$value + 1; x++) {
+              console.log("in promise gafdfsfads")
+              promises_array.push(new Promise((resolve,reject) => {
+
+                let storageRef = firebase.storage().ref().child('/ads/ad' + x + '.png');
+                storageRef.getDownloadURL().then(url => {
+                  console.log(url);
+                  store.push(url);
+                  console.log("reigh before resolve");
+                  resolve()
+                  
+                }).catch(e => {
+                  resolve();
+                });
+
+              }));
+            }
+
+          let results = Promise.all(promises_array);
+          results.then((value) => {
+            this.ads = store;
+            
+            console.log(JSON.stringify(this.ads) + " value value vlaue");
+
+            console.log("in list all");
+            
+            return this.cache.saveItem(cacheKey, this.ads);
+          })
+      })
+
+        
+    }).then((data) => {
+        console.log("Saved data: ", data);
+        this.ads = data;
+    });
+
   }
 
   goSeeProfile(item) {
@@ -559,31 +590,20 @@ export class FeedStylist implements OnDestroy {
 
   ionViewDidLoad() {
 
-    
+    this.getAds();
 
-    this.listClasses().then(() => {
-      this.listProducts().then(() => {
-        this.listAll();
-        this.getAds();
+    this.listProducts().then(() => {
+      this.listFormulas().then(() => {
+        this.listClasses().then(() => {
+          console.log(this.productListArray + "    proddy proddy product")
+          console.log(this.classesListArray + "    proddy proddy classes")
+          console.log(this.formulaListArray + "    proddy proddy formula")
+          this.listAll();
+        });
       });
     });
 
-    this.formulas = this.af.list('/formulas');
-
-    this.subscription8 = this.formulas.subscribe(items => items.forEach(item => {
-      let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
-          
-      storageRef.getDownloadURL().then(url => {
-        console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
-        item.customMetadata.profilepic = url;
-      }).catch((e) => {
-        console.log("in caught url !!!!!!!$$$$$$$!!");
-        item.customMetadata.profilepic = 'assets/blankprof.png';
-      });
-
-      console.log("item item ----- " + JSON.stringify(item));
-      this.formulaListArray.push(item.customMetadata);
-    }));
+    
 
     this.myrenderer.setElementStyle(this.classeslist.nativeElement, 'display', 'none');
     this.myrenderer.setElementStyle(this.contentOne.nativeElement, 'display', 'block');
@@ -593,6 +613,7 @@ export class FeedStylist implements OnDestroy {
     this.storage.get('username').then((val) => {
       this.username = val;
     })
+
   }
 
   ionViewWillLeave() {
@@ -815,79 +836,229 @@ export class FeedStylist implements OnDestroy {
   }
 
   listClasses(): Promise<any> {
+    let cacheKey = 'classes';
+    let promises_array:Array<any> = [];
+
     return new Promise((resolve, reject) => {
-      this.list = this.af.list('/classes');
+      let mapped;
 
-      this.subscription4 = this.list.subscribe(items => { 
-        items.forEach(item => {
-          console.log(JSON.stringify(item.customMetadata) + ":   this is the customdata (((()()()()()");
+      this.cache.getItem(cacheKey).catch(() => {
+        let store = [];
 
-          let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
-          
-          storageRef.getDownloadURL().then(url => {
-            console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
-            item.customMetadata.profilepic = url;
-          }).catch((e) => {
-            console.log("in caught url !!!!!!!$$$$$$$!!");
-            item.customMetadata.profilepic = 'assets/blankprof.png';
-          });
-          //this.startAtKey = item.$key;
-          this.classesListArray.push(item.customMetadata);
-          
-          
+        this.list = this.af.list('/classes');
 
-        });
+        this.subscription4 = this.list.subscribe(items => { 
+          mapped = items.map((item) => {
+            return new Promise((resolve,reject) => {
+              console.log(JSON.stringify(item.customMetadata) + ":   this is the customdata (((()()()()()");
+
+              let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
+              
+              storageRef.getDownloadURL().then(url => {
+                console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+                item.customMetadata.profilepic = url;
+                console.log(JSON.stringify(item.customMetadata) + "     listclasses item undefined");
+                store.push(item.customMetadata);
+                resolve();
+              }).catch((e) => {
+                console.log("in caught url !!!!!!!$$$$$$$!!");
+                item.customMetadata.profilepic = 'assets/blankprof.png';
+                console.log(JSON.stringify(item.customMetadata) + "     listclasses item undefined profilepic not found");
+                store.push(item.customMetadata);
+                resolve();
+              });
+              //this.startAtKey = item.$key;
+              
+            });
+
+          })
+          let results = Promise.all(mapped);
+          results.then(() => {
+          //setTimeout(() => {
+            console.log(JSON.stringify(this.classesListArray) + " value value vlaue classsses");
+
+            this.classesListArray = store.reverse();
+            //this.classesListArray.reverse();   
+            console.log(JSON.stringify(this.classesListArray) + " value value vlaue classsses");
+            return this.cache.saveItem(cacheKey, this.classesListArray);
+          //}, 3000);
+        
+          })
+        })
 
         
-        console.log(JSON.stringify(this.classesListArray) + " ***** CLASSESL IST ARRAY");
-        this.classesListArray.reverse(); 
-        resolve();            
+      }).then(data => {
+        console.log("Saved data: ", data);
+        this.classesListArray = data;
+        resolve();
       })
-
     })
   }
 
   listProducts(): Promise<any> {
+    let cacheKey = 'products';
+    let promises_array:Array<any> = [];
+
     return new Promise((resolve, reject) => {
-      this.list = this.af.list('/products');
+      let mapped;
 
-      this.subscription5 = this.list.subscribe(items => { 
-        items.forEach(item => {
-          console.log(JSON.stringify(item.customMetadata) + ":   this is the customdata (((()()()()()");
+      this.cache.getItem(cacheKey).catch(() => {
+        let store = [];
 
-          let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
-          
-          storageRef.getDownloadURL().then(url => {
-            console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
-            item.customMetadata.profilepic = url;
-          }).catch((e) => {
-            console.log("in caught url !!!!!!!$$$$$$$!!");
-            item.customMetadata.profilepic = 'assets/blankprof.png';
-          });
-          //this.startAtKey = item.$key;
-          this.productListArray.push(item.customMetadata);
-          
-          
+        this.list1 = this.af.list('/products');
+        this.subscription5 = this.list1.subscribe(items => {
+          mapped = items.map((item) => {
+            return new Promise((resolve,reject) => {
+              console.log(JSON.stringify(item.customMetadata) + ":   this is the customdata (((()()()()()");
 
-        });
+              let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
+              
+              storageRef.getDownloadURL().then(url => {
+                console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+                item.customMetadata.profilepic = url;
+                store.push(item.customMetadata);
+                resolve();
+              }).catch((e) => {
+                console.log("in caught url !!!!!!!$$$$$$$!!");
+                item.customMetadata.profilepic = 'assets/blankprof.png';
+                store.push(item.customMetadata);
+                resolve();
+              });
+              //this.startAtKey = item.$key;
+            });
 
+          })
+          let results = Promise.all(mapped);
+          results.then(() => {
+          //setTimeout(() => {
+            console.log(JSON.stringify(this.productListArray) + " value value vlaue productlistarray");
+            this.productListArray = store.reverse();   
+            return this.cache.saveItem(cacheKey, this.productListArray);
+          //}, 3000);
+        
+          })
+        })
 
-
-        console.log(JSON.stringify(this.classesListArray) + " ***** CLASSESL IST ARRAY");
-        this.productListArray.reverse();   
-        resolve();          
+        
+      }).then(data => {
+        console.log("Saved data: ", data);
+        this.productListArray = data;
+        resolve();
       })
-
-    });
+    })
   }
 
-  listAll() {
-      this.items.push.apply(this.items, this.productListArray);
-      this.items.push.apply(this.items, this.classesListArray);
+  listFormulas(): Promise<any> {
+    let cacheKey = 'formulas';
+    let promises_array:Array<any> = [];
 
-      this.items.sort(function(a,b) {
-          return b.postdate - a.postdate;
-      });
+    return new Promise((resolve, reject) => {
+      let mapped;
+
+      this.cache.getItem(cacheKey).catch(() => {
+        let store = [];
+
+        this.formulas = this.af.list('/formulas');
+        this.subscription8 = this.formulas.subscribe(items => {
+          mapped = items.map((item) => {
+            return new Promise((resolve,reject) => {
+              console.log(JSON.stringify(item.customMetadata) + ":   this is the customdata (((()()()()()");
+
+              let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
+              console.log("postdate *** post : " + item.customMetadata.postdate);
+              storageRef.getDownloadURL().then(url => {
+                console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+                item.customMetadata.profilepic = url;
+                store.push(item.customMetadata);
+                resolve();
+              }).catch((e) => {
+                console.log("in caught url !!!!!!!$$$$$$$!!");
+                item.customMetadata.profilepic = 'assets/blankprof.png';
+                store.push(item.customMetadata);
+                resolve();
+              });
+              //this.startAtKey = item.$key;
+              
+            });
+
+          })
+          let results = Promise.all(mapped);
+          results.then(() => {
+          //setTimeout(() => {
+            this.formulaListArray = store.reverse();  
+            console.log(JSON.stringify(this.formulaListArray) + " value value vlaue productlistarray"); 
+            return this.cache.saveItem(cacheKey, this.formulaListArray);
+          //}, 3000);
+        
+          })
+        })
+
+        
+      }).then(data => {
+        console.log("Saved data: ", data);
+        this.formulaListArray = data;
+        resolve();
+      })
+    })
+  }
+
+  /*listFormulas(): Promise<any> {
+    let cacheKey = 'formulas';
+    this.cache.removeItem(cacheKey);
+    let promises_array:Array<any> = [];
+
+    return new Promise((resolve, reject) => {
+      let mapped;
+
+      this.cache.getItem(cacheKey).catch(() => {
+        
+        this.formulas = this.af.list('/formulas');
+
+        this.subscription8 = this.formulas.subscribe(items => {
+          mapped = items.map((item) => {
+            return new Promise((resolve,reject) => {
+              let storageRef = firebase.storage().ref().child('/settings/' + item.customMetadata.username + '/profilepicture.png');
+                  
+              storageRef.getDownloadURL().then(url => {
+                console.log(url + "in download url !!!!!!!!!!!!!!!!!!!!!!!!");
+                item.customMetadata.profilepic = url;
+              }).catch((e) => {
+                console.log("in caught url !!!!!!!$$$$$$$!!");
+                item.customMetadata.profilepic = 'assets/blankprof.png';
+              });
+
+              console.log("item item ----- " + JSON.stringify(item));
+              this.formulaListArray.push(item.customMetadata);
+            })
+          });
+         })
+        let results = Promise.all(mapped);
+        results.then(() => {
+        //setTimeout(() => {
+          console.log(JSON.stringify(this.formulaListArray) + " value value vlaue productlistarray");
+          this.formulaListArray.reverse();   
+          return this.cache.saveItem(cacheKey, this.formulaListArray);
+        //}, 3000);
+      
+        })  
+      }).then(data => {
+        console.log("Saved data: ", data);
+        resolve();
+      })
+    })
+  }*/
+
+  listAll() {
+    console.log("in listall")
+    this.items.push.apply(this.items, this.formulaListArray);
+    this.items.push.apply(this.items, this.productListArray);
+    this.items.push.apply(this.items, this.classesListArray);
+
+    this.items.sort(function(a,b) {
+        return b.postdate - a.postdate;
+    });
+
+    console.log(JSON.stringify(this.items) + " this.items.sort after 999999");
   }
 
   ngOnDestroy() {
@@ -897,6 +1068,7 @@ export class FeedStylist implements OnDestroy {
     this.subscription5.unsubscribe();
     this.subscription6.unsubscribe();
     this.subscription7.unsubscribe();
+    this.subscription8.unsubscribe();
   }
 
   doInfinite(): Promise<any> {

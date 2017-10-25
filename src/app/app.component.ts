@@ -39,7 +39,7 @@ export class MyApp {
       statusBar.overlaysWebView(false);
       statusBar.isVisible;
       splashScreen.hide();
-      
+      cache.setDefaultTTL(60 * 60); //set default cache TTL for 1 hour
     });
   }
 }
