@@ -35,7 +35,11 @@ export class FullfeedPage {
   }
 
   swipeLeft() {
-    this.navCtrl.push(FeedUser,{},{animate:true,animation:'transition',duration:500,direction:'forward'});
+    this.navCtrl.popToRoot({animate:true,animation:'transition',duration:500,direction:'forward'});
+  }
+
+  ionViewWillUnload() {
+    //this.navCtrl.pop();
   }
 
   ionViewDidLoad() {

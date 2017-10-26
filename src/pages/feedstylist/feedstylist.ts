@@ -185,6 +185,10 @@ export class FeedStylist implements OnDestroy {
         saveToPhotoAlbum: true
   }
 
+  ionViewWillUnload() {
+    //this.navCtrl.pop();
+  }
+
   modelChanged(newObj) {
     console.log(typeof newObj + "  nnnnnneeeeeewwww     jo boboobbooooooob");
     let date = new Date(newObj);
@@ -365,7 +369,7 @@ export class FeedStylist implements OnDestroy {
   }
 
   swipeRight() {
-    this.toFollowers();
+    this.navCtrl.push(FollowersPage,{},{animate:true,animation:'transition',duration:500,direction:'back'});
   }
 
   switchView() {
@@ -374,10 +378,6 @@ export class FeedStylist implements OnDestroy {
 
   toProfile() {
     this.navCtrl.push(StylistProfile,{},{animate:true,animation:'transition',duration:500,direction:'forward'});
-  }
-
-  toFollowers() {
-    this.navCtrl.push(FollowersPage,{},{animate:true,animation:'transition',duration:500,direction:'back'});
   }
 
   loadPost() {
@@ -838,11 +838,12 @@ export class FeedStylist implements OnDestroy {
   listClasses(): Promise<any> {
     let cacheKey = 'classes';
     let promises_array:Array<any> = [];
+    //this.cache.removeItem(cacheKey);
 
     return new Promise((resolve, reject) => {
       let mapped;
 
-      this.cache.getItem(cacheKey).catch(() => {
+      //this.cache.getItem(cacheKey).catch(() => {
         let store = [];
 
         this.list = this.af.list('/classes');
@@ -880,18 +881,18 @@ export class FeedStylist implements OnDestroy {
             this.classesListArray = store.reverse();
             //this.classesListArray.reverse();   
             console.log(JSON.stringify(this.classesListArray) + " value value vlaue classsses");
-            return this.cache.saveItem(cacheKey, this.classesListArray);
+            //return this.cache.saveItem(cacheKey, this.classesListArray);
           //}, 3000);
-        
+            resolve();        
           })
         })
 
         
-      }).then(data => {
+      /*}).then(data => {
         console.log("Saved data: ", data);
         this.classesListArray = data;
         resolve();
-      })
+      })*/
     })
   }
 
@@ -902,7 +903,7 @@ export class FeedStylist implements OnDestroy {
     return new Promise((resolve, reject) => {
       let mapped;
 
-      this.cache.getItem(cacheKey).catch(() => {
+      //this.cache.getItem(cacheKey).catch(() => {
         let store = [];
 
         this.list1 = this.af.list('/products');
@@ -933,18 +934,19 @@ export class FeedStylist implements OnDestroy {
           //setTimeout(() => {
             console.log(JSON.stringify(this.productListArray) + " value value vlaue productlistarray");
             this.productListArray = store.reverse();   
-            return this.cache.saveItem(cacheKey, this.productListArray);
+            resolve();
+            //return this.cache.saveItem(cacheKey, this.productListArray);
           //}, 3000);
         
           })
         })
 
         
-      }).then(data => {
+      /*}).then(data => {
         console.log("Saved data: ", data);
         this.productListArray = data;
         resolve();
-      })
+      })*/
     })
   }
 
@@ -955,7 +957,7 @@ export class FeedStylist implements OnDestroy {
     return new Promise((resolve, reject) => {
       let mapped;
 
-      this.cache.getItem(cacheKey).catch(() => {
+      //this.cache.getItem(cacheKey).catch(() => {
         let store = [];
 
         this.formulas = this.af.list('/formulas');
@@ -987,18 +989,19 @@ export class FeedStylist implements OnDestroy {
           //setTimeout(() => {
             this.formulaListArray = store.reverse();  
             console.log(JSON.stringify(this.formulaListArray) + " value value vlaue productlistarray"); 
-            return this.cache.saveItem(cacheKey, this.formulaListArray);
+            //return this.cache.saveItem(cacheKey, this.formulaListArray);
+            resolve();
           //}, 3000);
         
           })
         })
 
         
-      }).then(data => {
+      /*}).then(data => {
         console.log("Saved data: ", data);
         this.formulaListArray = data;
         resolve();
-      })
+      })*/
     })
   }
 
@@ -1064,11 +1067,21 @@ export class FeedStylist implements OnDestroy {
   ngOnDestroy() {
     //this.subscription.unsubscribe();
     //this.subscription2.unsubscribe();
-    this.subscription4.unsubscribe();
-    this.subscription5.unsubscribe();
-    this.subscription6.unsubscribe();
-    this.subscription7.unsubscribe();
-    this.subscription8.unsubscribe();
+    if(this.subscription4 != null) {
+      this.subscription4.unsubscribe();
+    }
+    if(this.subscription5 != null) {
+      this.subscription5.unsubscribe();
+    }
+    if(this.subscription6 != null) {
+      this.subscription6.unsubscribe();
+    }
+    if(this.subscription7 != null) {
+      this.subscription7.unsubscribe();
+    }
+    if(this.subscription8 != null) {
+      this.subscription8.unsubscribe();
+    }
   }
 
   doInfinite(): Promise<any> {

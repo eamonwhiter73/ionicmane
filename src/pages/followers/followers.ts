@@ -39,6 +39,10 @@ export class FollowersPage implements OnDestroy{
   constructor(private callNumber: CallNumber, public geolocation: Geolocation, public storage: Storage, public af: AngularFireDatabase, public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  ionViewDidUnload() {
+    //this.navCtrl.pop()
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad FollowersPage');
     this.storage.get('username').then((val) => {
@@ -92,16 +96,16 @@ export class FollowersPage implements OnDestroy{
   };
 
   ngOnDestroy() {
-	if(this.subscription != null) {
-		this.subscription.unsubscribe();
-	}
-	if(this.subscription2 != null) {
-		this.subscription2.unsubscribe();
-	}
+  	if(this.subscription != null) {
+  		this.subscription.unsubscribe();
+  	}
+  	if(this.subscription2 != null) {
+  		this.subscription2.unsubscribe();
+  	}
   }
 
   swipeLeft() {
-    this.navCtrl.push(FeedStylist,{},{animate:true,animation:'transition',duration:500,direction:'forward'});
+    this.navCtrl.popToRoot({animate:true,animation:'transition',duration:500,direction:'forward'});
   }
 
   makePhoneCall(userPhone) {

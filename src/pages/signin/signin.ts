@@ -78,7 +78,7 @@ export class SignInPage {
       alert('You need to select "Hair Stylist" or "User"');
     }
     else {
-      const result = this.afAuth.auth.signInWithEmailAndPassword(userx.email, userx.password).then((data) => {
+      this.afAuth.auth.signInWithEmailAndPassword(userx.email, userx.password).then((data) => {
         console.log(data);
         if(data.email && data.uid) {
           if(this.stylist) {
@@ -90,7 +90,7 @@ export class SignInPage {
             this.navCtrl.setRoot(FeedUser);
           }
         }
-      }).catch((e) => {"The username or password is incorrect"});
+      }).catch((e) => {alert("The username or password is incorrect")});
     }
   }
 

@@ -171,6 +171,10 @@ export class StylistProfile implements OnDestroy {
     //return Promise.all(promises_array);
   }
 
+  ionViewDidUnload() {
+    this.navCtrl.pop()
+  }
+
   ionViewDidLoad() {
     this.square2 = this.navParams.get("square");
 
@@ -543,16 +547,6 @@ export class StylistProfile implements OnDestroy {
     this.navCtrl.push(SettingsPage);
   }
 
-  backToFeed() {
-    /*if(this.navParams.get('param1') == 'user') {
-      this.navCtrl.push(FeedUser);
-    }*/
-    //else {
-      this.navCtrl.push(FeedStylist,{},{animate:true,animation:'transition',duration:500,direction:'back'})
-      //this.navCtrl.push(FeedStylist);
-    //}
-  }
-
   backToCal() {
     //if(this.navParams.get('param1') == 'user') {
       this.navCtrl.push(BookingPage,{},{animate:true,animation:'transition',duration:500,direction:'forward'})
@@ -561,36 +555,6 @@ export class StylistProfile implements OnDestroy {
     //else {
       //this.navCtrl.push(FeedStylist);
     //}
-  }
-
-  swipe(e: TouchEvent, when: string): void {
-    const coord: [number, number] = [e.changedTouches[0].pageX, e.changedTouches[0].pageY];
-    const time = new Date().getTime();
-
-    if (when === 'start') {
-      this.swipeCoord = coord;
-      this.swipeTime = time;
-    }
-
-    else if (when === 'end') {
-      const direction = [coord[0] - this.swipeCoord[0], coord[1] - this.swipeCoord[1]];
-      const duration = time - this.swipeTime;
-
-      if (duration < 1000 //Short enough
-        && Math.abs(direction[1]) < Math.abs(direction[0]) //Horizontal enough
-        && Math.abs(direction[0]) > 30) {  //Long enough
-          const swipe = direction[0] < 0 ? 'next' : 'previous';
-          console.log(swipe);
-
-          if(swipe == 'next') {
-            this.backToCal();
-          }
-          else {
-            this.backToFeed();
-          }
-      //Do whatever you want with swipe
-      }
-    }
   }
 
   swipeLeft() {
@@ -602,7 +566,7 @@ export class StylistProfile implements OnDestroy {
   }
 
   swipeRight() {
-    this.backToFeed();
+    this.navCtrl.popToRoot({animate:true,animation:'transition',duration:500,direction:'back'});
   }
 
   

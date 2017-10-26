@@ -27,7 +27,7 @@ import { MapPage } from '../pages/map/map';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = FeedUser;
+  rootPage:any = SignInPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, cache: CacheService) {
 

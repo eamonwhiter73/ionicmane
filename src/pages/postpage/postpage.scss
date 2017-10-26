@@ -1,5 +1,16 @@
 page-postpage {
 
+	ion-select {
+		border-style: solid;
+		border-width: 1px;
+		border-color: map-get($colors, primary);
+
+	}
+
+	.label {
+		margin-left: 15px;
+	}
+
 	.datetime-ios {
 		padding: 0;
 	}
@@ -173,6 +184,7 @@ page-postpage {
 		bottom: 0;
 		height: 64px;
 		margin-bottom: -1px;
+		color: map-get($colors, primary);
 	}
 
 	.captioninput {

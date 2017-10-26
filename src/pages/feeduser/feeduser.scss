@@ -92,10 +92,20 @@ page-feed-user {
 	}
 
 	.postusername {
-  	display: inline-block;
-  	margin-left: 4px;
-  	font-weight: 700;
-  	font-size: 12px;
+	  	display: inline-block;
+	  	margin-left: 4px;
+	  	font-weight: 700;
+	  	font-size: 12px;
+	}
+
+	.usernamecontainer {
+		height: 100%;
+		align-items: center;
+		display: flex;
+	}
+
+	.promotitle {
+		margin-left: 15px;
 	}
 
 	.poststudio {
@@ -106,9 +116,16 @@ page-feed-user {
 	}
 
 	.deal {
-		float: right;
-    right: 10px;
-    position: absolute;
+		position: relative;
+		left: 15px;
+		top: -1px;
+		font-size: 10px;
+	}
+
+	.desccontainer {
+		height: 100%;
+		display: flex;
+		align-items: center;
 	}
 
 	.input-wrapper {
@@ -244,6 +261,7 @@ page-feed-user {
 
 	.weeklydeals {
 		display: block;
+		margin-top: 35%;
 	}
 
 	.book {

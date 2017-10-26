@@ -272,7 +272,7 @@ export class SettingsPage implements OnDestroy {
       console.log("being logged out ()()()()ER()EW()RWE()()REW()");
       this.afAuth.auth.signOut();
     }
-    this.navCtrl.setRoot(SignInPage)
+    this.navCtrl.push(SignInPage)
   }
 
   ngOnDestroy() {

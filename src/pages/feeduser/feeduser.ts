@@ -89,7 +89,7 @@ export class FeedUser implements OnDestroy {
   @ViewChild('weekly') weeklyyellow: ElementRef;
   @ViewChild('price') price: ElementRef;
   @ViewChild('distance') distancey: ElementRef;
-  @ViewChild('noavail') noavail: ElementRef;
+  @ViewChild('noavail') noavail;
 
   @ViewChild(Content  ) content: Content;
 
@@ -107,6 +107,7 @@ export class FeedUser implements OnDestroy {
   prices: FirebaseListObservable<any>;
   ratingslist:FirebaseListObservable<any>
   distancelist: FirebaseListObservable<any>;
+  prom: FirebaseListObservable<any>;
   pricesArray = [];
   distances = [];
   stars;
@@ -121,6 +122,7 @@ export class FeedUser implements OnDestroy {
   private subscription7: ISubscription;
   private subscription8: ISubscription;
   private subscription9: ISubscription;
+  private subscription10: ISubscription;
 
 
   queryable: boolean = true;
@@ -175,6 +177,8 @@ export class FeedUser implements OnDestroy {
     })
     
   }*/
+
+
 
   getAds() {
     let promises_array:Array<any> = [];
@@ -301,7 +305,10 @@ export class FeedUser implements OnDestroy {
       this.subscription8.unsubscribe();
     }
     if(this.subscription9 != null) {
-      this.subscription8.unsubscribe();
+      this.subscription9.unsubscribe();
+    }
+    if(this.subscription10 != null) {
+      this.subscription10.unsubscribe();
     }
   } 
 
@@ -360,8 +367,8 @@ export class FeedUser implements OnDestroy {
     return roundedTempNumber / factor;
   };
 
-  loadDistances()/*: Promise<any>*/ {
-    //return new Promise((resolve, reject) => {
+  loadDistances(): Promise<any> {
+    return new Promise((resolve, reject) => {
       let cacheKey = "distances"
       let rrr;
       let arr = [];
@@ -427,20 +434,21 @@ export class FeedUser implements OnDestroy {
 
                 })
               })
-            });
 
               let results = Promise.all(mapped);
               results.then(() => {
                 console.log(JSON.stringify(arr) + " :FOSIEJO:SFJ::EFIJSEFIJS:EFJS:IO THIS IODIOSJ:FDSIJ :DIS");
-                arr.sort(function(a,b) {
-                  return a.distance - b.distance;
-                });
+                
 
                 this.distances = arr.slice();
                 console.log(JSON.stringify(this.distances) + " ^^^^&&&&&&&********88889999000000000");
 
-                return this.cache.saveItem(cacheKey, this.distances);
+                resolve();
+                //return this.cache.saveItem(cacheKey, this.distances);
               })
+            });
+
+          })  
               
             /*}).then(data => {
               this.distances = data
@@ -463,14 +471,42 @@ export class FeedUser implements OnDestroy {
     
   }
 
-  loadPrices() {
-    let mapped;
-    let cacheKey = "prices";
-    let results;
-    let array = [];
-    this.cache.removeItem(cacheKey);
+  loadPromotions() {
+    console.log("In loadPromotions fdskkfdskldfkfdslkfds");
+    
+    this.prom = this.af.list('/promotions');
 
-    this.cache.getItem(cacheKey).catch(() => {
+    this.promotions = [];
+
+    this.subscription10 = this.prom.subscribe(items => items.forEach(item => {
+      //mapped = items.map((item) => {
+        //return new Promise(resolve => {
+
+            this.promotions.push(item.customMetadata);
+            console.log("pushing ITEM (((((()()()()()() promotions" + JSON.stringify(item.customMetadata));
+            //this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
+
+          
+        //})  
+      //})
+      
+    }));
+
+    if(this.promotions != []) {
+      this.renderer.setElementStyle(this.noavail._elementRef.nativeElement, 'display', 'none');
+    }
+  }
+
+  loadPrices() {
+    //let mapped;
+    //let cacheKey = "prices";
+    //let results2;
+    
+    //this.cache.removeItem(cacheKey);
+
+    //this.cache.getItem(cacheKey).catch(() => {
+
+      //let array = [];
 
       this.prices = this.af.list('/profiles/stylists', {
         query: {
@@ -478,8 +514,8 @@ export class FeedUser implements OnDestroy {
         }
       });
       this.subscription5 = this.prices.subscribe(items => items.forEach(item => {
-        mapped = items.map((item) => {
-          return new Promise(resolve => {
+        //mapped = items.map((item) => {
+          //return new Promise(resolve => {
             if(item.price == null) {
               //
             }
@@ -488,24 +524,24 @@ export class FeedUser implements OnDestroy {
               if(!item.picURL) {
                 item.picURL = 'assets/blankprof.png';
               }
-              array.push(item);
+              this.pricesArray.push(item); console.log("     pushing ITEM (((((()()()()()() loadprices")
               //this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
 
             }
-          })  
-        })
+          //})  
+        //})
+        
       }));
 
-      
-
-      results = Promise.all(mapped);
-      results.then(() => {  
-        this.pricesArray = array;   
-        return this.cache.saveItem(cacheKey, this.pricesArray);
-      })
-    }).then(data => {
+        //results2 = Promise.all(mapped);
+        //results2.then(() => {  
+        //this.pricesArray = array;
+        //console.log(this.pricesArray + "     pricesarrrraaayyy ITEM (((((()()()()()() loadprices")   
+        //return this.cache.saveItem(cacheKey, this.pricesArray);
+      //})    
+    /*}).then(data => {
       this.pricesArray = data;
-    })
+    })*/
   }
 
   loadRatings(): Promise<any> {
@@ -513,39 +549,41 @@ export class FeedUser implements OnDestroy {
       let mapped;
       let cacheKey = "ratings";
       let results;
+      let array = [];
 
       this.cache.getItem(cacheKey).catch(() => {
 
         this.ratingslist = this.af.list('/profiles/stylists');
-         
-        let array = [];
-        
         this.subscription7 = this.ratingslist.subscribe(items => {
-          mapped = items.map((item) => {
-            return new Promise(resolve => {
-              if(!item.picURL) {
-                item.picURL = 'assets/blankprof.png';
-              }
+          try {
+            mapped = items.map((item) => {
+              return new Promise(resolve => {
+                if(!item.picURL) {
+                  item.picURL = 'assets/blankprof.png';
+                }
 
-              for(let z in item.rating) {
-                console.log(z + "this is the rating string");
-              }
+                for(let z in item.rating) {
+                  console.log(z + "this is the rating string");
+                }
 
-              console.log(JSON.stringify(item) + "stringifyied item &&^^&%^%^%^$$%%$");
-              if(item.type == "stylist") {
-                console.log("getting pushed &&%$$##@#@#@#@#@#");
-                array.push(item);
-              }
+                console.log(JSON.stringify(item) + "stringifyied item &&^^&%^%^%^$$%%$");
+                if(item.type == "stylist") {
+                  console.log("getting pushed &&%$$##@#@#@#@#@#");
+                  array.push(item);
+                }
 
-              resolve();
-              
-             })
+                resolve();
+                
+              })
 
-           })
+            })
 
-            
-          
-        });
+         } catch(e) {
+           console.log(e + "try catch try v98989980");
+        }   
+         
+        }) 
+        
 
         results = Promise.all(mapped);
         results.then(() => {
@@ -563,34 +601,10 @@ export class FeedUser implements OnDestroy {
   }
 
   ionViewDidLoad() {
-    
-    let loading = this.loadingController.create({content : "Loading..."});
-    loading.present();
 
-    this.promotions = [
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 5', 'time':'$20 off coloring'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 6', 'time':'50% off ombre'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 7', 'time':'$10 off on first session'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 8', 'time':'$10 off on first session'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 9', 'time':'$10 off on first session'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 10', 'time':'$10 off bleaching'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 1', 'time':'$10 off bleaching'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 2', 'time':'$10 off bleaching'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 3', 'time':'50% off ombre'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 4', 'time':'$10 off on first session'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 5', 'time':'$10 off on first session'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 6', 'time':'$10 off on first session'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 7', 'time':'$10 off bleaching'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 8', 'time':'$10 off bleaching'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 9', 'time':'$10 off bleaching'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 10', 'time':'50% off ombre'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 1', 'time':'50% off ombre'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 2', 'time':'50% off ombre'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 3', 'time':'$20 off coloring'},
-                    {'pic': 'Weekly Deal', 'salon':'@salon_ 4', 'time':'$20 off coloring'}
-                  ];
-
+    this.loadPromotions();
     this.getAds();
+    this.loadPrices();
     
     //this.getInitialImages();
     this.loadAvailabilities().then(() => {
@@ -618,6 +632,9 @@ export class FeedUser implements OnDestroy {
         
       }, 1500);
     }).then(() => {
+
+      
+
       let ratings;
       let totalPotential;
       
@@ -685,7 +702,9 @@ export class FeedUser implements OnDestroy {
 
             });
          }).then(() => {
-           this.loadDistances();
+           this.loadDistances().then(() => {
+             
+           });
          })
     })               
 
@@ -701,8 +720,6 @@ export class FeedUser implements OnDestroy {
       this.loadDistances();
     },1000)*/
     
-    loading.dismiss();
-
   }
 
   presentProfileModal(salon, time) {

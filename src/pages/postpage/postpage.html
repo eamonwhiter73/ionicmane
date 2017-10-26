@@ -16,16 +16,16 @@
 
 <ion-content no-padding>
 	<ion-item class="typeofpost" no-padding>
-		<h4>What type of post is this?</h4>
-		<select [(ngModel)]="item.typeofselect" >
-		    <option selected>Post</option>
-		    <option>Promo</option>
-		    <option>Class</option>
-		    <option>Product</option>
-		    <option>Weekly Deal</option>
-		</select>
+		<ion-label class="headerr">What type of post is this?</ion-label>
+		<ion-select class="selector" [(ngModel)]="item.typeofselect" (ngModelChange)="typeChanged($event)">
+		    <ion-option selected>Post</ion-option>
+		    <ion-option>Promo</ion-option>
+		    <ion-option>Class</ion-option>
+		    <ion-option>Product</ion-option>
+		    <ion-option>Formula</ion-option>
+		</ion-select>
 	</ion-item>
-	<div class="titlecaption">
+	<div class="titlecaption" #title>
 		<div class="titlee">
 			<div class='detailpic'>
 				<ion-icon ios="ios-bookmarks" md="md-bookmarks" class="titleicon"></ion-icon>
@@ -42,13 +42,13 @@
 			</div>
 			<div class="inputcaption">
 				<ion-input name='caption' [(ngModel)]="item.caption" class="captioninput" type="text" placeholder="Write a caption"></ion-input>
-				<div class="postimagecontain" (tap)="presentActionSheet()">
+				<div class="postimagecontain" (tap)="presentActionSheet()" #imageholder>
 					<img class="postimage" #imagey [src]="">
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="titlecaption">
+	<div class="titlecaption" #price>
 		<div class="titlee">
 			<div class='detailpic'>
 				<ion-icon name="pricetags" class="titleicon"></ion-icon>
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="datepickcont">
+	<div class="datepickcont" #date>
 		<div class="datepickk">
 			<!--<button  ion-button class="pickadate"> <!--(tap)="showDatePicker()"-->
 			<ion-item>
@@ -73,5 +73,5 @@
 			</div>-->
 		</div>
 	</div>
-	<button #sharer class="share" (tap)="shareItem()" ion-button full color="secondary">SHARE</button>
+	<button #sharer class="share" (tap)="shareItem()" ion-button full color="black">SHARE</button>
 </ion-content>

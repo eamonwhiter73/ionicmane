@@ -1,53 +1,37 @@
 <ion-header> <!--[@slideDown]="downState"-->
   <div (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
-  <ion-toolbar #clickme class="itemadspace" [@slideDown]="downState" no-padding> <!--[@slideDown]="downState"-->
-    <!--<ion-item class="ad" no-padding no-lines>-->
-    <div class="stylistview">
-      <button class="stylistviewbutton" (tap)='switchView()' ion-button color="secondary">User View</button>
-    </div>
-
-    <!--<ion-item>
-      <ion-slides slidesPerView="3" #slides (ionSlideDidChange)='whatIsIndex2()'>
-        <ion-slide *ngFor="let ad of ads; let i = index" class="adcontainer">
-          <img src="{{ad}}" class="adimage" #adimage>
-        </ion-slide>
-      </ion-slides>
-
-      <ion-slides slidesPerView="1" #slides2 class="slides2" (ionSlideDidChange)='whatIsIndex1()'>
-        <ion-slide *ngFor="let ad of ads; let i = index" class="adcontainer">
-          <img src="{{ad}}" class="adimage" #adimage>
-        </ion-slide>
-      </ion-slides>
-    </ion-item>-->
-
-    <swiper #swiper [config]="config" [(index)]="swiperIndex" (indexChange)="indexChange()">
-      <div *ngFor="let ad of ads; let i = index" class="adcontainer">
-        <img src="{{ad}}" class="adimage" #adimage>
+    <ion-toolbar #clickme class="itemadspace" [@slideDown]="downState" no-padding> <!--[@slideDown]="downState"-->
+      <!--<ion-item class="ad" no-padding no-lines>-->
+      <div class="stylistview">
+        <button class="stylistviewbutton" (tap)='switchView()' ion-button color="secondary">User View</button>
       </div>
-    </swiper>
-      
+
+      <swiper #swiper [config]="config" [(index)]="swiperIndex" (indexChange)="indexChange()">
+        <div *ngFor="let ad of ads; let i = index" class="adcontainer">
+          <img src="{{ad}}" class="adimage" #adimage>
+        </div>
+      </swiper>
+    </ion-toolbar>
+        
     <!--</ion-item>-->
-    <div (tap)="presentActionSheet()" class='pluscontainer' [@plusSlide]="downState">
+    <div class='pluscontainer' [@plusSlide]="downState">
       <p>BUY</p><br><p>AD</p>
     </div>
-  </ion-toolbar>
 
-  
-
-  <div class="clickme" (tap)="toolClicked($event)">
-    <ion-navbar  color="black" [@toolSlide]="toolbarState" id="iontoolbar"> <!--[@toolSlide]="toolbarState"-->
-      <ion-icon class='custom-icon' name="play"></ion-icon>
-      <button class="all toolbarstyle" #allF ion-button color="black" (tap)="all()">All</button>
-      <button class="classes toolbarstyle" #classesFeed ion-button color="black" (tap)="classes()">Classes</button>
-      <button class="products toolbarstyle" #productsFeed ion-button color="black" (tap)="products()">Products</button>
-      <button class="formulas toolbarstyle" #formulasFeed ion-button color="black" (tap)="formulasList()">Formulas</button>
-    </ion-navbar>
-  </div>
+    <div class="clickme" (tap)="toolClicked($event)">
+      <ion-navbar  color="black" [@toolSlide]="toolbarState" id="iontoolbar"> <!--[@toolSlide]="toolbarState"-->
+        <ion-icon class='custom-icon' name="play"></ion-icon>
+        <button class="all toolbarstyle" #allF ion-button color="black" (tap)="all()">All</button>
+        <button class="classes toolbarstyle" #classesFeed ion-button color="black" (tap)="classes()">Classes</button>
+        <button class="products toolbarstyle" #productsFeed ion-button color="black" (tap)="products()">Products</button>
+        <button class="formulas toolbarstyle" #formulasFeed ion-button color="black" (tap)="formulasList()">Formulas</button>
+      </ion-navbar>
+    </div>
   </div>
 </ion-header>
 
 <ion-content [@moveList]='moveState' no-padding> <!--[@moveList]='moveState'-->
-<div (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
+<div class="swipecont" (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
   <!--<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>-->
@@ -108,9 +92,9 @@
           <div class='description'>{{j.title}}</div>
           <div class='link'>{{j.date}}</div>
         </div>
-        <div class="priceholder">
+        <!--<div class="priceholder">
           <div class='description'>${{j.price}}</div>
-        </div>
+        </div>-->
       </div>
       <div class="feedtoptextcontainer" #feedtop2 (tap)="goSeeProfile(j)"> <!-- (tap)='contractItem(i)'-->
         <div class="imageparent">
@@ -189,12 +173,12 @@
    <ion-list no-padding>
      <ion-item class="changepadding" *ngFor="let j of formulaListArray ; let i = index" id='{{i}}' #feedstyle4 text-wrap>
       <div class="flex" (tap)='expandItem4(i)' #flex4>
-        <!--<div class="nonzoomimage">
+        <div class="nonzoomimage">
           <img class="imagepost" src="{{j.url}}">
-        </div>-->
-        <div class="imageparent">
-          <img class="postprofilepic" src="{{j.profilepic}}">
         </div>
+        <!--<div class="imageparent">
+          <img class="postprofilepic" src="{{j.profilepic}}">
+        </div>-->
         <div class="usernamecontainer">
           <h4 class="postusername">@{{j.username}}</h4><br>
           <!--<h4 class="poststudio">Ed's Studio</h4>-->

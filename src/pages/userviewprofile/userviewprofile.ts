@@ -117,6 +117,10 @@ export class UserViewProfile implements OnDestroy {
         saveToPhotoAlbum: true
   }
 
+  ionViewWillUnload() {
+    this.navCtrl.pop();
+  }
+
   ionViewDidEnter() {
     //let loading = this.loadingController.create({content : "Loading..."});
     //loading.present();
@@ -430,16 +434,6 @@ export class UserViewProfile implements OnDestroy {
     this.navCtrl.push(SettingsPage);
   }
 
-  backToFeed() {
-    /*if(this.navParams.get('param1') == 'user') {
-      this.navCtrl.push(FeedUser);
-    }*/
-    //else {
-      this.navCtrl.push(FeedUser,{},{animate:true,animation:'transition',duration:500,direction:'back'})
-      //this.navCtrl.push(FeedStylist);
-    //}
-  }
-
   backToCal() {
     //if(this.navParams.get('param1') == 'user') {
       this.navCtrl.push(BookingPage,{},{animate:true,animation:'transition',duration:500,direction:'forward'})
@@ -473,7 +467,6 @@ export class UserViewProfile implements OnDestroy {
             this.backToCal();
           }
           else {
-            this.backToFeed();
           }
       //Do whatever you want with swipe
       }
@@ -485,7 +478,7 @@ export class UserViewProfile implements OnDestroy {
   }
 
   swipeRight() {
-    this.backToFeed();
+    this.navCtrl.popToRoot({animate:true,animation:'transition',duration:500,direction:'back'});
   }
 
   downloadImages() {

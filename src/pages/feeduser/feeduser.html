@@ -161,11 +161,14 @@
    <ion-list class="marginstatus" no-padding>
      <ion-item *ngFor="let a of promotions" no-padding>
       <div class="feedtoptextcontainer">
+        <!--<div class="imageparent">
+          <img class="postprofilepic" src="{{a.url}}">
+        </div>-->
         <div class="usernamecontainer">
-          <h4 class="postusername">{{a.salon}}</h4><br>
+          <h4 class="postusername">@{{a.username}}</h4><br>
         </div>
-        <h3>{{a.pic}}</h3>
-        <h4 class="deal">{{a.time}}</h4>
+        <h3 class="promotitle">{{a.title}}</h3>
+        <h4 class="deal">{{a.caption}}</h4>
       </div>
       <!--<img class="imagepost" src="{{i}}">-->
      </ion-item>

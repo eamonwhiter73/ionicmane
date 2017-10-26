@@ -12,9 +12,8 @@
 
 </ion-header>
 
-
-<ion-content (swipeleft)="swipeLeft()" no-padding>
-  <div (swipeleft)="swipeLeft()">
+<ion-content no-padding>
+  <div (swipeleft)="swipeLeft()" class="followerscont">
    <ion-list no-padding>
      <ion-item *ngFor="let z of followers" no-padding>
       <div class="feedtoptextcontainer" (tap)="makePhoneCall(z.phone)">
