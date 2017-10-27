@@ -86,6 +86,7 @@ export class UserProfile implements OnDestroy {
   profilePic;
   totalRatings;
   titleYear;
+  stars;
 
 
   _imageViewerCtrl: ImageViewerController;
@@ -220,9 +221,32 @@ export class UserProfile implements OnDestroy {
       //this.instagram.nativeElement.src = item.instagramURL;
       this.totalRatings = total;
       
-    });
+      let totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
+      let ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five *5;
+      
+      console.log(ratings + "   ratings          total potential:    " + totalPotential);
 
-    
+      if(ratings == 0 && totalPotential == 0) {
+        this.stars = '\u2606\u2606\u2606\u2606\u2606';
+      }
+
+      let i = (ratings / totalPotential) * 100;
+      if(Math.round(i) <= 20) {
+        this.stars = '\u2605\u2606\u2606\u2606\u2606';
+      }
+      if(Math.round(i) > 20 && Math.round(i) <= 40) {
+        this.stars = '\u2605\u2605\u2606\u2606\u2606';
+      }
+      if(Math.round(i) > 40 && Math.round(i) <= 60) {
+        this.stars = '\u2605\u2605\u2605\u2606\u2606';
+      }
+      if(Math.round(i) > 60 && Math.round(i) <= 80) {
+        this.stars = '\u2605\u2605\u2605\u2605\u2606';
+      }
+      if(Math.round(i) > 80) {
+        this.stars = '\u2605\u2605\u2605\u2605\u2605';
+      }
+    });
 
     this.tds = this.elRef.nativeElement.querySelectorAll('td[tappable]');
   
@@ -405,7 +429,7 @@ export class UserProfile implements OnDestroy {
     //this.navCtrl.push(SignUpPage);
   }
 
-  presentProfileModal() {
+  presentRateModal() {
     let profileModal = this.modalCtrl.create(Rate, {"user": this.username});
     profileModal.present();
   }

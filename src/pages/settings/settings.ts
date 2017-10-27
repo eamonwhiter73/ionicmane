@@ -15,6 +15,7 @@ import { FeedStylist } from '../feedstylist/feedstylist';
 import { FeedUser } from '../feeduser/feeduser';
 import { SignInPage } from '../signin/signin';
 import { UserViewProfile } from '../userviewprofile/userviewprofile';
+
 import { MapPage } from '../map/map';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
@@ -106,15 +107,28 @@ export class SettingsPage implements OnDestroy {
 
   linkProfile() {
     if(this.linked == "Link Profile") {
-      this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
-        this.facebook.api('me?fields=id', []).then(profile => {
-          console.log(JSON.stringify(profile));
-          this.facebookURL = "http://www.facebook.com/" + profile['id'];
-          this.storage.set('fblinked', true);
-          this.linked = "Linked";
-          //this.userData = {email: profile['email'], first_name: profile['first_name'], picture: profile['picture_large']['data']['url'], username: profile['name']}
+      if(this.type == 'stylist' || this.type == 'user/stylist/stylist') {
+        this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
+          this.facebook.api('me?fields=id', []).then(profile => {
+            console.log(JSON.stringify(profile));
+            this.facebookURL = "http://www.facebook.com/" + profile['id'];
+            this.storage.set('fblinkedstylist', true);
+            this.linked = "Linked";
+            //this.userData = {email: profile['email'], first_name: profile['first_name'], picture: profile['picture_large']['data']['url'], username: profile['name']}
+          });
         });
-      });
+      }
+      else if(this.type == 'user' || this.type == 'user/stylist/user') {
+        this.facebook.login(['email', 'public_profile']).then((response: FacebookLoginResponse) => {
+          this.facebook.api('me?fields=id', []).then(profile => {
+            console.log(JSON.stringify(profile));
+            this.facebookURL = "http://www.facebook.com/" + profile['id'];
+            this.storage.set('fblinkeduser', true);
+            this.linked = "Linked";
+            //this.userData = {email: profile['email'], first_name: profile['first_name'], picture: profile['picture_large']['data']['url'], username: profile['name']}
+          });
+        });
+      }
     };
   }
 
@@ -149,12 +163,12 @@ export class SettingsPage implements OnDestroy {
     
     console.log("        ADDDDREESSSSS77777777:  " + this.address);  //moved up here!
 
-    if(this.type == 'user' || this.type == 'user/stylist/user') {
+   /*if(this.type == 'user' || this.type == 'user/stylist/user') {
 
       if(this.username == null || this.password == null || this.email == null || this.bio == null) {
         alert("You need to fill out all of the information");
       }
-    }
+    }*/
 
     console.log(this.authUser + '      authuser       998877');
     this.x = 0;
@@ -189,7 +203,7 @@ export class SettingsPage implements OnDestroy {
 
     //this.storage.get('type').then((val) => {
       if(this.type == 'stylist' || this.type == 'user/stylist/stylist') {
-        if(this.username == null || this.password == null || this.email == null || this.bio == null || this.address == null || this.price == null || this.phone == null) {
+        if(this.username == '' || this.password == '' || this.email == '' || this.bio == '' || this.address == '' || this.price == '' || this.phone == '') {
           alert("You need to fill out all of the information");
         }
         else {
@@ -219,7 +233,7 @@ export class SettingsPage implements OnDestroy {
                                   'address': this.address, 'bio': this.bio, 'price': this.price, 'picURL': this.picURL, 'phone': this.phone,
                                   'facebookURL': this.facebookURL, 'instagramURL': "http://www.instagram.com/" + this.instagramURL}});
 
-            this.navCtrl.setRoot(FeedStylist);
+            this.navCtrl.push(StylistProfile);
           }
           else {
             this.af.object('/profiles/stylists/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
@@ -228,13 +242,13 @@ export class SettingsPage implements OnDestroy {
                               'facebookURL': this.facebookURL, 'instagramURL': "http://www.instagram.com/" + this.instagramURL,
                               'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
           
-            this.navCtrl.setRoot(FeedStylist);
+            this.navCtrl.push(StylistProfile);
           }
         }
 
       }
       if(this.type == 'user' || this.type == 'user/stylist/user') {
-        if(this.username == null || this.password == null || this.email == null || this.bio == null || this.phone == null) {
+        if(this.username == '' || this.password == '' || this.email == '' || this.bio == '' || this.phone == '') {
           alert("You need to fill out all of the information");
         }
         else {
@@ -244,7 +258,7 @@ export class SettingsPage implements OnDestroy {
             this.items.update({[this.username] : {'username': this.username, 'password': this.password, 'email': this.email,
                                   'bio': this.bio, 'picURL': this.picURL, 'phone': this.phone, 'facebookURL': this.facebookURL, 'instagramURL': "http://www.instagram.com/" + this.instagramURL}});
 
-            this.navCtrl.setRoot(FeedUser);
+            this.navCtrl.push(UserViewProfile);
           }
           else {
             this.af.object('/profiles/users/'+this.oldUser).remove().then(_ => console.log('item deleted!'));
@@ -252,7 +266,7 @@ export class SettingsPage implements OnDestroy {
                                'bio': this.bio, 'picURL': this.picURL, 'phone': this.phone, 'facebookURL': this.facebookURL, 'instagramURL': "http://www.instagram.com/" + this.instagramURL,
                                'rating': {'one':0, 'two':0, 'three':0, 'four':0, 'five':0}}});
 
-            this.navCtrl.setRoot(FeedUser);
+            this.navCtrl.push(UserViewProfile);
           }
         }
       };
@@ -276,7 +290,7 @@ export class SettingsPage implements OnDestroy {
     else {
       this.storage.set('loggedin', false);
     }
-    this.navCtrl.push(SignInPage)
+    this.navCtrl.setRoot(SignInPage);
   }
 
   ngOnDestroy() {
@@ -284,8 +298,17 @@ export class SettingsPage implements OnDestroy {
   }
 
   ionViewDidLoad() {
-    this.storage.get('fblinked').then((val)=> {
-      if(val == true) {
+    this.storage.get('fblinkeduser').then((val)=> {
+      if(val == true && this.type == 'user/sylist/user' || this.type == 'user') {
+        this.linked = "Linked"
+      }
+      else {
+        this.linked = "Link Profile"
+      }
+    })
+
+    this.storage.get('fblinkedstylist').then((val)=> {
+      if(val == true && this.type == 'user/sylist/stylist' || this.type == 'stylist') {
         this.linked = "Linked"
       }
       else {

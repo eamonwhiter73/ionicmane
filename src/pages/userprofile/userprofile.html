@@ -18,8 +18,8 @@
 		  <img class="postprofilepic" src="{{profilePic}}">
 		</div>
 	    <div class="rateandsocial">
-		    <div class='ratecontain'>
-			    <div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+		    <div class='ratecontain' (tap)="presentRateModal()">
+			    <div class='stars'>{{stars}}</div>
 			    <div class='ratings'>({{totalRatings}} ratings)</div>
 			</div>
 		    <div class="social">

@@ -144,6 +144,10 @@ export class UserViewProfile implements OnDestroy {
           
             this.thoroughfare = newResult.thoroughfare;
             this.locality = newResult.locality;
+
+            this.storage.set('locality', this.locality);
+            this.storage.set('thoroughfare', this.thoroughfare);
+
             console.log(JSON.stringify(this.locationListed) + "     thisislocaitonlistedste    3223i32ip 3ij223");
             this.myrenderer.setElementStyle(this.locationListed.nativeElement, 'display', 'block');
 
@@ -169,11 +173,20 @@ export class UserViewProfile implements OnDestroy {
       this.bio = val;
     })
 
+    this.storage.get('locality').then((val)=> {
+      this.locality = val;
+      this.storage.get('thoroughfare').then((val) => {
+        this.thoroughfare = val;
+      })
+    })
+
     this.storage.get('location').then((val)=> {
       if(val == true) {
         this.myrenderer.setElementStyle(this.locationListed.nativeElement, 'display', 'none');
       };
     })
+
+
     
     this.storage.get('username').then((val) => {
       this.username = val;
