@@ -85,10 +85,8 @@ export class FormulapostPage implements OnDestroy {
   isFormula() {
     let metadata = {
       customMetadata: {
-        'title': this.item.title,
         'formula': this.item.caption,
-        'description': this.item.description,
-        'price': this.item.price,
+        'price': '3',
         'username': this.username,
         'url': this.imageHolder,
         'postdate': Date.now(),
@@ -108,7 +106,7 @@ export class FormulapostPage implements OnDestroy {
     console.log(this.imageHolder + "                    **************************** src ****************");
     console.log("****&*&&*&*&*&*&*          " + this.item.typeofselect);
 
-    if(this.item.title == '' || this.item.caption == '' || this.item.price == '' || this.imageHolder == null) {
+    if(this.item.caption == '' || this.imageHolder == null) {
       alert("You need to fill in all of the information");
     }
     else {

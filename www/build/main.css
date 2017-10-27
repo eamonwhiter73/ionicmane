@@ -31159,6 +31159,7 @@ page-feed-stylist body > ion-app > ng-component > ion-nav > page-feed-stylist > 
 }
 
 page-feed-stylist .formulaslist {
+  display: none;
   margin-top: -127%;
 }
 
@@ -31170,6 +31171,10 @@ page-feed-stylist .savebutton {
   z-index: 9999 !important;
   top: 40%;
   left: 50%;
+}
+
+page-feed-stylist .price {
+  color: #008543;
 }
 
 page-feed-stylist .datetime-ios {
@@ -32437,7 +32442,6 @@ page-postpage .postimage {
   float: right;
   width: 79px;
   height: 79px;
-  position: relative;
   left: 0;
   top: 0;
 }
@@ -34305,6 +34309,26 @@ page-user-profile .leftArrow[_ngcontent-c2] {
   top: 15px;
 }
 
+page-user-profile .rightArrow[_ngcontent-c4] {
+  z-index: 20;
+  left: 42%;
+  position: relative;
+  width: 28px;
+  height: 20px;
+  display: inline-block;
+  top: 15px;
+}
+
+page-user-profile .leftArrow[_ngcontent-c4] {
+  z-index: 20;
+  position: relative;
+  left: 22%;
+  width: 28px;
+  height: 20px;
+  display: inline-block;
+  top: 15px;
+}
+
 page-user-profile .arrowrightholder {
   display: inline-block;
   position: absolute;
@@ -34420,7 +34444,7 @@ page-user-profile .stylistview {
 
 page-user-profile .stylistviewtwo {
   position: absolute;
-  top: 1%;
+  top: -3.5%;
   right: 1%;
 }
 

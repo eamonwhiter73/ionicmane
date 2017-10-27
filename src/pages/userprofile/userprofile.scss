@@ -25,6 +25,26 @@ page-user-profile {
     top: 15px;
 }
 
+.rightArrow[_ngcontent-c4] {
+    z-index: 20;
+    left: 42%;
+    position: relative;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 15px;
+}
+
+  .leftArrow[_ngcontent-c4] {
+    z-index: 20;
+    position: relative;
+    left: 22%;
+    width: 28px;
+    height: 20px;
+    display: inline-block;
+    top: 15px;
+}
+
   .arrowrightholder {
     display: inline-block;
     position: absolute;
@@ -147,7 +167,7 @@ page-user-profile {
 
   .stylistviewtwo {
     position: absolute;
-    top: 1%;
+    top: -3.5%;
     right: 1%;
 }
 

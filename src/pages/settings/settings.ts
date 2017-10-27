@@ -273,6 +273,9 @@ export class SettingsPage implements OnDestroy {
       this.afAuth.auth.signOut();
       this.storage.set('loggedin', false);
     }
+    else {
+      this.storage.set('loggedin', false);
+    }
     this.navCtrl.push(SignInPage)
   }
 

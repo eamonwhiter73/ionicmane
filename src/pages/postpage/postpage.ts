@@ -179,7 +179,9 @@ export class PostpagePage implements OnDestroy {
     
     this.imageHolder = this.navParams.get("path");
     console.log(this.imageHolder + " imageholder imagehodl a pefsj'aes");
-    this.myrenderer.setElementAttribute(this.image.nativeElement, 'src', this.imageHolder);
+    if(this.imageHolder != null) {
+      this.myrenderer.setElementAttribute(this.image.nativeElement, 'src', this.imageHolder);
+    }
 
     
     this.subscription = this.keyboard.onKeyboardShow().subscribe(()=>{

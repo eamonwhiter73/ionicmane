@@ -9,6 +9,7 @@ page-feed-stylist {
 	}
 
 	.formulaslist {
+		display: none;
 		margin-top: -127%;
 	}
 
@@ -21,6 +22,10 @@ page-feed-stylist {
 		top: 40%;
 		left: 50%;
 		
+	}
+
+	.price {
+		color: #008543;
 	}
 
 	.datetime-ios {
