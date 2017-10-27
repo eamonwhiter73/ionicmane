@@ -271,6 +271,7 @@ export class SettingsPage implements OnDestroy {
     if(this.loggedIn) {
       console.log("being logged out ()()()()ER()EW()RWE()()REW()");
       this.afAuth.auth.signOut();
+      this.storage.set('loggedin', false);
     }
     this.navCtrl.push(SignInPage)
   }

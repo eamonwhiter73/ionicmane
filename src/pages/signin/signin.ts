@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { SignUpPage } from '../signup/signup';
 import { FeedUser } from '../feeduser/feeduser';
 import { FeedStylist } from '../feedstylist/feedstylist';
@@ -22,11 +22,18 @@ export class SignInPage {
   password;
   type;
 
-  constructor(public storage: Storage, private afAuth: AngularFireAuth, public keyboard: Keyboard, public navCtrl: NavController) {
+  constructor(public loadingCtrl: LoadingController, public storage: Storage, private afAuth: AngularFireAuth, public keyboard: Keyboard, public navCtrl: NavController) {
 
   }
 
+  ionViewWillUnload() {
+    //this.navCtrl.pop();
+  }
+
   ionViewDidLoad() {
+    //let loading = this.loadingCtrl.create({content : "Loading..."});
+    //loading.present();
+
     this.storage.get('email').then((val) => {
       this.email = val;
     });
@@ -38,6 +45,24 @@ export class SignInPage {
     this.storage.get('type').then((val) => {
       this.type = val;
     })
+
+    this.storage.get('loggedin').then((val) => {
+      console.log(val + " logged innnnnnnn");
+      if(val == true) {
+        console.log(this.type + " logged typeeeeee");
+        if(this.type == 'user/stylist/user' || this.type == 'user') {
+          //loading.dismiss();
+          this.navCtrl.setRoot(FeedUser);
+        }
+        else if(this.type == 'user/stylist/stylist' || this.type == 'stylist') {
+          //loading.dismiss();
+          this.navCtrl.setRoot(FeedStylist);
+        }
+      }
+      else {
+        //loading.dismiss();
+      }
+    });
   }
 
   selectOneStylist() {
@@ -83,10 +108,12 @@ export class SignInPage {
         if(data.email && data.uid) {
           if(this.stylist) {
             this.storage.set('type', 'user/stylist/stylist');
+            this.storage.set('loggedin', true);
             this.navCtrl.setRoot(FeedStylist);
           }
           else {
             this.storage.set('type', 'user/stylist/user');
+            this.storage.set('loggedin', true);
             this.navCtrl.setRoot(FeedUser);
           }
         }

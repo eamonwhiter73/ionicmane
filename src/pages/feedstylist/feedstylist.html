@@ -31,12 +31,7 @@
 </ion-header>
 
 <ion-content [@moveList]='moveState' no-padding> <!--[@moveList]='moveState'-->
-<div class="swipecont" (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
-  <!--<ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>-->
-
-  <div class ='contentone' [@moveList]='moveState' #contentone>
+  <div class ='contentone' [@moveList]='moveState' #contentone (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
    <ion-list no-padding>
      <ion-item class="changepadding" *ngFor="let j of items ; let i = index" id='{{i}}' #feedstyle text-wrap>
       <div class="flex" (tap)='expandItem(i)' #flex>
@@ -79,6 +74,12 @@
     </ion-infinite-scroll-content>
    </ion-infinite-scroll>-->
   </div>
+<div class="swipecont" (swiperight)="swipeRight()" (swipeleft)="swipeLeft()">
+  <!--<ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>-->
+
+  
 
 
   <div class ='contentone classeslist' [@moveList]='moveState' #classeslist>

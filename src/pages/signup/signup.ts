@@ -43,6 +43,10 @@ export class SignUpPage implements OnDestroy {
 
   }
 
+  ionViewWillUnload() {
+    this.navCtrl.pop();
+  }
+
   async register(){
     
     if(this.bool) {
