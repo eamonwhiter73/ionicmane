@@ -290,7 +290,7 @@ export class SettingsPage implements OnDestroy {
     else {
       this.storage.set('loggedin', false);
     }
-    this.navCtrl.setRoot(SignInPage);
+    this.navCtrl.push(SignInPage);
   }
 
   ngOnDestroy() {
@@ -298,38 +298,6 @@ export class SettingsPage implements OnDestroy {
   }
 
   ionViewDidLoad() {
-    this.storage.get('fblinkeduser').then((val)=> {
-      if(val == true && this.type == 'user/sylist/user' || this.type == 'user') {
-        this.linked = "Linked"
-      }
-      else {
-        this.linked = "Link Profile"
-      }
-    })
-
-    this.storage.get('fblinkedstylist').then((val)=> {
-      if(val == true && this.type == 'user/sylist/stylist' || this.type == 'stylist') {
-        this.linked = "Linked"
-      }
-      else {
-        this.linked = "Link Profile"
-      }
-    })
-
-    this.storage.get('location').then((val) => {
-      this.locationtoggle = val;
-      if(val == true) {
-        this.locationtoggle = false;
-      }
-      else {
-        this.locationtoggle = true;
-      }
-
-      console.log(this.locationtoggle + "     in view did load locationtoggle");
-    })
-
-    this.typeparam = this.navParams.get('type');
-
     this.storage.get('type').then((val) => {
       this.type = val;
       console.log(this.typeparam + '       this.typeparam       ');
@@ -389,7 +357,49 @@ export class SettingsPage implements OnDestroy {
           
         }, 1000);
 
+        if(this.type == 'user' || this.type == 'user/stylist/user') {
+          this.storage.get('fblinkeduser').then((val)=> {
+            console.log(val + " val vlal v avlal v allavl val ");
+            console.log(this.type + " tyope aosefi; fai; sefeji a'aj '' ");
+            if(val) {
+              this.linked = "Linked"
+            }
+            else {
+              this.linked = "Link Profile"
+            }
+          })
+        }
+        else if(this.type == 'stylist' || this.type == 'user/stylist/stylist') {
+
+          this.storage.get('fblinkedstylist').then((val)=> {
+            if(val) {
+              this.linked = "Linked"
+            }
+            else {
+              this.linked = "Link Profile"
+            }
+          })
+        }
+
     })
+
+    
+
+    this.storage.get('location').then((val) => {
+      this.locationtoggle = val;
+      if(val == true) {
+        this.locationtoggle = false;
+      }
+      else {
+        this.locationtoggle = true;
+      }
+
+      console.log(this.locationtoggle + "     in view did load locationtoggle");
+    })
+
+    this.typeparam = this.navParams.get('type');
+
+    
 
     
   }

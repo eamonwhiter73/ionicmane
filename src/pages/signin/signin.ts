@@ -110,11 +110,12 @@ export class SignInPage {
             this.storage.set('type', 'user/stylist/stylist');
             this.storage.set('loggedin', true);
             this.navCtrl.setRoot(FeedStylist);
+            
           }
           else {
             this.storage.set('type', 'user/stylist/user');
             this.storage.set('loggedin', true);
-            this.navCtrl.setRoot(FeedUser);
+            this.navCtrl.setRoot(FeedUser); 
           }
         }
       }).catch((e) => {alert("The username or password is incorrect")});

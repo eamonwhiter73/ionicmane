@@ -109,13 +109,27 @@ export class UserProfile implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription6.unsubscribe();
-    this.subscription2.unsubscribe();
-    this.subscription3.unsubscribe();
-    this.subscription4.unsubscribe();
-    this.subscription.unsubscribe();
-    this.subscription7.unsubscribe();
-    this.subscription9.unsubscribe();
+    if(this.subscription2 != null) {
+      this.subscription2.unsubscribe();
+    }
+    if(this.subscription3 != null) {
+      this.subscription3.unsubscribe();
+    }
+    if(this.subscription4 != null) {
+      this.subscription4.unsubscribe();
+    }
+    if(this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
+    if(this.subscription6 != null) {
+      this.subscription6.unsubscribe();
+    }
+    if(this.subscription7 != null) {
+      this.subscription7.unsubscribe();
+    }
+    if(this.subscription9 != null) {
+      this.subscription9.unsubscribe();
+    }
   }
 
   instagramOpen() {
