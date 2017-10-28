@@ -20,6 +20,7 @@ import { FormulapostPage } from '../pages/formulapost/formulapost';
 import { CacheService } from "ionic-cache";
 
 import { MapPage } from '../pages/map/map';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 
 
@@ -27,13 +28,14 @@ import { MapPage } from '../pages/map/map';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = SignInPage;
+  rootPage:any = FeedUser;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, cache: CacheService) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, cache: CacheService, private screenOrientation: ScreenOrientation) {
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       statusBar.styleBlackOpaque();
       statusBar.backgroundColorByName('black');
       statusBar.overlaysWebView(false);

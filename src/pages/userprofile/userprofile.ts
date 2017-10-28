@@ -47,6 +47,7 @@ export class UserProfile implements OnDestroy {
   @ViewChild('followsty') followsty;
   @ViewChild('instagram') instagram: ElementRef;
   @ViewChild('facebook') facebook: ElementRef;
+  @ViewChildren('formulabar') formulaBars:QueryList<any>;
   viewDate = new Date();
   events = [];
   viewTitle: string;
@@ -223,6 +224,15 @@ export class UserProfile implements OnDestroy {
       console.log("in caught url !!!!!!!$$$$$$$!!");
       this.profilePic = 'assets/blankprof.png';
     });
+
+    this.username = this.navParams.get("username");
+
+    this.downloadImages().then(() => {
+      this.getProfileInfo();
+      this.downloadImagesFormula().then(() => {
+
+      })
+    })
 
     this.item9 = this.af.object('/profiles/stylists/' + this.username);
     this.subscription9 = this.item9.subscribe(item => {
@@ -519,6 +529,33 @@ export class UserProfile implements OnDestroy {
     this.navCtrl.push(UserBooking, {username: this.username});
   }
 
+  downloadImagesFormula():Promise<any> {
+    console.log("IN DOWNLOAD IMAGES FORMULS __@_@_+_+@_@+_+@_+@");
+    let self = this;
+    let promises_array:Array<any> = [];
+    let itemArrayTwo = this.profComponents.toArray();
+    let itemArrayfour = this.formulaBars.toArray();
+
+    for (let z = 1; z < 10; z++) {
+      promises_array.push(new Promise(function(resolve,reject) {
+        let storageRef = firebase.storage().ref().child('/formulas/'+ self.username + '/formula_' + self.username + '_' + z + '.png');
+        storageRef.getDownloadURL().then(url => {
+          self.myrenderer.setElementAttribute(itemArrayTwo[z - 1].nativeElement, 'src', url);
+          self.myrenderer.setElementStyle(itemArrayTwo[z - 1].nativeElement, 'display', 'block');
+          self.myrenderer.setElementStyle(itemArrayfour[z - 1].nativeElement, 'display', 'block');
+          //self.myrenderer.setElementStyle(itemArray[z - 1].nativeElement, 'display', 'none');
+          console.log(z);
+          resolve();
+        }).catch(error => {
+          resolve();
+          console.log(error.message);
+        });
+      }));
+    }
+
+    return Promise.all(promises_array);
+  }
+
   downloadImages():Promise<any> {
     let self = this;
     let promises_array:Array<any> = [];
@@ -543,21 +580,10 @@ export class UserProfile implements OnDestroy {
     return Promise.all(promises_array);
   }
 
-  ionViewWillEnter() {
-    this.loadings = this.loadingController.create({content : "Loading..."});
-    this.loadings.present();
-    
-  }
-
   
 
   ionViewDidEnter() {
-    this.username = this.navParams.get("username");
-
-    this.downloadImages().then(() => {
-      this.getProfileInfo();
-      this.loadings.dismiss();
-    })
+    
   }
 
   

@@ -629,84 +629,84 @@ export class FeedUser implements OnDestroy {
           i.time = str;
         }
 
-        
-      }, 1500);
-    }).then(() => {
-
+      console.log("In load availabilities then thing aijosfeijofdsjoifadsjio");
       
-
       let ratings;
       let totalPotential;
       
       
       this.loadRatings().then((array) =>{
 
-            console.log(array + '    ararrya &&*&&*&^^&%^%^');
+          console.log(array + '    ararrya &&*&&*&^^&%^%^');
 
-            let r = 0;
-            for(let item of array) {
-              if(item.rating.one == 0 && item.rating.two == 0 && item.rating.three == 0 && item.rating.four == 0 && item.rating.five == 0) {
-                this.stars = "No ratings";
+          let r = 0;
+          for(let item of array) {
+            if(item.rating.one == 0 && item.rating.two == 0 && item.rating.three == 0 && item.rating.four == 0 && item.rating.five == 0) {
+              this.stars = "No ratings";
+            }
+            else {
+
+              console.log("making the stars");
+
+              totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
+              ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five *5;
+              
+
+              let i = (ratings / totalPotential) * 100;
+              if(Math.round(i) <= 20) {
+                this.stars = '\u2605';
               }
-              else {
-
-                console.log("making the stars");
-
-                totalPotential = item.rating.one * 5 + item.rating.two * 5 + item.rating.three * 5 + item.rating.four * 5 + item.rating.five * 5;
-                ratings = item.rating.one + item.rating.two * 2 + item.rating.three * 3 + item.rating.four * 4 + item.rating.five *5;
-                
-
-                let i = (ratings / totalPotential) * 100;
-                if(Math.round(i) <= 20) {
-                  this.stars = '\u2605';
-                }
-                if(Math.round(i) > 20 && Math.round(i) <= 40) {
-                  this.stars = '\u2605\u2605';
-                }
-                if(Math.round(i) > 40 && Math.round(i) <= 60) {
-                  this.stars = '\u2605\u2605\u2605';
-                }
-                if(Math.round(i) > 60 && Math.round(i) <= 80) {
-                  this.stars = '\u2605\u2605\u2605\u2605';
-                }
-                if(Math.round(i) > 80) {
-                  this.stars = '\u2605\u2605\u2605\u2605\u2605';
-                }
+              if(Math.round(i) > 20 && Math.round(i) <= 40) {
+                this.stars = '\u2605\u2605';
               }
-
-              item.stars = this.stars;
-              this.rating.push(item);
-              //this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
-              r++;
+              if(Math.round(i) > 40 && Math.round(i) <= 60) {
+                this.stars = '\u2605\u2605\u2605';
+              }
+              if(Math.round(i) > 60 && Math.round(i) <= 80) {
+                this.stars = '\u2605\u2605\u2605\u2605';
+              }
+              if(Math.round(i) > 80) {
+                this.stars = '\u2605\u2605\u2605\u2605\u2605';
+              }
             }
 
-            console.log("THIS IS THE SORTED ARRAY TO BE SORRRED        " + JSON.stringify(this.rating));
+            item.stars = this.stars;
+            this.rating.push(item);
+            //this.renderer.setElementStyle(this.noavail.nativeElement, 'display', 'none');
+            r++;
+          }
 
-            this.rating.sort(function(a,b){ 
-              if(a.stars !== "No ratings" && b.stars !== "No ratings") {
-                if(a.stars === b.stars){
-                  return 0;
-                }
-                else {
-                  return a.stars.length < b.stars.length ? 1 : -1;
-                }
+          console.log("THIS IS THE SORTED ARRAY TO BE SORRRED        " + JSON.stringify(this.rating));
+
+          this.rating.sort(function(a,b){ 
+            if(a.stars !== "No ratings" && b.stars !== "No ratings") {
+              if(a.stars === b.stars){
+                return 0;
               }
               else {
-                if(a.stars === "No ratings"){
-                  return 1;
-                }
-                else if(b.stars === "No ratings"){
-                  return -1;
-                }
+                return a.stars.length < b.stars.length ? 1 : -1;
               }
+            }
+            else {
+              if(a.stars === "No ratings"){
+                return 1;
+              }
+              else if(b.stars === "No ratings"){
+                return -1;
+              }
+            }
 
-            });
-         }).then(() => {
-           this.loadDistances().then(() => {
-             
-           });
-         })
-    })               
+          });
+       }).then(() => {
+         this.loadDistances().then(() => {
+           
+         });
+       })
+      }, 1500);
+    })
+
+      
+              
 
 
 
@@ -924,6 +924,7 @@ export class FeedUser implements OnDestroy {
   }
 
   loadAvailabilities(): Promise<any> {
+    
     return new Promise((resolve, reject) => {
       this.appointments = this.af.list('/appointments');
       this.subscription2 = this.appointments.subscribe(items => items.forEach(item => {
@@ -940,6 +941,7 @@ export class FeedUser implements OnDestroy {
             let date = new Date(item.date.day * 1000);
             let today = new Date();
             console.log(date.getMonth() + "==" + today.getMonth()  + "&&" + date.getDate() + "==" + today.getDate());
+            console.log("IN LOAD AVAILABILITIES *(*((**(*(*(*(*(*(*&^^^^%^%556565656565");
             if(date.getMonth() == today.getMonth() && date.getDate() == today.getDate()) {
               console.log("            inside the if that checks if its today");
               console.log(item.reserved.appointment + "                *************appointment");

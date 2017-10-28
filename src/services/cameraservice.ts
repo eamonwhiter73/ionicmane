@@ -287,7 +287,7 @@ export class CameraService {
             //this.getFileEntryRead(this.file.tempDirectory + '/image.jpg', square);
             var dataURL = data;
 
-            let image       : string  = 'formula_' + this.username + '_' + new Date() + '.png',
+            let image       : string  = 'formula_' + this.username + '_' + square + '.png',
               storageRef  : any,
               parseUpload : any,
               thisUrl: any;

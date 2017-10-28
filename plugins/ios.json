@@ -91,6 +91,9 @@
         },
         "mx.ferreyra.callnumber": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     },
     "dependent_plugins": {

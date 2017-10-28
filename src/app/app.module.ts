@@ -55,6 +55,7 @@ import { GooglePlus } from '@ionic-native/google-plus'
 
 import { PopUp } from '../modals/popup/popup';
 import { PopUpOther } from '../modals/popupother/popupother';
+import { FormulaBuy } from '../modals/formulabuy/formulabuy';
 
 import { Rate } from '../modals/rate/rate'
 import { IonicImageLoader } from 'ionic-image-loader';
@@ -69,6 +70,8 @@ import { SMS } from '@ionic-native/sms';
 import { MapPage } from '../pages/map/map';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { CacheModule } from "ionic-cache";
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+
 
 
 
@@ -119,6 +122,7 @@ firebase.initializeApp(firebaseConfig);
     UserBooking,
     PopUp,
     PopUpOther,
+    FormulaBuy,
     SettingsPage,
     UserProfile,
     Rate,
@@ -158,6 +162,7 @@ firebase.initializeApp(firebaseConfig);
     BookingPage,
     PopUp,
     PopUpOther,
+    FormulaBuy,
     Rate,
     SettingsPage,
     UserProfile,
@@ -191,7 +196,8 @@ firebase.initializeApp(firebaseConfig);
     LocationAccuracy,
     CallNumber,
     SMS,
-    GoogleMaps
+    GoogleMaps,
+    ScreenOrientation
   ]
 })
 export class AppModule {}

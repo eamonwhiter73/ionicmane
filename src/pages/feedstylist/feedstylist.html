@@ -18,13 +18,13 @@
       <p>BUY</p><br><p>AD</p>
     </div>
 
-    <div class="clickme" (tap)="toolClicked($event)">
+    <div (tap)="toolClicked($event)">
       <ion-navbar  color="black" [@toolSlide]="toolbarState" id="iontoolbar"> <!--[@toolSlide]="toolbarState"-->
         <ion-icon class='custom-icon' name="play"></ion-icon>
         <button class="all toolbarstyle" #allF ion-button color="black" (tap)="all()">All</button>
-        <button class="classes toolbarstyle" #classesFeed ion-button color="black" (tap)="classes()">Classes</button>
-        <button class="products toolbarstyle" #productsFeed ion-button color="black" (tap)="products()">Products</button>
-        <button class="formulas toolbarstyle" #formulasFeed ion-button color="black" (tap)="formulasList()">Formulas</button>
+        <button class="toolbarstyle" #classesFeed ion-button color="black" (tap)="classes()">Classes</button>
+        <button class="toolbarstyle" #productsFeed ion-button color="black" (tap)="products()">Products</button>
+        <button class="toolbarstyle" #formulasFeed ion-button color="black" (tap)="formulasList()">Formulas</button>
       </ion-navbar>
     </div>
   </div>

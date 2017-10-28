@@ -1,5 +1,21 @@
 page-user-profile {
 
+  .formulabar {
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    background-color: map-get($colors, primary);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+    font-weight: 700;
+    display: none;
+    z-index: 10;
+    bottom: 0;
+  }
+
   ion-title {
      text-align: center;
      position: absolute;

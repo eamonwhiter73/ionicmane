@@ -84,6 +84,9 @@
         },
         "cordova-sms-plugin": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     },
     "dependent_plugins": {
@@ -94,6 +97,9 @@
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         },
         "cordova-universal-clipboard": {
+            "PACKAGE_NAME": "com.ionicframework.maneApp"
+        },
+        "es6-promise-plugin": {
             "PACKAGE_NAME": "com.ionicframework.maneApp"
         }
     }
